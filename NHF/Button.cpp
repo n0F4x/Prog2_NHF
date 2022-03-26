@@ -28,52 +28,57 @@ Button::Button(
 ) :
 	_text{ text, fontStyle,	characterSize },
 	_callback{ callback },
-	StateMachine{ _states[DEFAULT] }
+	StateMachine{ &_states[DEFAULT] }
 {
-	_states[DEFAULT].setEventListener([&](const sf::Event& event) -> State& {
-		if (event.type == sf::Event::MouseMoved) {
+	_states[DEFAULT].setEventListener(
+		[&](const sf::Event& event) -> State* {
 			if (isInside()) {
-				return _states[HOVERED];
+				return &_states[HOVERED];
 			}
+			return &_states[DEFAULT];
 		}
-		return _states[DEFAULT];
-		});
-	_states[HOVERED].setEventListener([&](const sf::Event& event) -> State& {
-		if (event.type == sf::Event::MouseMoved) {
+	);
+
+	_states[HOVERED].setEventListener(
+		[&](const sf::Event& event) -> State* {
 			if (!isInside()) {
-				return _states[DEFAULT];
+				return &_states[DEFAULT];
 			}
-		}
-		if (event.type == sf::Event::MouseButtonPressed) {
-			if (event.mouseButton.button == sf::Mouse::Left)
-				return _states[PRESSED];
-		}
-		return _states[HOVERED];
-		});
-	_states[PRESSED].setEventListener([&](const sf::Event& event) -> State& {
-		if (event.type == sf::Event::MouseMoved) {
-			if (!isInside())
-				return _states[ACTIVE];
-		}
-		if (event.type == sf::Event::MouseButtonReleased) {
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				triggerCallback();
-				return _states[HOVERED];
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					return &_states[PRESSED];
+				}
 			}
+			return &_states[HOVERED];
 		}
-		return _states[PRESSED];
-		});
-	_states[ACTIVE].setEventListener([&](const sf::Event& event) -> State& {
-		if (event.type == sf::Event::MouseMoved) {
-			if (isInside())
-				return _states[PRESSED];
+	);
+	_states[PRESSED].setEventListener(
+		[&](const sf::Event& event) -> State* {
+			if (!isInside()) {
+				return &_states[ACTIVE];
+			}
+			if (event.type == sf::Event::MouseButtonReleased) {
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					triggerCallback();
+					return &_states[DEFAULT];
+				}
+			}
+			return &_states[PRESSED];
 		}
-		if (event.type == sf::Event::MouseButtonReleased) {
-			if (event.mouseButton.button == sf::Mouse::Left)
-				return _states[DEFAULT];
+	);
+	_states[ACTIVE].setEventListener(
+		[&](const sf::Event& event) -> State* {
+			if (isInside()) {
+				return &_states[PRESSED];
+			}
+			if (event.type == sf::Event::MouseButtonReleased) {
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					return &_states[DEFAULT];
+				}
+			}
+			return &_states[ACTIVE];
 		}
-		return _states[ACTIVE];
-		});
+	);
 }
 
 void Button::update() {

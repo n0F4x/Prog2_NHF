@@ -9,10 +9,10 @@
 class Button : public Widget, public StateMachine {
 private:
 	ButtonState _states[4] = {
-		{btn::DEFAULT, sf::Color::Red},
-		{btn::HOVERED, sf::Color::Blue},
-		{btn::PRESSED, sf::Color::Green},
-		{btn::ACTIVE, sf::Color::Yellow},
+		{btn::DEFAULT, theme::Secondary},
+		{btn::HOVERED, theme::Primary},
+		{btn::PRESSED, theme::Quaternary},
+		{btn::ACTIVE, theme::Tertiary},
 	};
 
 	sf::Text _text;

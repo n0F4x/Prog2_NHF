@@ -5,10 +5,10 @@
 
 class StateMachine {
 private:
-	State& _currentState;
+	State* _currentState = nullptr;
 
 protected:
-	StateMachine(State& initialState);
+	StateMachine(State* initialState);
 	size_t getCurrentID() const;
 
 public:
