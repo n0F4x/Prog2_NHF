@@ -1,10 +1,10 @@
 #pragma once
 
-#include "App.hpp"
+#include "AppData.hpp"
 #include "Track.hpp"
 
 
-class GameStage : public Stage {
+class GameMenu : public Menu {
 private:
 	AppData& _appData;
 
@@ -13,7 +13,7 @@ private:
 	Track _track;
 
 public:
-	GameStage(AppData& data);
+	GameMenu(AppData& data);
 
 	void handleEvent(const sf::Event& event) override;
 	void update() override;

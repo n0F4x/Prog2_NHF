@@ -1,34 +1,18 @@
 #include "Angle.hpp"
 
 
-Angle::Angle(float angle) : _angle{ angle } {}
-
-Angle::operator float() const {
-	return _angle;
+float operator"" _deg(long double degree) {
+	return static_cast<float>(degree) * 3.14159265f / 180.f;
 }
 
-Angle& Angle::operator+=(const Angle& rhs) {
-	_angle += rhs;
-	return *this;
+float operator"" _rad(long double radian) {
+	return static_cast<float>(radian);
 }
 
-Angle& Angle::operator-=(const Angle& rhs) {
-	_angle -= rhs;
-	return *this;
+float operator"" _deg(unsigned long long degree) {
+	return static_cast<float>(degree) * 3.14159265f / 180.f;
 }
 
-Angle operator"" _deg(long double degree) {
-	return Angle{ static_cast<float>(degree) * 3.14159265f / 180.f };
-}
-
-Angle operator"" _rad(long double radian) {
-	return Angle{ static_cast<float>(radian) };
-}
-
-Angle operator"" _deg(unsigned long long degree) {
-	return Angle{ static_cast<float>(degree) * 3.14159265f / 180.f };
-}
-
-Angle operator"" _rad(unsigned long long radian) {
-	return Angle{ static_cast<float>(radian) };
+float operator"" _rad(unsigned long long radian) {
+	return static_cast<float>(radian);
 }

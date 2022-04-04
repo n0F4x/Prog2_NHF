@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 
-class Stage {
+class Menu {
 public:
 	virtual void handleEvent(const sf::Event& event) = 0;
 	virtual void update() = 0;

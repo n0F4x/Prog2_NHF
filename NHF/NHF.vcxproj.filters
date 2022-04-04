@@ -34,12 +34,6 @@
     <Filter Include="Header Files\GUI\Widgets">
       <UniqueIdentifier>{7b69da7c-37ea-49f9-af3b-2e4e7e88c98c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Stages">
-      <UniqueIdentifier>{881dbe68-21fb-47c3-bdbd-7408eb794839}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Stages">
-      <UniqueIdentifier>{b3d471d0-25e8-4e80-b47a-56dfc2663049}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GUI\Wigets">
       <UniqueIdentifier>{e20e2c26-255e-48cc-967c-a08f6b20396b}</UniqueIdentifier>
     </Filter>
@@ -55,6 +49,30 @@
     <Filter Include="Source Files\Utils\Math">
       <UniqueIdentifier>{b4a19c41-9a56-49bd-b066-9b381424d1fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Menus">
+      <UniqueIdentifier>{881dbe68-21fb-47c3-bdbd-7408eb794839}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus\GameMenu">
+      <UniqueIdentifier>{4d096a71-9aa8-42ca-9275-939f608cea48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus">
+      <UniqueIdentifier>{b3d471d0-25e8-4e80-b47a-56dfc2663049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\GameMenu">
+      <UniqueIdentifier>{f803bc27-9b1b-4b1a-813d-adb60e92449a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\MainMenu">
+      <UniqueIdentifier>{b74757a7-c4f2-4193-8833-636fc5e6aab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus\MainMenu">
+      <UniqueIdentifier>{ef302094-acf5-4cda-bd9d-fac533d64427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus\InitMenu">
+      <UniqueIdentifier>{df2a02c4-85ff-4823-bc2c-a8e22298dbfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\InitMenu">
+      <UniqueIdentifier>{7472471f-ace1-4ea1-a65c-c9f3c49a67c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,20 +84,8 @@
     <ClCompile Include="AssetManager.cpp">
       <Filter>Source Files\AppData</Filter>
     </ClCompile>
-    <ClCompile Include="GameStage.cpp">
-      <Filter>Source Files\Stages</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuStage.cpp">
-      <Filter>Source Files\Stages</Filter>
-    </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="StageManager.cpp">
+    <ClCompile Include="MenuManager.cpp">
       <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="Track.cpp">
-      <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="WindowManager.cpp">
       <Filter>Source Files\AppData</Filter>
@@ -108,6 +114,24 @@
     <ClCompile Include="AppData.cpp">
       <Filter>Source Files\AppData</Filter>
     </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Menus\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Track.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="PolarVector.cpp">
+      <Filter>Source Files\Utils\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="InitMenu.cpp">
+      <Filter>Source Files\Menus\InitMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp">
@@ -116,26 +140,14 @@
     <ClInclude Include="AppData.hpp">
       <Filter>Header Files\AppData</Filter>
     </ClInclude>
-    <ClInclude Include="GameStage.hpp">
-      <Filter>Header Files\Stages</Filter>
+    <ClInclude Include="Menu.hpp">
+      <Filter>Header Files\Menus</Filter>
     </ClInclude>
-    <ClInclude Include="MenuStage.hpp">
-      <Filter>Header Files\Stages</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage.hpp">
-      <Filter>Header Files\Stages</Filter>
-    </ClInclude>
-    <ClInclude Include="StageManager.hpp">
+    <ClInclude Include="MenuManager.hpp">
       <Filter>Header Files\AppData</Filter>
     </ClInclude>
     <ClInclude Include="AssetManager.hpp">
       <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Platform.hpp">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Track.hpp">
-      <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="WindowManager.hpp">
       <Filter>Header Files\AppData</Filter>
@@ -166,6 +178,24 @@
     </ClInclude>
     <ClInclude Include="Engine.hpp">
       <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="PolarVector.hpp">
+      <Filter>Header Files\Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Track.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.hpp">
+      <Filter>Header Files\Menus\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="InitMenu.hpp">
+      <Filter>Header Files\Menus\InitMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

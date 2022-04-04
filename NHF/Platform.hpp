@@ -7,29 +7,26 @@
 
 class Platform {
 private:
-	Engine& _Engine;
-
-	static sf::Vector2f _origin;
 	static float _maxRadius;
 	static float _scalingRatio;
+	static const float _width;
 
-	float _outerRadius = 3.1f;
-	float _innerRadius = 1.9f;
-	Angle _rotation = 0_deg;
-	const Angle _width = 30_deg;
-
-	sf::Vector2f _center;
-	float _centerRadius = sqrt(0.7f);
+	float _innerRadius = 2.f;
+	float _outerRadius = 3.f;
+	float _rotation = 0_deg;
 
 public:
 	static void setOrigin(sf::Vector2f origin);
 	static void setScale(int speed);
 
-	Platform(Engine& _Engine, Angle rotation = 255_deg);
+	Platform(float rotation = 75_deg);
 
-	bool isInside(sf::Vector2f point) const;
+	float getInnerRadius() const { return _innerRadius; }
+	float getOuterRadius() const { return _outerRadius; }
+	float getRotation() const { return _rotation; }
+	float getWidth() const { return _width; }
 
-	void rotate(Angle angle);
+	void rotate(float angle);
 
 	void update();
 	bool isDead() const;

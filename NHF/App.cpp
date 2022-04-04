@@ -1,27 +1,34 @@
 #include "App.hpp"
 
-#include "MenuStage.hpp"
+#include "InitMenu.hpp"
+#include "MainMenu.hpp"
 
 
 App::App() {
-	_appData.stages.addStage(std::make_unique<MenuStage>( _appData ));
-	_appData.stages.processChanges();
+	_appData.menus.addMenu(std::make_unique<InitMenu>(_appData));
+	_appData.menus.processChanges();
+	_appData.menus.current().render();
+
+	_appData.engine.init();
+
+	_appData.menus.addMenu(std::make_unique<MainMenu>(_appData));
+	_appData.menus.processChanges();
 }
 
 void App::run() {
 	sf::Event event;
 
-	while (_appData.window.isOpen() && !_appData.stages.isEmpty()) {
+	while (_appData.window.isOpen() && !_appData.menus.isEmpty()) {
 		while (_appData.window.pollEvent(event)) {
- 			_appData.stages.current().handleEvent(event);
-
 			if (event.type == sf::Event::Closed)
 				_appData.window.close();
+
+			_appData.menus.current().handleEvent(event);
 		}
 
-		_appData.stages.current().update();
-		_appData.stages.current().render();
+		_appData.menus.current().update();
+		_appData.menus.current().render();
 
-		_appData.stages.processChanges();
+		_appData.menus.processChanges();
 	}
 }

@@ -2,5 +2,5 @@
 
 
 AppData::AppData() {
-	math = Engine{ window.getSize() };
+	engine = Engine{ window.getSize() };
 }

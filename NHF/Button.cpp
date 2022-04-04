@@ -21,11 +21,13 @@ bool Button::isInside() const {
 
 
 Button::Button(
+	AssetManager& assets,
 	const sf::String& text,
 	unsigned characterSize,
 	const sf::Font& fontStyle,
 	std::function<void()> callback
 ) :
+	_assets{ assets },
 	_text{ text, fontStyle,	characterSize },
 	_callback{ callback },
 	StateMachine{ &_states[DEFAULT] }
@@ -33,6 +35,7 @@ Button::Button(
 	_states[DEFAULT].setEventListener(
 		[&](const sf::Event& event) -> State* {
 			if (isInside()) {
+				_assets.getSound("ButtonHover").play();
 				return &_states[HOVERED];
 			}
 			return &_states[DEFAULT];
@@ -46,6 +49,7 @@ Button::Button(
 			}
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
+					_assets.getSound("ButtonClick").play();
 					return &_states[PRESSED];
 				}
 			}
@@ -55,12 +59,14 @@ Button::Button(
 	_states[PRESSED].setEventListener(
 		[&](const sf::Event& event) -> State* {
 			if (!isInside()) {
+				_assets.getSound("ButtonRelease").play();
 				return &_states[ACTIVE];
 			}
 			if (event.type == sf::Event::MouseButtonReleased) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
+					_assets.getSound("ButtonRelease").play();
 					triggerCallback();
-					return &_states[DEFAULT];
+					return &_states[HOVERED];
 				}
 			}
 			return &_states[PRESSED];
@@ -69,6 +75,7 @@ Button::Button(
 	_states[ACTIVE].setEventListener(
 		[&](const sf::Event& event) -> State* {
 			if (isInside()) {
+				_assets.getSound("ButtonClick").play();
 				return &_states[PRESSED];
 			}
 			if (event.type == sf::Event::MouseButtonReleased) {

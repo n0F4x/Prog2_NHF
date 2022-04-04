@@ -95,7 +95,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Programming\Projects\University\C++\NHF\NHF\x64\Release;C:\Programming\Projects\University\C++\NHF\NHF\x64\Debug;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,7 +115,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Programming\Projects\University\C++\NHF\NHF\x64\Release;C:\Programming\Projects\University\C++\NHF\NHF\x64\Debug;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,7 +131,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Programming\Projects\University\C++\NHF\NHF\x64\Release;C:\Programming\Projects\University\C++\NHF\NHF\x64\Debug;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,7 +151,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Programming\Projects\University\C++\NHF\NHF\x64\Release;C:\Programming\Projects\University\C++\NHF\NHF\x64\Debug;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -160,15 +160,17 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="ButtonState.cpp" />
-    <ClCompile Include="GameStage.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
+    <ClCompile Include="InitMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="MenuStage.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Angle.cpp" />
+    <ClCompile Include="PolarVector.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
-    <ClCompile Include="StageManager.cpp" />
+    <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Theme.cpp" />
     <ClCompile Include="Track.cpp" />
     <ClCompile Include="WindowManager.cpp" />
@@ -180,15 +182,17 @@
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="App.hpp" />
     <ClInclude Include="ButtonState.hpp" />
-    <ClInclude Include="GameStage.hpp" />
+    <ClInclude Include="GameMenu.hpp" />
+    <ClInclude Include="InitMenu.hpp" />
     <ClInclude Include="Math.hpp" />
     <ClInclude Include="Engine.hpp" />
-    <ClInclude Include="MenuStage.hpp" />
+    <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="Platform.hpp" />
-    <ClInclude Include="Stage.hpp" />
+    <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="PolarVector.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateMachine.hpp" />
-    <ClInclude Include="StageManager.hpp" />
+    <ClInclude Include="MenuManager.hpp" />
     <ClInclude Include="Theme.hpp" />
     <ClInclude Include="Track.hpp" />
     <ClInclude Include="Widget.hpp" />

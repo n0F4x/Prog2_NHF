@@ -1,10 +1,13 @@
 #include "WindowManager.hpp"
 
-#include <iostream>
-
 
 WindowManager::WindowManager() : RenderWindow{} {
-	create(sf::VideoMode::getDesktopMode(), "My Game", sf::Style::None);
+	sf::ContextSettings settings;
+	settings.depthBits = 24;
+	settings.stencilBits = 8;
+	settings.sRgbCapable = true;
+
+	create(sf::VideoMode::getDesktopMode(), "My Game", sf::Style::None, settings);
 
 	setVerticalSyncEnabled(true);
 	setKeyRepeatEnabled(false);

@@ -15,25 +15,28 @@ private:
 	sf::VertexArray _screen;
 	std::list<Platform> _platforms;
 
-	sf::Vector2f _origin;
 	int _counter = 0;
-	const int _scaleSpeed = 20;	//the lower the faster
+	const int _scaleSpeed = 5;	//the lower the faster
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	bool isInside(const sf::Vector2f& point) const;
-
-	Angle _rotation = 0_deg;
-	void rotate(Angle angle);
+	float _rotation = 0_deg;
+	void rotate(float angle);
 
 	bool _isDragged = false;
 	sf::Vector2f _mouse;
+	
+	//int _switchDirection = 0;
+	//float _rotationSpeed = 0_deg;
+	//float _maxRotationSpeed = 5_deg;
+	//float _rotationAcc = 0.5_deg;
+	//void switchLane();
+
 
 	void updatePlatforms();
 
 public:
 	Track(sf::Window& window, Engine& engine, const sf::Vector2f& mouse);
-	//~Track();
 
 	void setMouse(const sf::Vector2f& mouse);
 

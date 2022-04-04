@@ -1,17 +1,17 @@
 #pragma once
 
-#include "App.hpp"
+#include "AppData.hpp"
 #include "Button.hpp"
 
 
-class MenuStage : public Stage {
+class MainMenu : public Menu {
 private:
 	AppData& _appData;
 
 	Button _PlayButton;
 
 public:
-	MenuStage(AppData& appData);
+	MainMenu(AppData& appData);
 
 	void handleEvent(const sf::Event& event) override;
 	void update() override;

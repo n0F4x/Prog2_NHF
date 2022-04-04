@@ -2,15 +2,14 @@
 
 #include "AssetManager.hpp"
 #include "Engine.hpp"
-#include "StageManager.hpp"
+#include "MenuManager.hpp"
 #include "WindowManager.hpp"
 
 
 struct AppData {
 	AssetManager assets;
-	//InputManager inputs;
-	Engine math;
-	StageManager stages;
+	Engine engine;
+	MenuManager menus;
 	WindowManager window;
 
 	AppData();

@@ -1,17 +1,17 @@
-#include "GameStage.hpp"
+#include "GameMenu.hpp"
 
-#include "MenuStage.hpp"
+#include "MainMenu.hpp"
 
 
-GameStage::GameStage(AppData& data) :
+GameMenu::GameMenu(AppData& data) :
 	_appData{ data },
-	_track{ data.window, data.math, sf::Vector2f{sf::Mouse::getPosition(data.window)} }
+	_track{ data.window, data.engine, sf::Vector2f{sf::Mouse::getPosition(data.window)} }
 {}
 
-void GameStage::handleEvent(const sf::Event& event) {
+void GameMenu::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Escape)
-			_appData.stages.removeStage();
+			_appData.menus.removeMenu();
 
 		if (event.key.code == sf::Keyboard::Space)
 			if (!_isPaused)
@@ -25,13 +25,13 @@ void GameStage::handleEvent(const sf::Event& event) {
 	}
 }
 
-void GameStage::update() {
+void GameMenu::update() {
 	if (!_isPaused) {
 		_track.update();
 	}
 }
 
-void GameStage::render() {
+void GameMenu::render() {
 	_appData.window.clear();
 
 	_appData.window.draw(_track);
@@ -39,11 +39,11 @@ void GameStage::render() {
 	_appData.window.display();
 }
 
-void GameStage::pause() {
+void GameMenu::pause() {
 	_isPaused = true;
 }
 
-void GameStage::resume() {
+void GameMenu::resume() {
 	_track.setMouse(sf::Vector2f{ sf::Mouse::getPosition(_appData.window) });
 	_isPaused = false;
 }
