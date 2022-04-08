@@ -8,7 +8,5 @@ private:
 	AppData _appData;
 
 public:
-	App();
-
 	void run();
 };

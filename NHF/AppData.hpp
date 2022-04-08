@@ -3,14 +3,19 @@
 #include "AssetManager.hpp"
 #include "Engine.hpp"
 #include "MenuManager.hpp"
-#include "WindowManager.hpp"
+#include "Window.hpp"
 
 
 struct AppData {
 	AssetManager assets;
 	Engine engine;
 	MenuManager menus;
-	WindowManager window;
+	Window window{ menus };
 
-	AppData();
+	void init() {
+		assets.init();
+		window.init();
+		engine.init(window.getSize());
+		menus.init(*this);
+	}
 };

@@ -1,13 +1,12 @@
 #pragma once
 
+#include "Menu.hpp"
 #include "AppData.hpp"
 #include "Track.hpp"
 
 
 class GameMenu : public Menu {
 private:
-	AppData& _appData;
-
 	bool _isPaused = false;
 
 	Track _track;
@@ -19,6 +18,7 @@ public:
 	void update() override;
 	void render() override;
 
+	void init() override;
 	void pause() override;
 	void resume() override;
 };

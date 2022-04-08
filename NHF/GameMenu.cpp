@@ -3,15 +3,15 @@
 #include "MainMenu.hpp"
 
 
-GameMenu::GameMenu(AppData& data) :
-	_appData{ data },
-	_track{ data.window, data.engine, sf::Vector2f{sf::Mouse::getPosition(data.window)} }
+GameMenu::GameMenu(AppData& appData) :
+	Menu{ appData },
+	_track{ _appData.window, _appData.engine, sf::Vector2f{sf::Mouse::getPosition(_appData.window)} }
 {}
 
 void GameMenu::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Escape)
-			_appData.menus.removeMenu();
+			_appData.menus.close();
 
 		if (event.key.code == sf::Keyboard::Space)
 			if (!_isPaused)
@@ -37,6 +37,11 @@ void GameMenu::render() {
 	_appData.window.draw(_track);
 
 	_appData.window.display();
+}
+
+void GameMenu::init() {
+	_track.init();
+	resume();
 }
 
 void GameMenu::pause() {

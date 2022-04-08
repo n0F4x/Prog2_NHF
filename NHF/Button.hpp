@@ -2,43 +2,36 @@
 
 #include <SFML/Audio.hpp>
 #include "AppData.hpp"
-#include "Widget.hpp"
+#include "Text.hpp"
 #include "StateMachine.hpp"
 #include "ButtonState.hpp"
 #include "Theme.hpp"
 
 
-class Button : public Widget, public StateMachine {
+class Button : public Text, protected StateMachine {
 private:
 	AssetManager& _assets;
 
 	ButtonState _states[4] = {
-		{btn::DEFAULT, theme::Primary},
-		{btn::HOVERED, theme::Secondary},
-		{btn::PRESSED, theme::Tertiary},
-		{btn::ACTIVE, theme::Quaternary},
+		ButtonState{btn::DEFAULT, theme::Primary},
+		ButtonState{btn::HOVERED, theme::Secondary},
+		ButtonState{btn::PRESSED, theme::Tertiary},
+		ButtonState{btn::ACTIVE, theme::Quaternary},
 	};
 
-	sf::Text _text;
 	std::function<void()> _callback;
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
-	//Helpers
 	void triggerCallback();
-	bool isInside() const;
 
 public:
 	Button(
 		AssetManager& assets,
 		const sf::String& text,
-		unsigned characterSize,
 		const sf::Font& fontStyle,
+		unsigned characterSize,
 		std::function<void()> callback
 	);
 
+	void handleEvent(const sf::Event& event) override { StateMachine::handleEvent(event); }
 	void update() override;
-
-	const sf::Vector2f& getSize() const;
-	void setPosition(const sf::Vector2f& position);
 };

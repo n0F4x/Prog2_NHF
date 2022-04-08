@@ -1,28 +1,27 @@
 #pragma once
 
-#include <memory>
-#include <stack>
+#include <SFML/Graphics.hpp>
+#include "MenuNode.hpp"
 
-#include "Menu.hpp"
+struct AppData;
 
 
 class MenuManager {
 private:
-	std::stack<std::unique_ptr<Menu>> _Menus;
-	std::unique_ptr<Menu> _newMenu;
+	std::unique_ptr<MenuNode> _root;
 
-	bool _isRemoving = false;
-	bool _isAdding = false;
-	bool _isReplacing = false;
+	MenuNode* _current = nullptr;
+	MenuNode* _next = nullptr;
 
 public:
-	MenuManager() = default;
-	MenuManager(std::unique_ptr<Menu> initialMenu);
+	void init(AppData& appData);
 
 	bool isEmpty();
-	void processChanges();
 
-	Menu& current();
-	void addMenu(std::unique_ptr<Menu> newMenu, bool isReplacing = true);
-	void removeMenu();
+	void open(std::string name);
+	void close();
+
+	void handleEvent(const sf::Event& event);
+	void update();
+	void render();
 };

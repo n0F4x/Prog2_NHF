@@ -24,19 +24,14 @@ sf::Color Engine::initColor(const sf::Vector2f& point, float radius2) {
 }
 
 
-Engine::Engine(const sf::Vector2u& window) : Engine(sf::Vector2i{ window }) {}
-Engine::Engine(const sf::Vector2i& window) :
-	_window{ window },
-	_origin{ sf::Vector2f{window / 2} }
-{
+void Engine::init(const sf::Vector2u& window) {
+	_window = window;
+	_origin = sf::Vector2f{ _window } / 2.f;
+
 	size_t size = static_cast<size_t>(_window.x) * static_cast<size_t>(_window.y);
 
 	_polarVectorMap.resize(size);
 	_colorPicker.resize(size);
-}
-
-
-void Engine::init() {
 
 	std::map<int, std::vector<sf::Vector2f>> circularVectorMap;
 
@@ -56,7 +51,7 @@ void Engine::init() {
 
 
 	for (auto it : circularVectorMap) {
-		_circularVectorMap.emplace_back(std::make_pair<float, std::vector<size_t>>(sqrtf(static_cast<float>(it.first)), {}));
+		_circularVectorMap.emplace_back(std::make_pair<float, std::vector<size_t>>(static_cast<float>(sqrt(it.first)), {}));
 		for (auto v : it.second) {
 			_circularVectorMap.back().second.emplace_back(static_cast<size_t>(v.x) * _window.y + static_cast<size_t>(v.y));
 		}

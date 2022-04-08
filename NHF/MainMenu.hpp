@@ -1,14 +1,12 @@
 #pragma once
 
+#include "Menu.hpp"
 #include "AppData.hpp"
 #include "Button.hpp"
 
 
 class MainMenu : public Menu {
-private:
-	AppData& _appData;
-
-	Button _PlayButton;
+	// std::unique_ptr<Button> _button;
 
 public:
 	MainMenu(AppData& appData);
@@ -17,4 +15,3 @@ public:
 	void update() override;
 	void render() override;
 };
-

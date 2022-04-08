@@ -7,8 +7,7 @@
 
 class Engine {
 private:
-	Engine(const sf::Vector2i& window);
-	sf::Vector2i _window;
+	sf::Vector2u _window;
 	sf::Vector2f _origin;
 
 	std::vector<PolarVector> _polarVectorMap;
@@ -18,10 +17,7 @@ private:
 	sf::Color initColor(const sf::Vector2f& point, float radius2);
 
 public:
-	Engine() = default;
-	Engine(const sf::Vector2u& window);
-
-	void init();
+	void init(const sf::Vector2u& window);
 
 	const PolarVector& getPolarVector(size_t index) const {
 		return _polarVectorMap[index];

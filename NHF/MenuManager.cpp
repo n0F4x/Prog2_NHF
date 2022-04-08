@@ -1,50 +1,50 @@
 #include "MenuManager.hpp"
 
+#include "InitMenu.hpp"
+#include "MainMenu.hpp"
+#include "GameMenu.hpp"
 
-void MenuManager::addMenu(std::unique_ptr<Menu> newMenu, bool isReplacing) {
-	_isAdding = true;
-	_isReplacing = isReplacing;
 
-	_newMenu = std::move(newMenu);
-}
+void MenuManager::init(AppData& appData) {
+	_root = std::make_unique<MenuNode>("Init", std::make_unique<InitMenu>(appData));
+	_current = _root.get();
+	render();
 
-void MenuManager::removeMenu() {
-	_isRemoving = true;
-}
+	sf::Clock clock;
+	clock.restart();
+	while (clock.getElapsedTime().asSeconds() < 3)
+		;
 
-MenuManager::MenuManager(std::unique_ptr<Menu> initialMenu) {
-	_Menus.push(std::move(initialMenu));
+	_root.reset();
+	_root = std::make_unique<MenuNode>("Main", std::make_unique<MainMenu>(appData));
+	_current = _root.get();
+	_next = _current;
+
+	_root->addChild("Game", std::make_unique<GameMenu>(appData));
 }
 
 bool MenuManager::isEmpty() {
-	return _Menus.empty();
+	if (_next == nullptr)
+		return true;
+
+	if (_current != _next) {
+		_current->get()->pause();
+		_current = _next;
+		_current->get()->resume();
+	}
+	return false;
 }
 
-void MenuManager::processChanges() {
-	if (_isRemoving) {
-		if (!_Menus.empty()) {
-			_Menus.pop();
-
-			if (!_Menus.empty()) {
-				_Menus.top()->resume();
-			}
-		}
-		_isRemoving = false;
-	}
-
-	if (_isAdding) {
-		if (!_Menus.empty()) {
-			if (_isReplacing)
-				_Menus.pop();
-			else
-				_Menus.top()->pause();
-		}
-
-		_Menus.push(std::move(_newMenu));
-		_isAdding = false;
+void MenuManager::open(std::string name) {
+	if (_current->getChildren().find(name) != _current->getChildren().end()) {
+		_next = _current->getChildren().at(name).get();
+		_next->get()->init();
 	}
 }
-
-Menu& MenuManager::current() {
-	return *_Menus.top();
+void MenuManager::close() {
+	_next = _current->getParent();
 }
+
+void MenuManager::handleEvent(const sf::Event& event) { _current->get()->handleEvent(event); }
+void MenuManager::update() { _current->get()->update(); }
+void MenuManager::render() { _current->get()->render(); }

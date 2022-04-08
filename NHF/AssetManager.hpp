@@ -17,7 +17,7 @@ private:
 	void loadTexture(std::string name, std::string fileName);
 
 public:
-	AssetManager();
+	void init();
 
 	const sf::Font& getFont(std::string name) const;
 	sf::Sound& getSound(std::string name);

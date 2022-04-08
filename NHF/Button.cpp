@@ -1,8 +1,5 @@
 #include "Button.hpp"
 
-#include <iostream>
-#include "ButtonState.hpp"
-
 using namespace btn;
 
 
@@ -11,27 +8,20 @@ void Button::triggerCallback() {
 		_callback();
 }
 
-void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	target.draw(_text);
-}
-
-bool Button::isInside() const {
-	return _text.getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition() });
-}
-
 
 Button::Button(
 	AssetManager& assets,
 	const sf::String& text,
-	unsigned characterSize,
 	const sf::Font& fontStyle,
+	unsigned characterSize,
 	std::function<void()> callback
 ) :
+	Text{ text, fontStyle, characterSize },
+	StateMachine{ /*&_states[DEFAULT] */},
 	_assets{ assets },
-	_text{ text, fontStyle,	characterSize },
-	_callback{ callback },
-	StateMachine{ &_states[DEFAULT] }
+	_callback{ callback }
 {
+	StateMachine::init(&_states[DEFAULT]);
 	_states[DEFAULT].setEventListener(
 		[&](const sf::Event& event) -> State* {
 			if (isInside()) {
@@ -90,12 +80,4 @@ Button::Button(
 
 void Button::update() {
 	_text.setFillColor(_states[getCurrentID()]._color);
-}
-
-const sf::Vector2f& Button::getSize() const {
-	return { _text.getGlobalBounds().width, _text.getGlobalBounds().height };
-}
-
-void Button::setPosition(const sf::Vector2f& position) {
-	_text.setPosition(position);
 }

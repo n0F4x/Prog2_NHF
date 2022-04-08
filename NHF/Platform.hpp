@@ -1,8 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-
-#include "Engine.hpp"
+#include "Angle.hpp"
 
 
 class Platform {

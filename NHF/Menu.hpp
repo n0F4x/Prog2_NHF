@@ -1,14 +1,26 @@
 #pragma once
 
+#include <memory>
 #include <SFML/Graphics.hpp>
+#include "MenuItem.hpp"
+struct AppData;
 
 
 class Menu {
-public:
-	virtual void handleEvent(const sf::Event& event) = 0;
-	virtual void update() = 0;
-	virtual void render() = 0;
+protected:
+	AppData& _appData;
+	std::vector<std::unique_ptr<MenuItem>> _items;
+	void addMenuItem(std::unique_ptr<MenuItem> item);
 
-	virtual void pause() {};
-	virtual void resume() {};
+public:
+	Menu(AppData& appData);
+
+	virtual void handleEvent(const sf::Event& event);
+	virtual void update();
+	virtual void render();
+	virtual void init() {}
+	virtual void pause() {}
+	virtual void resume() {}
+
+	virtual ~Menu() {}
 };

@@ -8,7 +8,8 @@ private:
 	State* _currentState = nullptr;
 
 protected:
-	StateMachine(State* initialState);
+	StateMachine();
+	void init(State* initState);
 	size_t getCurrentID() const;
 
 public:

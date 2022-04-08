@@ -13,22 +13,6 @@ void Track::rotate(float angle) {
 	_rotation += angle;
 }
 
-//void Track::switchLane() {
-//	if (_switchDirection != 0) {
-//		if (_rotationSpeed >= _maxRotationSpeed || _rotationSpeed <= _maxRotationSpeed * -1) {
-//			_switchDirection = 0 - _switchDirection;
-//		}
-//
-//		_rotationSpeed += _rotationAcc * _switchDirection;
-//		rotate(_rotationSpeed);
-//
-//		if (_rotationSpeed * _switchDirection <= 0) {
-//			_switchDirection = 0;
-//		}
-//	}
-//}
-
-
 void Track::updatePlatforms() {
 	_counter++;
 	for (auto& platform : _platforms)
@@ -49,23 +33,19 @@ void Track::updatePlatforms() {
 Track::Track(sf::Window& window, Engine& math, const sf::Vector2f& mouse) :
 	_window{ window },
 	_engine{ math },
-	_mouse{ mouse }
+	_mouse{ mouse },
+	_screenSize{ static_cast<size_t>(window.getSize().x) * static_cast<size_t>(window.getSize().y) },
+	_screen{sf::Points, _screenSize}
 {
 	Platform::setOrigin(sf::Vector2f{ window.getSize() / 2u });
 	Platform::setScale(_scaleSpeed);
 
-
-	size_t size = static_cast<size_t>(window.getSize().x) * static_cast<size_t>(window.getSize().y);
-	_screen = sf::VertexArray{ sf::Points, size };
-
-	for (size_t x = 0; x < window.getSize().x; x++)
+	for (size_t x = 0; x < window.getSize().x; x++) {
 		for (size_t y = 0; y < window.getSize().y; y++) {
 			size_t index = x * static_cast<size_t>(window.getSize().y) + y;
 			_screen[index].position = { static_cast<float>(x), static_cast<float>(y) };
 		}
-
-
-	_platforms.emplace_front();
+	}
 }
 
 
@@ -82,13 +62,10 @@ void Track::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonReleased)
 		if (event.mouseButton.button == sf::Mouse::Left)
 			_isDragged = false;
+}
 
-	//if (event.type == sf::Event::KeyPressed) {
-	//	if (event.key.code == sf::Keyboard::Right)
-	//		_switchDirection = 1;
-	//	if (event.key.code == sf::Keyboard::Right)
-	//		_switchDirection = -1;
-	//}
+void Track::update() {
+	updatePlatforms();
 
 	if (_isDragged) {
 		sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
@@ -99,24 +76,28 @@ void Track::handleEvent(const sf::Event& event) {
 		rotate(_engine.getPolarVector(index).angle - _engine.getPolarVector(index_).angle);
 		setMouse(mouse);
 	}
-}
 
-void Track::update() {
-	updatePlatforms();
-
+	_screen.clear();
 	auto platform = _platforms.begin();
 	for (auto it = _engine.getCircularVectorMap().begin(); it != _engine.getCircularVectorMap().end() && platform != _platforms.end(); ++it) {
 		if (it->first > platform->getOuterRadius()) {
 			++platform;
 		}
 
-		for (size_t index: it->second) {
+		for (size_t index : it->second) {
 			if (math::isBetween(_engine.getPolarVector(index).angle, platform->getRotation(), platform->getRotation() + platform->getWidth())) {
-				_screen[index].color = _engine.getColor(index);
-			}
-			else {
-				_screen[index].color = sf::Color::Transparent;
+				_screen.append(sf::Vertex{ {static_cast<float>(index) / _window.getSize().y, static_cast<float>(index % _window.getSize().y), }, _engine.getColor(index) });
 			}
 		}
 	}
+}
+
+void Track::init() {
+	for (size_t i = 0; i < _screenSize; i++)
+		_screen[i].color = sf::Color::Transparent;
+	_platforms.clear();
+	_platforms.emplace_front();
+	_counter = 0;
+	_rotation = 0_deg;
+	_isDragged = false;
 }

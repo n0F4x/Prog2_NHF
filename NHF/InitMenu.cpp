@@ -1,25 +1,15 @@
 #include "InitMenu.hpp"
 
-
-InitMenu::InitMenu(AppData& appData) : 
-	_appData{ appData },
-	_text{"Loading", appData.assets.getFont("Game of Squids"), 84}
-{
-	_text.setPosition({
-		_appData.window.getSize().x / 2 - _text.getGlobalBounds().width / 2,
-		_appData.window.getSize().y / 2 - _text.getGlobalBounds().height / 2
-		});
-}
+#include "Text.hpp"
 
 
-void InitMenu::handleEvent(const sf::Event&) {}
-
-void InitMenu::update() {}
-
-void InitMenu::render() {
-	_appData.window.clear();
-
-	_appData.window.draw(_text);
-
-	_appData.window.display();
+InitMenu::InitMenu(AppData& appData) : Menu{ appData } {
+	// Construct title
+	Text title{ "Loading", _appData.assets.getFont("Game of Squids"), 84 };
+	title.setPosition({
+			_appData.window.getSize().x / 2 - title.getSize().x / 2,
+			_appData.window.getSize().y / 2 - title.getSize().y / 2
+		}
+	);
+	addMenuItem(std::make_unique<Text>(title));
 }

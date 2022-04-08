@@ -1,9 +1,11 @@
 #include "StateMachine.hpp"
 
 
-StateMachine::StateMachine(State* initialState):
-	_currentState{ initialState }
-{}
+StateMachine::StateMachine() {}
+
+void StateMachine::init(State* initState) {
+	_currentState = initState;
+}
 
 void StateMachine::handleEvent(const sf::Event& event) {
 	_currentState = _currentState->getNext(event);

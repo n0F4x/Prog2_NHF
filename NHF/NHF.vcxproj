@@ -155,7 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AppData.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="App.cpp" />
@@ -165,15 +164,18 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuNode.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Angle.cpp" />
     <ClCompile Include="PolarVector.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="MenuManager.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Theme.cpp" />
     <ClCompile Include="Track.cpp" />
-    <ClCompile Include="WindowManager.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Angle.hpp" />
@@ -187,16 +189,19 @@
     <ClInclude Include="Math.hpp" />
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="MainMenu.hpp" />
-    <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="MenuItem.hpp" />
+    <ClInclude Include="MenuManager.hpp" />
+    <ClInclude Include="MenuNode.hpp" />
+    <ClInclude Include="Platform.hpp" />
     <ClInclude Include="PolarVector.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateMachine.hpp" />
-    <ClInclude Include="MenuManager.hpp" />
+    <ClInclude Include="Text.hpp" />
     <ClInclude Include="Theme.hpp" />
     <ClInclude Include="Track.hpp" />
     <ClInclude Include="Widget.hpp" />
-    <ClInclude Include="WindowManager.hpp" />
+    <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\airmill_o.ttf" />

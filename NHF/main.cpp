@@ -4,8 +4,8 @@
 
 
 int main() {
+	srand(static_cast<unsigned>(time(NULL)));
 	App app;
-	srand(time(NULL));
 
 	app.run();
 

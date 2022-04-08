@@ -1,7 +1,7 @@
 #include "AssetManager.hpp"
 
 
-AssetManager::AssetManager() {
+void AssetManager::init() {
 	loadFont("Game of Squids", "./Assets/Game Of Squids.ttf");
 	loadFont("Dameron", "./Assets/dameron.ttf");
 
