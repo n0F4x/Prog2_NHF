@@ -9,13 +9,13 @@ MainMenu::MainMenu(AppData& appData) :
 	// ,_button{std::make_unique<Button>( _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); }) }
 {
 	// Construct "Play" button
-	//Button playButton{ _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); } };
-	/*_button->setPosition({
-		_appData.window.getSize().x / 2 - _button->getSize().x / 2,
-		_appData.window.getSize().y / 2 - _button->getSize().y / 2
+	auto playButton = new Button{ _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); } };
+	playButton->setPosition({
+		_appData.window.getSize().x / 2 - playButton->getSize().x / 2,
+		_appData.window.getSize().y / 2 - playButton->getSize().y / 2
 		}
-	);*/
-	addMenuItem(std::make_unique<Button>(_appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); }));
+	);
+	addMenuItem(std::unique_ptr<Button>{playButton});
 }
 
 void MainMenu::handleEvent(const sf::Event& event) {
