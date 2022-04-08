@@ -30,3 +30,23 @@ void Menu::render() {
 
 	_appData.window.display();
 }
+
+void Menu::init() {
+	for (auto& item : _items) {
+		item->init();
+	}
+}
+
+void Menu::pause() {
+	for (auto& item : _items) {
+		item->pause();
+	}
+	_isPaused = true;
+}
+
+void Menu::resume() {
+	for (auto& item : _items) {
+		item->resume();
+	}
+	_isPaused = false;
+}

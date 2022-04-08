@@ -10,11 +10,6 @@ void MenuManager::init(AppData& appData) {
 	_current = _root.get();
 	render();
 
-	sf::Clock clock;
-	clock.restart();
-	while (clock.getElapsedTime().asSeconds() < 3)
-		;
-
 	_root.reset();
 	_root = std::make_unique<MenuNode>("Main", std::make_unique<MainMenu>(appData));
 	_current = _root.get();

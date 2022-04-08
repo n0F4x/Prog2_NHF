@@ -9,7 +9,7 @@ MainMenu::MainMenu(AppData& appData) :
 	// ,_button{std::make_unique<Button>( _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); }) }
 {
 	// Construct "Play" button
-	auto playButton = new Button{ _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); } };
+	Button* playButton = new Button{ _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); } };
 	playButton->setPosition({
 		_appData.window.getSize().x / 2 - playButton->getSize().x / 2,
 		_appData.window.getSize().y / 2 - playButton->getSize().y / 2
@@ -27,20 +27,4 @@ void MainMenu::handleEvent(const sf::Event& event) {
 		if (event.key.code == sf::Keyboard::Space)
 			_appData.menus.open("Game");
 	}
-
-	// _button->handleEvent(event);
-}
-
-void MainMenu::update() {
-	Menu::update();
-	//_button->update();
-}
-
-void MainMenu::render() {
-	Menu::render();
-	/*
-	_appData.window.clear();
-	_appData.window.draw(*_button);
-	_appData.window.display();
-	*/
 }

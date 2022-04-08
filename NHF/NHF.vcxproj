@@ -168,7 +168,10 @@
     <ClCompile Include="MenuNode.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Angle.cpp" />
+    <ClCompile Include="PlatformContainer.cpp" />
     <ClCompile Include="PolarVector.cpp" />
+    <ClCompile Include="PreCalculator.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="MenuManager.cpp" />
@@ -194,7 +197,10 @@
     <ClInclude Include="MenuManager.hpp" />
     <ClInclude Include="MenuNode.hpp" />
     <ClInclude Include="Platform.hpp" />
+    <ClInclude Include="PlatformContainer.hpp" />
     <ClInclude Include="PolarVector.hpp" />
+    <ClInclude Include="PreCalculator.hpp" />
+    <ClInclude Include="Screen.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateMachine.hpp" />
     <ClInclude Include="Text.hpp" />

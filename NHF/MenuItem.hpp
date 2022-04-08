@@ -10,5 +10,10 @@ protected:
 public:
 	virtual void handleEvent(const sf::Event& event) {}
 	virtual void update() {}
+	virtual void init() {}
+	virtual void pause() {}
+	virtual void resume() {}
+
+	virtual ~MenuItem() {}
 };
 

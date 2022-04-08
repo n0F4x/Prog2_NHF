@@ -14,8 +14,8 @@ struct AppData {
 
 	void init() {
 		assets.init();
+		engine.init();
 		window.init();
-		engine.init(window.getSize());
 		menus.init(*this);
 	}
 };

@@ -1,40 +1,37 @@
 #pragma once
 
-#include <list>
-#include <vector>
-#include <SFML/Graphics.hpp>
-#include "Engine.hpp"
-#include "Platform.hpp"
+#include "MenuItem.hpp"
+#include "PreCalculator.hpp"
+#include "Screen.hpp"
+#include "PlatformContainer.hpp"
 
 
-class Track : public sf::Drawable {
+class Track : public MenuItem {
 private:
+	// "Observables"
 	sf::Window& _window;
-	Engine& _engine;
+	PreCalculator _preCalc;
 
-	const size_t _screenSize;
-	sf::VertexArray _screen;
-	std::list<Platform> _platforms;
+	// Managed items
+	Screen _screen;
+	PlatformContainer _platforms;
 
-	int _counter = 0;
-	const int _scaleSpeed = 20;	//the lower the faster
-
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-	float _rotation = 0_deg;
-	void rotate(float angle);
-
-	bool _isDragged = false;
+	// Variables
+	bool _isPaused = false;
 	sf::Vector2f _mouse;
+	bool _isDragged = false;
 
-	void updatePlatforms();
+
+private:
+	// Overriding @MenuItem
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
-	Track(sf::Window& window, Engine& engine, const sf::Vector2f& mouse);
+	Track(sf::Window& window);
 
-	void setMouse(const sf::Vector2f& mouse);
-
-	void handleEvent(const sf::Event& event);
-	void update();
-	void init();
+	void handleEvent(const sf::Event& event) override;
+	void update() override;
+	void init() override;
+	void pause() override;
+	void resume() override;
 };

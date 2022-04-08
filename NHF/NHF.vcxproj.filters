@@ -76,6 +76,9 @@
     <Filter Include="Header Files\GUI\Widgets\Text">
       <UniqueIdentifier>{29f03855-01fc-4533-98f3-c202ce8e5906}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GUI\Wigets\Text">
+      <UniqueIdentifier>{f4202f2e-2374-4d5f-9c1c-e94df6725eca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -138,8 +141,17 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="PlatformContainer.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="PreCalculator.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
     <ClCompile Include="Text.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GUI\Wigets\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,8 +224,17 @@
     <ClInclude Include="MenuItem.hpp">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
+    <ClInclude Include="PlatformContainer.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
     <ClInclude Include="Text.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GUI\Widgets\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="PreCalculator.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
