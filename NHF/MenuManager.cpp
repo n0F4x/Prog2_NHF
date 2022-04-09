@@ -6,12 +6,12 @@
 
 
 void MenuManager::init(AppData& appData) {
-	_root = std::make_unique<MenuNode>("Init", std::make_unique<InitMenu>(appData));
+	_root = std::make_unique<MenuNode>(/*"Init", */std::make_unique<InitMenu>(appData));
 	_current = _root.get();
 	render();
 
 	_root.reset();
-	_root = std::make_unique<MenuNode>("Main", std::make_unique<MainMenu>(appData));
+	_root = std::make_unique<MenuNode>(/*"Main", */std::make_unique<MainMenu>(appData));
 	_current = _root.get();
 	_next = _current;
 
