@@ -22,14 +22,14 @@ void Screen::update(const PlatformContainer& platforms) {
 	_screen.clear();
 	auto platform = platforms.getList().begin();
 	for (auto it = _preCalc.getCircularVectorMap().begin(); it != _preCalc.getCircularVectorMap().end() && platform != platforms.getList().end(); ++it) {
-		if (it->first > platform->getOuterRadius()) {
-			++platform;
-		}
-
 		for (size_t index : it->second) {
 			if (math::isBetween(_preCalc.getPolarVector(index).angle, platform->getRotation(), platform->getRotation() + platform->getWidth())) {
 				_screen.append(sf::Vertex{ {static_cast<float>(index) / _preCalc.getWindow().y, static_cast<float>(index % _preCalc.getWindow().y), }, _preCalc.getColor(index) });
 			}
+		}
+		
+		if (it->first >= platform->getOuterRadius()) {
+			++platform;
 		}
 	}
 }
