@@ -31,9 +31,6 @@ namespace util {
 		iterator end() { return iterator(_vector, _size, _size); }
 
 		~vector() {
-			//for (size_t i = 0; i < _size; i++) {
-			//	delete _vector[i];
-			//}
 			delete[] _vector;
 		}
 
