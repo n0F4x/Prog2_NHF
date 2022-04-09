@@ -1,11 +1,11 @@
 #pragma once
 
 #include <SFML/Audio.hpp>
-#include "AppData.hpp"
-#include "Text.hpp"
-#include "StateMachine.hpp"
+#include "../../../AppData/AppData.hpp"
+#include "../Text/Text.hpp"
+#include "../../StateMachine.hpp"
 #include "ButtonState.hpp"
-#include "Theme.hpp"
+#include "../../Theme.hpp"
 
 
 class Button : public Text, protected StateMachine {

@@ -2,8 +2,8 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "PolarVector.hpp"
-#include "Math.hpp"
+#include "../../Utilities/Math/Math.hpp"
+#include "../../Utilities/Math/PolarVector.hpp"
 
 
 class PreCalculator {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "MenuNode.hpp"
+#include "../Menus/MenuNode.hpp"
 
 struct AppData;
 

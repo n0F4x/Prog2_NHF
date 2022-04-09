@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include "Track.hpp"
-#include "Math.hpp"
+#include "../../Utilities/Math/Math.hpp"
 
 
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {

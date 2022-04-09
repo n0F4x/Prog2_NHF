@@ -1,6 +1,6 @@
 #include "InitMenu.hpp"
 
-#include "Text.hpp"
+#include "../../GUI/Widgets/Text/Text.hpp"
 
 
 InitMenu::InitMenu(AppData& appData) : Menu{ appData } {

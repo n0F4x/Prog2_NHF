@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AppData.hpp"
+#include "AppData/AppData.hpp"
 
 
 class App {

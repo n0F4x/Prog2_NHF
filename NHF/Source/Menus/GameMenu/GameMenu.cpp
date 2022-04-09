@@ -1,7 +1,5 @@
 #include "GameMenu.hpp"
 
-#include "MainMenu.hpp"
-
 
 GameMenu::GameMenu(AppData& appData) :
 	Menu{ appData }

@@ -155,67 +155,67 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AssetManager.cpp" />
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="App.cpp" />
-    <ClCompile Include="ButtonState.cpp" />
-    <ClCompile Include="GameMenu.cpp" />
-    <ClCompile Include="InitMenu.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuNode.cpp" />
-    <ClCompile Include="Platform.cpp" />
-    <ClCompile Include="Angle.cpp" />
-    <ClCompile Include="PlatformContainer.cpp" />
-    <ClCompile Include="PolarVector.cpp" />
-    <ClCompile Include="PreCalculator.cpp" />
-    <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="State.cpp" />
-    <ClCompile Include="StateMachine.cpp" />
-    <ClCompile Include="MenuManager.cpp" />
-    <ClCompile Include="string.cpp" />
-    <ClCompile Include="Text.cpp" />
-    <ClCompile Include="Theme.cpp" />
-    <ClCompile Include="Track.cpp" />
-    <ClCompile Include="vector.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Angle.hpp" />
-    <ClInclude Include="AppData.hpp" />
-    <ClInclude Include="AssetManager.hpp" />
-    <ClInclude Include="Button.hpp" />
-    <ClInclude Include="App.hpp" />
-    <ClInclude Include="ButtonState.hpp" />
-    <ClInclude Include="GameMenu.hpp" />
-    <ClInclude Include="InitMenu.hpp" />
-    <ClInclude Include="Math.hpp" />
-    <ClInclude Include="Engine.hpp" />
-    <ClInclude Include="MainMenu.hpp" />
-    <ClInclude Include="Menu.hpp" />
-    <ClInclude Include="MenuItem.hpp" />
-    <ClInclude Include="MenuManager.hpp" />
-    <ClInclude Include="MenuNode.hpp" />
-    <ClInclude Include="Platform.hpp" />
-    <ClInclude Include="PlatformContainer.hpp" />
-    <ClInclude Include="PolarVector.hpp" />
-    <ClInclude Include="PreCalculator.hpp" />
-    <ClInclude Include="Screen.hpp" />
-    <ClInclude Include="State.hpp" />
-    <ClInclude Include="StateMachine.hpp" />
-    <ClInclude Include="string.hpp" />
-    <ClInclude Include="Text.hpp" />
-    <ClInclude Include="Theme.hpp" />
-    <ClInclude Include="Track.hpp" />
-    <ClInclude Include="vector.hpp" />
-    <ClInclude Include="Widget.hpp" />
-    <ClInclude Include="Window.hpp" />
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="Assets\airmill_o.ttf" />
     <Font Include="Assets\air_mitalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\App.cpp" />
+    <ClCompile Include="Source\AppData\AssetManager.cpp" />
+    <ClCompile Include="Source\AppData\Engine.cpp" />
+    <ClCompile Include="Source\AppData\MenuManager.cpp" />
+    <ClCompile Include="Source\AppData\Window.cpp" />
+    <ClCompile Include="Source\GUI\State.cpp" />
+    <ClCompile Include="Source\GUI\StateMachine.cpp" />
+    <ClCompile Include="Source\GUI\Theme.cpp" />
+    <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp" />
+    <ClCompile Include="Source\GUI\Widgets\Button\ButtonState.cpp" />
+    <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Menus\GameMenu\GameMenu.cpp" />
+    <ClCompile Include="Source\Menus\GameMenu\Platform.cpp" />
+    <ClCompile Include="Source\Menus\GameMenu\PlatformContainer.cpp" />
+    <ClCompile Include="Source\Menus\GameMenu\PreCalculator.cpp" />
+    <ClCompile Include="Source\Menus\GameMenu\Screen.cpp" />
+    <ClCompile Include="Source\Menus\GameMenu\Track.cpp" />
+    <ClCompile Include="Source\Menus\InitMenu\InitMenu.cpp" />
+    <ClCompile Include="Source\Menus\MainMenu\MainMenu.cpp" />
+    <ClCompile Include="Source\Menus\Menu.cpp" />
+    <ClCompile Include="Source\Menus\MenuNode.cpp" />
+    <ClCompile Include="Source\Utilities\Math\Angle.cpp" />
+    <ClCompile Include="Source\Utilities\Math\PolarVector.cpp" />
+    <ClCompile Include="Source\Utilities\STL\string.cpp" />
+    <ClCompile Include="Source\Utilities\STL\vector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\App.hpp" />
+    <ClInclude Include="Source\AppData\AppData.hpp" />
+    <ClInclude Include="Source\AppData\AssetManager.hpp" />
+    <ClInclude Include="Source\AppData\Engine.hpp" />
+    <ClInclude Include="Source\AppData\MenuManager.hpp" />
+    <ClInclude Include="Source\AppData\Window.hpp" />
+    <ClInclude Include="Source\GUI\State.hpp" />
+    <ClInclude Include="Source\GUI\StateMachine.hpp" />
+    <ClInclude Include="Source\GUI\Theme.hpp" />
+    <ClInclude Include="Source\GUI\Widgets\Button\Button.hpp" />
+    <ClInclude Include="Source\GUI\Widgets\Button\ButtonState.hpp" />
+    <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp" />
+    <ClInclude Include="Source\GUI\Widgets\Widget.hpp" />
+    <ClInclude Include="Source\Menus\GameMenu\GameMenu.hpp" />
+    <ClInclude Include="Source\Menus\GameMenu\Platform.hpp" />
+    <ClInclude Include="Source\Menus\GameMenu\PlatformContainer.hpp" />
+    <ClInclude Include="Source\Menus\GameMenu\PreCalculator.hpp" />
+    <ClInclude Include="Source\Menus\GameMenu\Screen.hpp" />
+    <ClInclude Include="Source\Menus\GameMenu\Track.hpp" />
+    <ClInclude Include="Source\Menus\InitMenu\InitMenu.hpp" />
+    <ClInclude Include="Source\Menus\MainMenu\MainMenu.hpp" />
+    <ClInclude Include="Source\Menus\Menu.hpp" />
+    <ClInclude Include="Source\Menus\MenuItem.hpp" />
+    <ClInclude Include="Source\Menus\MenuNode.hpp" />
+    <ClInclude Include="Source\Utilities\Math\Angle.hpp" />
+    <ClInclude Include="Source\Utilities\Math\Math.hpp" />
+    <ClInclude Include="Source\Utilities\Math\PolarVector.hpp" />
+    <ClInclude Include="Source\Utilities\STL\string.hpp" />
+    <ClInclude Include="Source\Utilities\STL\vector.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

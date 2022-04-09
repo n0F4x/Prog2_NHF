@@ -13,253 +13,84 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\GUI">
-      <UniqueIdentifier>{dc8eb96f-df29-40b9-863a-07b70d2f1caa}</UniqueIdentifier>
+    <Filter Include="Header Files\AppData">
+      <UniqueIdentifier>{ee628e85-fbb8-41b3-bbd6-2bd3fac2c242}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GUI">
-      <UniqueIdentifier>{b2737e15-ace4-403f-9dca-45775734e0a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utils">
-      <UniqueIdentifier>{26551f01-c523-4a38-8b91-ee907913c97c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utils">
-      <UniqueIdentifier>{598c85ca-c8eb-42d4-b54b-78878154f5a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\AppData">
-      <UniqueIdentifier>{fedb5894-6ff9-4399-9a06-23b28b38c0be}</UniqueIdentifier>
+      <UniqueIdentifier>{7eccf3c2-840f-4076-aab2-131345caeee0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\AppData">
-      <UniqueIdentifier>{078e537c-fb02-4bb5-904b-8171377cee98}</UniqueIdentifier>
+      <UniqueIdentifier>{efd42003-1ece-4126-8f57-ae063cecc1e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{6b2de9df-a97e-4a33-90e4-e01abc539e30}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GUI\Widgets">
-      <UniqueIdentifier>{7b69da7c-37ea-49f9-af3b-2e4e7e88c98c}</UniqueIdentifier>
+      <UniqueIdentifier>{1994adc5-1e19-4876-948a-9331f89a5f8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GUI\Wigets">
-      <UniqueIdentifier>{e20e2c26-255e-48cc-967c-a08f6b20396b}</UniqueIdentifier>
+    <Filter Include="Source Files\GUI\Widgets">
+      <UniqueIdentifier>{4f7e01e1-5a45-45b1-8079-1fa52342c0b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GUI\Widgets\Button">
-      <UniqueIdentifier>{ef8ca41d-00d9-4a42-b1f0-c3a3357c581c}</UniqueIdentifier>
+      <UniqueIdentifier>{6c9e1657-415c-4a83-b322-bf2fe55f61eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GUI\Wigets\Button">
-      <UniqueIdentifier>{8ca3115d-fc37-4ae3-9c6a-82f3ac9a5115}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utils\Math">
-      <UniqueIdentifier>{826b150a-20e4-420a-8d12-34891741dde4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utils\Math">
-      <UniqueIdentifier>{b4a19c41-9a56-49bd-b066-9b381424d1fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menus">
-      <UniqueIdentifier>{881dbe68-21fb-47c3-bdbd-7408eb794839}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menus\GameMenu">
-      <UniqueIdentifier>{4d096a71-9aa8-42ca-9275-939f608cea48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus">
-      <UniqueIdentifier>{b3d471d0-25e8-4e80-b47a-56dfc2663049}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus\GameMenu">
-      <UniqueIdentifier>{f803bc27-9b1b-4b1a-813d-adb60e92449a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus\MainMenu">
-      <UniqueIdentifier>{b74757a7-c4f2-4193-8833-636fc5e6aab7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menus\MainMenu">
-      <UniqueIdentifier>{ef302094-acf5-4cda-bd9d-fac533d64427}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menus\InitMenu">
-      <UniqueIdentifier>{df2a02c4-85ff-4823-bc2c-a8e22298dbfb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus\InitMenu">
-      <UniqueIdentifier>{7472471f-ace1-4ea1-a65c-c9f3c49a67c5}</UniqueIdentifier>
+    <Filter Include="Source Files\GUI\Widgets\Button">
+      <UniqueIdentifier>{401752cc-7488-42fb-969b-e15f4ba2d952}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GUI\Widgets\Text">
-      <UniqueIdentifier>{29f03855-01fc-4533-98f3-c202ce8e5906}</UniqueIdentifier>
+      <UniqueIdentifier>{5cc7c3e1-4a95-4086-b7f1-8d56f98986c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GUI\Wigets\Text">
-      <UniqueIdentifier>{f4202f2e-2374-4d5f-9c1c-e94df6725eca}</UniqueIdentifier>
+    <Filter Include="Source Files\GUI\Widgets\Text">
+      <UniqueIdentifier>{3a7719b4-2d46-45de-ac02-17baa07cce4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Utils\STL">
-      <UniqueIdentifier>{adcc10cc-0d47-4215-9653-a4a4d2551a46}</UniqueIdentifier>
+    <Filter Include="Header Files\Menus">
+      <UniqueIdentifier>{ae47fb71-13e5-444b-b48b-aa6de0bbb246}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Utils\SmartPtr">
-      <UniqueIdentifier>{0efb417c-59b6-48d9-91fe-53f42e1de8e9}</UniqueIdentifier>
+    <Filter Include="Header Files\Menus\GameMenu">
+      <UniqueIdentifier>{696ed31f-e113-41db-ad13-7c88580c6a64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Utils\STL">
-      <UniqueIdentifier>{84e4ab2f-0c3f-4a23-aebb-840a0c43bf91}</UniqueIdentifier>
+    <Filter Include="Header Files\Menus\InitMenu">
+      <UniqueIdentifier>{ef360525-c510-4349-98d8-2d078e270ad4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Utils\SmartPtr">
-      <UniqueIdentifier>{f3e35261-5c37-4421-a28a-c77053310bd8}</UniqueIdentifier>
+    <Filter Include="Header Files\Menus\MainMenu">
+      <UniqueIdentifier>{611a14c2-3821-4ef7-ab7d-d253f6b25fe8}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="App.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetManager.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuManager.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\GUI\Wigets\Button</Filter>
-    </ClCompile>
-    <ClCompile Include="ButtonState.cpp">
-      <Filter>Source Files\GUI\Wigets\Button</Filter>
-    </ClCompile>
-    <ClCompile Include="Angle.cpp">
-      <Filter>Source Files\Utils\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Theme.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMenu.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files\Menus\MainMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Track.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="PolarVector.cpp">
-      <Filter>Source Files\Utils\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="InitMenu.cpp">
-      <Filter>Source Files\Menus\InitMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuNode.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="PlatformContainer.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="PreCalculator.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source Files\GUI\Wigets\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="vector.cpp">
-      <Filter>Source Files\Utils\STL</Filter>
-    </ClCompile>
-    <ClCompile Include="string.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="App.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AppData.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManager.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="State.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.hpp">
-      <Filter>Header Files\GUI\Widgets\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonState.hpp">
-      <Filter>Header Files\GUI\Widgets\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget.hpp">
-      <Filter>Header Files\GUI\Widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Angle.hpp">
-      <Filter>Header Files\Utils\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.hpp">
-      <Filter>Header Files\Utils\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Theme.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMenu.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="PolarVector.hpp">
-      <Filter>Header Files\Utils\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Platform.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Track.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.hpp">
-      <Filter>Header Files\Menus\MainMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="InitMenu.hpp">
-      <Filter>Header Files\Menus\InitMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuManager.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuNode.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuItem.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="PlatformContainer.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.hpp">
-      <Filter>Header Files\GUI\Widgets\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="PreCalculator.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="vector.hpp">
-      <Filter>Header Files\Utils\STL</Filter>
-    </ClInclude>
-    <ClInclude Include="string.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="Source Files\Menus">
+      <UniqueIdentifier>{41755612-bfa3-4124-9732-74430f363c3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\GameMenu">
+      <UniqueIdentifier>{b52420a0-e8d0-44c4-ace1-475861640b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\MainMenu">
+      <UniqueIdentifier>{67e3b50e-0f0b-4be3-8b1d-72126949e7c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\InitMenu">
+      <UniqueIdentifier>{89f90ce3-c469-4529-972c-2f9f5e6cab34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{256e32ce-35ac-4a47-ad0e-b4cff292eb2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{246168bb-efa1-461a-a838-403766cca2c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\Math">
+      <UniqueIdentifier>{cc43506e-212d-42f5-afa1-80ba84fe101a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities\Math">
+      <UniqueIdentifier>{f2b12a58-0eaf-4259-b2a0-a5b8d734e463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\STL">
+      <UniqueIdentifier>{823c695e-f280-4f82-8ffb-4c47487c2355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities\STL">
+      <UniqueIdentifier>{8e39e189-bea2-45c8-8500-fcde7396fbd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\SmartPtr">
+      <UniqueIdentifier>{f08d26df-ebfa-4926-95a8-8c4ad2f9aee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities\SmartPtr">
+      <UniqueIdentifier>{d5fa8ab5-c6c7-407b-b8d9-32e711faf688}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\air_mitalic.ttf">
@@ -268,5 +99,174 @@
     <Font Include="Assets\airmill_o.ttf">
       <Filter>Resource Files</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AppData\AssetManager.cpp">
+      <Filter>Source Files\AppData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AppData\Engine.cpp">
+      <Filter>Source Files\AppData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AppData\MenuManager.cpp">
+      <Filter>Source Files\AppData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AppData\Window.cpp">
+      <Filter>Source Files\AppData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\State.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\StateMachine.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Theme.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp">
+      <Filter>Source Files\GUI\Widgets\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Widgets\Button\ButtonState.cpp">
+      <Filter>Source Files\GUI\Widgets\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp">
+      <Filter>Source Files\GUI\Widgets\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\Menu.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\MenuNode.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\GameMenu.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\Platform.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\PlatformContainer.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\PreCalculator.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\Screen.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\Track.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\InitMenu\InitMenu.cpp">
+      <Filter>Source Files\Menus\InitMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\MainMenu\MainMenu.cpp">
+      <Filter>Source Files\Menus\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\Math\PolarVector.cpp">
+      <Filter>Source Files\Utilities\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\Math\Angle.cpp">
+      <Filter>Source Files\Utilities\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\STL\vector.cpp">
+      <Filter>Source Files\Utilities\STL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\STL\string.cpp">
+      <Filter>Source Files\Utilities\STL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\App.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppData\AppData.hpp">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppData\AssetManager.hpp">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppData\Engine.hpp">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppData\MenuManager.hpp">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppData\Window.hpp">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\State.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\StateMachine.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Theme.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widgets\Widget.hpp">
+      <Filter>Header Files\GUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widgets\Button\Button.hpp">
+      <Filter>Header Files\GUI\Widgets\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widgets\Button\ButtonState.hpp">
+      <Filter>Header Files\GUI\Widgets\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp">
+      <Filter>Header Files\GUI\Widgets\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\Menu.hpp">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\MenuItem.hpp">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\MenuNode.hpp">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\GameMenu.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\Platform.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\PlatformContainer.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\PreCalculator.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\Screen.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\Track.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\InitMenu\InitMenu.hpp">
+      <Filter>Header Files\Menus\InitMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\MainMenu\MainMenu.hpp">
+      <Filter>Header Files\Menus\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Math\Math.hpp">
+      <Filter>Header Files\Utilities\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Math\PolarVector.hpp">
+      <Filter>Header Files\Utilities\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Math\Angle.hpp">
+      <Filter>Header Files\Utilities\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\STL\string.hpp">
+      <Filter>Header Files\Utilities\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\STL\vector.hpp">
+      <Filter>Header Files\Utilities\STL</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

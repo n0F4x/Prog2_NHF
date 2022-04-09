@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "MenuItem.hpp"
+#include "../../Menus/MenuItem.hpp"
 
 
 class Widget : public MenuItem {

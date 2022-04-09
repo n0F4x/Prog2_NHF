@@ -1,5 +1,5 @@
 #include "Screen.hpp"
-#include "Math.hpp"
+#include "../../Utilities/Math/Math.hpp"
 
 
 void Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const {

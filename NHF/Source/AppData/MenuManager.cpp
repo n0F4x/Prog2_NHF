@@ -1,8 +1,8 @@
 #include "MenuManager.hpp"
 
-#include "InitMenu.hpp"
-#include "MainMenu.hpp"
-#include "GameMenu.hpp"
+#include "../Menus/InitMenu/InitMenu.hpp"
+#include "../Menus/MainMenu/MainMenu.hpp"
+#include "../Menus/GameMenu/GameMenu.hpp"
 
 
 void MenuManager::init(AppData& appData) {

@@ -1,6 +1,6 @@
 #include "Menu.hpp"
 
-#include "AppData.hpp"
+#include "../AppData/AppData.hpp"
 
 
 void Menu::addMenuItem(std::unique_ptr<MenuItem> item) {

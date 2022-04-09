@@ -1,7 +1,6 @@
 #include "MainMenu.hpp"
 
-#include "Button.hpp"
-#include "GameMenu.hpp"
+#include "../../GUI/Widgets/Button/Button.hpp"
 
 
 MainMenu::MainMenu(AppData& appData) :
