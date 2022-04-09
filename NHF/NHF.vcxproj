@@ -178,6 +178,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Theme.cpp" />
     <ClCompile Include="Track.cpp" />
+    <ClCompile Include="vector.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +207,7 @@
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="Theme.hpp" />
     <ClInclude Include="Track.hpp" />
+    <ClInclude Include="vector.hpp" />
     <ClInclude Include="Widget.hpp" />
     <ClInclude Include="Window.hpp" />
   </ItemGroup>

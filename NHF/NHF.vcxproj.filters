@@ -79,6 +79,18 @@
     <Filter Include="Source Files\GUI\Wigets\Text">
       <UniqueIdentifier>{f4202f2e-2374-4d5f-9c1c-e94df6725eca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utils\STL">
+      <UniqueIdentifier>{adcc10cc-0d47-4215-9653-a4a4d2551a46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils\SmartPtr">
+      <UniqueIdentifier>{0efb417c-59b6-48d9-91fe-53f42e1de8e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils\STL">
+      <UniqueIdentifier>{84e4ab2f-0c3f-4a23-aebb-840a0c43bf91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils\SmartPtr">
+      <UniqueIdentifier>{f3e35261-5c37-4421-a28a-c77053310bd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -152,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>Source Files\GUI\Wigets\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="vector.cpp">
+      <Filter>Source Files\Utils\STL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="PreCalculator.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="vector.hpp">
+      <Filter>Header Files\Utils\STL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

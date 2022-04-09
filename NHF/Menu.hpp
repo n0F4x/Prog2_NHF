@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <SFML/Graphics.hpp>
+#include "vector.hpp"
 #include "MenuItem.hpp"
 
 struct AppData;
@@ -10,7 +11,7 @@ struct AppData;
 class Menu {
 protected:
 	AppData& _appData;
-	std::vector<std::unique_ptr<MenuItem>> _items;
+	util::vector<std::unique_ptr<MenuItem>> _items;
 	void addMenuItem(std::unique_ptr<MenuItem> item);
 	bool _isPaused = false;
 
