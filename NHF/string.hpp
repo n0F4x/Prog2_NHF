@@ -5,7 +5,7 @@
 
 namespace util {
 	class string {
-	public:
+	private:
 		char* _string = nullptr;
 		size_t _size = 0;
 	public:
