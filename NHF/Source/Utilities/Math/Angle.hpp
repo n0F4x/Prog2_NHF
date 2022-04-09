@@ -1,5 +1,9 @@
 #pragma once
 
+namespace math {
+	const float PI = 3.14159265f;
+}
+
 
 float operator"" _deg(long double degree);
 float operator"" _rad(long double radian);

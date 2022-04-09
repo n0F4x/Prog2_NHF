@@ -5,10 +5,12 @@
 
 
 class Platform {
+public:
+	static const float width;
+
 private:
 	static float _maxRadius;
 	static float _scalingRatio;
-	static const float _width;
 
 	float _innerRadius = 2.f;
 	float _outerRadius = 3.f;
@@ -18,12 +20,12 @@ public:
 	static void setOrigin(sf::Vector2f origin);
 	static void setScale(int speed);
 
-	Platform(float rotation = 75_deg);
+	Platform(float rotation = 90_deg - width / 2);
 
 	float getInnerRadius() const { return _innerRadius; }
 	float getOuterRadius() const { return _outerRadius; }
 	float getRotation() const { return _rotation; }
-	float getWidth() const { return _width; }
+	float getWidth() const { return width; }
 
 	void rotate(float angle);
 

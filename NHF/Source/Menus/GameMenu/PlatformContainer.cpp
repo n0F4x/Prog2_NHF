@@ -27,7 +27,7 @@ void PlatformContainer::update() {
 
 	if (_counter >= _scaleSpeed) {
 		_platforms.emplace_front();
-		_platforms.front().rotate((rand() % 12) * 30_deg + _rotation);
+		_platforms.front().rotate((rand() % (360/static_cast<int>(Platform::width*180.f/math::PI))) * Platform::width + _rotation);
 		_counter = 0;
 	}
 }
