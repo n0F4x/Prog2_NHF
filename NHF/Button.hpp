@@ -31,6 +31,7 @@ public:
 		unsigned characterSize,
 		std::function<void()> callback
 	);
+	Button(const Button&) = delete;
 
 	void handleEvent(const sf::Event& event) override { StateMachine::handleEvent(event); }
 	void update() override;

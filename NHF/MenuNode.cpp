@@ -1,7 +1,5 @@
 #include "MenuNode.hpp"
 
-#include "Menu.hpp"
-
 
 MenuNode::MenuNode(std::unique_ptr<Menu> item, MenuNode* parent) :
 	_item{ std::move(item) }, _parent{ parent } {}

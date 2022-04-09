@@ -56,13 +56,4 @@ PreCalculator::PreCalculator(const sf::Window& window) :
 			_circularVectorMap.back().second.emplace_back(static_cast<size_t>(v.x) * _window.y + static_cast<size_t>(v.y));
 		}
 	}
-
-
-	//for (auto it : _circularVectorMap) {
-	//	std::sort(it.second.begin(), it.second.end(), [&](sf::Vector2f a, sf::Vector2f b) {
-	//		size_t indexA = static_cast<size_t>(a.x) * _window.y + static_cast<size_t>(a.y);
-	//		size_t indexB = static_cast<size_t>(b.x) * _window.y + static_cast<size_t>(b.y);
-	//		return getPolarVector(indexA).angle < getPolarVector(indexB).angle;
-	//		});
-	//}
 }

@@ -27,7 +27,7 @@ void Screen::update(const PlatformContainer& platforms) {
 				_screen.append(sf::Vertex{ {static_cast<float>(index) / _preCalc.getWindow().y, static_cast<float>(index % _preCalc.getWindow().y), }, _preCalc.getColor(index) });
 			}
 		}
-		
+
 		if (it->first >= platform->getOuterRadius()) {
 			++platform;
 		}
@@ -35,6 +35,7 @@ void Screen::update(const PlatformContainer& platforms) {
 }
 
 void Screen::init() {
-	for (size_t i = 0; i < _screen.getVertexCount(); i++)
-		_screen[i].color = sf::Color::Transparent;
+	_screen.clear();
+	//for (size_t i = 0; i < _screen.getVertexCount(); i++)
+		//_screen[i].color = sf::Color::Transparent;
 }
