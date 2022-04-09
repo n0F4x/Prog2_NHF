@@ -11,7 +11,6 @@ void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 Track::Track(sf::Window& window) :
 	_window{ window },
 	_preCalc{ window },
-	//_screen{ sf::Points, static_cast<size_t>(window.getSize().x) * static_cast<size_t>(window.getSize().y) },
 	_screen{ _preCalc },
 	_platforms{ window },
 	_mouse{ sf::Vector2f{sf::Mouse::getPosition(window)} }
@@ -36,8 +35,6 @@ void Track::handleEvent(const sf::Event& event) {
 
 void Track::update() {
 	if (!_isPaused) {
-		_platforms.update();
-
 		if (_isDragged) {
 			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
 
@@ -48,19 +45,7 @@ void Track::update() {
 			_mouse = mouse;
 		}
 
-		//_screen.clear();
-		//auto platform = _platforms.getList().begin();
-		//for (auto it = _preCalc.getCircularVectorMap().begin(); it != _preCalc.getCircularVectorMap().end() && platform != _platforms.getList().end(); ++it) {
-		//	if (it->first > platform->getOuterRadius()) {
-		//		++platform;
-		//	}
-
-		//	for (size_t index : it->second) {
-		//		if (math::isBetween(_preCalc.getPolarVector(index).angle, platform->getRotation(), platform->getRotation() + platform->getWidth())) {
-		//			_screen.append(sf::Vertex{ {static_cast<float>(index) / _window.getSize().y, static_cast<float>(index % _window.getSize().y), }, _preCalc.getColor(index) });
-		//		}
-		//	}
-		//}
+		_platforms.update();
 		_screen.update(_platforms);
 	}
 }

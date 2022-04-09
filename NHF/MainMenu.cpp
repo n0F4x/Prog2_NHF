@@ -6,7 +6,6 @@
 
 MainMenu::MainMenu(AppData& appData) :
 	Menu{ appData }
-	// ,_button{std::make_unique<Button>( _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); }) }
 {
 	// Construct "Play" button
 	Button* playButton = new Button{ _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); } };
@@ -24,7 +23,5 @@ void MainMenu::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Escape)
 			_appData.menus.close();
-		if (event.key.code == sf::Keyboard::Space)
-			_appData.menus.open("Game");
 	}
 }
