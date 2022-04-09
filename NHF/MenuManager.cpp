@@ -30,7 +30,7 @@ bool MenuManager::isEmpty() {
 	return false;
 }
 
-void MenuManager::open(std::string name) {
+void MenuManager::open(util::string name) {
 	if (_current->getChildren().find(name) != _current->getChildren().end()) {
 		_next = _current->getChildren().at(name).get();
 		_next->get()->init();

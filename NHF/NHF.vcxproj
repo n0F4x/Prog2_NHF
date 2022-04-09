@@ -175,6 +175,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="MenuManager.cpp" />
+    <ClCompile Include="string.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Theme.cpp" />
     <ClCompile Include="Track.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Screen.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateMachine.hpp" />
+    <ClInclude Include="string.hpp" />
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="Theme.hpp" />
     <ClInclude Include="Track.hpp" />

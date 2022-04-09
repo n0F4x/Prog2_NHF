@@ -168,6 +168,9 @@
     <ClCompile Include="vector.cpp">
       <Filter>Source Files\Utils\STL</Filter>
     </ClCompile>
+    <ClCompile Include="string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="vector.hpp">
       <Filter>Header Files\Utils\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="string.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

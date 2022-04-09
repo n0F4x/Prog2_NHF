@@ -18,7 +18,7 @@ public:
 
 	bool isEmpty();
 
-	void open(std::string name);
+	void open(util::string name);
 	void close();
 
 	void handleEvent(const sf::Event& event);
