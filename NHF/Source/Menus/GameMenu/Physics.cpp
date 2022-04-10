@@ -19,7 +19,7 @@ void Physics::rotate(Direction direction) {
 		_rotationClock.restart();
 	}
 }
-#include <iostream>
+
 void Physics::update(PlatformContainer& _platforms) {
 	if (_isRotating) {
 		int time = 0;
@@ -27,18 +27,15 @@ void Physics::update(PlatformContainer& _platforms) {
 			float rotation = 0;
 			if (time < _rotationDurationTime / 2) {
 				rotation = _rotationAcceleration / 2 * time * time - _rotationAcceleration / 2 * _rotationTime * _rotationTime;
-				std::cout << rotation << " first " << _rotationLength << std::endl;
 			}
 			else {
 				rotation = _rotationAcceleration / 2 * (_rotationDurationTime - _rotationTime) * (_rotationDurationTime - _rotationTime) - _rotationAcceleration / 2 * (_rotationDurationTime - time) * (_rotationDurationTime - time);
-				std::cout << rotation << " second" << std::endl;
 			}
 			_rotationTime = time;
 			_rotationLength += rotation;
 			_platforms.rotate(rotation * _direction);
 		}
 		else {
-			std::cout << _rotationDurationLength - _rotationLength << std::endl;
 			_platforms.rotate((_rotationDurationLength - _rotationLength) * _direction);
 			_rotationTime = 0;
 			_rotationLength = 0;
