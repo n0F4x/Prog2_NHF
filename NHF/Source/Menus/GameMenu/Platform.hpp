@@ -4,11 +4,12 @@
 #include "../../Utilities/Math/Angle.hpp"
 
 
-class Platform {
+class Platform : public sf::Drawable {
 public:
 	static const float width;
 
 private:
+	static sf::Vector2f _origin;
 	static float _maxRadius;
 	static float _scalingRatio;
 
@@ -16,8 +17,10 @@ private:
 	float _outerRadius = 3.f;
 	float _rotation = 0_deg;
 
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
-	static void setOrigin(sf::Vector2f origin);
+	static void setOrigin(const sf::Vector2f& origin);
 	static void setScale(int speed);
 
 	Platform(float rotation = 90_deg - width / 2);

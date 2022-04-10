@@ -26,7 +26,3 @@ void Screen::update(const PlatformContainer& platforms) {
 		}
 	}
 }
-
-void Screen::init() {
-	_screen.clear();
-}

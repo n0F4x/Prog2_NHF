@@ -17,6 +17,5 @@ public:
 	Screen(const PreCalculator& preCalc);
 
 	void update(const PlatformContainer& platforms);
-	void init();
 };
 

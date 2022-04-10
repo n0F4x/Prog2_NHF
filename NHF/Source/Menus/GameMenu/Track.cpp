@@ -4,7 +4,8 @@
 
 
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	target.draw(_screen, states);
+	target.draw(_platforms);
+	//target.draw(_screen, states);
 }
 
 
@@ -57,12 +58,11 @@ void Track::update() {
 		_physics.update(_platforms);
 
 		_platforms.update();
-		_screen.update(_platforms);
+		//_screen.update(_platforms);
 	}
 }
 
 void Track::init() {
-	_screen.init();
 	_platforms.init();
 
 	_isDragged = false;

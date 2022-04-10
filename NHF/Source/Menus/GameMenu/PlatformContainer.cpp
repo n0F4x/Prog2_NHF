@@ -1,6 +1,12 @@
 #include "PlatformContainer.hpp"
 
 
+void PlatformContainer::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	for (auto platform = _platforms.rbegin(); platform != _platforms.rend(); platform++) {
+		target.draw(*platform);
+	}
+}
+
 PlatformContainer::PlatformContainer(const sf::Window& window) {
 	Platform::setOrigin(sf::Vector2f{ window.getSize() / 2u });
 	Platform::setScale(_scaleSpeed);

@@ -155,10 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Font Include="Assets\airmill_o.ttf" />
-    <Font Include="Assets\air_mitalic.ttf" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\AppData\AssetManager.cpp" />
     <ClCompile Include="Source\AppData\Engine.cpp" />

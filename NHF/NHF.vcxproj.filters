@@ -93,14 +93,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Assets\air_mitalic.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
-    <Font Include="Assets\airmill_o.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Source\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
