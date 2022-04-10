@@ -1,6 +1,8 @@
 #pragma once
+#pragma warning(disable : 4996)
 
 #include <cstring>
+
 
 
 namespace util {
