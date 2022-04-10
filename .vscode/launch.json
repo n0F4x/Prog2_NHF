@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/build/NHF",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/NHF",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
