@@ -3,6 +3,11 @@
 #include "PlatformContainer.hpp"
 
 
+static int square(int num) {
+	return num * num;
+}
+
+
 void Physics::rotate(Direction direction) {
 	if (!_isRotating) {
 		switch (direction) {
@@ -20,16 +25,16 @@ void Physics::rotate(Direction direction) {
 	}
 }
 
-void Physics::update(PlatformContainer& _platforms) {
+void Physics::rotate(PlatformContainer& _platforms) {
 	if (_isRotating) {
 		int time = 0;
 		if ((time = _rotationClock.getElapsedTime().asMilliseconds()) < _rotationDurationTime) {
 			float rotation = 0;
 			if (time < _rotationDurationTime / 2) {
-				rotation = _rotationAcceleration / 2 * time * time - _rotationAcceleration / 2 * _rotationTime * _rotationTime;
+				rotation = _rotationAcceleration / 2 * square(time) - _rotationAcceleration / 2 * square(_rotationTime);
 			}
 			else {
-				rotation = _rotationAcceleration / 2 * (_rotationDurationTime - _rotationTime) * (_rotationDurationTime - _rotationTime) - _rotationAcceleration / 2 * (_rotationDurationTime - time) * (_rotationDurationTime - time);
+				rotation = _rotationAcceleration / 2 * square(_rotationDurationTime - _rotationTime) - _rotationAcceleration / 2 * square(_rotationDurationTime - time);
 			}
 			_rotationTime = time;
 			_rotationLength += rotation;
@@ -42,4 +47,8 @@ void Physics::update(PlatformContainer& _platforms) {
 			_isRotating = false;
 		}
 	}
+}
+
+void Physics::update(PlatformContainer& _platforms) {
+	rotate(_platforms);
 }
