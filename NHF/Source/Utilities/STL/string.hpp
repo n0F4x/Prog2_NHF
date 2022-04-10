@@ -12,12 +12,12 @@ namespace util {
 		string(const char* string) {
 			_size = strlen(string) + 1;
 			_string = new char[_size];
-			strcpy_s(_string, _size, string);
+			strcpy(_string, string);
 		}
 		string(const string& other) {
 			_size = other._size;
 			_string = new char[_size];
-			strcpy_s(_string, _size, other._string);
+			strcpy(_string, other._string);
 		}
 
 		bool operator<(const string& other) const {

@@ -1,4 +1,5 @@
 #include "Platform.hpp"
+#include "cmath"
 
 
 float Platform::_maxRadius = 0.f;

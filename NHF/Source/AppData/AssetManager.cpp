@@ -2,12 +2,12 @@
 
 
 void AssetManager::init() {
-	loadFont("Game of Squids", "./Assets/Game Of Squids.ttf");
-	loadFont("Dameron", "./Assets/dameron.ttf");
+	loadFont("Game of Squids", "./NHF/Assets/GameOfSquids.ttf");
+	loadFont("Dameron", "./NHF/Assets/dameron.ttf");
 
-	loadSound("ButtonHover", "./Assets/ButtonHover.wav");
-	loadSound("ButtonClick", "./Assets/ButtonClick.wav");
-	loadSound("ButtonRelease", "./Assets/ButtonRelease.wav");
+	loadSound("ButtonHover", "./NHF/Assets/ButtonHover.wav");
+	loadSound("ButtonClick", "./NHF/Assets/ButtonClick.wav");
+	loadSound("ButtonRelease", "./NHF/Assets/ButtonRelease.wav");
 }
 
 

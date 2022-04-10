@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-std=c++20",
+                "-o",
+                "${workspaceFolder}/NHF.exe",
+                "${workspaceFolder}/NHF/Source/*.cpp",
+                "${workspaceFolder}/NHF/Source/*/*.cpp",
+                "${workspaceFolder}/NHF/Source/*/*/*.cpp",
+                "${workspaceFolder}/NHF/Source/*/*/*/*.cpp",
+                "-lsfml-system",
+                "-lsfml-window",
+                "-lsfml-graphics",
+                "-lsfml-audio"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        }
+    ]
+}

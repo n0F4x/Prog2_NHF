@@ -11,7 +11,7 @@ namespace util {
 
 	private:
 		T* _vector = nullptr;
-		size_t _size = 0;
+		std::size_t _size = 0;
 
 	public:
 		vector() {}
@@ -19,7 +19,7 @@ namespace util {
 		template <typename... Args>
 		void emplace_back(Args &&...args) {
 			T* tmp = new T[_size + 1];
-			for (size_t i = 0; i < _size; i++) {
+			for (std::size_t i = 0; i < _size; i++) {
 				tmp[i] = std::move(_vector[i]);
 			}
 			tmp[_size++] = std::move(T{ std::forward<Args>(args)... });
@@ -37,12 +37,12 @@ namespace util {
 	public:
 		class iterator {
 		private:
-			size_t _index = 0;
-			size_t _size;
+			std::size_t _index = 0;
+			std::size_t _size;
 			T* _vector;
 
 		public:
-			explicit iterator(T* vector, size_t index, size_t size) : _vector{ vector }, _index{ index }, _size{ size } {}
+			explicit iterator(T* vector, std::size_t index, std::size_t size) : _vector{ vector }, _index{ index }, _size{ size } {}
 			iterator& operator++() {
 				++_index;
 				return *this;
