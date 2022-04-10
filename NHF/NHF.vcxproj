@@ -172,6 +172,7 @@
     <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\GameMenu.cpp" />
+    <ClCompile Include="Source\Menus\GameMenu\Physics.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\Platform.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\PlatformContainer.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\PreCalculator.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Widget.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\GameMenu.hpp" />
+    <ClInclude Include="Source\Menus\GameMenu\Physics.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\Platform.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\PlatformContainer.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\PreCalculator.hpp" />

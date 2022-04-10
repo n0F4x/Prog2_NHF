@@ -30,11 +30,16 @@ void Track::handleEvent(const sf::Event& event) {
 				_isDragged = false;
 			}
 		}
-	}
-}
+		if (event.type == sf::Event::KeyPressed) {
+			if (event.key.code == sf::Keyboard::Left) {
+				_physics.rotate(Direction::NEGATIVE);
+			}
+			if (event.key.code == sf::Keyboard::Right) {
+				_physics.rotate(Direction::POSITIVE);
+			}
+		}
 
-void Track::update() {
-	if (!_isPaused) {
+
 		if (_isDragged) {
 			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
 
@@ -44,6 +49,12 @@ void Track::update() {
 			_platforms.rotate(_preCalc.getPolarVector(index).angle - _preCalc.getPolarVector(index2).angle);
 			_mouse = mouse;
 		}
+	}
+}
+
+void Track::update() {
+	if (!_isPaused) {
+		_physics.update(_platforms);
 
 		_platforms.update();
 		_screen.update(_platforms);

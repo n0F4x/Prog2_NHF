@@ -179,6 +179,9 @@
     <ClCompile Include="Source\Utilities\STL\string.cpp">
       <Filter>Source Files\Utilities\STL</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\Physics.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">
@@ -267,6 +270,9 @@
     </ClInclude>
     <ClInclude Include="Source\Utilities\STL\vector.hpp">
       <Filter>Header Files\Utilities\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\Physics.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 
 #include "../../Menus/MenuItem.hpp"
 #include "PreCalculator.hpp"
+#include "Physics.hpp"
 #include "Screen.hpp"
 #include "PlatformContainer.hpp"
 
@@ -11,6 +12,7 @@ private:
 	// "Observables"
 	sf::Window& _window;
 	PreCalculator _preCalc;
+	Physics _physics;
 
 	// Managed items
 	Screen _screen;

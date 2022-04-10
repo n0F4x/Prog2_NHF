@@ -11,7 +11,7 @@ void Platform::setScale(int speed) {
 	_scalingRatio = powf(3.f / 2.f, 1.0f / speed);
 }
 
-const float Platform::width = 360_deg / 5;
+const float Platform::width = 360_deg / 4;
 
 
 Platform::Platform(float rotation) {

@@ -9,14 +9,7 @@ void Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 Screen::Screen(const PreCalculator& preCalc) :
 	_preCalc{ preCalc },
 	_screen{ sf::Points, static_cast<size_t>(_preCalc.getWindow().x) * static_cast<size_t>(_preCalc.getWindow().y) }
-{
-	for (size_t x = 0; x < _preCalc.getWindow().x; x++) {
-		for (size_t y = 0; y < _preCalc.getWindow().y; y++) {
-			size_t index = x * static_cast<size_t>(_preCalc.getWindow().y) + y;
-			_screen[index].position = { static_cast<float>(x), static_cast<float>(y) };
-		}
-	}
-}
+{}
 
 void Screen::update(const PlatformContainer& platforms) {
 	_screen.clear();
@@ -36,6 +29,4 @@ void Screen::update(const PlatformContainer& platforms) {
 
 void Screen::init() {
 	_screen.clear();
-	//for (size_t i = 0; i < _screen.getVertexCount(); i++)
-		//_screen[i].color = sf::Color::Transparent;
 }
