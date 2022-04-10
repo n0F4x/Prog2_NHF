@@ -2,7 +2,7 @@
 
 
 void AssetManager::init() {
-	loadFont("Game of Squids", "./Assets/Game Of Squids.ttf");
+	loadFont("Game of Squids", "./Assets/GameOfSquids.ttf");
 	loadFont("Dameron", "./Assets/dameron.ttf");
 
 	loadSound("ButtonHover", "./Assets/ButtonHover.wav");

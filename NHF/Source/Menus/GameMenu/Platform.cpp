@@ -1,5 +1,7 @@
 #include "Platform.hpp"
 
+#include <cmath>
+
 
 float Platform::_maxRadius = 0.f;
 void Platform::setOrigin(sf::Vector2f origin) {
