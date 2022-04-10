@@ -32,10 +32,10 @@ void Track::handleEvent(const sf::Event& event) {
 		}
 		if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::Left) {
-				_physics.rotate(Direction::NEGATIVE);
+				_physics.rotate(Direction::POSITIVE);
 			}
 			if (event.key.code == sf::Keyboard::Right) {
-				_physics.rotate(Direction::POSITIVE);
+				_physics.rotate(Direction::NEGATIVE);
 			}
 		}
 
