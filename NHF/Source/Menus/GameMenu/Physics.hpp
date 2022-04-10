@@ -17,7 +17,7 @@ private:
 // ----------------------Rotation----------------------		SPEED-CURVE: EASE-IN-OUT
 private:
 	const float _rotationDurationLength = Platform::width;
-	const int _rotationDurationTime = 100;	// in milliseconds
+	const int _rotationDurationTime = 50;	// in milliseconds
 	const float _rotationAcceleration = _rotationDurationLength / (_rotationDurationTime / 2 * _rotationDurationTime / 2);	// max acceleration during rotation
 
 	bool _isRotating = false;

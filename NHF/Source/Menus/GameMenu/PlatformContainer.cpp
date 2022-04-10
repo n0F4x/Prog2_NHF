@@ -7,7 +7,7 @@ void PlatformContainer::draw(sf::RenderTarget& target, sf::RenderStates states) 
 	}
 }
 
-PlatformContainer::PlatformContainer(const sf::Window& window) {
+PlatformContainer::PlatformContainer(const sf::Window& window) : _preCalc{ window } {
 	Platform::setOrigin(sf::Vector2f{ window.getSize() / 2u });
 	Platform::setScale(_scaleSpeed);
 }
@@ -32,15 +32,15 @@ void PlatformContainer::update() {
 	}
 
 	if (_counter >= _scaleSpeed) {
-		_platforms.emplace_front();
-		_platforms.front().rotate((rand() % (360/static_cast<int>(Platform::width*180.f/math::PI))) * Platform::width + _rotation);
+		_platforms.emplace_front(_preCalc);
+		_platforms.front().rotate((rand() % (360 / static_cast<int>(Platform::width * 180.f / math::PI))) * Platform::width + _rotation);
 		_counter = 0;
 	}
 }
 
 void PlatformContainer::init() {
 	_platforms.clear();
-	_platforms.emplace_front();
+	_platforms.emplace_front(_preCalc);
 	_counter = 0;
 	_rotation = 0_deg;
 }

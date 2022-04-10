@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "PreCalculator.hpp"
 #include "../../Utilities/Math/Angle.hpp"
 
 
@@ -9,6 +10,8 @@ public:
 	static const float width;
 
 private:
+	const PreCalculator& _preCalc;
+
 	static sf::Vector2f _origin;
 	static float _maxRadius;
 	static float _scalingRatio;
@@ -23,7 +26,7 @@ public:
 	static void setOrigin(const sf::Vector2f& origin);
 	static void setScale(int speed);
 
-	Platform(float rotation = 90_deg - width / 2);
+	Platform(const PreCalculator& preCalc, float rotation = 90_deg - width / 2);
 
 	float getInnerRadius() const { return _innerRadius; }
 	float getOuterRadius() const { return _outerRadius; }

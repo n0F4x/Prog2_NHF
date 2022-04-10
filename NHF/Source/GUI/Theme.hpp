@@ -7,4 +7,5 @@ struct theme {
 	static const sf::Color Tertiary;
 	static const sf::Color Quaternary;
 	static const sf::Color Gold;
+	static const sf::Color Purple;
 };

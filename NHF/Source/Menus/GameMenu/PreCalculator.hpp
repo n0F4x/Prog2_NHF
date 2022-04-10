@@ -27,7 +27,9 @@ public:
 	const PolarVector& getPolarVector(size_t index) const {
 		return _polarVectorMap[index];
 	}
-	const sf::Color& getColor(size_t index) const {
+	const sf::Color getColor(size_t index) const {
+		if (index >= _colorPicker.size())
+			return { 255, 50, 255 };
 		return _colorPicker[index];
 	}
 	const std::vector<std::pair<float, std::vector<size_t>>>& getCircularVectorMap() const {

@@ -1,25 +1,22 @@
 #include "Platform.hpp"
 
+#include "../../GUI/Theme.hpp"
 #include <cmath>
 
 
-inline float angle(sf::Vector2f v) {
-    return std::atan2(v.y, v.x);
-}
-
 inline std::vector<sf::Vector2f> getCirclePoints(float angle, float radius) {
-    std::vector<sf::Vector2f> ret;
-    const int maxpts = 20;
-    const float spread = Platform::width;
-    for (int i = 0; i < maxpts; ++i) {
-        const float a = (angle - spread / 2.f) + (i * spread) / (maxpts - 1);
-        ret.push_back(radius * sf::Vector2f(std::cos(a), std::sin(a)));
-    }
-    return ret;
+	std::vector<sf::Vector2f> ret;
+	const int maxpts = 50;
+	const float spread = Platform::width;
+	for (int i = 0; i < maxpts; ++i) {
+		const float a = (angle - spread / 2.f) + (i * spread) / (maxpts - 1);
+		ret.push_back(radius * sf::Vector2f(std::cos(a), std::sin(a)));
+	}
+	return ret;
 }
 
 
-const float Platform::width = 360_deg / 4;
+const float Platform::width = 360_deg / 8;
 
 float Platform::_maxRadius = 0.f;
 sf::Vector2f Platform::_origin = sf::Vector2f{ 0.f, 0.f };
@@ -35,23 +32,31 @@ void Platform::setScale(int speed) {
 
 
 void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    sf::VertexArray arr(sf::TriangleFan);
-    arr.append(sf::Vertex(_origin));
-    for (sf::Vector2f v : getCirclePoints(_rotation, _outerRadius))
-        arr.append(sf::Vertex(_origin + v));
+	// Magic circle segment
+	sf::VertexArray arr{ sf::TriangleFan };
+	sf::Vertex origin{ _origin };
+	origin.color = _preCalc.getColor(static_cast<size_t>(_origin.x) * static_cast<size_t>(_origin.y) * static_cast<size_t>(2.f) + static_cast<size_t>(_origin.y));
 
-    arr.append(sf::Vertex(_origin));
+	arr.append(origin);
+	for (const sf::Vector2f& v : getCirclePoints(_rotation + width / 2.f, _outerRadius)) {
+		sf::Vertex point{ _origin + v };
+		point.color = _preCalc.getColor(static_cast<size_t>(point.position.x) * static_cast<size_t>(_origin.y) * static_cast<size_t>(2.f) + static_cast<size_t>(point.position.y));
+		arr.append(point);
+	}
+	arr.append(origin);
 
-    target.draw(arr);
-    sf::CircleShape innerCircle{_innerRadius};
-    innerCircle.setPosition(_origin - sf::Vector2f{_innerRadius, _innerRadius});
-    innerCircle.setFillColor(sf::Color::Black);
-    target.draw(innerCircle);
+	target.draw(arr);
+
+	// Hide inner circle
+	sf::CircleShape innerCircle{ _innerRadius, 500 };
+	innerCircle.setPosition(_origin - sf::Vector2f{ _innerRadius, _innerRadius });
+	innerCircle.setFillColor(sf::Color::Black);
+	target.draw(innerCircle);
 }
 
 
 
-Platform::Platform(float rotation) {
+Platform::Platform(const PreCalculator& preCalc, float rotation) : _preCalc{ preCalc } {
 	rotate(rotation);
 }
 

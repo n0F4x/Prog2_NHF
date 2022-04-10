@@ -6,6 +6,7 @@
 
 class PlatformContainer : public sf::Drawable{
 private:
+	const PreCalculator _preCalc;
 	std::list<Platform> _platforms;
 
 	int _counter = 0;
