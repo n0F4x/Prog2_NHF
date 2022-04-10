@@ -7,7 +7,7 @@ namespace util {
 	class string {
 	private:
 		char* _string = nullptr;
-		size_t _size = 0;
+		std::size_t _size = 0;
 	public:
 		string(const char* string) {
 			_size = strlen(string) + 1;
