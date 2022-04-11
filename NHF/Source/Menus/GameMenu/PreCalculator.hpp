@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "../../Utilities/Math/Math.hpp"
 #include "../../Utilities/Math/PolarVector.hpp"
+#include "../../GUI/Theme.hpp"
 
 
 class PreCalculator {
@@ -29,7 +30,7 @@ public:
 	}
 	const sf::Color getColor(size_t index) const {
 		if (index >= _colorPicker.size())
-			return { 255, 50, 255 };
+			return theme::Purple;
 		return _colorPicker[index];
 	}
 	const std::vector<std::pair<float, std::vector<size_t>>>& getCircularVectorMap() const {

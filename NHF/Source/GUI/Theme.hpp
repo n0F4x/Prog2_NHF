@@ -1,11 +1,11 @@
 #include <SFML/Graphics.hpp>
 
 
-struct theme {
-	static const sf::Color Primary;
-	static const sf::Color Secondary;
-	static const sf::Color Tertiary;
-	static const sf::Color Quaternary;
-	static const sf::Color Gold;
-	static const sf::Color Purple;
+namespace theme {
+	extern const sf::Color Primary;
+	extern const sf::Color Secondary;
+	extern const sf::Color Tertiary;
+	extern const sf::Color Quaternary;
+	extern const sf::Color Gold;
+	extern const sf::Color Purple;
 };

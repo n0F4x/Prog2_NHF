@@ -13,20 +13,24 @@ sf::Color PreCalculator::initColor(const sf::Vector2f& point, float radius2) {
 	float transparency = powf(static_cast<float>(transparency_range), 1.f / static_cast<float>(transparency_range));
 	float const r_transparency = transparency;
 
+	sf::Color res{ theme::Purple };
 	for (int i = 0; i < transparency_range; i++) {
-		if (a2b2 < radius2)
-			return { 255, 50, 255, static_cast<sf::Uint8>(transparency + transparency_lower_limit) };
+		if (a2b2 < radius2) {
+			res.a = static_cast<sf::Uint8>(transparency + transparency_lower_limit);
+			return res;
+		}
 		radius2 *= r_radius2;
 		transparency *= r_transparency;
 	}
 
-	return { 255, 50, 255, static_cast<sf::Uint8>(transparency_range) };
+	res.a = static_cast<sf::Uint8>(transparency_range);
+	return res;
 }
 
 
 PreCalculator::PreCalculator(const sf::Window& window) :
-	_window{window.getSize()},
-	_origin{_window / 2u}
+	_window{ window.getSize() },
+	_origin{ _window / 2u }
 {
 	size_t size = static_cast<size_t>(_window.x) * static_cast<size_t>(_window.y);
 

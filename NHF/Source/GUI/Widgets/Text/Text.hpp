@@ -15,12 +15,15 @@ protected:
 
 public:
 	Text(const sf::String& text, const sf::Font& fontStyle, unsigned characterSize) : _text{ text, fontStyle, characterSize } {
-		setSize({ _text.getGlobalBounds().width, _text.getGlobalBounds().height });
+		setSize({ _text.getLocalBounds().width, _text.getLocalBounds().height });
+
+		sf::FloatRect rect = _text.getLocalBounds();
+		_text.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
 	}
 	virtual void setPosition(const sf::Vector2f& position) override { Widget::setPosition(position); _text.setPosition(position); }
-
-	virtual void center(const Window& window) override { setPosition({ window.getSize().x / 2 - getSize().x / 2, window.getSize().y / 2 - getSize().y / 2 }); }
 	virtual void setFillColor(const sf::Color& color) { _text.setFillColor(color); }
+
+	virtual void center(const Window& window) override { setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f)); }
 
 	virtual void update() override {}
 };
