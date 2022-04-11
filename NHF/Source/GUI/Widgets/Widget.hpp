@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../../Menus/MenuItem.hpp"
+#include "../../AppData/Window.hpp"
 
 
 class Widget : public MenuItem {
@@ -18,6 +19,10 @@ public:
 
 	virtual void setPosition(const sf::Vector2f& position) { _position = position; }
 	const sf::Vector2f& getSize() const { return _size; }
+
+	virtual void center(const Window& window) {
+		setPosition({ window.getSize().x / 2 - getSize().x / 2, window.getSize().y / 2 - getSize().y / 2 });
+	}
 
 	virtual void update() override {}
 };

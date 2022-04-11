@@ -91,6 +91,12 @@
     <Filter Include="Source Files\Utilities\SmartPtr">
       <UniqueIdentifier>{d5fa8ab5-c6c7-407b-b8d9-32e711faf688}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Menus\OptionsMenu">
+      <UniqueIdentifier>{64a3eee4-c9b4-4dae-8311-9a67b0f5f2e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\OptionsMenu">
+      <UniqueIdentifier>{18c2d3d8-04aa-4510-a0dd-ac5ae7e94a55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\App.cpp">
@@ -173,6 +179,12 @@
     </ClCompile>
     <ClCompile Include="Source\Menus\GameMenu\Physics.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\OptionsMenu\OptionsMenu.cpp">
+      <Filter>Source Files\Menus\OptionsMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Widgets\Widget.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\Physics.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\OptionsMenu\OptionsMenu.hpp">
+      <Filter>Header Files\Menus\OptionsMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

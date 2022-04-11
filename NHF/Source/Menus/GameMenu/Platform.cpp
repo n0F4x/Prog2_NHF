@@ -40,7 +40,7 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	arr.append(origin);
 	for (const sf::Vector2f& v : getCirclePoints(_rotation + width / 2.f, _outerRadius)) {
 		sf::Vertex point{ _origin + v };
-		point.color = _preCalc.getColor(static_cast<size_t>(point.position.x) * static_cast<size_t>(_origin.y) * static_cast<size_t>(2.f) + static_cast<size_t>(point.position.y));
+		point.color = _preCalc.getColor(static_cast<size_t>(point.position.x) * static_cast<size_t>(_origin.y) * 2u + static_cast<size_t>(point.position.y));
 		arr.append(point);
 	}
 	arr.append(origin);
@@ -48,7 +48,7 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(arr);
 
 	// Hide inner circle
-	sf::CircleShape innerCircle{ _innerRadius, 500 };
+	sf::CircleShape innerCircle{ _innerRadius, 50 };
 	innerCircle.setPosition(_origin - sf::Vector2f{ _innerRadius, _innerRadius });
 	innerCircle.setFillColor(sf::Color::Black);
 	target.draw(innerCircle);

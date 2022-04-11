@@ -166,6 +166,7 @@
     <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Button\ButtonState.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp" />
+    <ClCompile Include="Source\GUI\Widgets\Widget.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\GameMenu.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\Physics.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Source\Menus\MainMenu\MainMenu.cpp" />
     <ClCompile Include="Source\Menus\Menu.cpp" />
     <ClCompile Include="Source\Menus\MenuNode.cpp" />
+    <ClCompile Include="Source\Menus\OptionsMenu\OptionsMenu.cpp" />
     <ClCompile Include="Source\Utilities\Math\Angle.cpp" />
     <ClCompile Include="Source\Utilities\Math\PolarVector.cpp" />
     <ClCompile Include="Source\Utilities\STL\string.cpp" />
@@ -209,6 +211,7 @@
     <ClInclude Include="Source\Menus\Menu.hpp" />
     <ClInclude Include="Source\Menus\MenuItem.hpp" />
     <ClInclude Include="Source\Menus\MenuNode.hpp" />
+    <ClInclude Include="Source\Menus\OptionsMenu\OptionsMenu.hpp" />
     <ClInclude Include="Source\Utilities\Math\Angle.hpp" />
     <ClInclude Include="Source\Utilities\Math\Math.hpp" />
     <ClInclude Include="Source\Utilities\Math\PolarVector.hpp" />

@@ -3,6 +3,7 @@
 #include "../Menus/InitMenu/InitMenu.hpp"
 #include "../Menus/MainMenu/MainMenu.hpp"
 #include "../Menus/GameMenu/GameMenu.hpp"
+#include "../Menus/OptionsMenu/OptionsMenu.hpp"
 
 
 void MenuManager::init(AppData& appData) {
@@ -16,6 +17,7 @@ void MenuManager::init(AppData& appData) {
 	_next = _current;
 
 	_root->addChild("Game", std::make_unique<GameMenu>(appData));
+	_root->addChild("Options", std::make_unique<OptionsMenu>(appData));
 }
 
 bool MenuManager::isEmpty() {

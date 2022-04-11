@@ -25,6 +25,7 @@ void Physics::rotate(Direction direction) {
 	}
 }
 
+#include <iostream>
 void Physics::rotate(PlatformContainer& _platforms) {
 	if (_isRotating) {
 		int time = 0;
@@ -41,6 +42,7 @@ void Physics::rotate(PlatformContainer& _platforms) {
 			_platforms.rotate(rotation * _direction);
 		}
 		else {
+			std::cout << _rotationDurationLength - _rotationLength << std::endl;
 			_platforms.rotate((_rotationDurationLength - _rotationLength) * _direction);
 			_rotationTime = 0;
 			_rotationLength = 0;
