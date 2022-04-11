@@ -4,6 +4,7 @@
 
 
 OptionsMenu::OptionsMenu(AppData& appData) : Menu{ appData } {
+	// Construct "Options" text
 	Text* text = new Text{ "OPTIONS", appData.assets.getFont("The Wireframe"), 200 };
 	text->center(_appData.window);
 	addMenuItem(std::unique_ptr<Text>{text});
