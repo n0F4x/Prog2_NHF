@@ -14,7 +14,7 @@ private:
 	State* _currentState = nullptr;
 
 	friend SM_Builder;
-	State& getState(size_t id) { return *_states.at(id); }
+	State& getState(size_t id) { return *_states.at(id).get(); }
 	void addState(std::unique_ptr<State> state) { _states.emplace_back(std::move(state)); }
 
 public:

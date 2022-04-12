@@ -22,7 +22,7 @@ void ButtonSM_Builder::buildTransitions(StateMachine& SM) const {
 	SM_Builder::getState(SM, DEFAULT).setEventListener(
 		[&](const sf::Event& event) -> State* {
 			if (_button.isInside(sf::Vector2f{ sf::Mouse::getPosition() })) {
-				//_assets.getSound("ButtonHover").play();
+				_assets.getSound("ButtonHover").play();
 				return &getState(SM, HOVERED);
 			}
 			return &getState(SM, DEFAULT);
@@ -36,7 +36,7 @@ void ButtonSM_Builder::buildTransitions(StateMachine& SM) const {
 			}
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
-					//_assets.getSound("ButtonClick").play();
+					_assets.getSound("ButtonClick").play();
 					return &getState(SM, PRESSED);
 				}
 			}
@@ -47,12 +47,12 @@ void ButtonSM_Builder::buildTransitions(StateMachine& SM) const {
 	SM_Builder::getState(SM, PRESSED).setEventListener(
 		[&](const sf::Event& event) -> State* {
 			if (!_button.isInside(sf::Vector2f{ sf::Mouse::getPosition() })) {
-				//_assets.getSound("ButtonRelease").play();
+				_assets.getSound("ButtonRelease").play();
 				return &getState(SM, ACTIVE);
 			}
 			if (event.type == sf::Event::MouseButtonReleased) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
-					//_assets.getSound("ButtonRelease").play();
+					_assets.getSound("ButtonRelease").play();
 					_button.triggerCallback();
 					return &getState(SM, HOVERED);
 				}
@@ -64,7 +64,7 @@ void ButtonSM_Builder::buildTransitions(StateMachine& SM) const {
 	SM_Builder::getState(SM, ACTIVE).setEventListener(
 		[&](const sf::Event& event) -> State* {
 			if (_button.isInside(sf::Vector2f{ sf::Mouse::getPosition() })) {
-				//_assets.getSound("ButtonClick").play();
+				_assets.getSound("ButtonClick").play();
 				return &getState(SM, PRESSED);
 			}
 			if (event.type == sf::Event::MouseButtonReleased) {
