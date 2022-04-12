@@ -19,60 +19,60 @@ void ButtonSM_Builder::buildStates(StateMachine& SM) const {
 }
 
 void ButtonSM_Builder::buildTransitions(StateMachine& SM) const {
-	SM_Builder::getState(SM, DEFAULT)->setEventListener(
-		[&](const sf::Event& event) -> size_t {
+	SM_Builder::getState(SM, DEFAULT).setEventListener(
+		[&](const sf::Event& event) -> State* {
 			if (_button.isInside(sf::Vector2f{ sf::Mouse::getPosition() })) {
 				//_assets.getSound("ButtonHover").play();
-				return HOVERED;
+				return &getState(SM, HOVERED);
 			}
-			return DEFAULT;
+			return &getState(SM, DEFAULT);
 		}
 	);
 
-	SM_Builder::getState(SM, HOVERED)->setEventListener(
-		[&](const sf::Event& event) -> size_t {
+	SM_Builder::getState(SM, HOVERED).setEventListener(
+		[&](const sf::Event& event) -> State* {
 			if (!_button.isInside(sf::Vector2f{ sf::Mouse::getPosition() })) {
-				return DEFAULT;
+				return &getState(SM, DEFAULT);
 			}
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
 					//_assets.getSound("ButtonClick").play();
-					return PRESSED;
+					return &getState(SM, PRESSED);
 				}
 			}
-			return HOVERED;
+			return &getState(SM, HOVERED);
 		}
 	);
 
-	SM_Builder::getState(SM, PRESSED)->setEventListener(
-		[&](const sf::Event& event) -> size_t {
+	SM_Builder::getState(SM, PRESSED).setEventListener(
+		[&](const sf::Event& event) -> State* {
 			if (!_button.isInside(sf::Vector2f{ sf::Mouse::getPosition() })) {
 				//_assets.getSound("ButtonRelease").play();
-				return ACTIVE;
+				return &getState(SM, ACTIVE);
 			}
 			if (event.type == sf::Event::MouseButtonReleased) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
 					//_assets.getSound("ButtonRelease").play();
 					_button.triggerCallback();
-					return HOVERED;
+					return &getState(SM, HOVERED);
 				}
 			}
-			return PRESSED;
+			return &getState(SM, PRESSED);
 		}
 	);
 
-	SM_Builder::getState(SM, ACTIVE)->setEventListener(
-		[&](const sf::Event& event) -> size_t {
+	SM_Builder::getState(SM, ACTIVE).setEventListener(
+		[&](const sf::Event& event) -> State* {
 			if (_button.isInside(sf::Vector2f{ sf::Mouse::getPosition() })) {
 				//_assets.getSound("ButtonClick").play();
-				return PRESSED;
+				return &getState(SM, PRESSED);
 			}
 			if (event.type == sf::Event::MouseButtonReleased) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
-					return DEFAULT;
+					return &getState(SM, DEFAULT);
 				}
 			}
-			return ACTIVE;
+			return &getState(SM, ACTIVE);
 		}
 	);
 }
