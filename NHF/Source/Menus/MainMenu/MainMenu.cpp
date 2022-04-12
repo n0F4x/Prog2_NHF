@@ -7,7 +7,7 @@ MainMenu::MainMenu(AppData& appData) :
 	Menu{ appData }
 {
 	// Construct "Play" button
-	Button* playButton = new Button{ _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Options"); } };
+	Button* playButton = new Button{ _appData.assets, "Play", _appData.assets.getFont("Dameron"), 56, [&]() { _appData.menus.open("Game"); } };
 	playButton->center(_appData.window);
 	addMenuItem(std::unique_ptr<Button>{playButton});
 }
