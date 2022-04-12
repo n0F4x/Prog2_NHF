@@ -21,6 +21,7 @@ private:
 
 public:
 	ButtonSM_Builder(Button& button, AssetManager& assets) : _button{ button }, _assets{ assets } {}
+	ButtonSM_Builder(const ButtonSM_Builder&) = default;
 
 	void buildStates(StateMachine& stateMachine) const final;
 	void buildTransitions(StateMachine& stateMachine) const final;

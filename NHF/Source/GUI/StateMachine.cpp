@@ -8,7 +8,7 @@ StateMachine::StateMachine(const SM_Builder& builder) {
 }
 
 void StateMachine::handleEvent(const sf::Event& event) {
-	_currentState = _currentState->getNext(event);
+	_currentState = _states.at(_currentState->getNext(event)).get();
 }
 
 
