@@ -1,26 +1,18 @@
 #pragma once
 
-#include <SFML/Audio.hpp>
-#include "../../../AppData/AppData.hpp"
-//#include "../Text/Text.hpp"
 #include "../Widget.hpp"
-#include "../../StateMachine.hpp"
-#include "ButtonState.hpp"
-#include "../../Theme.hpp"
+#include "ButtonSM_Builder.hpp"
 
 
-class Button : public Widget, protected StateMachine {
+class Button : public Widget {
 private:
 	sf::Text _text;
 
-	ButtonState _states[4] = {
-		ButtonState{btn::DEFAULT, theme::Primary},
-		ButtonState{btn::HOVERED, theme::Secondary},
-		ButtonState{btn::PRESSED, theme::Tertiary},
-		ButtonState{btn::ACTIVE, theme::Quaternary},
-	};
-
 	std::function<void()> _callback;
+	
+	
+	friend ButtonSM_Builder;
+	StateMachine _stateMachine;
 
 	// Helpers
 	bool isInside(const sf::Vector2f& point) const;
@@ -42,6 +34,6 @@ public:
 
 	virtual void center(const Window& window) override;
 
-	void handleEvent(const sf::Event& event) override { StateMachine::handleEvent(event); }
+	void handleEvent(const sf::Event& event) override { _stateMachine.handleEvent(event); }
 	void update() override;
 };

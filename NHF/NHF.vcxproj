@@ -164,7 +164,7 @@
     <ClCompile Include="Source\GUI\StateMachine.cpp" />
     <ClCompile Include="Source\GUI\Theme.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp" />
-    <ClCompile Include="Source\GUI\Widgets\Button\ButtonState.cpp" />
+    <ClCompile Include="Source\GUI\Widgets\Button\ButtonSM_Builder.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Widget.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -196,7 +196,7 @@
     <ClInclude Include="Source\GUI\StateMachine.hpp" />
     <ClInclude Include="Source\GUI\Theme.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Button\Button.hpp" />
-    <ClInclude Include="Source\GUI\Widgets\Button\ButtonState.hpp" />
+    <ClInclude Include="Source\GUI\Widgets\Button\ButtonSM_Builder.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Widget.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\GameMenu.hpp" />

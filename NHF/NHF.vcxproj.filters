@@ -129,7 +129,7 @@
     <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp">
       <Filter>Source Files\GUI\Widgets\Button</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Button\ButtonState.cpp">
+    <ClCompile Include="Source\GUI\Widgets\Button\ButtonSM_Builder.cpp">
       <Filter>Source Files\GUI\Widgets\Button</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp">
@@ -221,7 +221,7 @@
     <ClInclude Include="Source\GUI\Widgets\Button\Button.hpp">
       <Filter>Header Files\GUI\Widgets\Button</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Button\ButtonState.hpp">
+    <ClInclude Include="Source\GUI\Widgets\Button\ButtonSM_Builder.hpp">
       <Filter>Header Files\GUI\Widgets\Button</Filter>
     </ClInclude>
     <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp">
