@@ -48,16 +48,6 @@ PreCalculator::PreCalculator(const sf::Window& window) :
 
 			_polarVectorMap.at(index) = { radius, math::calcAngle(point - _origin) };
 			_colorPicker.at(index) = initColor(point, _origin.x * _origin.x + _origin.y * _origin.y);
-
-			circularVectorMap[static_cast<int>(radius * radius)].emplace_back(point);
-		}
-	}
-
-
-	for (auto it : circularVectorMap) {
-		_circularVectorMap.emplace_back(std::make_pair<float, std::vector<size_t>>(static_cast<float>(sqrt(it.first)), {}));
-		for (auto v : it.second) {
-			_circularVectorMap.back().second.emplace_back(static_cast<size_t>(v.x) * _window.y + static_cast<size_t>(v.y));
 		}
 	}
 }

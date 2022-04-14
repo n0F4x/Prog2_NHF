@@ -27,7 +27,7 @@ void Platform::setOrigin(const sf::Vector2f& origin) {
 
 float Platform::_scalingRatio = 1.0;
 void Platform::setScale(int speed) {
-	_scalingRatio = powf(3.f / 2.f, 1.0f / speed);
+	_scalingRatio = powf(4.f / 2.f, 1.f / speed);
 }
 
 

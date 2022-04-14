@@ -5,14 +5,12 @@
 
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_platforms);
-	//target.draw(_screen, states);
 }
 
 
 Track::Track(sf::Window& window) :
 	_window{ window },
 	_preCalc{ window },
-	_screen{ _preCalc },
 	_platforms{ window },
 	_mouse{ sf::Vector2f{sf::Mouse::getPosition(window)} }
 {}
@@ -33,14 +31,25 @@ void Track::handleEvent(const sf::Event& event) {
 		}
 		if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::Left) {
-				_physics.rotate(Direction::POSITIVE);
+				_switchingLeft = true;
 			}
 			if (event.key.code == sf::Keyboard::Right) {
-				_physics.rotate(Direction::NEGATIVE);
+				_switchingRight = true;
 			}
 		}
+		if (event.type == sf::Event::KeyReleased) {
+			if (event.key.code == sf::Keyboard::Left) {
+				_switchingLeft = false;
+			}
+			if (event.key.code == sf::Keyboard::Right) {
+				_switchingRight = false;
+			}
+		}
+	}
+}
 
-
+void Track::update() {
+	if (!_isPaused) {
 		if (_isDragged) {
 			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
 
@@ -50,15 +59,15 @@ void Track::handleEvent(const sf::Event& event) {
 			_platforms.rotate(_preCalc.getPolarVector(index).angle - _preCalc.getPolarVector(index2).angle);
 			_mouse = mouse;
 		}
-	}
-}
 
-void Track::update() {
-	if (!_isPaused) {
+		if (_switchingLeft != _switchingRight) {
+			if (_switchingLeft) _physics.rotate(Direction::NEGATIVE);
+			if (_switchingRight) _physics.rotate(Direction::POSITIVE);
+		}
+
 		_physics.update(_platforms);
 
 		_platforms.update();
-		//_screen.update(_platforms);
 	}
 }
 

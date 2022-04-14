@@ -170,7 +170,6 @@
     <ClCompile Include="Source\Menus\GameMenu\Platform.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\PlatformContainer.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\PreCalculator.cpp" />
-    <ClCompile Include="Source\Menus\GameMenu\Screen.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\Track.cpp" />
     <ClCompile Include="Source\Menus\InitMenu\InitMenu.cpp" />
     <ClCompile Include="Source\Menus\MainMenu\MainMenu.cpp" />
@@ -198,7 +197,6 @@
     <ClInclude Include="Source\Menus\GameMenu\Platform.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\PlatformContainer.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\PreCalculator.hpp" />
-    <ClInclude Include="Source\Menus\GameMenu\Screen.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\Track.hpp" />
     <ClInclude Include="Source\Menus\InitMenu\InitMenu.hpp" />
     <ClInclude Include="Source\Menus\MainMenu\MainMenu.hpp" />

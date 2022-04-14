@@ -17,7 +17,7 @@ private:
 	static float _scalingRatio;
 
 	float _innerRadius = 2.f;
-	float _outerRadius = 3.f;
+	float _outerRadius = 4.f;
 	float _rotation = 0_deg;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

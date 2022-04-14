@@ -144,9 +144,6 @@
     <ClCompile Include="Source\Menus\GameMenu\PreCalculator.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\Screen.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Menus\GameMenu\Track.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
     </ClCompile>
@@ -228,9 +225,6 @@
       <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\PreCalculator.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\Screen.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\Track.hpp">

@@ -3,7 +3,6 @@
 #include "../../Menus/MenuItem.hpp"
 #include "PreCalculator.hpp"
 #include "Physics.hpp"
-#include "Screen.hpp"
 #include "PlatformContainer.hpp"
 
 
@@ -15,13 +14,14 @@ private:
 	Physics _physics;
 
 	// Managed items
-	Screen _screen;
 	PlatformContainer _platforms;
 
 	// Variables
 	bool _isPaused = false;
 	sf::Vector2f _mouse;
 	bool _isDragged = false;
+	bool _switchingLeft = false;
+	bool _switchingRight= false;
 
 
 private:

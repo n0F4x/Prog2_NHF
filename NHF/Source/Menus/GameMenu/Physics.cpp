@@ -3,23 +3,17 @@
 #include "PlatformContainer.hpp"
 
 
+int operator""_ms(unsigned long long time) { return static_cast<int>(time); }
+int operator"" _s(unsigned long long time) { return static_cast<int>(time * 1000); }
+
 static int square(int num) {
 	return num * num;
 }
 
 
-void Physics::rotate(Direction direction) {
+void Physics::rotate(int direction) {
 	if (!_isRotating) {
-		switch (direction) {
-		case Direction::POSITIVE:
-			_direction = 1;
-			break;
-		case Direction::NEGATIVE:
-			_direction = -1;
-			break;
-		default:
-			break;
-		}
+		_direction = direction;
 		_isRotating = true;
 		_rotationClock.restart();
 	}
@@ -38,15 +32,15 @@ void Physics::rotate(PlatformContainer& _platforms) {
 		}
 
 		_rotationTime = time;
-		_rotationLength += rotation;
 
-		if (_rotationLength >= _rotationDurationLength || _rotationTime >= _rotationDurationTime) {
-			_platforms.rotate((_rotationLength - _rotationDurationLength) * _direction);
+		if (_rotationLength + rotation >= _rotationDurationLength || _rotationTime >= _rotationDurationTime) {
+			_platforms.rotate((_rotationDurationLength - _rotationLength) * _direction);
 			_rotationTime = 0;
 			_rotationLength = 0;
 			_isRotating = false;
 		}
 		else {
+			_rotationLength += rotation;
 			_platforms.rotate(rotation * _direction);
 		}
 	}
