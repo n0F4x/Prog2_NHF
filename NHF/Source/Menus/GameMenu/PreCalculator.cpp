@@ -1,9 +1,9 @@
 #include "PreCalculator.hpp"
 
 
-sf::Color PreCalculator::initColor(const sf::Vector2f& point, float radius2) {
-	float a = point.x - _origin.x;
-	float b = point.y - _origin.y;
+sf::Color PreCalculator::initColor(const sf::Vector2i& point, float radius2) {
+	float a = static_cast<float>(point.x) - _origin.x;
+	float b = static_cast<float>(point.y) - _origin.y;
 	float a2b2 = a * a + b * b;
 
 	int transparency_lower_limit = 0;
@@ -30,24 +30,15 @@ sf::Color PreCalculator::initColor(const sf::Vector2f& point, float radius2) {
 
 PreCalculator::PreCalculator(const sf::Window& window) :
 	_window{ window.getSize() },
-	_origin{ _window / 2u }
+	_origin{ _window / 2 }
 {
-	size_t size = static_cast<size_t>(_window.x) * static_cast<size_t>(_window.y);
+	for (int x = 0; x < _window.x; x++) {
+		for (int y = 0; y < _window.y; y++) {
+			sf::Vector2i point{ x, y };
+			float radius = static_cast<float>(sqrt((point - _origin).x * (point - _origin).x + (point - _origin).y * (point - _origin).y));
 
-	_polarVectorMap.resize(size);
-	_colorPicker.resize(size);
-
-	std::map<int, std::vector<sf::Vector2f>> circularVectorMap;
-
-	for (size_t x = 0; x < _window.x; x++) {
-		for (size_t y = 0; y < _window.y; y++) {
-			size_t index = x * static_cast<size_t>(_window.y) + y;
-
-			sf::Vector2f point = { static_cast<float>(x), static_cast<float>(y) };
-			float radius = sqrt((point - _origin).x * (point - _origin).x + (point - _origin).y * (point - _origin).y);
-
-			_polarVectorMap.at(index) = { radius, math::calcAngle(point - _origin) };
-			_colorPicker.at(index) = initColor(point, _origin.x * _origin.x + _origin.y * _origin.y);
+			_polarVectorMap[point] = { radius, math::calcAngle(sf::Vector2f{point - _origin}) };
+			_colorMap[point] = initColor(point, static_cast<float>(_origin.x * _origin.x + _origin.y * _origin.y));
 		}
 	}
 }

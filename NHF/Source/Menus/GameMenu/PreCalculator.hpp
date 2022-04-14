@@ -6,31 +6,34 @@
 #include "../../Utilities/Math/PolarVector.hpp"
 #include "../../GUI/Theme.hpp"
 
+struct cmpVector2i {
+	bool operator()(const sf::Vector2i& lhs, const sf::Vector2i& rhs) const {
+		if (lhs.x != rhs.x) return lhs.x < rhs.x;
+		return lhs.y < rhs.y;
+	}
+};
 
 class PreCalculator {
 private:
-	sf::Vector2u _window;
-	sf::Vector2f _origin;
+	sf::Vector2i _window;
+	sf::Vector2i _origin;
 
-	std::vector<PolarVector> _polarVectorMap;
-	std::vector<sf::Color> _colorPicker;
+	std::map<sf::Vector2i, PolarVector, cmpVector2i> _polarVectorMap;
+	std::map<sf::Vector2i, sf::Color, cmpVector2i> _colorMap;
 
-	sf::Color initColor(const sf::Vector2f& point, float radius2);
+	sf::Color initColor(const sf::Vector2i& point, float radius2);
 
 public:
 	PreCalculator(const sf::Window& window);
 
-	const sf::Vector2u& getWindow() const {
-		return _window;
+	const PolarVector& getPolarVector(const sf::Vector2f& vector) const {
+		return _polarVectorMap.at(sf::Vector2i{ vector });
 	}
-
-	const PolarVector& getPolarVector(size_t index) const {
-		return _polarVectorMap[index];
-	}
-	const sf::Color getColor(size_t index) const {
-		if (index >= _colorPicker.size())
-			return theme::Purple;
-		return _colorPicker[index];
+	const sf::Color& getColor(const sf::Vector2f& point) const {
+		if (_colorMap.find(sf::Vector2i{ point }) == _colorMap.end()) {
+			return _colorMap.begin()->second;
+		}
+		return _colorMap.at(sf::Vector2i{ point });
 	}
 };
 

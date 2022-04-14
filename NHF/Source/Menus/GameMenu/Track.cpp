@@ -53,10 +53,7 @@ void Track::update() {
 		if (_isDragged) {
 			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
 
-			size_t index = static_cast<size_t>(mouse.x) * _window.getSize().y + static_cast<size_t>(mouse.y);
-			size_t index2 = static_cast<size_t>(_mouse.x) * _window.getSize().y + static_cast<size_t>(_mouse.y);
-
-			_platforms.rotate(_preCalc.getPolarVector(index).angle - _preCalc.getPolarVector(index2).angle);
+			_platforms.rotate(_preCalc.getPolarVector(mouse).angle - _preCalc.getPolarVector(_mouse).angle);
 			_mouse = mouse;
 		}
 

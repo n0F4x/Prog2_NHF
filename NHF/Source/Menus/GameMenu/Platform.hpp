@@ -10,14 +10,18 @@ public:
 	static const float width;
 
 private:
-	const PreCalculator& _preCalc;
+	static const float _initInnerRadius;
+	static const float _initOuterRadius;
 
 	static sf::Vector2f _origin;
 	static float _maxRadius;
 	static float _scalingRatio;
 
-	float _innerRadius = 2.f;
-	float _outerRadius = 4.f;
+	// Non-static
+	const PreCalculator& _preCalc;
+
+	float _innerRadius = _initInnerRadius;
+	float _outerRadius = _initOuterRadius;
 	float _rotation = 0_deg;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

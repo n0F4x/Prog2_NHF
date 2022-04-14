@@ -4,19 +4,21 @@
 #include <cmath>
 
 
-inline std::vector<sf::Vector2f> getCirclePoints(float angle, float radius) {
+std::vector<sf::Vector2f> getArcPoints(float angle, float radius) {
 	std::vector<sf::Vector2f> ret;
-	const int maxpts = 50;
+	const int maxpts = 20;
 	const float spread = Platform::width;
 	for (int i = 0; i < maxpts; ++i) {
 		const float a = (angle - spread / 2.f) + (i * spread) / (maxpts - 1);
-		ret.push_back(radius * sf::Vector2f(std::cos(a), std::sin(a)));
+		ret.emplace_back(radius * sf::Vector2f{ cos(a), sin(a) });
 	}
 	return ret;
 }
 
 
 const float Platform::width = 360_deg / 8;
+const float Platform::_initInnerRadius = 2.f;
+const float Platform::_initOuterRadius = 4.f;
 
 float Platform::_maxRadius = 0.f;
 sf::Vector2f Platform::_origin = sf::Vector2f{ 0.f, 0.f };
@@ -27,7 +29,7 @@ void Platform::setOrigin(const sf::Vector2f& origin) {
 
 float Platform::_scalingRatio = 1.0;
 void Platform::setScale(int speed) {
-	_scalingRatio = powf(4.f / 2.f, 1.f / speed);
+	_scalingRatio = powf(_initOuterRadius / _initInnerRadius, 1.f / speed);
 }
 
 
@@ -35,12 +37,12 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	// Magic circle segment
 	sf::VertexArray arr{ sf::TriangleFan };
 	sf::Vertex origin{ _origin };
-	origin.color = _preCalc.getColor(static_cast<size_t>(_origin.x) * static_cast<size_t>(_origin.y) * static_cast<size_t>(2.f) + static_cast<size_t>(_origin.y));
+	origin.color = _preCalc.getColor(_origin);
 
 	arr.append(origin);
-	for (const sf::Vector2f& v : getCirclePoints(_rotation + width / 2.f, _outerRadius)) {
+	for (const sf::Vector2f& v : getArcPoints(_rotation + width / 2.f, _outerRadius)) {
 		sf::Vertex point{ _origin + v };
-		point.color = _preCalc.getColor(static_cast<size_t>(point.position.x) * static_cast<size_t>(_origin.y) * 2u + static_cast<size_t>(point.position.y));
+		point.color = _preCalc.getColor(point.position);
 		arr.append(point);
 	}
 	arr.append(origin);
@@ -53,7 +55,6 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	innerCircle.setFillColor(sf::Color::Black);
 	target.draw(innerCircle);
 }
-
 
 
 Platform::Platform(const PreCalculator& preCalc, float rotation) : _preCalc{ preCalc } {
