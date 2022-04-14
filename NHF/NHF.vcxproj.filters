@@ -117,19 +117,10 @@
     <ClCompile Include="Source\AppData\Window.cpp">
       <Filter>Source Files\AppData</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GUI\State.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\StateMachine.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GUI\Theme.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp">
-      <Filter>Source Files\GUI\Widgets\Button</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Button\ButtonSM_Builder.cpp">
       <Filter>Source Files\GUI\Widgets\Button</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp">
@@ -206,12 +197,6 @@
     <ClInclude Include="Source\AppData\Window.hpp">
       <Filter>Header Files\AppData</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GUI\State.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\StateMachine.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GUI\Theme.hpp">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
@@ -219,9 +204,6 @@
       <Filter>Header Files\GUI\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Source\GUI\Widgets\Button\Button.hpp">
-      <Filter>Header Files\GUI\Widgets\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Button\ButtonSM_Builder.hpp">
       <Filter>Header Files\GUI\Widgets\Button</Filter>
     </ClInclude>
     <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp">

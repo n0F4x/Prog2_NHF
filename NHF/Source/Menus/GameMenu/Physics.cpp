@@ -25,28 +25,29 @@ void Physics::rotate(Direction direction) {
 	}
 }
 
-#include <iostream>
 void Physics::rotate(PlatformContainer& _platforms) {
 	if (_isRotating) {
-		int time = 0;
-		if ((time = _rotationClock.getElapsedTime().asMilliseconds()) < _rotationDurationTime) {
-			float rotation = 0;
-			if (time < _rotationDurationTime / 2) {
-				rotation = _rotationAcceleration / 2 * square(time) - _rotationAcceleration / 2 * square(_rotationTime);
-			}
-			else {
-				rotation = _rotationAcceleration / 2 * square(_rotationDurationTime - _rotationTime) - _rotationAcceleration / 2 * square(_rotationDurationTime - time);
-			}
-			_rotationTime = time;
-			_rotationLength += rotation;
-			_platforms.rotate(rotation * _direction);
+		int time = _rotationClock.getElapsedTime().asMilliseconds();
+		float rotation = 0;
+
+		if (time < _rotationDurationTime / 2) {
+			rotation = _rotationAcceleration / 2 * square(time) - _rotationAcceleration / 2 * square(_rotationTime);
 		}
 		else {
-			std::cout << _rotationDurationLength - _rotationLength << std::endl;
-			_platforms.rotate((_rotationDurationLength - _rotationLength) * _direction);
+			rotation = _rotationAcceleration / 2 * square(_rotationDurationTime - _rotationTime) - _rotationAcceleration / 2 * square(_rotationDurationTime - time);
+		}
+
+		_rotationTime = time;
+		_rotationLength += rotation;
+
+		if (_rotationLength >= _rotationDurationLength || _rotationTime >= _rotationDurationTime) {
+			_platforms.rotate((_rotationLength - _rotationDurationLength) * _direction);
 			_rotationTime = 0;
 			_rotationLength = 0;
 			_isRotating = false;
+		}
+		else {
+			_platforms.rotate(rotation * _direction);
 		}
 	}
 }

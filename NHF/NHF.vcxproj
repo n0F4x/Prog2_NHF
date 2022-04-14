@@ -160,11 +160,8 @@
     <ClCompile Include="Source\AppData\Engine.cpp" />
     <ClCompile Include="Source\AppData\MenuManager.cpp" />
     <ClCompile Include="Source\AppData\Window.cpp" />
-    <ClCompile Include="Source\GUI\State.cpp" />
-    <ClCompile Include="Source\GUI\StateMachine.cpp" />
     <ClCompile Include="Source\GUI\Theme.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp" />
-    <ClCompile Include="Source\GUI\Widgets\Button\ButtonSM_Builder.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Widget.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -192,11 +189,8 @@
     <ClInclude Include="Source\AppData\Engine.hpp" />
     <ClInclude Include="Source\AppData\MenuManager.hpp" />
     <ClInclude Include="Source\AppData\Window.hpp" />
-    <ClInclude Include="Source\GUI\State.hpp" />
-    <ClInclude Include="Source\GUI\StateMachine.hpp" />
     <ClInclude Include="Source\GUI\Theme.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Button\Button.hpp" />
-    <ClInclude Include="Source\GUI\Widgets\Button\ButtonSM_Builder.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Widget.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\GameMenu.hpp" />

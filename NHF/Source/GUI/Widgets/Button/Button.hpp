@@ -1,18 +1,14 @@
 #pragma once
 
+#include <functional>
 #include "../Widget.hpp"
-#include "ButtonSM_Builder.hpp"
+
 
 
 class Button : public Widget {
 private:
 	sf::Text _text;
-
 	std::function<void()> _callback;
-	
-	
-	friend ButtonSM_Builder;
-	StateMachine _stateMachine;
 
 	// Helpers
 	bool isInside(const sf::Vector2f& point) const;
@@ -22,7 +18,6 @@ private:
 
 public:
 	Button(
-		AssetManager& assets,
 		const sf::String& text,
 		const sf::Font& fontStyle,
 		unsigned characterSize,
@@ -33,7 +28,7 @@ public:
 	virtual void setPosition(const sf::Vector2f& position) override { Widget::setPosition(position); _text.setPosition(position); }
 
 	virtual void center(const Window& window) override;
+	virtual void move(const sf::Vector2f& amount) override { Widget::move(amount); _text.move(amount); }
 
-	void handleEvent(const sf::Event& event) override { _stateMachine.handleEvent(event); }
-	void update() override;
+	void handleEvent(const sf::Event& event) override;
 };
