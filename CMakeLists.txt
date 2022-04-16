@@ -26,32 +26,32 @@ include_directories(
 
 # Create target and set properties.
 set(SOURCE_FILES
-    ./NHF/Source/App.cpp
-    ./NHF/Source/main.cpp  
     ./NHF/Source/AppData/AssetManager.cpp
     ./NHF/Source/AppData/Engine.cpp
     ./NHF/Source/AppData/MenuManager.cpp
     ./NHF/Source/AppData/Window.cpp
-    ./NHF/Source/GUI/Theme.cpp
-    ./NHF/Source/GUI/Widget.cpp
+    ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
     ./NHF/Source/GUI/Widgets/Text.cpp
-    ./NHF/Source/Menus/Menu.cpp
-    ./NHF/Source/Menus/MenuNode.cpp
+    ./NHF/Source/GUI/Theme.cpp
+    ./NHF/Source/GUI/Widget.cpp
+    ./NHF/Source/Menus/GameMenu/Physics.cpp
+    ./NHF/Source/Menus/GameMenu/Platform.cpp
+    ./NHF/Source/Menus/GameMenu/PlatformContainer.cpp
+    ./NHF/Source/Menus/GameMenu/PreCalculator.cpp
+    ./NHF/Source/Menus/GameMenu/Track.cpp
     ./NHF/Source/Menus/GameMenu.cpp
     ./NHF/Source/Menus/InitMenu.cpp
     ./NHF/Source/Menus/MainMenu.cpp
+    ./NHF/Source/Menus/Menu.cpp
+    ./NHF/Source/Menus/MenuNode.cpp
     ./NHF/Source/Menus/OptionsMenu.cpp
-    ./NHF/Source/Menus/GameMenu/Physics.cpp
-    ./NHF/Source/Menus/GameMenu/PlatformContainer.cpp
-    ./NHF/Source/Menus/GameMenu/Platform.cpp
-    ./NHF/Source/Menus/GameMenu/PreCalculator.cpp
-    ./NHF/Source/Menus/GameMenu/Screen.cpp
-    ./NHF/Source/Menus/GameMenu/Track.cpp
     ./NHF/Source/Utilities/Math/Angle.cpp
     ./NHF/Source/Utilities/Math/PolarVector.cpp
     ./NHF/Source/Utilities/STL/string.cpp
     ./NHF/Source/Utilities/STL/vector.cpp
+    ./NHF/Source/App.cpp
+    ./NHF/Source/main.cpp  
 )
 
 find_package(SFML 2 COMPONENTS graphics audio REQUIRED)
