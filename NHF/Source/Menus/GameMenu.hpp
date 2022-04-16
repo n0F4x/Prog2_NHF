@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Menu.hpp"
-#include "../../AppData/AppData.hpp"
-#include "Track.hpp"
+#include "Menu.hpp"
+#include "../AppData/AppData.hpp"
+#include "GameMenu/Track.hpp"
 
 
 class GameMenu : public Menu {

@@ -5,14 +5,14 @@
 
 
 std::vector<sf::Vector2f> getArcPoints(float angle, float radius) {
-	std::vector<sf::Vector2f> ret;
+	std::vector<sf::Vector2f> pts;
 	const int maxpts = 20;
 	const float spread = Platform::width;
 	for (int i = 0; i < maxpts; ++i) {
 		const float a = (angle - spread / 2.f) + (i * spread) / (maxpts - 1);
-		ret.emplace_back(radius * sf::Vector2f{ cos(a), sin(a) });
+		pts.emplace_back(radius * sf::Vector2f{ cos(a), sin(a) });
 	}
-	return ret;
+	return pts;
 }
 
 

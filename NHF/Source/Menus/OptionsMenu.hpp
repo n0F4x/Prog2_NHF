@@ -1,6 +1,6 @@
-#include "../Menu.hpp"
+#include "Menu.hpp"
 
-#include "../../AppData/AppData.hpp"
+#include "../AppData/AppData.hpp"
 
 
 class OptionsMenu : public Menu {

@@ -31,41 +31,17 @@
     <Filter Include="Source Files\GUI\Widgets">
       <UniqueIdentifier>{4f7e01e1-5a45-45b1-8079-1fa52342c0b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GUI\Widgets\Button">
-      <UniqueIdentifier>{6c9e1657-415c-4a83-b322-bf2fe55f61eb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GUI\Widgets\Button">
-      <UniqueIdentifier>{401752cc-7488-42fb-969b-e15f4ba2d952}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GUI\Widgets\Text">
-      <UniqueIdentifier>{5cc7c3e1-4a95-4086-b7f1-8d56f98986c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GUI\Widgets\Text">
-      <UniqueIdentifier>{3a7719b4-2d46-45de-ac02-17baa07cce4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Menus">
       <UniqueIdentifier>{ae47fb71-13e5-444b-b48b-aa6de0bbb246}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Menus\GameMenu">
       <UniqueIdentifier>{696ed31f-e113-41db-ad13-7c88580c6a64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Menus\InitMenu">
-      <UniqueIdentifier>{ef360525-c510-4349-98d8-2d078e270ad4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menus\MainMenu">
-      <UniqueIdentifier>{611a14c2-3821-4ef7-ab7d-d253f6b25fe8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Menus">
       <UniqueIdentifier>{41755612-bfa3-4124-9732-74430f363c3e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Menus\GameMenu">
       <UniqueIdentifier>{b52420a0-e8d0-44c4-ace1-475861640b9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus\MainMenu">
-      <UniqueIdentifier>{67e3b50e-0f0b-4be3-8b1d-72126949e7c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus\InitMenu">
-      <UniqueIdentifier>{89f90ce3-c469-4529-972c-2f9f5e6cab34}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Utilities">
       <UniqueIdentifier>{256e32ce-35ac-4a47-ad0e-b4cff292eb2c}</UniqueIdentifier>
@@ -91,12 +67,6 @@
     <Filter Include="Source Files\Utilities\SmartPtr">
       <UniqueIdentifier>{d5fa8ab5-c6c7-407b-b8d9-32e711faf688}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Menus\OptionsMenu">
-      <UniqueIdentifier>{64a3eee4-c9b4-4dae-8311-9a67b0f5f2e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus\OptionsMenu">
-      <UniqueIdentifier>{18c2d3d8-04aa-4510-a0dd-ac5ae7e94a55}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\App.cpp">
@@ -120,20 +90,11 @@
     <ClCompile Include="Source\GUI\Theme.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Button\Button.cpp">
-      <Filter>Source Files\GUI\Widgets\Button</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Text\Text.cpp">
-      <Filter>Source Files\GUI\Widgets\Text</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Menus\Menu.cpp">
       <Filter>Source Files\Menus</Filter>
     </ClCompile>
     <ClCompile Include="Source\Menus\MenuNode.cpp">
       <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\GameMenu.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
     </ClCompile>
     <ClCompile Include="Source\Menus\GameMenu\Platform.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
@@ -146,12 +107,6 @@
     </ClCompile>
     <ClCompile Include="Source\Menus\GameMenu\Track.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\InitMenu\InitMenu.cpp">
-      <Filter>Source Files\Menus\InitMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\MainMenu\MainMenu.cpp">
-      <Filter>Source Files\Menus\MainMenu</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utilities\Math\PolarVector.cpp">
       <Filter>Source Files\Utilities\Math</Filter>
@@ -168,11 +123,29 @@
     <ClCompile Include="Source\Menus\GameMenu\Physics.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Menus\OptionsMenu\OptionsMenu.cpp">
-      <Filter>Source Files\Menus\OptionsMenu</Filter>
+    <ClCompile Include="Source\GUI\Widgets\Button.cpp">
+      <Filter>Source Files\GUI\Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Widget.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\GUI\Widgets\Text.cpp">
+      <Filter>Source Files\GUI\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Widget.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Widgets\Bar.cpp">
+      <Filter>Source Files\GUI\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\OptionsMenu.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\InitMenu.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menus\MainMenu.cpp">
+      <Filter>Source Files\Menus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,26 +170,11 @@
     <ClInclude Include="Source\GUI\Theme.hpp">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Widget.hpp">
-      <Filter>Header Files\GUI\Widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Button\Button.hpp">
-      <Filter>Header Files\GUI\Widgets\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Text\Text.hpp">
-      <Filter>Header Files\GUI\Widgets\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\Menu.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Menus\MenuItem.hpp">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menus\MenuNode.hpp">
       <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\GameMenu.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\Platform.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
@@ -229,12 +187,6 @@
     </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\Track.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\InitMenu\InitMenu.hpp">
-      <Filter>Header Files\Menus\InitMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\MainMenu\MainMenu.hpp">
-      <Filter>Header Files\Menus\MainMenu</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Math.hpp">
       <Filter>Header Files\Utilities\Math</Filter>
@@ -254,8 +206,29 @@
     <ClInclude Include="Source\Menus\GameMenu\Physics.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Menus\OptionsMenu\OptionsMenu.hpp">
-      <Filter>Header Files\Menus\OptionsMenu</Filter>
+    <ClInclude Include="Source\GUI\Widgets\Button.hpp">
+      <Filter>Header Files\GUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widgets\Text.hpp">
+      <Filter>Header Files\GUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widget.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widgets\Bar.hpp">
+      <Filter>Header Files\GUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\MainMenu.hpp">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\OptionsMenu.hpp">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu.hpp">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\InitMenu.hpp">
+      <Filter>Header Files\Menus</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

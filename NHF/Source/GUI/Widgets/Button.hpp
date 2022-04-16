@@ -4,7 +4,6 @@
 #include "../Widget.hpp"
 
 
-
 class Button : public Widget {
 private:
 	sf::Text _text;
@@ -27,7 +26,7 @@ public:
 
 	virtual void setPosition(const sf::Vector2f& position) override { Widget::setPosition(position); _text.setPosition(position); }
 
-	virtual void center(const Window& window) override;
+	virtual void center(const sf::Vector2f& window) override { setPosition({ window.x / 2.f, window.y / 2.f }); }
 	virtual void move(const sf::Vector2f& amount) override { Widget::move(amount); _text.move(amount); }
 
 	void handleEvent(const sf::Event& event) override;

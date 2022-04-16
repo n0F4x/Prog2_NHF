@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Menu.hpp"
-#include "../../AppData/AppData.hpp"
+#include "Menu.hpp"
+#include "../AppData/AppData.hpp"
 
 
 class InitMenu : public Menu {

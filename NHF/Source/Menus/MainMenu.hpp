@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Menu.hpp"
-#include "../../AppData/AppData.hpp"
-#include "../../GUI/Widgets/Button/Button.hpp"
+#include "Menu.hpp"
+#include "../AppData/AppData.hpp"
+#include "../GUI/Widgets/Button.hpp"
 
 
 class MainMenu : public Menu {

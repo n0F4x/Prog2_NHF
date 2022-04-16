@@ -1,6 +1,6 @@
 #include "Button.hpp"
 
-#include "../../Theme.hpp"
+#include "../Theme.hpp"
 
 
 bool Button::isInside(const sf::Vector2f& point) const {
@@ -32,9 +32,6 @@ Button::Button(
 
 	_text.setFillColor(theme::Primary);
 }
-
-
-void Button::center(const Window& window) { setPosition({ window.getSize().x / 2.f, window.getSize().y / 2.f }); }
 
 
 void Button::handleEvent(const sf::Event& event) {
