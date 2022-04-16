@@ -9,7 +9,7 @@ void Window::init() {
 	settings.stencilBits = 8;
 	settings.sRgbCapable = true;
 
-	create(sf::VideoMode::getDesktopMode(), "My Game", sf::Style::None, settings);
+	create(sf::VideoMode::getDesktopMode(), "My Game", sf::Style::Fullscreen, settings);
 
 	setVerticalSyncEnabled(true);
 	setKeyRepeatEnabled(false);

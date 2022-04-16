@@ -14,17 +14,8 @@ void Bar::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 
-#include <iostream>
-Bar::Bar(const std::vector<std::string>& contents, const sf::Font& font, unsigned chararcterSize) {
-	sf::Vector2f cellSize;
-
-	_contents.resize(contents.size());
-	for (size_t i = 0; i < _contents.size(); i++) {
-		_contents[i] = Text{ contents[i].c_str(), font, chararcterSize };
-		if (cellSize.x < _contents[i].getSize().x * 3.f) {
-			cellSize = { _contents[i].getSize().x * 3.f , _contents[i].getSize().y * 2.f };
-		}
-	}
+Bar::Bar(float width, const std::vector<std::string>& contents, const sf::Font& font, unsigned chararcterSize) {
+	sf::Vector2f cellSize = { width / static_cast<float>(contents.size()), Text{ "0", font, chararcterSize }.getSize().y * 2.f };
 
 	_cells.resize(contents.size());
 	for (size_t i = 0; i < _cells.size(); i++) {
@@ -35,7 +26,9 @@ Bar::Bar(const std::vector<std::string>& contents, const sf::Font& font, unsigne
 		_cells[i].setOutlineThickness(2.f);
 	}
 
+	_contents.resize(contents.size());
 	for (size_t i = 0; i < _contents.size(); i++) {
+		_contents[i] = Text{ contents[i].c_str(), font, chararcterSize };
 		_contents[i].center(_cells[i].getSize());
 		_contents[i].move(_cells[i].getPosition());
 	}
@@ -44,7 +37,6 @@ Bar::Bar(const std::vector<std::string>& contents, const sf::Font& font, unsigne
 	_emphasis.setPosition(_cells[_selected].getPosition());
 	_emphasis.setFillColor(theme::DarkPurple);
 
-	std::cout << cellSize.x * static_cast<float>(contents.size());
 	setSize({ cellSize.x * static_cast<float>(contents.size()), cellSize.y });
 }
 

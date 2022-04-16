@@ -19,7 +19,7 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
-	Bar(const std::vector<std::string>& contents, const sf::Font& font, unsigned characterSize);
+	Bar(float width, const std::vector<std::string>& contents, const sf::Font& font, unsigned characterSize);
 
 	virtual void setPosition(const sf::Vector2f& position) override;
 
