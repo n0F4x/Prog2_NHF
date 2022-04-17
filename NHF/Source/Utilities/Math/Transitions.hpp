@@ -1,12 +1,8 @@
 #pragma once
 
 #include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
-
-namespace Direction {
-	static const int POSITIVE = 1;
-	static const int NEGATIVE = -1;
-};
 
 class Transitionable;
 
@@ -17,63 +13,51 @@ namespace Transitions {
 		Transitionable* _object = nullptr;
 
 		int _time = 0;	// in milliseconds
-		float _length = 0;
+		sf::Vector2f _distance = { 0, 0 };
 
 		bool _isActive = false;
 
 		// During transition variables
-		int _direction = Direction::POSITIVE;
 		sf::Clock _clock;
 		int _currentTime = 0;
-		float _currentLength = 0.f;
+		sf::Vector2f _currentDistance = { 0.f, 0.f };
 
 	public:
 		Transition(Transitionable* object) : _object{ object } {}
-		Transition(Transitionable* object, int time, float length) : _object{ object }, _time{ time }, _length{ length } {
-			if (_length < 0) {
-				_direction = Direction::NEGATIVE;
-				_length *= -1;
-			}
-		}
 
-		virtual void setObject(Transitionable* object) { _object = object; }
-		virtual void setTime(int time) { _time = time; }
-		virtual void setLength(float length) {
-			_length = length;
-			if (_length < 0) {
-				_direction = Direction::NEGATIVE;
-				_length *= -1;
-			}
-		}
-		virtual void setDirection(int direction) { _direction = direction; };
-
-		virtual void start() {
+		virtual void start(const sf::Vector2f& distance, int time) {
 			if (!_isActive) {
-				_clock.restart();
-				_isActive = true;
-			}
-		}virtual void start(int direction) {
-			if (!_isActive) {
-				_direction = direction;
+				_distance = distance;
+				_time = time;
 				_clock.restart();
 				_isActive = true;
 			}
 		}
 		virtual void update() = 0;
-		virtual void init() { _isActive = false; _direction = Direction::POSITIVE; _currentTime = 0; _currentLength = 0.f; }
+		virtual void init() { _isActive = false;  _currentTime = 0; _currentDistance = { 0.f, 0.f }; }
 	};
 
 	class EaseInOut : public Transition {	// Quadratic
 	private:
-		float _acceleration = _length / static_cast<float>(_time / 2 * _time / 2);	// max acceleration during rotation
+		float _accX = 0;	// max X acceleration during rotation
+		float _accY = 0;	// max Y acceleration during rotation
+
+		float getAccX() { return _distance.x / static_cast<float>(_time / 2 * _time / 2); }
+		float getAccY() { return _distance.y / static_cast<float>(_time / 2 * _time / 2); }
 
 	public:
 		EaseInOut(Transitionable* object) : Transition{ object } {}
-		EaseInOut(Transitionable* object, int time, float length) : Transition{ object, time, length } {}
 
-		virtual void setTime(int time) override { Transition::setTime(time); _acceleration = _length / static_cast<float>(_time / 2 * _time / 2); }
-		virtual void setLength(float length) override { Transition::setLength(length); _acceleration = _length / static_cast<float>(_time / 2 * _time / 2); }
-
+		void start(const sf::Vector2f& distance, int time) override {
+			if (!_isActive) {
+				_distance = distance;
+				_time = time;
+				_accX = getAccX();
+				_accY = getAccY();
+				_clock.restart();
+				_isActive = true;
+			}
+		}
 		void update() override;
 	};
 }

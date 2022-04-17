@@ -3,5 +3,5 @@
 
 class Transitionable {
 public:
-	virtual void transition(float amount) = 0;
+	virtual void transition(const sf::Vector2f amount) = 0;
 };

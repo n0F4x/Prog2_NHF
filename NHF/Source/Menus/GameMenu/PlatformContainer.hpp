@@ -23,7 +23,7 @@ public:
 	const std::list<Platform>& getList() const;
 
 	void rotate(float angle);
-	void transition(float amount) { rotate(amount); }
+	void transition(const sf::Vector2f amount) { rotate(amount.x); }
 
 	void update();
 	void init();

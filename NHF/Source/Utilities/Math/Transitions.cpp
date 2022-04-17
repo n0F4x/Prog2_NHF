@@ -2,36 +2,39 @@
 
 #include "Transitionable.hpp"
 
-
-static int square(int num) {
+template <typename T>
+static T square(T num) {
 	return num * num;
 }
-
 
 namespace Transitions {
 	void EaseInOut::update() {
 		if (_isActive) {
-			int time = _clock.getElapsedTime().asMilliseconds();
-			float rotation = 0;
+			int currentTime = _clock.getElapsedTime().asMilliseconds();
+			sf::Vector2f currentDistance = { 0.f, 0.f };
 
-			if (time < _time / 2) {
-				rotation = _acceleration / 2 * square(time) - _acceleration / 2 * square(_currentTime);
+			if (currentTime < _time / 2) {
+				currentDistance = {
+					_accX / 2 * square(currentTime) - _accX / 2 * square(_currentTime),
+					_accY / 2 * square(currentTime) - _accY / 2 * square(_currentTime)
+				};
 			}
 			else {
-				rotation = _acceleration / 2 * square(_time - _currentTime) - _acceleration / 2 * square(_time - time);
+				currentDistance = {
+					_accX / 2 * square(_time - _currentTime) - _accX / 2 * square(_time - currentTime),
+					_accY / 2 * square(_time - _currentTime) - _accY / 2 * square(_time - currentTime)
+				};
 			}
 
-			_currentTime = time;
+			_currentTime = currentTime;
 
-			if (_currentLength + rotation >= _length || _currentTime >= _time) {
-				_object->transition((_length - _currentLength) * _direction);
-				_currentTime = 0;
-				_currentLength = 0;
-				_isActive = false;
+			if (_currentTime >= _time) {
+				_object->transition(_distance - _currentDistance);
+				init();
 			}
 			else {
-				_currentLength += rotation;
-				_object->transition(rotation * _direction);
+				_currentDistance += currentDistance;
+				_object->transition(currentDistance);
 			}
 		}
 	}

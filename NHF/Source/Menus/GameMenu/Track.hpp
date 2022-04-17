@@ -14,7 +14,7 @@ private:
 	// "Observables"
 	sf::Window& _window;
 	PreCalculator _preCalc;
-	Transitions::EaseInOut _transition{ &_platforms, 100, Platform::width };
+	Transitions::EaseInOut _transition{ &_platforms };
 
 
 	// Variables
