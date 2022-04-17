@@ -7,7 +7,7 @@ void Bar::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	for (const auto& text : _contents)
 		target.draw(text);
 
-	//target.draw(_emphasis);
+	target.draw(_emphasis);
 
 	for (const auto& cell : _cells)
 		target.draw(cell);
@@ -35,7 +35,7 @@ Bar::Bar(float width, const std::vector<std::string>& contents, const sf::Font& 
 
 	_emphasis.setSize(cellSize);
 	_emphasis.setPosition(_cells[_selected].getPosition());
-	_emphasis.setFillColor(theme::DarkPurple);
+	_emphasis.setFillColor(theme::Tertiary);
 
 	setSize({ cellSize.x * static_cast<float>(contents.size()), cellSize.y });
 }
@@ -54,6 +54,13 @@ void Bar::setPosition(const sf::Vector2f& position) {
 	Widget::setPosition(position);
 }
 
+void Bar::setFillcolor(const sf::Color& color) {
+	for (auto& content : _contents) {
+		content.setFillColor(color);
+	}
+}
+
+
 void Bar::center(const sf::Vector2f& window) {
 	setPosition({ window.x / 2.f - getSize().x / 2.f, window.y / 2.f - getSize().y / 2.f });
 }
@@ -62,4 +69,7 @@ void Bar::move(const sf::Vector2f& amount) {
 	setPosition(_position + amount);
 }
 
+
 void Bar::handleEvent(const sf::Event& event) {}
+
+void Bar::update() {}

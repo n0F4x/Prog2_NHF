@@ -2,19 +2,20 @@
 
 #include "../../Menus/MenuItem.hpp"
 #include "PreCalculator.hpp"
-#include "Physics.hpp"
+#include "../../Utilities/Math/Transitions.hpp"
 #include "PlatformContainer.hpp"
 
 
 class Track : public MenuItem {
 private:
+	// Managed items
+	PlatformContainer _platforms;
+
 	// "Observables"
 	sf::Window& _window;
 	PreCalculator _preCalc;
-	Physics _physics;
+	Transitions::EaseInOut _transition{ &_platforms, 100, Platform::width };
 
-	// Managed items
-	PlatformContainer _platforms;
 
 	// Variables
 	bool _isPaused = false;

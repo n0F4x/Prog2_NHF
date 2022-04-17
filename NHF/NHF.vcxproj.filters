@@ -120,9 +120,6 @@
     <ClCompile Include="Source\Utilities\STL\string.cpp">
       <Filter>Source Files\Utilities\STL</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\Physics.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Button.cpp">
       <Filter>Source Files\GUI\Widgets</Filter>
     </ClCompile>
@@ -146,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="Source\Menus\MainMenu.cpp">
       <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\Math\Transitions.cpp">
+      <Filter>Source Files\Utilities\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -203,9 +203,6 @@
     <ClInclude Include="Source\Utilities\STL\vector.hpp">
       <Filter>Header Files\Utilities\STL</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\Physics.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GUI\Widgets\Button.hpp">
       <Filter>Header Files\GUI\Widgets</Filter>
     </ClInclude>
@@ -229,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="Source\Menus\InitMenu.hpp">
       <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Math\Transitions.hpp">
+      <Filter>Header Files\Utilities\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Math\Transitionable.hpp">
+      <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

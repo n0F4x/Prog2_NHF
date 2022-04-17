@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Widget.hpp"
 #include "Text.hpp"
+#include "../Theme.hpp"
 
 
 class Bar : public Widget {
@@ -22,9 +23,11 @@ public:
 	Bar(float width, const std::vector<std::string>& contents, const sf::Font& font, unsigned characterSize);
 
 	virtual void setPosition(const sf::Vector2f& position) override;
+	virtual void setFillcolor(const sf::Color& color);
 
 	virtual void center(const sf::Vector2f& window) override;
 	virtual void move(const sf::Vector2f& amount) override;
 
 	virtual void handleEvent(const sf::Event& event) override;
+	virtual void update() override;
 };

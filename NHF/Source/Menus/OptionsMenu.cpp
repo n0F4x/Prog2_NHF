@@ -18,10 +18,12 @@ OptionsMenu::OptionsMenu(AppData& appData) : Menu{ appData } {
 	LCbar->center(sf::Vector2f{ appData.window.getSize() });
 	LCbar->move({ -1.f * static_cast<float>(appData.window.getSize().x) / 2.f, 0.f });
 	LCbar->move({ static_cast<float>(appData.window.getSize().x) * 2.f / 3.f, 0.f });
+	LCbar->setFillcolor(theme::IndigoPurple);
 	addMenuItem(std::unique_ptr<Bar>{LCbar});
 	Text* LClabel = new Text{ "Lane Count:", appData.assets.getFont("Dameron"), 56u };
 	LClabel->center(sf::Vector2f{ appData.window.getSize() });
 	LClabel->move({ -1.f * sf::Vector2f(appData.window.getSize()).x / 2.f + LClabel->getSize().x / 2.f + static_cast<float>(appData.window.getSize().x) / 40.f, 0.f });
+	LClabel->setFillColor(theme::IndigoPurple);
 	addMenuItem(std::unique_ptr<Text>(LClabel));
 }
 

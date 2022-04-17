@@ -35,7 +35,6 @@ set(SOURCE_FILES
     ./NHF/Source/GUI/Widgets/Text.cpp
     ./NHF/Source/GUI/Theme.cpp
     ./NHF/Source/GUI/Widget.cpp
-    ./NHF/Source/Menus/GameMenu/Physics.cpp
     ./NHF/Source/Menus/GameMenu/Platform.cpp
     ./NHF/Source/Menus/GameMenu/PlatformContainer.cpp
     ./NHF/Source/Menus/GameMenu/PreCalculator.cpp
@@ -48,6 +47,7 @@ set(SOURCE_FILES
     ./NHF/Source/Menus/OptionsMenu.cpp
     ./NHF/Source/Utilities/Math/Angle.cpp
     ./NHF/Source/Utilities/Math/PolarVector.cpp
+    ./NHF/Source/Utilities/Math/Transitions.cpp
     ./NHF/Source/Utilities/STL/string.cpp
     ./NHF/Source/Utilities/STL/vector.cpp
     ./NHF/Source/App.cpp

@@ -58,11 +58,15 @@ void Track::update() {
 		}
 
 		if (_switchingLeft != _switchingRight) {
-			if (_switchingLeft) _physics.rotate(Direction::NEGATIVE);
-			if (_switchingRight) _physics.rotate(Direction::POSITIVE);
+			if (_switchingLeft) {
+				_transition.start(Direction::NEGATIVE);
+			}
+			if (_switchingRight) {
+				_transition.start(Direction::POSITIVE);
+			}
 		}
 
-		_physics.update(_platforms);
+		_transition.update();
 
 		_platforms.update();
 	}
@@ -70,6 +74,7 @@ void Track::update() {
 
 void Track::init() {
 	_platforms.init();
+	_transition.init();
 
 	_isDragged = false;
 }

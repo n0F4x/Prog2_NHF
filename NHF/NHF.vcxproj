@@ -167,7 +167,6 @@
     <ClCompile Include="Source\GUI\Widgets\Text.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Menus\GameMenu.cpp" />
-    <ClCompile Include="Source\Menus\GameMenu\Physics.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\Platform.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\PlatformContainer.cpp" />
     <ClCompile Include="Source\Menus\GameMenu\PreCalculator.cpp" />
@@ -179,6 +178,7 @@
     <ClCompile Include="Source\Menus\OptionsMenu.cpp" />
     <ClCompile Include="Source\Utilities\Math\Angle.cpp" />
     <ClCompile Include="Source\Utilities\Math\PolarVector.cpp" />
+    <ClCompile Include="Source\Utilities\Math\Transitions.cpp" />
     <ClCompile Include="Source\Utilities\STL\string.cpp" />
     <ClCompile Include="Source\Utilities\STL\vector.cpp" />
   </ItemGroup>
@@ -195,7 +195,6 @@
     <ClInclude Include="Source\GUI\Widgets\Button.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Text.hpp" />
     <ClInclude Include="Source\Menus\GameMenu.hpp" />
-    <ClInclude Include="Source\Menus\GameMenu\Physics.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\Platform.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\PlatformContainer.hpp" />
     <ClInclude Include="Source\Menus\GameMenu\PreCalculator.hpp" />
@@ -208,6 +207,8 @@
     <ClInclude Include="Source\Utilities\Math\Angle.hpp" />
     <ClInclude Include="Source\Utilities\Math\Math.hpp" />
     <ClInclude Include="Source\Utilities\Math\PolarVector.hpp" />
+    <ClInclude Include="Source\Utilities\Math\Transitionable.hpp" />
+    <ClInclude Include="Source\Utilities\Math\Transitions.hpp" />
     <ClInclude Include="Source\Utilities\STL\string.hpp" />
     <ClInclude Include="Source\Utilities\STL\vector.hpp" />
   </ItemGroup>
