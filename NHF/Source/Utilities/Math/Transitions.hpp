@@ -71,6 +71,9 @@ namespace Transitions {
 		EaseInOut(Transitionable* object) : Transition{ object } {}
 		EaseInOut(Transitionable* object, int time, float length) : Transition{ object, time, length } {}
 
+		virtual void setTime(int time) override { Transition::setTime(time); _acceleration = _length / static_cast<float>(_time / 2 * _time / 2); }
+		virtual void setLength(float length) override { Transition::setLength(length); _acceleration = _length / static_cast<float>(_time / 2 * _time / 2); }
+
 		void update() override;
 	};
 }
