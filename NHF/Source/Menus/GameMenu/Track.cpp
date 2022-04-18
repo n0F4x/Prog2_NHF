@@ -1,6 +1,4 @@
-#include <cstdlib>
 #include "Track.hpp"
-#include "../../Utilities/Math/Math.hpp"
 
 
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -8,11 +6,9 @@ void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 
-Track::Track(sf::Window& window) :
-	_window{ window },
-	_preCalc{ window },
-	_platforms{ window },
-	_mouse{ sf::Vector2f{sf::Mouse::getPosition(window)} }
+Track::Track() :
+	_platforms{ _preCalc },
+	_mouse{ sf::Vector2f{sf::Mouse::getPosition(_window())} }
 {}
 
 
@@ -20,7 +16,7 @@ void Track::handleEvent(const sf::Event& event) {
 	if (!_isPaused) {
 		if (event.type == sf::Event::MouseButtonPressed) {
 			if (event.mouseButton.button == sf::Mouse::Left) {
-				_mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
+				_mouse = sf::Vector2f{ sf::Mouse::getPosition(_window()) };
 				_isDragged = true;
 			}
 		}
@@ -51,7 +47,7 @@ void Track::handleEvent(const sf::Event& event) {
 void Track::update() {
 	if (!_isPaused) {
 		if (_isDragged) {
-			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
+			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window()) };
 
 			_platforms.rotate(_preCalc.getPolarVector(mouse).angle - _preCalc.getPolarVector(_mouse).angle);
 			_mouse = mouse;
@@ -84,7 +80,7 @@ void Track::pause() {
 }
 
 void Track::resume() {
-	_mouse = sf::Vector2f{ sf::Mouse::getPosition(_window) };
+	_mouse = sf::Vector2f{ sf::Mouse::getPosition(_window()) };
 
 	_isPaused = false;
 }

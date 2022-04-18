@@ -4,18 +4,18 @@
 #include "PreCalculator.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "PlatformContainer.hpp"
+#include "../../Window.hpp"
 
 
 class Track : public MenuItem {
 private:
-	// Managed items
-	PlatformContainer _platforms;
-
 	// "Observables"
-	sf::Window& _window;
+	Window _window;
 	PreCalculator _preCalc;
 	Transitions::EaseInOut _transition{ &_platforms };
 
+	// Managed items
+	PlatformContainer _platforms;
 
 	// Variables
 	bool _isPaused = false;
@@ -30,7 +30,7 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
-	Track(sf::Window& window);
+	Track();
 
 	void handleEvent(const sf::Event& event) override;
 	void update() override;

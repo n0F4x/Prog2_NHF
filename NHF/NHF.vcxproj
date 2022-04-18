@@ -156,10 +156,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\App.cpp" />
+    <ClCompile Include="Source\AppData.cpp" />
     <ClCompile Include="Source\AppData\AssetManager.cpp" />
-    <ClCompile Include="Source\AppData\Engine.cpp" />
-    <ClCompile Include="Source\AppData\MenuManager.cpp" />
-    <ClCompile Include="Source\AppData\Window.cpp" />
+    <ClCompile Include="Source\AppData\InputManager.cpp" />
+    <ClCompile Include="Source\Controller.cpp" />
     <ClCompile Include="Source\GUI\Theme.cpp" />
     <ClCompile Include="Source\GUI\Widget.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Bar.cpp" />
@@ -177,18 +177,19 @@
     <ClCompile Include="Source\Menus\MenuNode.cpp" />
     <ClCompile Include="Source\Menus\OptionsMenu.cpp" />
     <ClCompile Include="Source\Utilities\Math\Angle.cpp" />
+    <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp" />
     <ClCompile Include="Source\Utilities\Math\PolarVector.cpp" />
     <ClCompile Include="Source\Utilities\Math\Transitions.cpp" />
     <ClCompile Include="Source\Utilities\STL\string.cpp" />
     <ClCompile Include="Source\Utilities\STL\vector.cpp" />
+    <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp" />
-    <ClInclude Include="Source\AppData\AppData.hpp" />
+    <ClInclude Include="Source\AppData.hpp" />
     <ClInclude Include="Source\AppData\AssetManager.hpp" />
-    <ClInclude Include="Source\AppData\Engine.hpp" />
-    <ClInclude Include="Source\AppData\MenuManager.hpp" />
-    <ClInclude Include="Source\AppData\Window.hpp" />
+    <ClInclude Include="Source\AppData\InputManager.hpp" />
+    <ClInclude Include="Source\Controller.hpp" />
     <ClInclude Include="Source\GUI\Theme.hpp" />
     <ClInclude Include="Source\GUI\Widget.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Bar.hpp" />
@@ -204,13 +205,15 @@
     <ClInclude Include="Source\Menus\MenuItem.hpp" />
     <ClInclude Include="Source\Menus\MenuNode.hpp" />
     <ClInclude Include="Source\Menus\OptionsMenu.hpp" />
+    <ClInclude Include="Source\Utilities\Math.hpp" />
     <ClInclude Include="Source\Utilities\Math\Angle.hpp" />
-    <ClInclude Include="Source\Utilities\Math\Math.hpp" />
+    <ClInclude Include="Source\Utilities\Math\BezierEasing.hpp" />
     <ClInclude Include="Source\Utilities\Math\PolarVector.hpp" />
     <ClInclude Include="Source\Utilities\Math\Transitionable.hpp" />
     <ClInclude Include="Source\Utilities\Math\Transitions.hpp" />
     <ClInclude Include="Source\Utilities\STL\string.hpp" />
     <ClInclude Include="Source\Utilities\STL\vector.hpp" />
+    <ClInclude Include="Source\Window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

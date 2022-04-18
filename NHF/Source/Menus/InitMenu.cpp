@@ -4,12 +4,10 @@
 #include "../GUI/Theme.hpp"
 
 
-InitMenu::InitMenu(AppData& appData) : Menu{ appData } {
+InitMenu::InitMenu() {
 	// Construct title
 	Text* title = new Text{ "PLATFORMS", _appData.assets.getFont("The Wireframe"), 165u };
-	title->center(sf::Vector2f{ _appData.window.getSize() });
+	title->center(_window.getSize());
 	title->setFillColor(theme::Purple);
 	addMenuItem(std::unique_ptr<Text>(title));
 }
-
-void InitMenu::update() {}

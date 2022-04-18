@@ -6,7 +6,6 @@
 #include "Menu.hpp"
 
 
-
 class MenuNode {
 private:
 	std::unique_ptr<Menu> _item;

@@ -2,19 +2,13 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "../../Utilities/Math/Math.hpp"
 #include "../../Utilities/Math/PolarVector.hpp"
-#include "../../GUI/Theme.hpp"
 
-struct cmpVector2i {
-	bool operator()(const sf::Vector2i& lhs, const sf::Vector2i& rhs) const {
-		if (lhs.x != rhs.x) return lhs.x < rhs.x;
-		return lhs.y < rhs.y;
-	}
-};
 
 class PreCalculator {
 private:
+	struct cmpVector2i { bool operator()(const sf::Vector2i& lhs, const sf::Vector2i& rhs) const; };
+
 	sf::Vector2i _window;
 	sf::Vector2i _origin;
 
@@ -24,7 +18,7 @@ private:
 	sf::Color initColor(const sf::Vector2i& point, float radius2);
 
 public:
-	PreCalculator(const sf::Window& window);
+	PreCalculator();
 
 	const PolarVector& getPolarVector(const sf::Vector2f& vector) const {
 		return _polarVectorMap.at(sf::Vector2i{ vector });

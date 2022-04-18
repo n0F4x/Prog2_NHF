@@ -5,7 +5,6 @@
 #include <SFML/Graphics.hpp>
 #include "../Widget.hpp"
 #include "Text.hpp"
-#include "../Theme.hpp"
 
 
 class Bar : public Widget {

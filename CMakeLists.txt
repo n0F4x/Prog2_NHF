@@ -20,6 +20,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/GUI/Widgets
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Menus
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Menus/GameMenu
+    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities/Math
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities/STL
 )
@@ -27,9 +28,7 @@ include_directories(
 # Create target and set properties.
 set(SOURCE_FILES
     ./NHF/Source/AppData/AssetManager.cpp
-    ./NHF/Source/AppData/Engine.cpp
-    ./NHF/Source/AppData/MenuManager.cpp
-    ./NHF/Source/AppData/Window.cpp
+    ./NHF/Source/AppData/InputManager.cpp
     ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
     ./NHF/Source/GUI/Widgets/Text.cpp
@@ -51,7 +50,10 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/STL/string.cpp
     ./NHF/Source/Utilities/STL/vector.cpp
     ./NHF/Source/App.cpp
+    ./NHF/Source/AppData.cpp
+    ./NHF/Source/Controller.cpp
     ./NHF/Source/main.cpp  
+    ./NHF/Source/Window.cpp
 )
 
 find_package(SFML 2 COMPONENTS graphics audio REQUIRED)

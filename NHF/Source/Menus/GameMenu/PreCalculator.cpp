@@ -1,5 +1,9 @@
 #include "PreCalculator.hpp"
 
+#include "../../GUI/Theme.hpp"
+#include "../../Window.hpp"
+#include "../../Utilities/Math.hpp"
+
 
 sf::Color PreCalculator::initColor(const sf::Vector2i& point, float radius2) {
 	float a = static_cast<float>(point.x) - _origin.x;
@@ -28,17 +32,23 @@ sf::Color PreCalculator::initColor(const sf::Vector2i& point, float radius2) {
 }
 
 
-PreCalculator::PreCalculator(const sf::Window& window) :
-	_window{ window.getSize() },
+PreCalculator::PreCalculator() :
+	_window{ Window{}.getSize() },
 	_origin{ _window / 2 }
 {
 	for (int x = 0; x < _window.x; x++) {
 		for (int y = 0; y < _window.y; y++) {
 			sf::Vector2i point{ x, y };
-			float radius = static_cast<float>(sqrt((point - _origin).x * (point - _origin).x + (point - _origin).y * (point - _origin).y));
+			float radius = sqrtf((point - _origin).x * (point - _origin).x + (point - _origin).y * (point - _origin).y);
 
 			_polarVectorMap[point] = { radius, math::calcAngle(sf::Vector2f{point - _origin}) };
 			_colorMap[point] = initColor(point, static_cast<float>(_origin.x * _origin.x + _origin.y * _origin.y));
 		}
 	}
+}
+
+
+bool PreCalculator::cmpVector2i::operator()(const sf::Vector2i& lhs, const sf::Vector2i& rhs) const {
+	if (lhs.x != rhs.x) return lhs.x < rhs.x;
+	return lhs.y < rhs.y;
 }

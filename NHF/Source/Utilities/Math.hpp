@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include <SFML/Graphics.hpp>
-#include "Angle.hpp"
+#include "Math/Angle.hpp"
 
 
 namespace math {

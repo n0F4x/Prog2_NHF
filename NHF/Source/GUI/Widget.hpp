@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Menus/MenuItem.hpp"
-#include "../AppData/Window.hpp"
 
 
 class Widget : public MenuItem {

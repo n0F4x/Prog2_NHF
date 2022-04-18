@@ -1,11 +1,9 @@
 #include "Menu.hpp"
 
-#include "../AppData/AppData.hpp"
-
 
 class OptionsMenu : public Menu {
 public:
-	OptionsMenu(AppData& appData);
+	OptionsMenu();
 
 	void handleEvent(const sf::Event& event) override;
 };

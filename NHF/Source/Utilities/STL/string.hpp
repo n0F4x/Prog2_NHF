@@ -11,6 +11,7 @@ namespace util {
 		char* _string = nullptr;
 		std::size_t _size = 0;
 	public:
+		string() : string{ "" } {}
 		string(const char* string) {
 			_size = strlen(string) + 1;
 			_string = new char[_size];
@@ -20,6 +21,15 @@ namespace util {
 			_size = other._size;
 			_string = new char[_size];
 			strcpy(_string, other._string);
+		}
+		string& operator=(const string& other) {
+			if (&other != this) {
+				_size = other._size;
+				delete[] _string;
+				_string = new char[_size];
+				strcpy(_string, other._string);
+			}
+			return *this;
 		}
 
 		bool operator<(const string& other) const {

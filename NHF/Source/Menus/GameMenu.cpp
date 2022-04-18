@@ -1,10 +1,10 @@
 #include "GameMenu.hpp"
 
+#include "GameMenu/Track.hpp"
 
-GameMenu::GameMenu(AppData& appData) :
-	Menu{ appData }
-{
-	addMenuItem(std::make_unique<Track>(_appData.window));
+
+GameMenu::GameMenu() {
+	addMenuItem(std::make_unique<Track>());
 }
 
 void GameMenu::handleEvent(const sf::Event& event) {
@@ -12,7 +12,7 @@ void GameMenu::handleEvent(const sf::Event& event) {
 
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Escape)
-			_appData.menus.close();
+			Menu::close();
 
 		if (event.key.code == sf::Keyboard::Space)
 			if (!_isPaused)

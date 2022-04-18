@@ -1,16 +1,28 @@
 #include "App.hpp"
 
 
-void App::run() {
+void App::init() {
 	_appData.init();
+	_window.init();
+	_controller.init();
+}
 
-	while (_appData.window.isOpen() && !_appData.menus.isEmpty()) {
+void App::run() {
+	init();
+
+	while (_window.isOpen() && !_controller.isEmpty()) {
+		sf::Event event;
 		if (_clock.getElapsedTime().asMilliseconds() >= 1000 / fps) {
 			_clock.restart();
 
-			_appData.window.pollEvents();
-			_appData.menus.update();
-			_appData.menus.render();
+			while (_window.pollEvent(event)) {
+				if (event.type == sf::Event::Closed) {
+					_window.close();
+				}
+				_controller.handleEvent(event);
+			}
+			_controller.update();
+			_controller.render();
 		}
 	}
 }

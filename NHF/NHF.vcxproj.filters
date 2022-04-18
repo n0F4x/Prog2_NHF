@@ -78,15 +78,6 @@
     <ClCompile Include="Source\AppData\AssetManager.cpp">
       <Filter>Source Files\AppData</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AppData\Engine.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AppData\MenuManager.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AppData\Window.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GUI\Theme.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
@@ -147,24 +138,27 @@
     <ClCompile Include="Source\Utilities\Math\Transitions.cpp">
       <Filter>Source Files\Utilities\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp">
+      <Filter>Source Files\Utilities\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AppData\InputManager.cpp">
+      <Filter>Source Files\AppData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AppData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AppData\AppData.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
     <ClInclude Include="Source\AppData\AssetManager.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AppData\Engine.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AppData\MenuManager.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AppData\Window.hpp">
       <Filter>Header Files\AppData</Filter>
     </ClInclude>
     <ClInclude Include="Source\GUI\Theme.hpp">
@@ -187,9 +181,6 @@
     </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\Track.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\Math\Math.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\PolarVector.hpp">
       <Filter>Header Files\Utilities\Math</Filter>
@@ -232,6 +223,24 @@
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Transitionable.hpp">
       <Filter>Header Files\Utilities\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Math\BezierEasing.hpp">
+      <Filter>Header Files\Utilities\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppData\InputManager.hpp">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Controller.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Window.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Math.hpp">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

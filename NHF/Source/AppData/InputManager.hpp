@@ -1,7 +1,7 @@
 #pragma once
 
 
-class Engine {
+class InputManager {
 public:
 	void init() {}
 };
