@@ -1,12 +1,6 @@
 #include "ContextManager.hpp"
 
 
-//namespace PlatformControl {
-//	extern const int KeyBoard = 0;
-//	extern const int Mouse = 1;
-//}
-
-
 sf::Event::KeyEvent ContextManager::_jumpKey = { sf::Keyboard::Space };
 int ContextManager::_platformCount = 3;
 PlatformControl ContextManager::_platformControl = PlatformControl::Keyboard;
@@ -86,6 +80,18 @@ void ContextManager::setPlatformControl(const std::string& control) {
 	}
 }
 
+#include <iostream>
 std::pair<sf::Keyboard::Key, std::string> ContextManager::getJumpKey() { return *_validKeys.find(_jumpKey.code); }
 std::pair<int, std::string> ContextManager::getPlatformCount() { return *_validPlatformCounts.find(_platformCount); }
-std::pair<PlatformControl, std::string> ContextManager::getPlatformControl() { return /**_validPlatformControls.find(_platformControl);*/{ _platformControl, "Keyboard" }; }
+std::pair<PlatformControl, std::string> ContextManager::getPlatformControl() { 
+	std::string name;
+	switch (_platformControl) {
+	case PlatformControl::Keyboard:
+		name = "Keyboard";
+		break;
+	case PlatformControl::Mouse:
+		name = "Mouse";
+		break;
+	}
+	return /**_validPlatformControls.find(_platformControl);*/{ _platformControl, name };
+}

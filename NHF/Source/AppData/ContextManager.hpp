@@ -5,10 +5,6 @@
 #include <SFML/Graphics.hpp>
 
 
-//namespace PlatformControl {
-//	extern const int KeyBoard;
-//	extern const int Mouse;
-//};
 enum class PlatformControl {
 	Keyboard,
 	Mouse
