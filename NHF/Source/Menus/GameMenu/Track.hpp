@@ -10,7 +10,6 @@
 class Track : public MenuItem {
 private:
 	// "Observables"
-	Window _window;
 	PreCalculator _preCalc;
 	Transitions::EaseInOut _transition{ &_platforms };
 

@@ -17,13 +17,13 @@ void Window::init() {
 }
 
 
-sf::Vector2f Window::getSize() const {
+sf::Vector2f Window::getSize() {
 	return sf::Vector2f{ _window.getSize() };
 }
 
 void Window::close() { _window.close(); }
 
-bool Window::isOpen() const {
+bool Window::isOpen() {
 	return _window.isOpen();
 }
 

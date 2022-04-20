@@ -4,6 +4,8 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+class AppData;
+
 
 enum class PlatformControl {
 	Keyboard,
@@ -13,6 +15,10 @@ enum class PlatformControl {
 
 class ContextManager {
 private:
+	friend AppData;
+	ContextManager() = default;
+
+
 	static std::map<sf::Keyboard::Key, std::string> _validKeys;				//	code / name
 	static std::map<int, std::string> _validPlatformCounts;					//	code / name
 	static std::map<PlatformControl, std::string> _validPlatformControls;	//	code / name

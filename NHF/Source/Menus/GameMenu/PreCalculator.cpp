@@ -33,13 +33,13 @@ sf::Color PreCalculator::initColor(const sf::Vector2i& point, float radius2) {
 
 
 PreCalculator::PreCalculator() :
-	_window{ Window{}.getSize() },
+	_window{ Window::getSize() },
 	_origin{ _window / 2 }
 {
 	for (int x = 0; x < _window.x; x++) {
 		for (int y = 0; y < _window.y; y++) {
 			sf::Vector2i point{ x, y };
-			float radius = sqrtf((point - _origin).x * (point - _origin).x + (point - _origin).y * (point - _origin).y);
+			float radius = sqrtf(static_cast<float>((point - _origin).x * (point - _origin).x + (point - _origin).y * (point - _origin).y));
 
 			_polarVectorMap[point] = { radius, math::calcAngle(sf::Vector2f{point - _origin}) };
 			_colorMap[point] = initColor(point, static_cast<float>(_origin.x * _origin.x + _origin.y * _origin.y));

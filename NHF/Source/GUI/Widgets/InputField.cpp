@@ -50,7 +50,7 @@ void InputField::handleEvent(const sf::Event& event) {
 	if (!_isActive) {
 		if (event.type == sf::Event::MouseButtonPressed) {
 			if (event.mouseButton.button == sf::Mouse::Left) {
-				if (_frame.getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window{}()) })) {
+				if (_frame.getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
 					_isActive = true;
 					_clock.restart();
 				}

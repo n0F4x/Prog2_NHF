@@ -14,9 +14,6 @@ private:
 	util::vector<std::unique_ptr<MenuItem>> _items;
 
 protected:
-	AppData _appData;
-	Window _window;
-
 	bool _isPaused = false;
 
 	void addMenuItem(std::unique_ptr<MenuItem> item);

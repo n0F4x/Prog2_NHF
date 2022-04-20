@@ -9,7 +9,8 @@ public:
 	static AssetManager assets;
 	static ContextManager context;
 
-	void init() {
+	AppData() = delete;
+	static void init() {
 		assets.init();
 		context.init();
 	}

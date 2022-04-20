@@ -7,8 +7,6 @@
 
 class App {
 private:
-	AppData _appData;
-	Window _window;
 	Controller _controller;
 
 	sf::Clock _clock;

@@ -204,6 +204,7 @@
     <ClInclude Include="Source\Menus\GameMenu\Track.hpp" />
     <ClInclude Include="Source\Menus\InitMenu.hpp" />
     <ClInclude Include="Source\Menus\MainMenu.hpp" />
+    <ClInclude Include="Source\Menus\Menu.hpp" />
     <ClInclude Include="Source\Menus\MenuItem.hpp" />
     <ClInclude Include="Source\Menus\MenuNode.hpp" />
     <ClInclude Include="Source\Menus\OptionsMenu.hpp" />

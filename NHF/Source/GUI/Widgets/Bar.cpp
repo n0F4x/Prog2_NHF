@@ -76,7 +76,7 @@ void Bar::move(const sf::Vector2f& amount) {
 void Bar::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		for (size_t i = 0; i < _cells.size(); i++) {
-			if (_cells[i].getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window{}()) })) {
+			if (_cells[i].getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
 				_setContext(_contents[i].getString());
 				_transition.start(_cells[i].getPosition() - _emphasis.getPosition(), 200);
 			}

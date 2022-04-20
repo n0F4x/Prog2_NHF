@@ -10,7 +10,7 @@ void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 Track::Track() :
 	_platforms{ _preCalc },
-	_mouse{ sf::Vector2f{sf::Mouse::getPosition(_window())} }
+	_mouse{ sf::Vector2f{sf::Mouse::getPosition(Window::window())} }
 {}
 
 
@@ -18,7 +18,7 @@ void Track::handleEvent(const sf::Event& event) {
 	if (!_isPaused) {
 		if (event.type == sf::Event::MouseButtonPressed) {
 			if (event.mouseButton.button == sf::Mouse::Left) {
-				_mouse = sf::Vector2f{ sf::Mouse::getPosition(_window()) };
+				_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
 				_isDragged = true;
 			}
 		}
@@ -49,7 +49,7 @@ void Track::handleEvent(const sf::Event& event) {
 void Track::update() {
 	if (!_isPaused) {
 		if (_isDragged) {
-			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(_window()) };
+			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
 
 			_platforms.rotate(_preCalc.getPolarVector(mouse).angle - _preCalc.getPolarVector(_mouse).angle);
 			_mouse = mouse;
@@ -71,7 +71,7 @@ void Track::update() {
 }
 
 void Track::init() {
-	Platform::width = 360_deg / AppData{}.context.getPlatformCount().first;
+	Platform::width = 360_deg / AppData::context.getPlatformCount().first;
 	_platforms.init();
 	_transition.init();
 
@@ -83,7 +83,7 @@ void Track::pause() {
 }
 
 void Track::resume() {
-	_mouse = sf::Vector2f{ sf::Mouse::getPosition(_window()) };
+	_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
 
 	_isPaused = false;
 }

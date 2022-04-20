@@ -10,7 +10,7 @@ void PlatformContainer::draw(sf::RenderTarget& target, sf::RenderStates states) 
 }
 
 PlatformContainer::PlatformContainer(const PreCalculator& preCalc) : _preCalc{ preCalc } {
-	Platform::setOrigin(Window{}.getSize() / 2.f);
+	Platform::setOrigin(Window::getSize() / 2.f);
 	Platform::setScale(_scaleSpeed);
 }
 

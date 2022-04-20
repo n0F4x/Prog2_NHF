@@ -9,7 +9,6 @@
 
 class InputField : public Widget {
 private:
-	AppData _appData;
 	sf::Clock _clock;
 
 	Text _text;

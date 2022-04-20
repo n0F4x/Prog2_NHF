@@ -19,13 +19,13 @@ void Menu::update() {
 }
 
 void Menu::render() {
-	_window.clear();
+	Window::clear();
 
 	for (auto& item : _items) {
-		_window.draw(*item);
+		Window::draw(*item);
 	}
 
-	_window.display();
+	Window::display();
 }
 
 

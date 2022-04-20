@@ -248,5 +248,8 @@
     <ClInclude Include="Source\GUI\Widgets\InputField.hpp">
       <Filter>Header Files\GUI\Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Menus\Menu.hpp">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

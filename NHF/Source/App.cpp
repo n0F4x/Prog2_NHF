@@ -2,22 +2,22 @@
 
 
 void App::init() {
-	_appData.init();
-	_window.init();
+	AppData::init();
+	Window::init();
 	_controller.init();
 }
 
 void App::run() {
 	init();
 
-	while (_window.isOpen() && !_controller.isEmpty()) {
+	while (Window::isOpen() && !_controller.isEmpty()) {
 		sf::Event event;
 		if (_clock.getElapsedTime().asMilliseconds() >= 1000 / fps) {
 			_clock.restart();
 
-			while (_window.pollEvent(event)) {
+			while (Window::pollEvent(event)) {
 				if (event.type == sf::Event::Closed) {
-					_window.close();
+					Window::close();
 				}
 				_controller.handleEvent(event);
 			}
