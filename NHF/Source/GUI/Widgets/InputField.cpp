@@ -65,7 +65,6 @@ void InputField::handleEvent(const sf::Event& event) {
 		}
 		if (event.type == sf::Event::KeyReleased) {
 			switch (event.key.code) {
-			case sf::Keyboard::Escape:
 			case sf::Keyboard::Enter:
 				_isActive = false;
 				break;
@@ -93,4 +92,8 @@ void InputField::update() {
 		_text.center(_frame.getSize());
 		_text.move(_frame.getPosition());
 	}
+}
+
+void InputField::init() {
+	_isActive = false;
 }
