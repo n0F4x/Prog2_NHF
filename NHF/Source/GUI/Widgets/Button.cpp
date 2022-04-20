@@ -4,8 +4,7 @@
 
 
 bool Button::isInside(const sf::Vector2f& point) const {
-	return _text.getGlobalBounds().contains(sf::Vector2f{ point });
-	return true;
+	return _text.getGlobalBounds().contains(point);
 }
 
 void Button::triggerCallback() {

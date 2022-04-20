@@ -1,5 +1,7 @@
 #include "Track.hpp"
 
+#include "../../AppData.hpp"
+
 
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_platforms);
@@ -69,6 +71,7 @@ void Track::update() {
 }
 
 void Track::init() {
+	Platform::width = 360_deg / AppData{}.context.getPlatformCount().first;
 	_platforms.init();
 	_transition.init();
 

@@ -1,16 +1,16 @@
 #pragma once
 
 #include "AppData/AssetManager.hpp"
-#include "AppData/InputManager.hpp"
+#include "AppData/ContextManager.hpp"
 
 
 class AppData {
 public:
 	static AssetManager assets;
-	static InputManager inputs;
+	static ContextManager context;
 
 	void init() {
 		assets.init();
-		inputs.init();
+		context.init();
 	}
 };

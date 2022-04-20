@@ -2,4 +2,4 @@
 
 
 AssetManager AppData::assets;
-InputManager AppData::inputs;
+ContextManager AppData::context;

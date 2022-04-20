@@ -141,7 +141,7 @@
     <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp">
       <Filter>Source Files\Utilities\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AppData\InputManager.cpp">
+    <ClCompile Include="Source\AppData\ContextManager.cpp">
       <Filter>Source Files\AppData</Filter>
     </ClCompile>
     <ClCompile Include="Source\Controller.cpp">
@@ -152,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="Source\AppData.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Widgets\InputField.cpp">
+      <Filter>Source Files\GUI\Widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,7 +230,7 @@
     <ClInclude Include="Source\Utilities\Math\BezierEasing.hpp">
       <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AppData\InputManager.hpp">
+    <ClInclude Include="Source\AppData\ContextManager.hpp">
       <Filter>Header Files\AppData</Filter>
     </ClInclude>
     <ClInclude Include="Source\AppData.hpp">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math.hpp">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\Widgets\InputField.hpp">
+      <Filter>Header Files\GUI\Widgets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

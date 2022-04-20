@@ -16,7 +16,7 @@ std::vector<sf::Vector2f> getArcPoints(float angle, float radius) {
 }
 
 
-const float Platform::width = 360_deg / 8;
+float Platform::width = 360_deg / 8;
 const float Platform::_initInnerRadius = 2.f;
 const float Platform::_initOuterRadius = 4.f;
 

@@ -7,7 +7,7 @@
 
 class Platform : public sf::Drawable {
 public:
-	static const float width;
+	static float width;
 
 private:
 	static const float _initInnerRadius;

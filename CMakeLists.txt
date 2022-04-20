@@ -28,7 +28,7 @@ include_directories(
 # Create target and set properties.
 set(SOURCE_FILES
     ./NHF/Source/AppData/AssetManager.cpp
-    ./NHF/Source/AppData/InputManager.cpp
+    ./NHF/Source/AppData/ContextManager.cpp
     ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
     ./NHF/Source/GUI/Widgets/Text.cpp

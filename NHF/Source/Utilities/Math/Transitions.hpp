@@ -2,6 +2,7 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include "BezierEasing.hpp"
 
 
 class Transitionable;
@@ -54,6 +55,26 @@ namespace Transitions {
 				_time = time;
 				_accX = getAccX();
 				_accY = getAccY();
+				_clock.restart();
+				_isActive = true;
+			}
+		}
+		void update() override;
+	};
+
+	class Ease : public Transition {	// Cubic Bezier
+	private:
+		BezierEasing _bezier{ {0.25f, 0.1f}, {0.25f, 0.1f} };
+		float _lastProgress = 0.f;
+
+	public:
+		Ease(Transitionable* object) : Transition{ object } {}
+
+		void start(const sf::Vector2f& distance, int time) override {
+			if (!_isActive) {
+				_lastProgress = 0.f;
+				_distance = distance;
+				_time = time;
 				_clock.restart();
 				_isActive = true;
 			}
