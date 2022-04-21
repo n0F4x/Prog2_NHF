@@ -7,6 +7,15 @@ void Menu::addMenuItem(std::unique_ptr<MenuItem> item) {
 
 
 void Menu::handleEvent(const sf::Event& event) {
+	if (event.type == sf::Event::KeyPressed) {
+		if (event.key.code == sf::Keyboard::Left && event.key.alt) {
+			Menu::close();
+		}
+		if (event.key.code == sf::Keyboard::Right && event.key.alt) {
+			openLast();
+		}
+	}
+
 	for (auto& item : _items) {
 		item->handleEvent(event);
 	}

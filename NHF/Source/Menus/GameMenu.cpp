@@ -11,13 +11,17 @@ void GameMenu::handleEvent(const sf::Event& event) {
 	Menu::handleEvent(event);
 
 	if (event.type == sf::Event::KeyPressed) {
-		if (event.key.code == sf::Keyboard::Escape)
+		if (event.key.code == sf::Keyboard::Escape) {
 			Menu::close();
+		}
 
-		if (event.key.code == sf::Keyboard::Space)
-			if (!_isPaused)
+		if (event.key.code == sf::Keyboard::Space) {
+			if (!_isPaused) {
 				pause();
-			else
+			}
+			else {
 				resume();
+			}
+		}
 	}
 }

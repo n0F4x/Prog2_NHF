@@ -44,3 +44,7 @@ void Button::handleEvent(const sf::Event& event) {
 		}
 	}
 }
+
+void Button::resume() {
+	_text.setFillColor(theme::Primary);
+}

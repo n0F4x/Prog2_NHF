@@ -25,7 +25,8 @@ public:
 	);
 	Button(const Button&) = delete;
 
-	virtual void setPosition(const sf::Vector2f& position) override { Widget::setPosition(position); _text.center(getLocalBounds()); }
+	void setPosition(const sf::Vector2f& position) override { Widget::setPosition(position); _text.center(getLocalBounds()); }
 
 	void handleEvent(const sf::Event& event) override;
+	void resume() override;
 };

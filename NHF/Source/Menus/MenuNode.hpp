@@ -19,5 +19,7 @@ public:
 	Menu* get();
 	MenuNode* getParent();
 	std::map<const util::string, std::unique_ptr<MenuNode>>& getChildren();
+
+	MenuNode* _lastVisitedChild = nullptr;
 };
 

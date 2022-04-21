@@ -15,6 +15,7 @@ private:
 	MenuNode* _next = nullptr;
 
 	void open(util::string name);
+	void openLast();
 	void close();
 
 public:

@@ -19,11 +19,14 @@ protected:
 	void addMenuItem(std::unique_ptr<MenuItem> item);
 	
 	void open(const util::string& next) { __isOpening__ = true; __next__ = next; }
-	void close() { __isClosing__ = true; }
+	void openLast() { __isOpening__ = true; __openLast__ = true; }
+	void close(bool isExiting = false) { __isClosing__ = true; __isExiting__ = isExiting; }
 
 public:
 	bool __isClosing__ = false;
+	bool __isExiting__ = false;
 	bool __isOpening__ = false;
+	bool __openLast__ = false;
 	util::string __next__;
 
 	virtual void handleEvent(const sf::Event& event);

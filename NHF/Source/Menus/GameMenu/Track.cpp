@@ -96,6 +96,7 @@ void Track::init() {
 	_platforms.init();
 	_transition.init();
 
+	_switchingLeft = _switchingRight = false;
 	_isDragged = false;
 }
 

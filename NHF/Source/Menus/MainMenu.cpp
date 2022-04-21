@@ -4,6 +4,11 @@
 
 
 MainMenu::MainMenu() {
+	// Construct "Exit" button
+	Button* exitButton = new Button{ "Exit", AppData::assets.getFont("Dameron"), 76u, [this]() {Menu::close(true); } };
+	exitButton->setPosition({ Window::getSize().x / 40.f, Window::getSize().x / 40.f });
+	addMenuItem(std::unique_ptr<Button>{exitButton});
+
 	// Construct "Play" button
 	Button* playButton = new Button{ "Play", AppData::assets.getFont("Dameron"), 76u, [&]() { Menu::open("Game"); } };
 	playButton->center(Window::getLocalBounds());
@@ -20,8 +25,12 @@ MainMenu::MainMenu() {
 void MainMenu::handleEvent(const sf::Event& event) {
 	Menu::handleEvent(event);
 
-	if (event.type == sf::Event::KeyPressed) {
-		if (event.key.code == sf::Keyboard::Escape)
-			Menu::close();
+	if (event.type == sf::Event::KeyReleased) {
+		if (event.key.code == sf::Keyboard::Num1) {
+			Menu::open("Game");
+		}
+		if (event.key.code == sf::Keyboard::Num2) {
+			Menu::open("Options");
+		}
 	}
 }

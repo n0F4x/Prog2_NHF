@@ -21,22 +21,33 @@ void Controller::init() {
 	_current = _root.get();
 	_next = _current;
 
+	// Build tree
 	_root->addChild("Game", std::make_unique<GameMenu>());
 	_root->addChild("Options", std::make_unique<OptionsMenu>());
-	while (clock.getElapsedTime().asMilliseconds() < 1000);
+
+	while (clock.getElapsedTime().asMilliseconds() < 2000);
 }
 
 bool Controller::isEmpty() {
+	if (_current->get()->__isExiting__) {
+		return true;
+	}
 	if (_current->get()->__isClosing__) {
 		close();
 	}
 	if (_current->get()->__isOpening__) {
-		open(_current->get()->__next__);
+		if (_current->get()->__openLast__) {
+			openLast();
+			_current->get()->__openLast__ = false;
+		}
+		else {
+			open(_current->get()->__next__);
+		}
 		_current->get()->__isOpening__ = false;
 	}
 
 	if (_next == nullptr)
-		return true;
+		return false;
 
 	if (_current != _next) {
 		_current->get()->pause();
@@ -49,6 +60,13 @@ bool Controller::isEmpty() {
 void Controller::open(util::string name) {
 	if (_current->getChildren().find(name) != _current->getChildren().end()) {
 		_next = _current->getChildren().at(name).get();
+		_next->get()->init();
+		_current->_lastVisitedChild = _next;
+	}
+}
+void Controller::openLast() {
+	_next = _current->_lastVisitedChild;
+	if (_next != nullptr) {
 		_next->get()->init();
 	}
 }
