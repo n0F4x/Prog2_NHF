@@ -31,6 +31,7 @@ set(SOURCE_FILES
     ./NHF/Source/AppData/ContextManager.cpp
     ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
+    ./NHF/Source/GUI/Widgets/InputField.cpp
     ./NHF/Source/GUI/Widgets/Text.cpp
     ./NHF/Source/GUI/Theme.cpp
     ./NHF/Source/GUI/Widget.cpp
@@ -45,6 +46,7 @@ set(SOURCE_FILES
     ./NHF/Source/Menus/MenuNode.cpp
     ./NHF/Source/Menus/OptionsMenu.cpp
     ./NHF/Source/Utilities/Math/Angle.cpp
+    ./NHF/Source/Utilities/Math/BezierEasing.cpp
     ./NHF/Source/Utilities/Math/PolarVector.cpp
     ./NHF/Source/Utilities/Math/Transitions.cpp
     ./NHF/Source/Utilities/STL/string.cpp

@@ -5,7 +5,7 @@
 
 
 bool Button::isInside(const sf::Vector2f& point) const {
-	return _text.getGlobalBounds().contains(point);
+	return getLocalBounds().contains(point);
 }
 
 void Button::triggerCallback() {
@@ -25,11 +25,7 @@ Button::Button(
 	_text{ text, fontStyle, characterSize },
 	_callback{ callback }
 {
-	setSize({ _text.getLocalBounds().width, _text.getLocalBounds().height });
-
-	sf::FloatRect rect = _text.getLocalBounds();
-	_text.setOrigin({ rect.left + rect.width / 2.f, rect.top + rect.height / 2.f });
-
+	setSize(_text.getSize());
 	_text.setFillColor(theme::Primary);
 }
 

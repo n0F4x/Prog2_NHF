@@ -21,6 +21,10 @@ sf::Vector2f Window::getSize() {
 	return sf::Vector2f{ _window.getSize() };
 }
 
+sf::FloatRect Window::getLocalBounds() {
+	return sf::FloatRect{ 0.f, 0.f, getSize().x, getSize().y };
+}
+
 void Window::close() { _window.close(); }
 
 bool Window::isOpen() {

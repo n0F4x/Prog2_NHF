@@ -2,11 +2,12 @@
 
 #include <functional>
 #include "../Widget.hpp"
+#include "Text.hpp"
 
 
 class Button : public Widget {
 private:
-	sf::Text _text;
+	Text _text;
 	std::function<void()> _callback;
 
 	// Helpers
@@ -24,10 +25,7 @@ public:
 	);
 	Button(const Button&) = delete;
 
-	virtual void setPosition(const sf::Vector2f& position) override { Widget::setPosition(position); _text.setPosition(position); }
-
-	virtual void center(const sf::Vector2f& window) override { setPosition({ window.x / 2.f, window.y / 2.f }); }
-	virtual void move(const sf::Vector2f& amount) override { Widget::move(amount); _text.move(amount); }
+	virtual void setPosition(const sf::Vector2f& position) override { Widget::setPosition(position); _text.center(getLocalBounds()); }
 
 	void handleEvent(const sf::Event& event) override;
 };

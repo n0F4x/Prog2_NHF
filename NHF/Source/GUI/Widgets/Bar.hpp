@@ -37,9 +37,6 @@ public:
 
 	void setPosition(const sf::Vector2f& position) override;
 
-	void center(const sf::Vector2f& window) override;
-	void move(const sf::Vector2f& amount) override;
-
 	void handleEvent(const sf::Event& event) override;
 	void update() override;
 	void init() override;

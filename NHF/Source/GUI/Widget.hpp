@@ -20,8 +20,9 @@ public:
 	virtual void setPosition(const sf::Vector2f& position) { _position = position; }
 	const sf::Vector2f& getPosition() const { return _position; }
 	const sf::Vector2f& getSize() const { return _size; }
+	sf::FloatRect getLocalBounds() const { return sf::FloatRect{ _position.x, _position.y, _size.x, _size.y }; }
 
-	virtual void center(const sf::Vector2f& window) { setPosition({ window.x / 2 - getSize().x / 2, window.y / 2 - getSize().y / 2 }); }
-	virtual void move(const sf::Vector2f& amount) { _position += amount; }
+	virtual void center(const sf::FloatRect& frame) { setPosition({ frame.left + frame.width / 2 - getSize().x / 2, frame.top + frame.height / 2 - getSize().y / 2 }); }
+	virtual void move(const sf::Vector2f& amount) { setPosition(_position + amount); }
 };
 

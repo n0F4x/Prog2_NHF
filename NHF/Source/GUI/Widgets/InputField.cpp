@@ -19,7 +19,7 @@ void InputField::setActive(bool isActive) {
 		}
 		_text.setString(_string);
 		_text.setFillColor(theme::Primary);
-		_text.center(_frame.getSize());
+		_text.center(_frame.getLocalBounds());
 		_text.move(_frame.getPosition());
 		_isActive = false;
 	}
@@ -45,7 +45,7 @@ InputField::InputField(
 	_contextGetter{ contextGetter }
 {
 	setSize(_frame.getSize());
-	_text.center(_frame.getSize());
+	_text.center(_frame.getLocalBounds());
 	_text.setFillColor(theme::Primary);
 	_frame.setFillColor(sf::Color::Transparent);
 	_frame.setOutlineThickness(2.f);
@@ -57,14 +57,6 @@ void InputField::setPosition(const sf::Vector2f& position) {
 	_text.setPosition(position + (_text.getPosition() - _position));
 	_frame.setPosition(position);
 	Widget::setPosition(position);
-}
-
-void InputField::center(const sf::Vector2f& window) {
-	setPosition({ window.x / 2.f - getSize().x / 2.f, window.y / 2.f - getSize().y / 2.f });
-}
-
-void InputField::move(const sf::Vector2f& amount) {
-	setPosition(_position + amount);
 }
 
 
@@ -126,13 +118,11 @@ void InputField::update() {
 		else {
 			_text.setString(_activeString);
 		}
-		_text.center(_frame.getSize());
+		_text.center(_frame.getLocalBounds());
 		_text.move(_frame.getPosition());
 	}
 }
 
 void InputField::init() {
-	_activeString.clear();
-	_activeKey = sf::Keyboard::Unknown;
-	_isActive = false;
+	setActive(false);
 }

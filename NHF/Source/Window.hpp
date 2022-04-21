@@ -14,6 +14,7 @@ public:
 	static const sf::RenderWindow& window() { return _window; }
 
 	static sf::Vector2f getSize();
+	static sf::FloatRect getLocalBounds();
 	static void close();
 	static bool isOpen();
 	static bool pollEvent(sf::Event& event);

@@ -37,7 +37,7 @@ Bar::Bar(
 	_contents.resize(contents.size());
 	for (size_t i = 0; i < _contents.size(); i++) {
 		_contents[i] = Text{ contents[i].c_str(), font, chararcterSize };
-		_contents[i].center(_cells[i].getSize());
+		_contents[i].center(_cells[i].getLocalBounds());
 		_contents[i].move(_cells[i].getPosition());
 		_contents[i].setFillColor(theme::IndigoPurple);
 	}
@@ -64,15 +64,7 @@ void Bar::setPosition(const sf::Vector2f& position) {
 }
 
 
-void Bar::center(const sf::Vector2f& window) {
-	setPosition({ window.x / 2.f - getSize().x / 2.f, window.y / 2.f - getSize().y / 2.f });
-}
-
-void Bar::move(const sf::Vector2f& amount) {
-	setPosition(_position + amount);
-}
-
-
+#include <iostream>
 void Bar::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		for (size_t i = 0; i < _cells.size(); i++) {
