@@ -15,18 +15,23 @@ private:
 	std::string _string;
 	sf::RectangleShape _frame;
 
+	void setActive(bool isActive);
+	sf::Keyboard::Key _activeKey = sf::Keyboard::Unknown;
+	std::string _activeString;
 	bool _isActive = false;
-	std::function<bool(const sf::Event::KeyEvent& event, std::string& text)> _eventHandler;
+
+	std::function<bool(const sf::Event::KeyEvent& keyEvent)> _contextSetter;
+	std::function<std::string()> _contextGetter;
 
 	// Override @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
 	InputField(
-		const sf::String& text,
 		const sf::Font& fontStyle,
 		unsigned characterSize,
-		std::function<bool(const sf::Event::KeyEvent& event, std::string& text)> eventHandler
+		const std::function<bool(const sf::Event::KeyEvent& event)>& contextSetter,
+		const std::function<std::string()>& contextGetter
 	);
 
 	void setPosition(const sf::Vector2f& position) override;

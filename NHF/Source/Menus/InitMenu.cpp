@@ -6,8 +6,8 @@
 
 InitMenu::InitMenu() {
 	// Construct title
-	Text* title = new Text{ "PLATFORMS", AppData::assets.getFont("The Wireframe"), 165u };
+	Text* title = new Text{ "PLATFORMS", AppData::assets.getFont("The Wireframe"), 186u };
 	title->center(Window::getSize());
-	title->setFillColor(theme::Purple);
+	title->setFillColor(theme::Secondary);
 	addMenuItem(std::unique_ptr<Text>(title));
 }

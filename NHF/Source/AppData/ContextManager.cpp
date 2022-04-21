@@ -4,6 +4,8 @@
 sf::Event::KeyEvent ContextManager::_jumpKey = { sf::Keyboard::Space };
 int ContextManager::_platformCount = 3;
 PlatformControl ContextManager::_platformControl = PlatformControl::Keyboard;
+sf::Event::KeyEvent ContextManager::_switchKey1 = { sf::Keyboard::Left};
+sf::Event::KeyEvent ContextManager::_switchKey2 = { sf::Keyboard::Right};
 
 std::map<sf::Keyboard::Key, std::string> ContextManager::_validKeys = {
 	{ sf::Keyboard::A, "A" },
@@ -63,7 +65,7 @@ std::map<PlatformControl, std::string> _validPlatformControls{
 };
 
 
-bool ContextManager::setJumpKey(sf::Event::KeyEvent keyEvent) {
+bool ContextManager::setJumpKey(const sf::Event::KeyEvent& keyEvent) {
 	if (_validKeys.find(keyEvent.code) != _validKeys.end()) {
 		_jumpKey = keyEvent;
 		return true;
@@ -79,8 +81,21 @@ void ContextManager::setPlatformControl(const std::string& control) {
 		_platformControl = PlatformControl::Mouse;
 	}
 }
+bool ContextManager::setSwitchKey1(const sf::Event::KeyEvent& keyEvent) {
+	if (_validKeys.find(keyEvent.code) != _validKeys.end()) {
+		_switchKey1 = keyEvent;
+		return true;
+	}
+	return false;
+}
+bool ContextManager::setSwitchKey2(const sf::Event::KeyEvent& keyEvent) {
+	if (_validKeys.find(keyEvent.code) != _validKeys.end()) {
+		_switchKey2 = keyEvent;
+		return true;
+	}
+	return false;
+}
 
-#include <iostream>
 std::pair<sf::Keyboard::Key, std::string> ContextManager::getJumpKey() { return *_validKeys.find(_jumpKey.code); }
 std::pair<int, std::string> ContextManager::getPlatformCount() { return *_validPlatformCounts.find(_platformCount); }
 std::pair<PlatformControl, std::string> ContextManager::getPlatformControl() { 
@@ -95,3 +110,5 @@ std::pair<PlatformControl, std::string> ContextManager::getPlatformControl() {
 	}
 	return /**_validPlatformControls.find(_platformControl);*/{ _platformControl, name };
 }
+std::pair<sf::Keyboard::Key, std::string> ContextManager::getSwitchKey1() { return *_validKeys.find(_switchKey1.code); }
+std::pair<sf::Keyboard::Key, std::string> ContextManager::getSwitchKey2() { return *_validKeys.find(_switchKey2.code); }

@@ -30,7 +30,7 @@ Bar::Bar(
 		_cells[i].setSize(cellSize);
 		_cells[i].move({ cellSize.x * static_cast<float>(i), 0.f });
 		_cells[i].setFillColor(sf::Color::Transparent);
-		_cells[i].setOutlineColor(theme::Primary);
+		_cells[i].setOutlineColor(theme::IndigoPurple);
 		_cells[i].setOutlineThickness(2.f);
 	}
 

@@ -16,31 +16,36 @@ Track::Track() :
 
 void Track::handleEvent(const sf::Event& event) {
 	if (!_isPaused) {
-		if (event.type == sf::Event::MouseButtonPressed) {
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
-				_isDragged = true;
+		if (AppData::context.getPlatformControl().first == PlatformControl::Mouse) {
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
+					_isDragged = true;
+				}
+			}
+			if (event.type == sf::Event::MouseButtonReleased) {
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					_isDragged = false;
+				}
 			}
 		}
-		if (event.type == sf::Event::MouseButtonReleased) {
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				_isDragged = false;
+
+		if (AppData::context.getPlatformControl().first == PlatformControl::Keyboard) {
+			if (event.type == sf::Event::KeyPressed) {
+				if (event.key.code == AppData::context.getSwitchKey1().first) {
+					_switchingLeft = true;
+				}
+				if (event.key.code == AppData::context.getSwitchKey2().first) {
+					_switchingRight = true;
+				}
 			}
-		}
-		if (event.type == sf::Event::KeyPressed) {
-			if (event.key.code == sf::Keyboard::Left) {
-				_switchingLeft = true;
-			}
-			if (event.key.code == sf::Keyboard::Right) {
-				_switchingRight = true;
-			}
-		}
-		if (event.type == sf::Event::KeyReleased) {
-			if (event.key.code == sf::Keyboard::Left) {
-				_switchingLeft = false;
-			}
-			if (event.key.code == sf::Keyboard::Right) {
-				_switchingRight = false;
+			if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == AppData::context.getSwitchKey1().first) {
+					_switchingLeft = false;
+				}
+				if (event.key.code == AppData::context.getSwitchKey2().first) {
+					_switchingRight = false;
+				}
 			}
 		}
 	}
