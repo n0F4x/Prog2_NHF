@@ -36,7 +36,7 @@ OptionsMenu::OptionsMenu() {
 
 	// Construct "Jump Key" input field and label
 	InputField* JKinput = new InputField{ AppData::assets.getFont("Dameron"), 56u, AppData::context.setJumpKey, [&]() -> std::string {
-		return AppData::context.getPlatformControl().second;
+		return AppData::context.getJumpKey().second;
 	} };
 	JKinput->center(Window::getSize());
 	JKinput->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - JKinput->getSize().x) / 2.f, JKinput->getPosition().y });
