@@ -1,19 +1,7 @@
 #include "Platform.hpp"
 
 #include "../../GUI/Theme.hpp"
-#include <cmath>
-
-
-std::vector<sf::Vector2f> getArcPoints(float angle, float radius) {
-	std::vector<sf::Vector2f> pts;
-	const int maxpts = 20;
-	const float spread = Platform::width;
-	for (int i = 0; i < maxpts; ++i) {
-		const float a = (angle - spread / 2.f) + (i * spread) / (maxpts - 1);
-		pts.emplace_back(radius * sf::Vector2f{ cosf(a), sinf(a) });
-	}
-	return pts;
-}
+#include "../../Utilities/Math.hpp"
 
 
 float Platform::width = 360_deg / 8;
@@ -37,12 +25,12 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	// Magic circle segment
 	sf::VertexArray arr{ sf::TriangleFan };
 	sf::Vertex origin{ _origin };
-	origin.color = _preCalc.getColor(_origin);
+	origin.color = theme::Purple;
 
 	arr.append(origin);
-	for (const sf::Vector2f& v : getArcPoints(_rotation + width / 2.f, _outerRadius)) {
+	for (const sf::Vector2f& v : math::getArcPoints(_rotation + width / 2.f, Platform::width, _outerRadius + 0.3f, 40)) {
 		sf::Vertex point{ _origin + v };
-		point.color = _preCalc.getColor(point.position);
+		point.color = theme::Purple;
 		arr.append(point);
 	}
 	arr.append(origin);
@@ -50,7 +38,7 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(arr);
 
 	// Hide inner circle
-	sf::CircleShape innerCircle{ _innerRadius, 50 };
+	sf::CircleShape innerCircle{ _innerRadius, 108 };
 	innerCircle.setPosition(_origin - sf::Vector2f{ _innerRadius, _innerRadius });
 	innerCircle.setFillColor(sf::Color::Black);
 	target.draw(innerCircle);

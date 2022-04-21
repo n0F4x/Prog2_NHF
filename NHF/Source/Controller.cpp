@@ -7,7 +7,7 @@
 #include "Menus/OptionsMenu.hpp"
 
 
-Controller::Controller() : _root{nullptr} {}
+Controller::Controller() : _root{ nullptr } {}
 
 void Controller::init() {
 	_root.reset();
@@ -15,6 +15,7 @@ void Controller::init() {
 	_current = _root.get();
 	render();
 
+	sf::Clock clock;
 	_root.reset();
 	_root = std::make_unique<MenuNode>(std::make_unique<MainMenu>());
 	_current = _root.get();
@@ -22,6 +23,7 @@ void Controller::init() {
 
 	_root->addChild("Game", std::make_unique<GameMenu>());
 	_root->addChild("Options", std::make_unique<OptionsMenu>());
+	while (clock.getElapsedTime().asMilliseconds() < 1000);
 }
 
 bool Controller::isEmpty() {
@@ -32,7 +34,7 @@ bool Controller::isEmpty() {
 		open(_current->get()->__next__);
 		_current->get()->__isOpening__ = false;
 	}
-	
+
 	if (_next == nullptr)
 		return true;
 

@@ -4,7 +4,6 @@
 #include "PreCalculator.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "PlatformContainer.hpp"
-#include "../../Window.hpp"
 
 
 class Track : public MenuItem {
@@ -15,6 +14,7 @@ private:
 
 	// Managed items
 	PlatformContainer _platforms;
+	sf::VertexArray _shader;
 
 	// Variables
 	bool _isPaused = false;

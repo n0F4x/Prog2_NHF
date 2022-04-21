@@ -177,6 +177,7 @@
     <ClCompile Include="Source\Menus\Menu.cpp" />
     <ClCompile Include="Source\Menus\MenuNode.cpp" />
     <ClCompile Include="Source\Menus\OptionsMenu.cpp" />
+    <ClCompile Include="Source\Utilities\Math.cpp" />
     <ClCompile Include="Source\Utilities\Math\Angle.cpp" />
     <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp" />
     <ClCompile Include="Source\Utilities\Math\PolarVector.cpp" />

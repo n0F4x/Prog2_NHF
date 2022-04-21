@@ -51,6 +51,7 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/Math/Transitions.cpp
     ./NHF/Source/Utilities/STL/string.cpp
     ./NHF/Source/Utilities/STL/vector.cpp
+    ./NHF/Source/Utilities/Math.cpp
     ./NHF/Source/App.cpp
     ./NHF/Source/AppData.cpp
     ./NHF/Source/Controller.cpp

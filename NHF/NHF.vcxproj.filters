@@ -156,6 +156,9 @@
     <ClCompile Include="Source\GUI\Widgets\InputField.cpp">
       <Filter>Source Files\GUI\Widgets</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utilities\Math.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">

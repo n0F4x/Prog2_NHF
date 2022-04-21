@@ -1,17 +1,33 @@
 #include "Track.hpp"
 
 #include "../../AppData.hpp"
+#include "../../Window.hpp"
+#include "../../Utilities/Math.hpp"
 
 
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_platforms);
+	target.draw(_shader);
 }
 
 
 Track::Track() :
 	_platforms{ _preCalc },
+	_shader{ sf::TriangleFan },
 	_mouse{ sf::Vector2f{sf::Mouse::getPosition(Window::window())} }
-{}
+{
+	sf::Vector2f origin = { Window::getSize() / 2.f };
+	sf::Vertex mid{ origin, sf::Color{ 0, 0, 0, 255 } };
+	float radius = sqrtf(origin.x * origin.x + origin.y * origin.y);
+
+	_shader.append(mid);
+	for (const sf::Vector2f& v : math::getArcPoints(0.f, 360_deg, radius, 1200)) {
+		sf::Vertex point{ origin + v };
+		point.color = sf::Color{ 0, 0, 0, 0 };
+		_shader.append(point);
+	}
+	_shader.append(mid);
+}
 
 
 void Track::handleEvent(const sf::Event& event) {
