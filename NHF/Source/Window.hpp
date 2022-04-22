@@ -6,6 +6,8 @@
 class Window {
 private:
 	static sf::RenderWindow _window;
+	static float _FPS;
+	static sf::Clock _clock;
 
 public:
 	Window() = delete;

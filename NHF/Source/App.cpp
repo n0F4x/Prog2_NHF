@@ -10,19 +10,15 @@ void App::init() {
 void App::run() {
 	init();
 
+	sf::Event event;
 	while (Window::isOpen() && !_controller.isEmpty()) {
-		sf::Event event;
-		if (_clock.getElapsedTime().asMilliseconds() >= 1000 / fps) {
-			_clock.restart();
-
-			while (Window::pollEvent(event)) {
-				if (event.type == sf::Event::Closed) {
-					Window::close();
-				}
-				_controller.handleEvent(event);
+		while (Window::pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				Window::close();
 			}
-			_controller.update();
-			_controller.render();
+			_controller.handleEvent(event);
 		}
+		_controller.update();
+		_controller.render();
 	}
 }

@@ -43,6 +43,6 @@ public:
 	static std::pair<sf::Keyboard::Key, std::string> getJumpKey();
 	static std::pair<int, std::string> getPlatformCount();
 	static std::pair<PlatformControl, std::string> getPlatformControl();
-	std::pair<sf::Keyboard::Key, std::string> getSwitchKey1();
-	std::pair<sf::Keyboard::Key, std::string> getSwitchKey2();
+	static std::pair<sf::Keyboard::Key, std::string> getSwitchKey1();
+	static std::pair<sf::Keyboard::Key, std::string> getSwitchKey2();
 };

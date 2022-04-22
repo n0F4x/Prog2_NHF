@@ -2,6 +2,8 @@
 
 
 sf::RenderWindow Window::_window;
+float Window::_FPS = 60.f;
+sf::Clock Window::_clock;
 
 
 void Window::init() {
@@ -28,6 +30,9 @@ sf::FloatRect Window::getLocalBounds() {
 void Window::close() { _window.close(); }
 
 bool Window::isOpen() {
+	while (_clock.getElapsedTime().asMilliseconds() < 1000.f / _FPS)
+		;
+	_clock.restart();
 	return _window.isOpen();
 }
 
