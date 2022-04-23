@@ -16,12 +16,7 @@ void GameMenu::handleEvent(const sf::Event& event) {
 		}
 
 		if (event.key.code == sf::Keyboard::Space) {
-			if (!_isPaused) {
-				pause();
-			}
-			else {
-				resume();
-			}
+			isPaused() ? resume() : pause();
 		}
 	}
 }

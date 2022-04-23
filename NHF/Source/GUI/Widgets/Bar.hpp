@@ -15,6 +15,7 @@ class Emphasis : public sf::RectangleShape, public Transitionable {
 };
 
 
+template<typename T>
 class Bar : public Widget {
 private:
 	Transitions::Ease _transition{ &_emphasis };
@@ -24,15 +25,15 @@ private:
 	Emphasis _emphasis;
 
 	size_t _selected = 0;
-	std::function<void(const std::string&)> _setContext;
+	std::function<void(const T&)> _setContext;
 	std::function<std::string ()> _getContext;
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
 	Bar(
 		float width, const std::vector<std::string>& contents, const sf::Font& font, unsigned chararcterSize,
-		const std::function<void(const std::string&)>& setContext, const std::function<std::string ()>& getContext
+		const std::function<void(const T&)>& setContext, const std::function<std::string ()>& getContext
 	);
 
 	void setPosition(const sf::Vector2f& position) override;

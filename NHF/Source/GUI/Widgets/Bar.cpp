@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Bar.hpp"
 
 #include "../Theme.hpp"
@@ -5,7 +7,8 @@
 #include "../../AppData.hpp"
 
 
-void Bar::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+template<typename T>
+void Bar<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	for (const auto& text : _contents)
 		target.draw(text);
 
@@ -16,9 +19,10 @@ void Bar::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 
-Bar::Bar(
+template<typename T>
+Bar<T>::Bar(
 	float width, const std::vector<std::string>& contents, const sf::Font& font, unsigned chararcterSize,
-	const std::function<void(const std::string&)>& setContext, const std::function<std::string ()>& getContext
+	const std::function<void(const T&)>& setContext, const std::function<std::string ()>& getContext
 ) :
 	_setContext{ setContext },
 	_getContext{ getContext }
@@ -50,7 +54,8 @@ Bar::Bar(
 }
 
 
-void Bar::setPosition(const sf::Vector2f& position) {
+template<typename T>
+void Bar<T>::setPosition(const sf::Vector2f& position) {
 	for (sf::RectangleShape& cell : _cells) {
 		cell.setPosition(position + (cell.getPosition() - _position));
 	}
@@ -64,8 +69,8 @@ void Bar::setPosition(const sf::Vector2f& position) {
 }
 
 
-#include <iostream>
-void Bar::handleEvent(const sf::Event& event) {
+template<typename T>
+void Bar<T>::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		for (size_t i = 0; i < _cells.size(); i++) {
 			if (_cells[i].getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
@@ -76,9 +81,11 @@ void Bar::handleEvent(const sf::Event& event) {
 	}
 }
 
-void Bar::update() { _transition.update(); }
+template<typename T>
+void Bar<T>::update() { _transition.update(); }
 
-void Bar::init() {
+template<typename T>
+void Bar<T>::init() {
 	for (size_t i = 0; i < _contents.size(); i++) {
 		if (_contents[i].getString() == _getContext()) {
 			_emphasis.setPosition(_cells[i].getPosition());

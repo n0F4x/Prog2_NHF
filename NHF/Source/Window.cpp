@@ -30,7 +30,7 @@ sf::FloatRect Window::getLocalBounds() {
 void Window::close() { _window.close(); }
 
 bool Window::isOpen() {
-	while (_clock.getElapsedTime().asMilliseconds() < 1000.f / _FPS)
+	while (static_cast<float>(_clock.getElapsedTime().asMilliseconds()) < 1000.f / _FPS)
 		;
 	_clock.restart();
 	return _window.isOpen();

@@ -23,16 +23,17 @@ OptionsMenu::OptionsMenu() {
 	addMenuItem(std::unique_ptr<Text>{title});
 
 	// Construct "Lane Count" bar and label
-	Bar* LCbar = new Bar{
+	auto* LCbar = new Bar<int>{
 		Window::getSize().x * 0.6f, {"3", "4", "5", "6", "7", "8"}, AppData::assets.getFont("Dameron"), 56u,
-		AppData::context.setPlatformCount, [&]() -> std::string {
+		[](const int& amount) -> bool { return AppData::context.setPlatformCount(amount); },
+		[]() -> std::string {
 			return AppData::context.getPlatformCount().second;
 		}
 	};
 	LCbar->center(Window::getLocalBounds());
 	LCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - LCbar->getSize().x) / 2.f, LCbar->getPosition().y });
 	LCbar->move({ 0.f, -3 * LCbar->getSize().y });
-	addMenuItem(std::unique_ptr<Bar>{LCbar});
+	addMenuItem(std::unique_ptr<Bar<int>>{LCbar});
 	Text* LClabel = new Text{ "Lane Count:", AppData::assets.getFont("Dameron"), 56u };
 	LClabel->center(Window::getLocalBounds());
 	LClabel->move({ -1.f * Window::getSize().x / 2.f + LClabel->getSize().x / 2.f + Window::getSize().x / 40.f, 0.f });
@@ -41,9 +42,13 @@ OptionsMenu::OptionsMenu() {
 	addMenuItem(std::unique_ptr<Text>(LClabel));
 
 	// Construct "Jump Key" input field and label
-	InputField* JKinput = new InputField{ AppData::assets.getFont("Dameron"), 56u, AppData::context.setJumpKey, [&]() -> std::string {
-		return AppData::context.getJumpKey().second;
-	} };
+	InputField* JKinput = new InputField{
+		AppData::assets.getFont("Dameron"), 56u,
+		[](const sf::Event::KeyEvent& keyEvent) -> bool { return AppData::context.setJumpKey(keyEvent); },
+		[]() -> std::string {
+			return AppData::context.getJumpKey().second;
+		}
+	};
 	JKinput->center(Window::getLocalBounds());
 	JKinput->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - JKinput->getSize().x) / 2.f, JKinput->getPosition().y });
 	JKinput->move({ 0.f, -1.f * JKinput->getSize().y });
@@ -56,16 +61,17 @@ OptionsMenu::OptionsMenu() {
 	addMenuItem(std::unique_ptr<Text>(JKlabel));
 
 	// Construct "Platfrom Control" bar and label
-	Bar* PCbar = new Bar{
+	auto* PCbar = new Bar<PlatformControl>{
 		Window::getSize().x * 0.6f, {"Keyboard", "Mouse"}, AppData::assets.getFont("Dameron"), 56u,
-		AppData::context.setPlatformControl, [&]() -> std::string {
+		[](const PlatformControl& control) -> bool { return AppData::context.setPlatformControl(control); } ,
+		[]() -> std::string {
 			return AppData::context.getPlatformControl().second;
 		}
 	};
 	PCbar->center(Window::getLocalBounds());
 	PCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - PCbar->getSize().x) / 2.f, PCbar->getPosition().y });
 	PCbar->move({ 0.f, +1.f * PCbar->getSize().y });
-	addMenuItem(std::unique_ptr<Bar>{PCbar});
+	addMenuItem(std::unique_ptr<Bar<PlatformControl>>{PCbar});
 	Text* PClabel = new Text{ "Control Mode:", AppData::assets.getFont("Dameron"), 56u };
 	PClabel->center(Window::getLocalBounds());
 	PClabel->move({ -1.f * Window::getSize().x / 2.f + PClabel->getSize().x / 2.f + Window::getSize().x / 40.f, 0.f });
@@ -74,9 +80,13 @@ OptionsMenu::OptionsMenu() {
 	addMenuItem(std::unique_ptr<Text>(PClabel));
 
 	// Construct "Switch Key 1" input field and label
-	InputField* SK1input = new InputField{ AppData::assets.getFont("Dameron"), 56u, AppData::context.setSwitchKey1, [&]() -> std::string {
-		return AppData::context.getSwitchKey1().second;
-	} };
+	InputField* SK1input = new InputField{ 
+		AppData::assets.getFont("Dameron"), 56u,
+		[](const sf::Event::KeyEvent& keyEvent) -> bool { AppData::context.setSwitchKey1(keyEvent); },
+		[]() -> std::string {
+			return AppData::context.getSwitchKey1().second;
+		} 
+	};
 	SK1input->center(Window::getLocalBounds());
 	SK1input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK1input->getSize().x) / 2.f, SK1input->getPosition().y });
 	SK1input->move({ 0.f, +3.f * SK1input->getSize().y });
@@ -89,9 +99,13 @@ OptionsMenu::OptionsMenu() {
 	addMenuItem(std::unique_ptr<Text>(SK1label));
 
 	// Construct "Switch Key 2" input field and label
-	InputField* SK2input = new InputField{ AppData::assets.getFont("Dameron"), 56u, AppData::context.setSwitchKey2, [&]() -> std::string {
-		return AppData::context.getSwitchKey2().second;
-	} };
+	InputField* SK2input = new InputField{
+		AppData::assets.getFont("Dameron"), 56u,
+		[](const sf::Event::KeyEvent& keyEvent) -> bool { AppData::context.setSwitchKey2(keyEvent); },
+		[]() -> std::string {
+			return AppData::context.getSwitchKey2().second;
+		}
+	};
 	SK2input->center(Window::getLocalBounds());
 	SK2input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK2input->getSize().x) / 2.f, SK2input->getPosition().y });
 	SK2input->move({ 0.f, +5.f * SK2input->getSize().y });
