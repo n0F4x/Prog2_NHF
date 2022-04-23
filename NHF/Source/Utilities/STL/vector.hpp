@@ -14,7 +14,7 @@ namespace util {
 		std::size_t _size = 0;
 
 	public:
-		vector() {}
+		vector() = default;
 
 		template <typename... Args>
 		void emplace_back(Args &&...args) {
@@ -34,7 +34,7 @@ namespace util {
 			delete[] _vector;
 		}
 
-	public:
+		// Iterator class for vector
 		class iterator {
 		private:
 			std::size_t _index = 0;
@@ -53,7 +53,6 @@ namespace util {
 				return retval;
 			}
 			bool operator==(iterator other) const { return _index == other._index; }
-			bool operator!=(iterator other) const { return !(*this == other); }
 			T& operator*() { return _vector[_index]; }
 		};
 	};

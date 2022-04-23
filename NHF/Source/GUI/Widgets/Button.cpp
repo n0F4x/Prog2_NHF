@@ -8,7 +8,7 @@ bool Button::isInside(const sf::Vector2f& point) const {
 	return getLocalBounds().contains(point);
 }
 
-void Button::triggerCallback() {
+void Button::triggerCallback() const {
 	if (_callback)
 		_callback();
 }
@@ -20,7 +20,7 @@ Button::Button(
 	const sf::String& text,
 	const sf::Font& fontStyle,
 	unsigned characterSize,
-	std::function<void()> callback
+	const std::function<void()>& callback
 ) :
 	_text{ text, fontStyle, characterSize },
 	_callback{ callback }

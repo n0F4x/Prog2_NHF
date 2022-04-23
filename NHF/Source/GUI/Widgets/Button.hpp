@@ -12,16 +12,16 @@ private:
 
 	// Helpers
 	bool isInside(const sf::Vector2f& point) const;
-	void triggerCallback();
+	void triggerCallback() const;
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
 	Button(
 		const sf::String& text,
 		const sf::Font& fontStyle,
 		unsigned characterSize,
-		std::function<void()> callback
+		const std::function<void()>& callback
 	);
 	Button(const Button&) = delete;
 

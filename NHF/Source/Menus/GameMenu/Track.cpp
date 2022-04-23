@@ -11,11 +11,7 @@ void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 
-Track::Track() :
-	_platforms{ _preCalc },
-	_shader{ sf::TriangleFan },
-	_mouse{ sf::Vector2f{sf::Mouse::getPosition(Window::window())} }
-{
+Track::Track() {
 	sf::Vector2f origin = { Window::getSize() / 2.f };
 	sf::Vertex mid{ origin, sf::Color{ 0, 0, 0, 255 } };
 	float radius = sqrtf(origin.x * origin.x + origin.y * origin.y);
@@ -70,7 +66,7 @@ void Track::handleEvent(const sf::Event& event) {
 void Track::update() {
 	if (!_isPaused) {
 		if (_isDragged) {
-			sf::Vector2f mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
+			auto mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
 
 			_platforms.rotate(_preCalc.getPolarVector(mouse).angle - _preCalc.getPolarVector(_mouse).angle);
 			_mouse = mouse;
@@ -92,7 +88,7 @@ void Track::update() {
 }
 
 void Track::init() {
-	Platform::width = 360_deg / AppData::context.getPlatformCount().first;
+	Platform::width = 360_deg / static_cast<float>(AppData::context.getPlatformCount().first);
 	_platforms.init();
 	_transition.init();
 

@@ -3,10 +3,12 @@
 #include "Transitionable.hpp"
 #include <cmath>
 
+
 template <typename T>
-static T square(T num) {
-	return num * num;
+static float square(T num) {
+	return static_cast<float>(num * num);
 }
+
 
 namespace Transitions {
 	void EaseInOut::update() {
@@ -20,14 +22,14 @@ namespace Transitions {
 				sf::Vector2f currentDistance = { 0.f, 0.f };
 				if (currentTime < _time / 2) {
 					currentDistance = {
-						_accX / 2 * square(currentTime) - _accX / 2 * square(_currentTime),
-						_accY / 2 * square(currentTime) - _accY / 2 * square(_currentTime)
+						_accX / 2.f * square(currentTime) - _accX / 2.f * square(_currentTime),
+						_accY / 2.f * square(currentTime) - _accY / 2.f * square(_currentTime)
 					};
 				}
 				else {
 					currentDistance = {
-						_accX / 2 * square(_time - _currentTime) - _accX / 2 * square(_time - currentTime),
-						_accY / 2 * square(_time - _currentTime) - _accY / 2 * square(_time - currentTime)
+						_accX / 2.f * square(_time - _currentTime) - _accX / 2.f * square(_time - currentTime),
+						_accY / 2.f * square(_time - _currentTime) - _accY / 2.f * square(_time - currentTime)
 					};
 				}
 

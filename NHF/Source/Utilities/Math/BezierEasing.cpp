@@ -12,17 +12,15 @@
 
 
 BezierEasing::BezierEasing(const sf::Vector2f& p1, const sf::Vector2f& p2) : _p1{ p1 }, _p2{ p2 } {
-	_valid = CheckPoints(_p1, _p2);
+	_valid = CheckPoints();
 
 	//Precompute the Samples for this Bezier curve if no linear
 	if (_valid && _p1.x != _p1.y && _p2.x != _p2.y) {
 		for (int i = 0; i < SAMPLES_SIZE; ++i) {
-			_sample_values.push_back(CalcBezier(i * SAMPLES_STEP, _p1.x, _p2.x));
+			_sample_values.push_back(CalcBezier(static_cast<float>(i) * SAMPLES_STEP, _p1.x, _p2.x));
 		}
 	}
 }
-
-BezierEasing::~BezierEasing() {}
 
 float BezierEasing::GetEasingProgress(float t) {
 	if (_valid) {
@@ -50,45 +48,47 @@ float BezierEasing::GetEasingProgress(float t) {
 		return -1;
 }
 
-float BezierEasing::VecACoord(float p1_coord, float p2_coord) {
-	return 1.0f - 3.0f * p2_coord + 3.0 * p1_coord;
+float BezierEasing::VecACoord(float p1_coord, float p2_coord) const {
+	return 1.f - 3.f * p2_coord + 3.f * p1_coord;
 }
 
-float BezierEasing::VecBCoord(float p1_coord, float p2_coord) {
-	return 3.0f * p2_coord - 6.0f * p1_coord;
+float BezierEasing::VecBCoord(float p1_coord, float p2_coord) const {
+	return 3.f * p2_coord - 6.f * p1_coord;
 }
 
-float BezierEasing::VecCCoord(float p1_coord) {
-	return 3.0f * p1_coord;
+float BezierEasing::VecCCoord(float p1_coord) const {
+	return 3.f * p1_coord;
 }
 
-float BezierEasing::CalcBezier(float time, float p1_coord, float p2_coord) {
+float BezierEasing::CalcBezier(float time, float p1_coord, float p2_coord) const {
 	return ((VecACoord(p1_coord, p2_coord) * time + VecBCoord(p1_coord, p2_coord)) * time + VecCCoord(p1_coord)) * time;
 }
 
-float BezierEasing::GetSlope(float time, float p1_coord, float p2_coord) {
+float BezierEasing::GetSlope(float time, float p1_coord, float p2_coord) const {
 	return 3.0f * VecACoord(p1_coord, p2_coord) * time * time + 2.0f * VecBCoord(p1_coord, p2_coord) * time + VecCCoord(p1_coord);
 }
 
-float BezierEasing::BinarySubdivide(float time, float interval_start, float next_interval_step, float p1_coord, float p2_coord) {
-	float current_x, current_t;
+float BezierEasing::BinarySubdivide(float time, float interval_start, float next_interval_step, float p1_coord, float p2_coord) const {
+	float current_x;
+	float current_t;
 	int i = 0;
 
 	do {
-		current_t = interval_start + (next_interval_step - interval_start) / 2.0f;
+		current_t = std::lerp(interval_start, next_interval_step, 0.5f);
 		current_x = CalcBezier(current_t, p1_coord, p2_coord) - time;
-		if (current_x > 0.0f) {
+		if (current_x > 0.f) {
 			next_interval_step = current_t;
 		}
 		else {
 			interval_start = current_t;
 		}
-	} while (abs(current_x) > SUBDIVISION_PRECISION && ++i < SUBDIVISION_MAX_ITERATIONS);
+		i++;
+	} while (abs(current_x) > SUBDIVISION_PRECISION && i < SUBDIVISION_MAX_ITERATIONS);
 
 	return current_t;
 }
 
-float BezierEasing::NewtonRaphsonIterate(float time, float guessed_t, float p1_coord, float p2_coord) {
+float BezierEasing::NewtonRaphsonIterate(float time, float guessed_t, float p1_coord, float p2_coord) const {
 	for (int i = 0; i < NEWTON_ITERATIONS; ++i) {
 		float curr_slope = GetSlope(guessed_t, p1_coord, p2_coord);
 		if (curr_slope == 0.0f) {
@@ -111,7 +111,7 @@ float BezierEasing::GetXForTime(float time) {
 	--curr_sample;
 
 	//Interpolate to get a first guessed X
-	float dist = (time - _sample_values[curr_sample]) / (_sample_values[curr_sample + 1] - _sample_values[curr_sample]);
+	float dist = (time - _sample_values[curr_sample]) / (_sample_values[static_cast<size_t>(curr_sample) + 1u] - _sample_values[curr_sample]);
 	float guess_for_x = interval_start + dist * SAMPLES_STEP;
 	// ------
 
@@ -128,7 +128,7 @@ float BezierEasing::GetXForTime(float time) {
 	}
 }
 
-bool BezierEasing::CheckPoints(const sf::Vector2f& p1, const sf::Vector2f& p2) {
+bool BezierEasing::CheckPoints() const {
 	return ((_p1.x >= 0 && _p1.x <= 1)
 		&& (_p1.y >= 0 && _p1.y <= 1)
 		&& (_p2.x >= 0 && _p2.x <= 1)

@@ -6,10 +6,13 @@
 
 class AppData {
 public:
+	// Data
 	static AssetManager assets;
 	static ContextManager context;
 
+	// Functions
 	AppData() = delete;
+
 	static void init() {
 		assets.init();
 		context.init();

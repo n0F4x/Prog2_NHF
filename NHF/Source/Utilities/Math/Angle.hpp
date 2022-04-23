@@ -1,7 +1,10 @@
 #pragma once
 
+#include <numbers>
+
+
 namespace math {
-	const float PI = 3.14159265f;
+	const float PI = std::numbers::pi_v<float>;
 }
 
 

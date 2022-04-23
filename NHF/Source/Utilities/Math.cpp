@@ -29,7 +29,7 @@ namespace math {
 	std::vector<sf::Vector2f> getArcPoints(float angle, float spread, float radius, int maxpts) {
 		std::vector<sf::Vector2f> pts;
 		for (int i = 0; i < maxpts; ++i) {
-			const float a = (angle - spread / 2.f) + (i * spread) / (maxpts - 1);
+			const float a = (angle - spread / 2.f) + (static_cast<float>(i) * spread) / static_cast<float>(maxpts - 1);
 			pts.emplace_back(radius * sf::Vector2f{ cosf(a), sinf(a) });
 		}
 		return pts;

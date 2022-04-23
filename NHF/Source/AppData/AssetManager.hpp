@@ -13,10 +13,10 @@ private:
 	AssetManager() = default;
 
 
-	std::map<std::string, sf::Font> _fonts;
-	std::map<std::string, sf::SoundBuffer> _soundBuffers;
-	std::map<std::string, sf::Sound> _sounds;
-	std::map<std::string, sf::Texture> _textures;
+	std::map<std::string, sf::Font, std::less<>> _fonts;
+	std::map<std::string, sf::SoundBuffer, std::less<>> _soundBuffers;
+	std::map<std::string, sf::Sound, std::less<>> _sounds;
+	std::map<std::string, sf::Texture, std::less<>> _textures;
 
 	void loadFont(const std::string& name, const std::string& fileName);
 	void loadSound(const std::string& name, const std::string& fileName);

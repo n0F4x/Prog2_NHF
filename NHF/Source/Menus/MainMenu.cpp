@@ -5,21 +5,23 @@
 
 MainMenu::MainMenu() {
 	// Construct "Exit" button
-	Button* exitButton = new Button{ "Exit", AppData::assets.getFont("Dameron"), 76u, [this]() {Menu::close(true); } };
+	auto exitButton = std::make_unique<Button>("Exit", AppData::assets.getFont("Dameron"), 76u, [this]() {Menu::close(true); });
 	exitButton->setPosition({ Window::getSize().x - Window::getSize().x / 40.f - exitButton->getSize().x, Window::getSize().x / 40.f });
-	addMenuItem(std::unique_ptr<Button>{exitButton});
 
 	// Construct "Play" button
-	Button* playButton = new Button{ "Play", AppData::assets.getFont("Dameron"), 76u, [&]() { Menu::open("Game"); } };
+	auto playButton = std::make_unique<Button>("Play", AppData::assets.getFont("Dameron"), 76u, [this]() { Menu::open("Game"); });
 	playButton->center(Window::getLocalBounds());
 	playButton->move(-1.f * sf::Vector2f{ 0,  playButton->getSize().y });
-	addMenuItem(std::unique_ptr<Button>{playButton});
 
 	// Construct "Options" button
-	Button* optionsButton = new Button{ "Options", AppData::assets.getFont("Dameron"), 76u, [&]() { Menu::open("Options"); } };
+	auto optionsButton = std::make_unique<Button>("Options", AppData::assets.getFont("Dameron"), 76u, [this]() { Menu::open("Options"); });
 	optionsButton->center(Window::getLocalBounds());
 	optionsButton->move(+1.f * sf::Vector2f{ 0, playButton->getSize().y });
-	addMenuItem(std::unique_ptr<Button>{optionsButton});
+
+	// Add items to Menu
+	addMenuItem(std::move(exitButton));
+	addMenuItem(std::move(playButton));
+	addMenuItem(std::move(optionsButton));
 }
 
 void MainMenu::handleEvent(const sf::Event& event) {

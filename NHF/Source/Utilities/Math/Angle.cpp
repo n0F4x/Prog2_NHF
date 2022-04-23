@@ -2,7 +2,7 @@
 
 
 float operator"" _deg(long double degree) {
-	return static_cast<float>(degree) * 3.14159265f / 180.f;
+	return static_cast<float>(degree) * math::PI / 180.f;
 }
 
 float operator"" _rad(long double radian) {
@@ -10,7 +10,7 @@ float operator"" _rad(long double radian) {
 }
 
 float operator"" _deg(unsigned long long degree) {
-	return static_cast<float>(degree) * 3.14159265f / 180.f;
+	return static_cast<float>(degree) * math::PI / 180.f;
 }
 
 float operator"" _rad(unsigned long long radian) {

@@ -24,7 +24,7 @@ namespace Transitions {
 		sf::Vector2f _currentDistance = { 0.f, 0.f };
 
 	public:
-		Transition(Transitionable* object) : _object{ object } {}
+		explicit Transition(Transitionable* object) : _object{ object } {}
 
 		virtual void start(const sf::Vector2f& distance, int time) {
 			if (!_isActive) {
@@ -36,6 +36,8 @@ namespace Transitions {
 		}
 		virtual void update() = 0;
 		virtual void init() { _isActive = false;  _currentTime = 0; _currentDistance = { 0.f, 0.f }; }
+
+		virtual ~Transition() = default;
 	};
 
 	class EaseInOut : public Transition {	// Quadratic
@@ -43,11 +45,11 @@ namespace Transitions {
 		float _accX = 0;	// max X acceleration during rotation
 		float _accY = 0;	// max Y acceleration during rotation
 
-		float getAccX() { return _distance.x / static_cast<float>(_time / 2 * _time / 2); }
-		float getAccY() { return _distance.y / static_cast<float>(_time / 2 * _time / 2); }
+		float getAccX() const { return _distance.x / static_cast<float>(_time / 2 * _time / 2); }
+		float getAccY() const { return _distance.y / static_cast<float>(_time / 2 * _time / 2); }
 
 	public:
-		EaseInOut(Transitionable* object) : Transition{ object } {}
+		using Transition::Transition;
 
 		void start(const sf::Vector2f& distance, int time) override {
 			if (!_isActive) {
@@ -64,11 +66,11 @@ namespace Transitions {
 
 	class Ease : public Transition {	// Cubic Bezier
 	private:
-		BezierEasing _bezier{ {0.25f, 0.1f}, {0.25f, 0.1f} };
+		BezierEasing _bezier{ {0.25f, 0.1f}, {0.25f, 1.f} };
 		float _lastProgress = 0.f;
 
 	public:
-		Ease(Transitionable* object) : Transition{ object } {}
+		using Transition::Transition;
 
 		void start(const sf::Vector2f& distance, int time) override {
 			if (!_isActive) {
