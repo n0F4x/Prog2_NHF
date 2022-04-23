@@ -6,7 +6,7 @@
 MainMenu::MainMenu() {
 	// Construct "Exit" button
 	Button* exitButton = new Button{ "Exit", AppData::assets.getFont("Dameron"), 76u, [this]() {Menu::close(true); } };
-	exitButton->setPosition({ Window::getSize().x / 40.f, Window::getSize().x / 40.f });
+	exitButton->setPosition({ Window::getSize().x - Window::getSize().x / 40.f - exitButton->getSize().x, Window::getSize().x / 40.f });
 	addMenuItem(std::unique_ptr<Button>{exitButton});
 
 	// Construct "Play" button
