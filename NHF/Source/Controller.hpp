@@ -10,8 +10,8 @@ class Controller {
 private:
 	std::unique_ptr<MenuNode> _root;
 
-	MenuNode* _current;
-	MenuNode* _next;
+	MenuNode* _current = nullptr;
+	MenuNode* _next = nullptr;
 
 	void open(util::string name);
 	void openLast();

@@ -13,11 +13,11 @@ bool ContextManager::setJumpKey(const sf::Event::KeyEvent& keyEvent) {
 }
 
 bool ContextManager::setPlatformCount(int amount) {
-	for (auto valid : _validPlatformCounts) {
+	if (std::ranges::any_of(_validPlatformCounts, [amount](auto const& elem) { return elem == amount; })) {
 		_platformCount = amount;
-		return true;
+		return false;
 	}
-	return false; 
+	return false;
 }
 
 bool ContextManager::setPlatformControl(const PlatformControl& control) {
@@ -49,15 +49,15 @@ bool ContextManager::setSwitchKey2(const sf::Event::KeyEvent& keyEvent) {
 
 
 // Getters
-std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getJumpKey() const { 
-	return *_validKeys.find(_jumpKey.code); 
+std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getJumpKey() const {
+	return *_validKeys.find(_jumpKey.code);
 }
 
-std::pair<const int, const std::string> ContextManager::getPlatformCount() const { 
-	return {_platformCount, std::to_string(_platformCount)}; 
+std::pair<const int, const std::string> ContextManager::getPlatformCount() const {
+	return { _platformCount, std::to_string(_platformCount) };
 }
 
-std::pair<const PlatformControl, const std::string> ContextManager::getPlatformControl() const { 
+std::pair<const PlatformControl, const std::string> ContextManager::getPlatformControl() const {
 	std::string name;
 	switch (_platformControl) {
 	case PlatformControl::Keyboard:
@@ -73,9 +73,9 @@ std::pair<const PlatformControl, const std::string> ContextManager::getPlatformC
 }
 
 std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getSwitchKey1() const {
-	return *_validKeys.find(_switchKey1.code); 
+	return *_validKeys.find(_switchKey1.code);
 }
 
-std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getSwitchKey2() const { 
-	return *_validKeys.find(_switchKey2.code); 
+std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getSwitchKey2() const {
+	return *_validKeys.find(_switchKey2.code);
 }

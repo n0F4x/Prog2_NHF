@@ -26,7 +26,7 @@ private:
 protected:
 	void addMenuItem(std::unique_ptr<MenuItem> item);
 
-	bool isPaused() { return _isPaused; }
+	bool isPaused() const { return _isPaused; }
 	
 	void open(const util::string& next) { __isOpening__ = true; __next__ = next; }
 	void openLast() { __isOpening__ = true; __openLast__ = true; }

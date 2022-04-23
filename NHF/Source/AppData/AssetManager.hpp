@@ -13,20 +13,20 @@ private:
 	AssetManager() = default;
 
 
-	static std::map<std::string, sf::Font> _fonts;
-	static std::map<std::string, sf::SoundBuffer> _soundBuffers;
-	static std::map<std::string, sf::Sound> _sounds;
-	static std::map<std::string, sf::Texture> _textures;
+	std::map<std::string, sf::Font> _fonts;
+	std::map<std::string, sf::SoundBuffer> _soundBuffers;
+	std::map<std::string, sf::Sound> _sounds;
+	std::map<std::string, sf::Texture> _textures;
 
-	static void loadFont(std::string name, std::string fileName);
-	static void loadSound(std::string name, std::string fileName);
-	static void loadTexture(std::string name, std::string fileName);
+	void loadFont(const std::string& name, const std::string& fileName);
+	void loadSound(const std::string& name, const std::string& fileName);
+	void loadTexture(const std::string& name, const std::string& fileName);
 
 public:
-	static void init();
+	void init();
 
-	static const sf::Font& getFont(std::string name);
-	static sf::Sound& getSound(std::string name);
-	static const sf::Texture& getTexture(std::string name);
+	const sf::Font& getFont(const std::string& name);
+	sf::Sound& getSound(const std::string& name);
+	const sf::Texture& getTexture(const std::string& name);
 };
 

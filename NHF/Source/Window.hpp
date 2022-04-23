@@ -10,6 +10,8 @@ private:
 	static sf::Clock _clock;
 
 public:
+	Window() = delete;
+
 	static void init();
 	static const sf::RenderWindow& window() { return _window; }
 
