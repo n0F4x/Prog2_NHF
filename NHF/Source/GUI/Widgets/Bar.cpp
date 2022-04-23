@@ -6,6 +6,7 @@
 #include "../../Window.hpp"
 #include "../../AppData.hpp"
 
+
 template class Bar<int>;
 template class Bar<PlatformControl>;
 
