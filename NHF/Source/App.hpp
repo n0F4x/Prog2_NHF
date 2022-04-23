@@ -1,8 +1,7 @@
 #pragma once
 
-#include "AppData.hpp"
 #include "Controller.hpp"
-#include "Window.hpp"
+
 
 class App {
 private:

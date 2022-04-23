@@ -7,15 +7,10 @@
 #include "Menus/OptionsMenu.hpp"
 
 
-Controller::Controller() : _root{ nullptr } {}
+Controller::Controller() : _root{ std::make_unique<MenuNode>(std::make_unique<InitMenu>()) }, _current{ _root.get() }, _next{_current} {}
 
 void Controller::init() {
-	_root.reset();
-	_root = std::make_unique<MenuNode>(std::make_unique<InitMenu>());
-	_current = _root.get();
-	render();
-
-	sf::Clock clock;
+	// Reset root (optional)
 	_root.reset();
 	_root = std::make_unique<MenuNode>(std::make_unique<MainMenu>());
 	_current = _root.get();
@@ -24,8 +19,6 @@ void Controller::init() {
 	// Build tree
 	_root->addChild("Game", std::make_unique<GameMenu>());
 	_root->addChild("Options", std::make_unique<OptionsMenu>());
-
-	while (clock.getElapsedTime().asMilliseconds() < 2000);
 }
 
 bool Controller::isEmpty() {

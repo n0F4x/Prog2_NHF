@@ -1,10 +1,18 @@
 #include "App.hpp"
 
+#include "AppData.hpp"
+#include "Window.hpp"
+
 
 void App::init() {
 	AppData::init();
 	Window::init();
+
+	_controller.render();
+
+	sf::Clock clock;
 	_controller.init();
+	while (clock.getElapsedTime().asMilliseconds() < 2000);
 }
 
 void App::run() {
