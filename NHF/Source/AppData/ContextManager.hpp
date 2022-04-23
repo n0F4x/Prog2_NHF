@@ -20,11 +20,11 @@ private:
 	ContextManager() = default;
 
 	// Contexts
-	sf::Event::KeyEvent _jumpKey;
-	int _platformCount;
-	PlatformControl _platformControl;
-	sf::Event::KeyEvent _switchKey1;
-	sf::Event::KeyEvent _switchKey2;
+	sf::Event::KeyEvent _jumpKey = { sf::Keyboard::Space };
+	int _platformCount = 3;
+	PlatformControl _platformControl = PlatformControl::Keyboard;
+	sf::Event::KeyEvent _switchKey1 = { sf::Keyboard::Left};
+	sf::Event::KeyEvent _switchKey2 = { sf::Keyboard::Right };
 
 public:
 	void init() const { /*TODO*/ }

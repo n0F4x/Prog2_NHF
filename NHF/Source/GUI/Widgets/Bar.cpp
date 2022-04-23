@@ -6,10 +6,13 @@
 #include "../../Window.hpp"
 #include "../../AppData.hpp"
 
+template class Bar<int>;
+template class Bar<PlatformControl>;
+
 
 template<typename T>
 void Bar<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	for (const auto& text : _contents)
+	for (const auto& text : _texts)
 		target.draw(text);
 
 	target.draw(_emphasis);
@@ -21,15 +24,16 @@ void Bar<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 template<typename T>
 Bar<T>::Bar(
-	float width, const std::vector<std::string>& contents, const sf::Font& font, unsigned chararcterSize,
-	const std::function<void(const T&)>& setContext, const std::function<std::string ()>& getContext
+	float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize,
+	const std::function<void(const T&)>& setContext, const std::function<std::string()>& getContext
 ) :
+	_contents{contents},
 	_setContext{ setContext },
 	_getContext{ getContext }
 {
-	sf::Vector2f cellSize = { width / static_cast<float>(contents.size()), Text{ "0", font, chararcterSize }.getSize().y * 2.f };
+	sf::Vector2f cellSize = { width / static_cast<float>(labels.size()), Text{ "0", font, chararcterSize }.getSize().y * 2.f };
 
-	_cells.resize(contents.size());
+	_cells.resize(labels.size());
 	for (size_t i = 0; i < _cells.size(); i++) {
 		_cells[i].setSize(cellSize);
 		_cells[i].move({ cellSize.x * static_cast<float>(i), 0.f });
@@ -38,19 +42,19 @@ Bar<T>::Bar(
 		_cells[i].setOutlineThickness(2.f);
 	}
 
-	_contents.resize(contents.size());
-	for (size_t i = 0; i < _contents.size(); i++) {
-		_contents[i] = Text{ contents[i].c_str(), font, chararcterSize };
-		_contents[i].center(_cells[i].getLocalBounds());
-		_contents[i].move(_cells[i].getPosition());
-		_contents[i].setFillColor(theme::IndigoPurple);
+	_texts.resize(labels.size());
+	for (size_t i = 0; i < _texts.size(); i++) {
+		_texts[i] = Text{ labels[i].c_str(), font, chararcterSize };
+		_texts[i].center(_cells[i].getLocalBounds());
+		_texts[i].move(_cells[i].getPosition());
+		_texts[i].setFillColor(theme::IndigoPurple);
 	}
 
 	_emphasis.setSize(cellSize);
 	_emphasis.setPosition(_cells[_selected].getPosition());
 	_emphasis.setFillColor(theme::Tertiary);
 
-	setSize({ cellSize.x * static_cast<float>(contents.size()), cellSize.y });
+	setSize({ cellSize.x * static_cast<float>(labels.size()), cellSize.y });
 }
 
 
@@ -59,7 +63,7 @@ void Bar<T>::setPosition(const sf::Vector2f& position) {
 	for (sf::RectangleShape& cell : _cells) {
 		cell.setPosition(position + (cell.getPosition() - _position));
 	}
-	for (Text& content : _contents) {
+	for (Text& content : _texts) {
 		content.setPosition(position + (content.getPosition() - _position));
 	}
 
@@ -74,7 +78,7 @@ void Bar<T>::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		for (size_t i = 0; i < _cells.size(); i++) {
 			if (_cells[i].getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
-				_setContext(_contents[i].getString());
+				_setContext(_contents[i]);
 				_transition.start(_cells[i].getPosition() - _emphasis.getPosition(), 200);
 			}
 		}
@@ -86,8 +90,8 @@ void Bar<T>::update() { _transition.update(); }
 
 template<typename T>
 void Bar<T>::init() {
-	for (size_t i = 0; i < _contents.size(); i++) {
-		if (_contents[i].getString() == _getContext()) {
+	for (size_t i = 0; i < _texts.size(); i++) {
+		if (_texts[i].getString() == _getContext()) {
 			_emphasis.setPosition(_cells[i].getPosition());
 		}
 	}

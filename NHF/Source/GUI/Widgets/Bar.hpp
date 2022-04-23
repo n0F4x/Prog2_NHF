@@ -20,7 +20,8 @@ class Bar : public Widget {
 private:
 	Transitions::Ease _transition{ &_emphasis };
 
-	std::vector<Text> _contents;
+	std::vector<T> _contents;
+	std::vector<Text> _texts;
 	std::vector<sf::RectangleShape> _cells;
 	Emphasis _emphasis;
 
@@ -32,7 +33,7 @@ private:
 
 public:
 	Bar(
-		float width, const std::vector<std::string>& contents, const sf::Font& font, unsigned chararcterSize,
+		float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize,
 		const std::function<void(const T&)>& setContext, const std::function<std::string ()>& getContext
 	);
 
