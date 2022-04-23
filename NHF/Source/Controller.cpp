@@ -1,13 +1,16 @@
 #include "Controller.hpp"
 
-#include "Menus/MenuNode.hpp"
 #include "Menus/InitMenu.hpp"
 #include "Menus/MainMenu.hpp"
 #include "Menus/GameMenu.hpp"
 #include "Menus/OptionsMenu.hpp"
 
 
-Controller::Controller() : _root{ std::make_unique<MenuNode>(std::make_unique<InitMenu>()) }, _current{ _root.get() }, _next{_current} {}
+void Controller::construct() {
+	_root = std::make_unique<MenuNode>(std::make_unique<InitMenu>());
+	_current = _root.get();
+	_next = _current;
+}
 
 void Controller::init() {
 	// Reset root (optional)
@@ -21,9 +24,10 @@ void Controller::init() {
 	_root->addChild("Options", std::make_unique<OptionsMenu>());
 }
 
-bool Controller::isEmpty() {
+
+bool Controller::isActive() {
 	if (_current->get()->__isExiting__) {
-		return true;
+		return false;
 	}
 	if (_current->get()->__isClosing__) {
 		close();
@@ -40,18 +44,18 @@ bool Controller::isEmpty() {
 	}
 
 	if (_next == nullptr)
-		return false;
+		return true;
 
 	if (_current != _next) {
 		_current->get()->pause();
 		_current = _next;
 		_current->get()->resume();
 	}
-	return false;
+	return true;
 }
 
 void Controller::open(util::string name) {
-	if (_current->getChildren().find(name) != _current->getChildren().end()) {
+	if (_current->getChildren().contains(name)) {
 		_next = _current->getChildren().at(name).get();
 		_next->get()->init();
 		_current->_lastVisitedChild = _next;
@@ -70,5 +74,3 @@ void Controller::close() {
 void Controller::handleEvent(const sf::Event& event) { _current->get()->handleEvent(event); }
 void Controller::update() { _current->get()->update(); }
 void Controller::render() { _current->get()->render(); }
-
-Controller::~Controller() {}

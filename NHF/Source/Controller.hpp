@@ -2,33 +2,27 @@
 
 #include <memory>
 #include <SFML/Graphics.hpp>
+#include "Menus/MenuNode.hpp"
 #include "Utilities/STL/string.hpp"
-
-class MenuNode;
 
 
 class Controller {
 private:
 	std::unique_ptr<MenuNode> _root;
 
-	MenuNode* _current = nullptr;
-	MenuNode* _next = nullptr;
+	MenuNode* _current;
+	MenuNode* _next;
 
 	void open(util::string name);
 	void openLast();
 	void close();
 
 public:
-	Controller();
-	Controller(const Controller&) = delete;
-
+	void construct();
 	void init();
-
-	bool isEmpty();
+	bool isActive();
 
 	void handleEvent(const sf::Event& event);
 	void update();
 	void render();
-
-	~Controller();
 };
