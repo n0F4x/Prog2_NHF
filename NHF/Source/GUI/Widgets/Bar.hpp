@@ -11,7 +11,7 @@
 
 
 class Emphasis : public sf::RectangleShape, public Transitionable {
-	void transition(const sf::Vector2f amount) override { move(amount); }
+	void transition(const sf::Vector2f& amount) override { move(amount); }
 };
 
 

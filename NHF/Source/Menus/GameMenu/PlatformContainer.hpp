@@ -18,12 +18,12 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
-	PlatformContainer(const PreCalculator& preCalc);
+	explicit PlatformContainer(const PreCalculator& preCalc);
 
 	const std::list<Platform>& getList() const;
 
 	void rotate(float angle);
-	void transition(const sf::Vector2f amount) { rotate(amount.x); }
+	void transition(const sf::Vector2f& amount) override { rotate(amount.x); }
 
 	void update();
 	void init();

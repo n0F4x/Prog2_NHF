@@ -5,7 +5,7 @@
 #include "../../Utilities/Math/Transitionable.hpp"
 
 
-class Player : public MenuItem, public Transitionable {
+class Player : public MenuItem, protected Transitionable {
 private:
 	sf::Sprite _sprite;
 	sf::Vector2f _feetCoords;
@@ -15,7 +15,7 @@ private:
 	// overriding @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { /*TODO*/ }
 	// overriding @Transitionable
-	void transition(const sf::Vector2f amount) override {/*TODO*/ }
+	void transition(const sf::Vector2f& amount) override {/*TODO*/ }
 
 public:
 	Player();
