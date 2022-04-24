@@ -44,18 +44,18 @@ void Track::handleEvent(const sf::Event& event) {
 
 		if (AppData::context.getPlatformControl().first == PlatformControl::Keyboard) {
 			if (event.type == sf::Event::KeyPressed) {
-				if (event.key.code == AppData::context.getSwitchKey1().first) {
+				if (event.key == AppData::context.getSwitchKey1().first) {
 					_switchingLeft = true;
 				}
-				if (event.key.code == AppData::context.getSwitchKey2().first) {
+				if (event.key == AppData::context.getSwitchKey2().first) {
 					_switchingRight = true;
 				}
 			}
 			if (event.type == sf::Event::KeyReleased) {
-				if (event.key.code == AppData::context.getSwitchKey1().first) {
+				if (event.key == AppData::context.getSwitchKey1().first) {
 					_switchingLeft = false;
 				}
-				if (event.key.code == AppData::context.getSwitchKey2().first) {
+				if (event.key == AppData::context.getSwitchKey2().first) {
 					_switchingRight = false;
 				}
 			}

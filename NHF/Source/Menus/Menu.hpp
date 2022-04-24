@@ -11,6 +11,7 @@
 class Menu : public MenuBase {
 private:
 	util::vector<std::unique_ptr<MenuItem>> _items;
+
 	bool _isPaused = false;
 
 protected:

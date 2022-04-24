@@ -17,13 +17,13 @@ enum class PlatformControl {
 class ContextManager {
 private:
 	friend AppData;
-	ContextManager() = default;
+	ContextManager() = default; /*TODO*/
 
 	// Contexts
 	sf::Event::KeyEvent _jumpKey = { sf::Keyboard::Space };
 	int _platformCount = 3;
 	PlatformControl _platformControl = PlatformControl::Keyboard;
-	sf::Event::KeyEvent _switchKey1 = { sf::Keyboard::Left};
+	sf::Event::KeyEvent _switchKey1 = { sf::Keyboard::Left };
 	sf::Event::KeyEvent _switchKey2 = { sf::Keyboard::Right };
 
 public:
@@ -35,11 +35,11 @@ public:
 	bool setSwitchKey1(const sf::Event::KeyEvent& keyEvent);
 	bool setSwitchKey2(const sf::Event::KeyEvent& keyEvent);
 
-	std::pair<const sf::Keyboard::Key, const std::string> getJumpKey() const;
-	std::pair<const int, const std::string> getPlatformCount() const;
-	std::pair<const PlatformControl, const std::string> getPlatformControl() const;
-	std::pair<const sf::Keyboard::Key, const std::string> getSwitchKey1() const;
-	std::pair<const sf::Keyboard::Key, const std::string> getSwitchKey2() const;
+	std::pair<const sf::Event::KeyEvent&, const std::string&> getJumpKey() const;
+	std::pair<const int, const std::string&> getPlatformCount() const;
+	std::pair<const PlatformControl, const std::string&> getPlatformControl() const;
+	std::pair<const sf::Event::KeyEvent&, const std::string&> getSwitchKey1() const;
+	std::pair<const sf::Event::KeyEvent&, const std::string&> getSwitchKey2() const;
 
 private:
 	const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
@@ -88,3 +88,6 @@ private:
 	};
 	const std::vector<int> _validPlatformCounts{ 3, 4, 5, 6, 7, 8 };
 };
+
+
+bool operator==(const sf::Event::KeyEvent& lhs, const sf::Event::KeyEvent& rhs);

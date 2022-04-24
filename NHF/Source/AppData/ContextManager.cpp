@@ -49,8 +49,8 @@ bool ContextManager::setSwitchKey2(const sf::Event::KeyEvent& keyEvent) {
 
 
 // Getters
-std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getJumpKey() const {
-	return *_validKeys.find(_jumpKey.code);
+std::pair<const sf::Event::KeyEvent&, const std::string&> ContextManager::getJumpKey() const {
+	return { _jumpKey, _validKeys.at(_jumpKey.code) };
 }
 
 std::pair<const int, const std::string> ContextManager::getPlatformCount() const {
@@ -72,10 +72,21 @@ std::pair<const PlatformControl, const std::string> ContextManager::getPlatformC
 	return { _platformControl, name };
 }
 
-std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getSwitchKey1() const {
-	return *_validKeys.find(_switchKey1.code);
+std::pair<const sf::Event::KeyEvent&, const std::string&> ContextManager::getSwitchKey1() const {
+	return { _switchKey1, _validKeys.at(_switchKey1.code) };
 }
 
-std::pair<const sf::Keyboard::Key, const std::string> ContextManager::getSwitchKey2() const {
-	return *_validKeys.find(_switchKey2.code);
+std::pair<const sf::Event::KeyEvent&, const std::string&> ContextManager::getSwitchKey2() const {
+	return { _switchKey2, _validKeys.at(_switchKey2.code) };
 }
+
+
+bool operator==(const sf::Event::KeyEvent& lhs, const sf::Event::KeyEvent& rhs) {
+	return
+		lhs.alt == rhs.alt &&
+		lhs.code == rhs.code &&
+		lhs.control == rhs.control &&
+		lhs.shift == rhs.shift &&
+		lhs.system == rhs.system;
+}
+
