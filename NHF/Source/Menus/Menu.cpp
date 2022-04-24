@@ -16,13 +16,13 @@ void Menu::handleEvent(const sf::Event& event) {
 		}
 	}
 
-	for (auto& item : _items) {
+	for (const auto& item : _items) {
 		item->handleEvent(event);
 	}
 }
 
 void Menu::update() {
-	for (auto& item : _items) {
+	for (const auto& item : _items) {
 		item->update();
 	}
 }
@@ -30,7 +30,7 @@ void Menu::update() {
 void Menu::render() {
 	Window::clear();
 
-	for (auto& item : _items) {
+	for (const auto& item : _items) {
 		Window::draw(*item);
 	}
 
@@ -39,21 +39,20 @@ void Menu::render() {
 
 
 void Menu::init() {
-	__isClosing__ = false;
-	for (auto& item : _items) {
+	for (const auto& item : _items) {
 		item->init();
 	}
 }
 
 void Menu::pause() {
-	for (auto& item : _items) {
+	for (const auto& item : _items) {
 		item->pause();
 	}
 	_isPaused = true;
 }
 
 void Menu::resume() {
-	for (auto& item : _items) {
+	for (const auto& item : _items) {
 		item->resume();
 	}
 	_isPaused = false;

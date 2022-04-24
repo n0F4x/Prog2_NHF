@@ -3,23 +3,23 @@
 #include <map>
 #include <memory>
 #include "../Utilities/STL/string.hpp"
-#include "Menu.hpp"
+#include "MenuBase.hpp"
 
 
 class MenuNode {
 private:
-	std::unique_ptr<Menu> _item;
+	std::unique_ptr<MenuBase> _item;
 	MenuNode* _parent = nullptr;
 	std::map<const util::string, std::unique_ptr<MenuNode>> _children;
 	MenuNode* _lastVisitedChild = nullptr;
 
 public:
 	MenuNode() = default;
-	MenuNode(std::unique_ptr<Menu> item, MenuNode* parent = nullptr) : _item{ std::move(item) }, _parent{ parent } {}
+	MenuNode(std::unique_ptr<MenuBase> item, MenuNode* parent = nullptr) : _item{ std::move(item) }, _parent{ parent } {}
 
-	void addChild(const util::string& name, std::unique_ptr<Menu> child) { _children[name] = std::make_unique<MenuNode>(std::move(child), this); }
+	void addChild(const util::string& name, std::unique_ptr<MenuBase> child) { _children[name] = std::make_unique<MenuNode>(std::move(child), this); }
 	
-	Menu* get() const { return _item.get(); }
+	MenuBase* get() const { return _item.get(); }
 	MenuNode* getParent() const { return _parent; }
 	MenuNode* findChild(const util::string& name) { 
 		if (auto it = _children.find(name); it != _children.end()) {

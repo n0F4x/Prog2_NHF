@@ -160,6 +160,8 @@
     <ClCompile Include="Source\AppData\AssetManager.cpp" />
     <ClCompile Include="Source\AppData\ContextManager.cpp" />
     <ClCompile Include="Source\Controller.cpp" />
+    <ClCompile Include="Source\Controller\MenuBase.cpp" />
+    <ClCompile Include="Source\Controller\MenuNode.cpp" />
     <ClCompile Include="Source\GUI\Theme.cpp" />
     <ClCompile Include="Source\GUI\Widget.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Bar.cpp" />
@@ -175,7 +177,6 @@
     <ClCompile Include="Source\Menus\InitMenu.cpp" />
     <ClCompile Include="Source\Menus\MainMenu.cpp" />
     <ClCompile Include="Source\Menus\Menu.cpp" />
-    <ClCompile Include="Source\Menus\MenuNode.cpp" />
     <ClCompile Include="Source\Menus\OptionsMenu.cpp" />
     <ClCompile Include="Source\Utilities\Math.cpp" />
     <ClCompile Include="Source\Utilities\Math\Angle.cpp" />
@@ -192,6 +193,8 @@
     <ClInclude Include="Source\AppData\AssetManager.hpp" />
     <ClInclude Include="Source\AppData\ContextManager.hpp" />
     <ClInclude Include="Source\Controller.hpp" />
+    <ClInclude Include="Source\Controller\MenuBase.hpp" />
+    <ClInclude Include="Source\Controller\MenuNode.hpp" />
     <ClInclude Include="Source\GUI\Theme.hpp" />
     <ClInclude Include="Source\GUI\Widget.hpp" />
     <ClInclude Include="Source\GUI\Widgets\Bar.hpp" />
@@ -207,7 +210,6 @@
     <ClInclude Include="Source\Menus\MainMenu.hpp" />
     <ClInclude Include="Source\Menus\Menu.hpp" />
     <ClInclude Include="Source\Menus\MenuItem.hpp" />
-    <ClInclude Include="Source\Menus\MenuNode.hpp" />
     <ClInclude Include="Source\Menus\OptionsMenu.hpp" />
     <ClInclude Include="Source\Utilities\Math.hpp" />
     <ClInclude Include="Source\Utilities\Math\Angle.hpp" />

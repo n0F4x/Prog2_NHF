@@ -17,6 +17,7 @@ add_compile_options(
 # include
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/AppData
+    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Controller
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/GUI
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/GUI/Widgets
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Menus
@@ -30,6 +31,8 @@ include_directories(
 set(SOURCE_FILES
     ./NHF/Source/AppData/AssetManager.cpp
     ./NHF/Source/AppData/ContextManager.cpp
+    ./NHF/Source/Controller/MenuBase.cpp
+    ./NHF/Source/Controller/MenuNode.cpp
     ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
     ./NHF/Source/GUI/Widgets/InputField.cpp
@@ -44,7 +47,6 @@ set(SOURCE_FILES
     ./NHF/Source/Menus/InitMenu.cpp
     ./NHF/Source/Menus/MainMenu.cpp
     ./NHF/Source/Menus/Menu.cpp
-    ./NHF/Source/Menus/MenuNode.cpp
     ./NHF/Source/Menus/OptionsMenu.cpp
     ./NHF/Source/Utilities/Math/Angle.cpp
     ./NHF/Source/Utilities/Math/BezierEasing.cpp

@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "Menus/MenuNode.hpp"
+#include "Controller/MenuNode.hpp"
 #include "Utilities/STL/string.hpp"
 
 class App;

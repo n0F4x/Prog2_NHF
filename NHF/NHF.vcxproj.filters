@@ -67,6 +67,12 @@
     <Filter Include="Source Files\Utilities\SmartPtr">
       <UniqueIdentifier>{d5fa8ab5-c6c7-407b-b8d9-32e711faf688}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{93072223-2b92-4d71-8983-ce5235da0e80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{c64035ce-4750-4131-b5b2-6016a253e099}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\App.cpp">
@@ -82,9 +88,6 @@
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Menus\Menu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\MenuNode.cpp">
       <Filter>Source Files\Menus</Filter>
     </ClCompile>
     <ClCompile Include="Source\Menus\GameMenu\Platform.cpp">
@@ -159,6 +162,12 @@
     <ClCompile Include="Source\Utilities\Math.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Controller\MenuBase.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Controller\MenuNode.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">
@@ -171,9 +180,6 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menus\MenuItem.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\MenuNode.hpp">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\Platform.hpp">
@@ -253,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="Source\Menus\Menu.hpp">
       <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Controller\MenuNode.hpp">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Controller\MenuBase.hpp">
+      <Filter>Header Files\Controller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

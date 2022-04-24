@@ -30,6 +30,7 @@ bool Controller::isActive() {
 	}
 	if (_current->get()->__isClosing__) {
 		close();
+		_current->get()->__isClosing__ = false;
 	}
 	if (_current->get()->__isOpening__) {
 		if (_current->get()->__openLast__) {
