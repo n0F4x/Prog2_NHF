@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include "Controller/MenuNode.hpp"
 #include "Utilities/STL/string.hpp"
 #include "Menus/InitMenu.hpp"
