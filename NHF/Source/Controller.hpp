@@ -3,23 +3,24 @@
 #include <SFML/Graphics.hpp>
 #include "Controller/MenuNode.hpp"
 #include "Utilities/STL/string.hpp"
+#include "Menus/InitMenu.hpp"
 
 class App;
 
 
 class Controller {
 private:
-	MenuNode _root;
+	MenuNode _root{ std::make_unique<InitMenu>() };
 
-	MenuNode* _current = nullptr;
-	MenuNode* _next = nullptr;
+	MenuNode* _current = &_root;
+	MenuNode* _next = _current;
 
 	void open(const util::string& name);
 	void openLast();
 	void close();
 
 	friend App;
-	Controller();
+	Controller() = default;
 
 public:
 	void init();

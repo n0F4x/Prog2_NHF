@@ -1,16 +1,9 @@
 #include "Controller.hpp"
 
-#include "Menus/InitMenu.hpp"
 #include "Menus/MainMenu.hpp"
 #include "Menus/GameMenu.hpp"
 #include "Menus/OptionsMenu.hpp"
 
-
-Controller::Controller() {
-	_root = MenuNode{ std::make_unique<InitMenu>() };
-	_current = &_root;
-	_next = _current;
-}
 
 void Controller::init() {
 	// Reset root (optional)
