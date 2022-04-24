@@ -27,7 +27,6 @@ private:
 	sf::Event::KeyEvent _switchKey2 = { sf::Keyboard::Right };
 
 public:
-	void init() const { /*TODO*/ }
 	void save() const { /*TODO*/ }
 
 	bool setJumpKey(const sf::Event::KeyEvent& keyEvent);

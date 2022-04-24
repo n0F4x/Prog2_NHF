@@ -6,7 +6,7 @@
 #include "Menus/OptionsMenu.hpp"
 
 
-void Controller::construct() {
+Controller::Controller() {
 	_root = MenuNode{ std::make_unique<InitMenu>() };
 	_current = &_root;
 	_next = _current;

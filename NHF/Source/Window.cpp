@@ -2,43 +2,24 @@
 
 
 sf::RenderWindow Window::_window;
-float Window::_FPS = 60.f;
-sf::Clock Window::_clock;
+std::function<sf::VideoMode()> Window::_getVideoMode = sf::VideoMode::getDesktopMode;
 
 
-void Window::init() {
-	sf::ContextSettings settings;
-	settings.depthBits = 24;
-	settings.stencilBits = 8;
-	settings.sRgbCapable = true;
-
-	_window.create(sf::VideoMode::getDesktopMode(), "My Game", sf::Style::Fullscreen, settings);
-
-	_window.setVerticalSyncEnabled(true);
-	_window.setKeyRepeatEnabled(false);
+Window::Window() {
+	_settings.depthBits = 24;
+	_settings.stencilBits = 8;
+	_settings.sRgbCapable = true;
 }
 
 
 sf::Vector2f Window::getSize() {
-	return sf::Vector2f{ _window.getSize() };
+	return sf::Vector2f{ sf::Vector2u{_getVideoMode().width, _getVideoMode().height} };
 }
 
 sf::FloatRect Window::getLocalBounds() {
 	return sf::FloatRect{ 0.f, 0.f, getSize().x, getSize().y };
 }
 
-void Window::close() { _window.close(); }
-
-bool Window::isOpen() {
-	while (static_cast<float>(_clock.getElapsedTime().asMilliseconds()) < 1000.f / _FPS)
-		;
-	_clock.restart();
-	return _window.isOpen();
-}
-
-bool Window::pollEvent(sf::Event& event) {
-	return _window.pollEvent(event);
-}
 
 void Window::display() { _window.display(); }
 
@@ -47,3 +28,25 @@ void Window::clear() { _window.clear(); }
 void Window::draw(const sf::Drawable& drawable, const sf::RenderStates& states) {
 	_window.draw(drawable, states);
 }
+
+
+void Window::open() const {
+	_window.create(_getVideoMode(), _title, _style, _settings);
+
+	_window.setVerticalSyncEnabled(true);
+	_window.setKeyRepeatEnabled(false);
+}
+
+void Window::close() const { _window.close(); }
+
+bool Window::isOpen() {
+	while (static_cast<float>(_clock.getElapsedTime().asMilliseconds()) < 1000.f / _FPS)
+		;
+	_clock.restart();
+	return _window.isOpen();
+}
+
+bool Window::pollEvent(sf::Event& event) const {
+	return _window.pollEvent(event);
+}
+

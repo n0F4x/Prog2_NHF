@@ -1,14 +1,8 @@
 #include "App.hpp"
 
-#include "AppData.hpp"
-#include "Window.hpp"
-
 
 void App::init() {
-	AppData::init();
-	Window::init();
-
-	_controller.construct();
+	_window.open();
 	_controller.render();
 
 	sf::Clock clock;
@@ -20,10 +14,10 @@ void App::run() {
 	init();
 
 	sf::Event event;
-	while (Window::isOpen() && _controller.isActive()) {
-		while (Window::pollEvent(event)) {
+	while (_window.isOpen() && _controller.isActive()) {
+		while (_window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
-				Window::close();
+				_window.close();
 			}
 			_controller.handleEvent(event);
 		}

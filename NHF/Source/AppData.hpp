@@ -3,18 +3,15 @@
 #include "AppData/AssetManager.hpp"
 #include "AppData/ContextManager.hpp"
 
+class App;
+
 
 class AppData {
+private:
+	friend App;
+	AppData() = default;
+
 public:
-	// Data
 	static AssetManager assets;
 	static ContextManager context;
-
-	// Functions
-	AppData() = delete;
-
-	static void init() {
-		assets.init();
-		context.init();
-	}
 };

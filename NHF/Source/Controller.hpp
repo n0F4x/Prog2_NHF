@@ -17,8 +17,10 @@ private:
 	void openLast();
 	void close();
 
+	friend App;
+	Controller();
+
 public:
-	void construct();
 	void init();
 
 	bool isActive();

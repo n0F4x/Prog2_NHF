@@ -1,7 +1,7 @@
 #include "AssetManager.hpp"
 
 
-void AssetManager::init() {
+AssetManager::AssetManager() {
 	loadFont("The Wireframe", "./Assets/the_wireframe_demo.otf");
 	loadFont("Dameron", "./Assets/dameron.ttf");
 

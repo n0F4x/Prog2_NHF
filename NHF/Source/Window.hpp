@@ -1,26 +1,37 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <functional>
+
+class App;
 
 
 class Window {
 private:
 	static sf::RenderWindow _window;
-	static float _FPS;
-	static sf::Clock _clock;
+	static std::function<sf::VideoMode()> _getVideoMode;
+
+	sf::String _title = "Platforms";
+	sf::ContextSettings _settings;
+	sf::Uint32 _style = sf::Style::Fullscreen;
+	float _FPS = 60.f;
+	sf::Clock _clock;
+
+	friend App;
+	Window();
 
 public:
-	Window() = delete;
-
-	static void init();
 	static const sf::RenderWindow& window() { return _window; }
 
 	static sf::Vector2f getSize();
 	static sf::FloatRect getLocalBounds();
-	static void close();
-	static bool isOpen();
-	static bool pollEvent(sf::Event& event);
-	static void display();
+
 	static void clear();
 	static void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
+	static void display();
+
+	void open() const;
+	void close() const;
+	bool isOpen();
+	bool pollEvent(sf::Event& event) const;
 };
