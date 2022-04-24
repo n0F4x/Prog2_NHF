@@ -23,11 +23,18 @@ Track::Track() {
 		_shader.append(point);
 	}
 	_shader.append(mid);
+
+	addTransition(&_transition);
+}
+
+
+bool Track::isOnPlatform(const sf::Vector2f& point) const { /*TODO*/
+	return false;
 }
 
 
 void Track::handleEvent(const sf::Event& event) {
-	if (!_isPaused) {
+	if (!isPaused()) {
 		if (AppData::context.getPlatformControl().first == PlatformControl::Mouse) {
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
@@ -64,7 +71,7 @@ void Track::handleEvent(const sf::Event& event) {
 }
 
 void Track::update() {
-	if (!_isPaused) {
+	if (!isPaused()) {
 		if (_isDragged) {
 			auto mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
 
@@ -81,27 +88,24 @@ void Track::update() {
 			}
 		}
 
-		_transition.update();
+		MenuItem::update();
 
 		_platforms.update();
 	}
 }
 
 void Track::init() {
+	MenuItem::init();
+
 	Platform::width = 360_deg / static_cast<float>(AppData::context.getPlatformCount().first);
 	_platforms.init();
-	_transition.init();
 
 	_switchingLeft = _switchingRight = false;
 	_isDragged = false;
 }
 
-void Track::pause() {
-	_isPaused = true;
-}
-
 void Track::resume() {
 	_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
 
-	_isPaused = false;
+	MenuItem::resume();
 }

@@ -168,6 +168,9 @@
     <ClCompile Include="Source\Controller\MenuNode.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Menus\GameMenu\Player.cpp">
+      <Filter>Source Files\Menus\GameMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="Source\Controller\MenuBase.hpp">
       <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menus\GameMenu\Player.hpp">
+      <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

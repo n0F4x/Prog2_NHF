@@ -18,7 +18,6 @@ private:
 	sf::VertexArray _shader{ sf::TriangleFan };
 
 	// Variables
-	bool _isPaused = false;
 	sf::Vector2f _mouse{ sf::Vector2f{sf::Mouse::getPosition(Window::window())} };
 	bool _isDragged = false;
 	bool _switchingLeft = false;
@@ -31,9 +30,10 @@ private:
 public:
 	Track();
 
+	bool isOnPlatform(const sf::Vector2f& point) const;
+
 	void handleEvent(const sf::Event& event) override;
 	void update() override;
 	void init() override;
-	void pause() override;
 	void resume() override;
 };

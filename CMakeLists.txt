@@ -41,6 +41,7 @@ set(SOURCE_FILES
     ./NHF/Source/GUI/Widget.cpp
     ./NHF/Source/Menus/GameMenu/Platform.cpp
     ./NHF/Source/Menus/GameMenu/PlatformContainer.cpp
+    ./NHF/Source/Menus/GameMenu/Player.cpp
     ./NHF/Source/Menus/GameMenu/PreCalculator.cpp
     ./NHF/Source/Menus/GameMenu/Track.cpp
     ./NHF/Source/Menus/GameMenu.cpp

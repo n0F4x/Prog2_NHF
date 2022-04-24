@@ -20,11 +20,14 @@ namespace Transitions {
 
 		// During transition variables
 		sf::Clock _clock;
+		int _pausedTime = 0;
 		int _currentTime = 0;
 		sf::Vector2f _currentDistance = { 0.f, 0.f };
 
 	public:
 		explicit Transition(Transitionable* object) : _object{ object } {}
+
+		bool isActive() const { return _isActive; }
 
 		virtual void start(const sf::Vector2f& distance, int time) {
 			if (!_isActive) {
@@ -36,6 +39,8 @@ namespace Transitions {
 		}
 		virtual void update() = 0;
 		virtual void init() { _isActive = false;  _currentTime = 0; _currentDistance = { 0.f, 0.f }; }
+		virtual void pause() { /*TODO*/ }
+		virtual void resume() { /*TODO*/ }
 
 		virtual ~Transition() = default;
 	};
@@ -82,5 +87,14 @@ namespace Transitions {
 			}
 		}
 		void update() override;
+	};
+
+
+	class Jump : public Transition {
+	public:
+		using Transition::Transition;
+
+		void start(const sf::Vector2f& distance, int time) override { /*TODO*/ }
+		void update() override { /*TODO*/ }
 	};
 }

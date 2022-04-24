@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Bar.hpp"
 
 #include "../Theme.hpp"
@@ -56,6 +54,8 @@ Bar<T>::Bar(
 	_emphasis.setFillColor(theme::Tertiary);
 
 	setSize({ cellSize.x * static_cast<float>(labels.size()), cellSize.y });
+
+	addTransition(&_transition);
 }
 
 
@@ -87,14 +87,12 @@ void Bar<T>::handleEvent(const sf::Event& event) {
 }
 
 template<typename T>
-void Bar<T>::update() { _transition.update(); }
-
-template<typename T>
 void Bar<T>::init() {
+	MenuItem::init();
+
 	for (size_t i = 0; i < _texts.size(); i++) {
 		if (_texts[i].getString() == _getContext()) {
 			_emphasis.setPosition(_cells[i].getPosition());
 		}
 	}
-	_transition.init();
 }

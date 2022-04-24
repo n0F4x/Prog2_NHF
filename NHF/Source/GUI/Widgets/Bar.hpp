@@ -40,6 +40,5 @@ public:
 	void setPosition(const sf::Vector2f& position) override;
 
 	void handleEvent(const sf::Event& event) override;
-	void update() override;
 	void init() override;
 };
