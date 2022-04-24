@@ -37,7 +37,7 @@ public:
 
 	std::pair<const sf::Event::KeyEvent&, const std::string&> getJumpKey() const;
 	std::pair<const int, const std::string&> getPlatformCount() const;
-	std::pair<const PlatformControl, const std::string&> getPlatformControl() const;
+	std::pair<const PlatformControl&, const std::string&> getPlatformControl() const;
 	std::pair<const sf::Event::KeyEvent&, const std::string&> getSwitchKey1() const;
 	std::pair<const sf::Event::KeyEvent&, const std::string&> getSwitchKey2() const;
 

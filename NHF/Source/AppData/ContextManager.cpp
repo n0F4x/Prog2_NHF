@@ -53,11 +53,11 @@ std::pair<const sf::Event::KeyEvent&, const std::string&> ContextManager::getJum
 	return { _jumpKey, _validKeys.at(_jumpKey.code) };
 }
 
-std::pair<const int, const std::string> ContextManager::getPlatformCount() const {
+std::pair<const int, const std::string&> ContextManager::getPlatformCount() const {
 	return { _platformCount, std::to_string(_platformCount) };
 }
 
-std::pair<const PlatformControl, const std::string> ContextManager::getPlatformControl() const {
+std::pair<const PlatformControl&, const std::string&> ContextManager::getPlatformControl() const {
 	std::string name;
 	switch (_platformControl) {
 	case PlatformControl::Keyboard:
