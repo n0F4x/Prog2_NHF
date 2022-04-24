@@ -5,7 +5,7 @@
 
 MainMenu::MainMenu() {
 	// Construct "Exit" button
-	auto exitButton = std::make_unique<Button>("Exit", AppData::assets.getFont("Dameron"), 76u, [this]() {Menu::close(true); });
+	auto exitButton = std::make_unique<Button>("Exit", AppData::assets.getFont("Dameron"), 76u, [this]() { Menu::exit(); });
 	exitButton->setPosition({ Window::getSize().x - Window::getSize().x / 40.f - exitButton->getSize().x, Window::getSize().x / 40.f });
 
 	// Construct "Play" button

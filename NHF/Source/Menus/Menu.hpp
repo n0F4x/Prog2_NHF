@@ -30,7 +30,8 @@ protected:
 	
 	void open(const util::string& next) { __isOpening__ = true; __next__ = next; }
 	void openLast() { __isOpening__ = true; __openLast__ = true; }
-	void close(bool isExiting = false) { __isClosing__ = true; __isExiting__ = isExiting; }
+	void close() { __isClosing__ = true; }
+	void exit() { __isExiting__ = true; }
 
 public:
 	virtual void handleEvent(const sf::Event& event);
