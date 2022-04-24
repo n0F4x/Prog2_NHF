@@ -5,6 +5,8 @@
 #include "Menus/MenuNode.hpp"
 #include "Utilities/STL/string.hpp"
 
+class App;
+
 
 class Controller {
 private:
