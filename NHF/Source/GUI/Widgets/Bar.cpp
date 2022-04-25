@@ -24,7 +24,7 @@ void Bar<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 template<typename T>
 Bar<T>::Bar(
 	float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize,
-	const std::function<void(const T&)>& setContext, const std::function<std::string()>& getContext
+	const std::function<void(const T&)>& setContext, const std::function<const std::string&()>& getContext
 ) :
 	_contents{contents},
 	_setContext{ setContext },
@@ -91,7 +91,7 @@ void Bar<T>::init() {
 	MenuItem::init();
 
 	for (size_t i = 0; i < _texts.size(); i++) {
-		if (_texts[i].getString() == _getContext()) {
+		if (_texts[i].getString().toAnsiString() == _getContext()) {
 			_emphasis.setPosition(_cells[i].getPosition());
 		}
 	}

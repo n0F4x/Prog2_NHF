@@ -27,14 +27,14 @@ private:
 
 	size_t _selected = 0;
 	std::function<void(const T&)> _setContext;
-	std::function<std::string ()> _getContext;
+	std::function<const std::string& ()> _getContext;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
 	Bar(
 		float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize,
-		const std::function<void(const T&)>& setContext, const std::function<std::string ()>& getContext
+		const std::function<void(const T&)>& setContext, const std::function<const std::string& ()>& getContext
 	);
 
 	void setPosition(const sf::Vector2f& position) override;

@@ -26,7 +26,7 @@ OptionsMenu::OptionsMenu() {
 	auto LCbar = std::make_unique<Bar<int>>(
 		Window::getSize().x * 0.6f, LCcontents, LCstrings, AppData::assets.getFont("Dameron"), 56u,
 		[](const int& amount) -> bool { return AppData::context.setPlatformCount(amount); },
-		[]() -> std::string {
+		[]() -> const std::string& {
 			return AppData::context.getPlatformCount().second;
 		}
 	);
@@ -62,7 +62,7 @@ OptionsMenu::OptionsMenu() {
 	auto PCbar = std::make_unique<Bar<PlatformControl>>(
 		Window::getSize().x * 0.6f, PCcontents, PCstrings, AppData::assets.getFont("Dameron"), 56u,
 		[](const PlatformControl& control) -> bool { return AppData::context.setPlatformControl(control); },
-		[]() -> std::string {
+		[]() -> const std::string& {
 			return AppData::context.getPlatformControl().second;
 		}
 	);

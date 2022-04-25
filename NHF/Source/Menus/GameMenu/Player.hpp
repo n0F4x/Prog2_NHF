@@ -5,25 +5,40 @@
 #include "../../Utilities/Math/Transitionable.hpp"
 
 
-class Player : public MenuItem, protected Transitionable {
+class PlayerSprite : public sf::Drawable, public Transitionable {
 private:
+	sf::Vector2f _initPos;
 	sf::Sprite _sprite;
-	sf::Vector2f _feetCoords;
-
-	Transitions::Jump _transition{this};
 
 	// overriding @MenuItem
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { /*TODO*/ }
-	// overriding @Transitionable
-	void transition(const sf::Vector2f& amount) override {/*TODO*/ }
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_sprite); }
 
 public:
-	Player();
+	explicit PlayerSprite(const sf::Vector2f& feetCoords);
+
+	// overriding @Transitionable
+	void transition(const sf::Vector2f& amount) override { _sprite.move(amount); }
+
+	void init() { _sprite.setPosition(_initPos); }
+};
+
+
+class Player : public MenuItem {
+private:
+	PlayerSprite _sprite;
+	sf::Vector2f _feetPos;
+
+	Transitions::Jump _transition{&_sprite};
+
+	// overriding @MenuItem
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_sprite); }
+
+public:
+	explicit Player(const sf::Vector2f& feetPos) : _sprite{ feetPos } {}
 
 	bool isJumping() const { return _transition.isActive(); }
-	sf::Vector2f getFeet() const { _sprite.getPosition() + _feetCoords; }
+	const sf::Vector2f& getFeet() const { return _feetPos; }
 
 	void handleEvent(const sf::Event& event) override { /*TODO*/ }
-	void update() override { /*TODO*/ }
-	void init() override { /*TODO*/ }
+	void init() override { MenuItem::init(); _sprite.init(); }
 };

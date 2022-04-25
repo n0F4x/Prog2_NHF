@@ -1,4 +1,4 @@
 #include "Player.hpp"
 
 
-Player::Player() { /*TODO*/ }
+PlayerSprite::PlayerSprite(const sf::Vector2f& feetCoords) { /*TODO*/ }

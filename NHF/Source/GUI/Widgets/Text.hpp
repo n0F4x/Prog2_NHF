@@ -18,6 +18,4 @@ public:
 	void setFillColor(const sf::Color& color) { _text.setFillColor(color); }
 	void setString(const sf::String& string);
 	const sf::String& getString() const { return _text.getString(); }
-
-	void update() override {}
 };
