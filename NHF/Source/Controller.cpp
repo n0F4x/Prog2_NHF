@@ -23,17 +23,14 @@ bool Controller::isActive() {
 	}
 	if (_current->get()->__isClosing__) {
 		close();
-		_current->get()->__isClosing__ = false;
 	}
 	if (_current->get()->__isOpening__) {
-		if (_current->get()->__openLast__) {
-			openLast();
-			_current->get()->__openLast__ = false;
+		(_current->get()->__openLast__) ? openLast() : open(_current->get()->__next__);
+
+		if (_next != nullptr) {
+			_current->setLastVisitedChild(_next);
+			_next->get()->init();
 		}
-		else {
-			open(_current->get()->__next__);
-		}
-		_current->get()->__isOpening__ = false;
 	}
 
 	if (_next == nullptr)
@@ -49,19 +46,16 @@ bool Controller::isActive() {
 
 void Controller::open(const util::string& name) {
 	_next = _current->findChild(name);
-	if (_next != nullptr) {
-		_next->get()->init();
-		_current->setLastVisitedChild(_next);
-	}
+	_current->get()->__isOpening__ = false;
 }
 void Controller::openLast() {
 	_next = _current->getLastVisitedChild();
-	if (_next != nullptr) {
-		_next->get()->init();
-	}
+	_current->get()->__openLast__ = false;
+	_current->get()->__isOpening__ = false;
 }
 void Controller::close() {
 	_next = _current->getParent();
+	_current->get()->__isClosing__ = false;
 }
 
 void Controller::handleEvent(const sf::Event& event) const { _current->get()->handleEvent(event); }
