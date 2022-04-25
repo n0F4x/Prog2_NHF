@@ -15,10 +15,12 @@ namespace util {
 
 	public:
 		vector() = default;
+		vector(const vector&) = delete;
+		vector& operator=(const vector&) = delete;
 
 		template <typename... Args>
 		void emplace_back(Args &&...args) {
-			T* tmp = new T[_size + 1];
+			auto* tmp = new T[_size + 1];
 			for (std::size_t i = 0; i < _size; i++) {
 				tmp[i] = std::move(_vector[i]);
 			}

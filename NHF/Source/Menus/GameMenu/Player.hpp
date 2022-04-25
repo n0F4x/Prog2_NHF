@@ -5,21 +5,17 @@
 #include "../../Utilities/Math/Transitionable.hpp"
 
 
-class PlayerSprite : public sf::Drawable, public Transitionable {
+class PlayerSprite : public sf::Sprite, public Transitionable {
 private:
 	sf::Vector2f _initPos;
-	sf::Sprite _sprite;
-
-	// overriding @MenuItem
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_sprite); }
 
 public:
 	explicit PlayerSprite(const sf::Vector2f& feetCoords);
 
 	// overriding @Transitionable
-	void transition(const sf::Vector2f& amount) override { _sprite.move(amount); }
+	void transition(const sf::Vector2f& amount) override { move(amount); }
 
-	void init() { _sprite.setPosition(_initPos); }
+	void init() { setPosition(_initPos); }
 };
 
 
