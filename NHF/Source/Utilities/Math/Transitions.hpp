@@ -20,9 +20,13 @@ namespace Transitions {
 
 		// During transition variables
 		sf::Clock _clock;
-		int _pausedTime = 0;
 		int _currentTime = 0;
 		sf::Vector2f _currentDistance = { 0.f, 0.f };
+
+		// Paused
+		bool _isPaused = false;
+		int _pausedTime = 0;
+		sf::Clock _pausedClock;
 
 	public:
 		explicit Transition(Transitionable* object) : _object{ object } {}
@@ -38,9 +42,9 @@ namespace Transitions {
 			}
 		}
 		virtual void update() = 0;
-		virtual void init() { _isActive = false;  _currentTime = 0; _currentDistance = { 0.f, 0.f }; }
-		virtual void pause() { /*TODO*/ }
-		virtual void resume() { /*TODO*/ }
+		virtual void init() { _isActive = false; _currentTime = 0; _currentDistance = { 0.f, 0.f }; _isPaused = false; _pausedTime = 0; }
+		virtual void pause() { _isPaused = true; _pausedClock.restart(); }
+		virtual void resume() { _isPaused = false; _pausedTime += _pausedClock.getElapsedTime().asMilliseconds(); }
 
 		virtual ~Transition() = default;
 	};

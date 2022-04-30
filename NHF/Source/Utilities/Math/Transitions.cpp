@@ -12,9 +12,9 @@ static float square(T num) {
 
 namespace Transitions {
 	void EaseInOut::update() {
-		if (_isActive) {
+		if (_isActive && !_isPaused) {
 			int currentTime;
-			if ((currentTime = _clock.getElapsedTime().asMilliseconds()) >= _time) {
+			if ((currentTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime) >= _time) {
 				_object->transition(_distance - _currentDistance);
 				init();
 			}

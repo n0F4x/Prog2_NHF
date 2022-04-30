@@ -48,23 +48,23 @@ void Track::handleEvent(const sf::Event& event) {
 				}
 			}
 		}
+	}
 
-		if (std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Keyboard) {
-			if (event.type == sf::Event::KeyPressed) {
-				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
-					_switchingLeft = true;
-				}
-				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
-					_switchingRight = true;
-				}
+	if (std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Keyboard) {
+		if (event.type == sf::Event::KeyPressed) {
+			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
+				_switchingLeft = true;
 			}
-			if (event.type == sf::Event::KeyReleased) {
-				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
-					_switchingLeft = false;
-				}
-				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
-					_switchingRight = false;
-				}
+			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
+				_switchingRight = true;
+			}
+		}
+		if (event.type == sf::Event::KeyReleased) {
+			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
+				_switchingLeft = false;
+			}
+			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
+				_switchingRight = false;
 			}
 		}
 	}
@@ -81,10 +81,10 @@ void Track::update() {
 
 		if (_switchingLeft != _switchingRight) {
 			if (_switchingLeft) {
-				_transition.start({ -1 * Platform::width, 0.f }, 100);
+				_transition.start({ -1 * Platform::width, 0.f }, 1000);
 			}
 			if (_switchingRight) {
-				_transition.start({ Platform::width, 0.f }, 100);
+				_transition.start({ Platform::width, 0.f }, 1000);
 			}
 		}
 
