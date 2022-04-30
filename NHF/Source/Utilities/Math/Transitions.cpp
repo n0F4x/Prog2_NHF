@@ -45,14 +45,33 @@ namespace Transitions {
 	}
 
 	void Ease::update() {
-		if (_isActive) {
+		if (_isActive && !_isPaused) {
 			int currentTime;
-			if ((currentTime = _clock.getElapsedTime().asMilliseconds()) >= _time) {
+			if ((currentTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime) >= _time) {
 				_object->transition(_distance - _currentDistance);
 				init();
 			}
 			else {
 				float progress = _bezier.GetEasingProgress(static_cast<float>(currentTime) / static_cast<float>(_time)) - _lastProgress;
+				sf::Vector2f currentDistance = _distance * progress;
+
+				_currentTime = currentTime;
+				_currentDistance += currentDistance;
+				_lastProgress += progress;
+				_object->transition(currentDistance);
+			}
+		}
+	}
+
+	void Jump::update() {
+		if (_isActive && !_isPaused) {
+			int currentTime;
+			if ((currentTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime) >= _time) {
+				_object->transition(-1.f * _currentDistance);
+				init();
+			}
+			else {
+				float progress = _acc / 2.f * square(currentTime) + _velocity * static_cast<float>(currentTime) - _lastProgress;
 				sf::Vector2f currentDistance = _distance * progress;
 
 				_currentTime = currentTime;

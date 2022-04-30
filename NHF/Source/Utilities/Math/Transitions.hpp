@@ -35,6 +35,7 @@ namespace Transitions {
 
 		virtual void start(const sf::Vector2f& distance, int time) {
 			if (!_isActive) {
+				init();
 				_distance = distance;
 				_time = time;
 				_clock.restart();
@@ -62,12 +63,9 @@ namespace Transitions {
 
 		void start(const sf::Vector2f& distance, int time) override {
 			if (!_isActive) {
-				_distance = distance;
-				_time = time;
+				Transition::start(distance, time);
 				_accX = getAccX();
 				_accY = getAccY();
-				_clock.restart();
-				_isActive = true;
 			}
 		}
 		void update() override;
@@ -84,10 +82,7 @@ namespace Transitions {
 		void start(const sf::Vector2f& distance, int time) override {
 			if (!_isActive) {
 				_lastProgress = 0.f;
-				_distance = distance;
-				_time = time;
-				_clock.restart();
-				_isActive = true;
+				Transition::start(distance, time);
 			}
 		}
 		void update() override;
@@ -95,10 +90,21 @@ namespace Transitions {
 
 
 	class Jump : public Transition {	/*TODO*/
+	private:
+		float _acc = -9.81f / (1000.f * 1000.f);
+		float _velocity;
+		float _lastProgress = 0.f;
+
 	public:
 		using Transition::Transition;
 
-		void start(const sf::Vector2f& distance, int time) override { /*TODO*/ }
-		void update() override { /*TODO*/ }
+		void start(const sf::Vector2f& distance, int time) override {
+			if (!_isActive) {
+				_lastProgress = 0.f;
+				_velocity = -1 * (_acc / 2.f * static_cast<float>(time * time)) / static_cast<float>(time);
+				Transition::start(distance, time);
+			}
+		}
+		void update() override;
 	};
 }
