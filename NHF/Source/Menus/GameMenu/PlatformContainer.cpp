@@ -14,8 +14,13 @@ PlatformContainer::PlatformContainer(const PreCalculator& preCalc) : _preCalc{ p
 	Platform::setScale(_scaleSpeed);
 }
 
-const std::list<Platform>& PlatformContainer::getList() const {
-	return _platforms;
+bool PlatformContainer::isInside(const sf::Vector2f& point) const {
+	for (auto& platform : _platforms) {
+		if (platform.isInside(point)) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void PlatformContainer::rotate(float angle) {

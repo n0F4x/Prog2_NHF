@@ -89,7 +89,7 @@ namespace Transitions {
 	};
 
 
-	class Jump : public Transition {	/*TODO*/
+	class Jump : public Transition {
 	private:
 		float _acc = -9.81f / (1000.f * 1000.f);
 		float _velocity;

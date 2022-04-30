@@ -3,6 +3,7 @@
 #include "../MenuItem.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "../../Utilities/Math/Transitionable.hpp"
+#include "../../AppData.hpp"
 
 
 class PlayerSprite : public sf::Sprite, public Transitionable {
@@ -24,7 +25,11 @@ private:
 	PlayerSprite _sprite;
 	sf::Vector2f _feetPos;
 
+	// Transition(s)
 	Transitions::Jump _transition{&_sprite};
+
+	// Context accessor(s)
+	Context::Accessor _jumpKey = AppData::context.getContext("jumpKey");
 
 	// overriding @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_sprite); }
@@ -35,6 +40,6 @@ public:
 	bool isJumping() const { return _transition.isActive(); }
 	const sf::Vector2f& getFeet() const { return _feetPos; }
 
-	void handleEvent(const sf::Event& event) override { /*TODO*/ }
+	void handleEvent(const sf::Event& event) override;
 	void init() override { MenuItem::init(); _sprite.init(); }
 };

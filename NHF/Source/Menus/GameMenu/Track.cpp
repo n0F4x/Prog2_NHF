@@ -28,8 +28,8 @@ Track::Track() {
 }
 
 
-bool Track::isOnPlatform(const sf::Vector2f& point) const { /*TODO*/
-	return false;
+bool Track::isOnPlatform(const sf::Vector2f& point) const {
+	return _platforms.isInside(point);
 }
 
 

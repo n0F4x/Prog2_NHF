@@ -20,7 +20,7 @@ private:
 public:
 	explicit PlatformContainer(const PreCalculator& preCalc);
 
-	const std::list<Platform>& getList() const;
+	bool isInside(const sf::Vector2f& point) const;
 
 	void rotate(float angle);
 	void transition(const sf::Vector2f& amount) override { rotate(amount.x); }

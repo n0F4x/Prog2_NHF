@@ -37,6 +37,8 @@ public:
 	float getRotation() const { return _rotation; }
 	float getWidth() const { return width; }
 
+	bool isInside(const sf::Vector2f& point) const;
+
 	void rotate(float angle);
 
 	void update();

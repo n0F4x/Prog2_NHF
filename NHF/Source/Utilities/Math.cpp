@@ -1,7 +1,17 @@
 #include "Math.hpp"
 
 
+template <typename T>
+static float square(T num) {
+	return static_cast<float>(num * num);
+}
+
+
 namespace math {
+	float calcDistance(const sf::Vector2f& a, const sf::Vector2f& b) {
+		return sqrtf(square(a.x - b.x) + square(a.y - b.y));
+	}
+
 	float calcAngle(const sf::Vector2f& position) {
 		if (position.x == 0) {
 			if (position.y >= 0) {

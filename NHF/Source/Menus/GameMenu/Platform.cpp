@@ -64,3 +64,14 @@ void Platform::update() {
 bool Platform::isDead() const {
 	return _innerRadius > _maxRadius;
 }
+
+bool Platform::isInside(const sf::Vector2f& point) const {
+	if (float distance = math::calcDistance(_origin, point); distance > _innerRadius && distance < _outerRadius) {
+		if (float angle = math::calcAngle(_origin - point);
+			(angle > _rotation && angle < _rotation + width) || (angle + 360_deg > _rotation && angle + 360_deg < _rotation - width)
+			) {
+			return true;
+		}
+	}
+	return false;
+}
