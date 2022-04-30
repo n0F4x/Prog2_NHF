@@ -1,7 +1,6 @@
 #include "ContextManager.hpp"
 
 #include <algorithm>
-#include <iostream>
 
 
 static const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
@@ -51,7 +50,6 @@ static const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
 static const std::vector<int> _validPlatformCounts{ 3, 4, 5, 6, 7, 8 };
 
 static bool isValidKey(const sf::Event::KeyEvent& keyEvent) {
-	std::cout << keyEvent.code;
 	return _validKeys.contains(keyEvent.code);
 }
 static bool isValidPlatformCount(const int& count) {

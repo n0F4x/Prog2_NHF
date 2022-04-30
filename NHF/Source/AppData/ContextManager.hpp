@@ -6,7 +6,6 @@
 #include <string>
 #include <map>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 
 class ToStringConverter {
@@ -39,19 +38,15 @@ public:
 		bool setContext(const std::any& data) const {
 			if (_observable->validate(data)) {
 				_observable->_data = data;
-				std::cout << "true";
 				return true;
 			}
-			std::cout << "false";
 			return false;
 		}
 		bool setContext(std::any&& data) const {
 			if (_observable->validate(data)) {
 				_observable->_data = std::move(data);
-				std::cout << "true";
 				return true;
 			}
-			std::cout << "false";
 			return false;
 		}
 	};
