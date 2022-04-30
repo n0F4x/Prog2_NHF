@@ -4,6 +4,7 @@
 #include "PreCalculator.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "PlatformContainer.hpp"
+#include "../../AppData.hpp"
 #include "../../Window.hpp"
 
 
@@ -22,6 +23,11 @@ private:
 	bool _isDragged = false;
 	bool _switchingLeft = false;
 	bool _switchingRight= false;
+
+	// Contexts
+	Context::Accessor _platformControl = AppData::context.getContext("platformControl");
+	Context::Accessor _switchKey1 = AppData::context.getContext("switchKey1");
+	Context::Accessor _switchKey2 = AppData::context.getContext("switchKey2");
 
 
 	// Overriding @MenuItem

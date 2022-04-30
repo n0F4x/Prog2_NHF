@@ -35,14 +35,12 @@ void InputField::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 InputField::InputField(
 	const sf::Font& fontStyle,
 	unsigned characterSize,
-	const std::function<bool(const sf::Event::KeyEvent& keyEvent)>& contextSetter,
-	const std::function<std::string()>& contextGetter
+	Context::Accessor context
 ) :
-	_text{ contextGetter(), fontStyle, characterSize },
-	_string{ contextGetter() },
+	_text{ context.getContextString(), fontStyle, characterSize },
+	_string{ context.getContextString() },
 	_frame{ {Text{"Ctrl+Alt+Shift+Space", fontStyle, characterSize}.getSize().x * 1.2f, _text.getSize().y * 2.f} },
-	_contextSetter{ contextSetter },
-	_contextGetter{ contextGetter }
+	_context{context}
 {
 	setSize(_frame.getSize());
 	_text.center(_frame.getLocalBounds());
@@ -81,19 +79,9 @@ void InputField::handleEvent(const sf::Event& event) {
 				setActive(false);
 			}
 			else {
-				if (_contextSetter(event.key)) {
-					_activeString = "";
-					if (event.key.control) {
-						_activeString.append("Ctrl+");
-					}
-					if (event.key.alt) {
-						_activeString.append("Alt+");
-					}
-					if (event.key.shift) {
-						_activeString.append("Shift+");
-					}
+				if (_context.setContext(event.key)) {
 					_activeKey = event.key.code;
-					_activeString.append(_contextGetter());
+					_activeString = _context.getContextString();
 				}
 			}
 		}

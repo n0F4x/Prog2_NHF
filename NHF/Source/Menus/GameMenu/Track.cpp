@@ -35,7 +35,7 @@ bool Track::isOnPlatform(const sf::Vector2f& point) const { /*TODO*/
 
 void Track::handleEvent(const sf::Event& event) {
 	if (!isPaused()) {
-		if (AppData::context.getPlatformControl().first == PlatformControl::Mouse) {
+		if (std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Mouse) {
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (event.mouseButton.button == sf::Mouse::Left) {
 					_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
@@ -49,20 +49,20 @@ void Track::handleEvent(const sf::Event& event) {
 			}
 		}
 
-		if (AppData::context.getPlatformControl().first == PlatformControl::Keyboard) {
+		if (std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Keyboard) {
 			if (event.type == sf::Event::KeyPressed) {
-				if (event.key == AppData::context.getSwitchKey1().first) {
+				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
 					_switchingLeft = true;
 				}
-				if (event.key == AppData::context.getSwitchKey2().first) {
+				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
 					_switchingRight = true;
 				}
 			}
 			if (event.type == sf::Event::KeyReleased) {
-				if (event.key == AppData::context.getSwitchKey1().first) {
+				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
 					_switchingLeft = false;
 				}
-				if (event.key == AppData::context.getSwitchKey2().first) {
+				if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
 					_switchingRight = false;
 				}
 			}
@@ -97,7 +97,7 @@ void Track::update() {
 void Track::init() {
 	MenuItem::init();
 
-	Platform::width = 360_deg / static_cast<float>(AppData::context.getPlatformCount().first);
+	Platform::width = 360_deg / static_cast<float>(std::any_cast<int>(AppData::context.getContext("platformCount").getContext()));
 	_platforms.init();
 
 	_switchingLeft = _switchingRight = false;

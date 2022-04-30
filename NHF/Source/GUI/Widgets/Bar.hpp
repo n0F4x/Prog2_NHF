@@ -8,6 +8,7 @@
 #include "Text.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "../../Utilities//Math/Transitionable.hpp"
+#include "../../AppData/ContextManager.hpp"
 
 
 class Emphasis : public sf::RectangleShape, public Transitionable {
@@ -26,15 +27,18 @@ private:
 	Emphasis _emphasis;
 
 	size_t _selected = 0;
-	std::function<void(const T&)> _setContext;
-	std::function<const std::string& ()> _getContext;
+	Context::Accessor _context;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
 	Bar(
-		float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize,
-		const std::function<void(const T&)>& setContext, const std::function<const std::string& ()>& getContext
+		float width, 
+		const std::vector<T>& contents, 
+		const std::vector<std::string>& labels, 
+		const sf::Font& font,
+		unsigned chararcterSize, 
+		Context::Accessor context
 	);
 
 	void setPosition(const sf::Vector2f& position) override;

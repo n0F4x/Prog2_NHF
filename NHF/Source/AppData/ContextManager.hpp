@@ -1,9 +1,76 @@
 #pragma once
 
-#include <map>
+#include <functional>
+#include <any>
+#include <memory>
 #include <string>
-#include <vector>
+#include <map>
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
+
+class ToStringConverter {
+	const std::function<std::string(const std::any&)> _func;
+public:
+	explicit(false) ToStringConverter(const std::function<std::string(const std::any&)>& func) : _func{ func } {}
+	std::string operator()(const std::any& val) const { return _func(val); }
+};
+
+
+class Context {
+public:
+	class ValidatorBase {
+	private:
+		std::function<bool(const std::any&)> _func;
+	public:
+		explicit(false) ValidatorBase(const std::function<bool(const std::any&)>& func = [](const std::any&) -> bool { return true; }) : _func{ func } {}
+		bool operator()(const std::any& data) const { return _func(data); }
+	};
+
+	class Accessor {
+	private:
+		Context* const _observable;
+
+	public:
+		explicit Accessor(Context* observable = nullptr) : _observable{ observable } {}
+		explicit(false) operator bool() const { return _observable != nullptr; }
+		const std::any& getContext() const { return _observable->_data; }
+		std::string getContextString() const { return _observable->_converter(_observable->_data); }
+		bool setContext(const std::any& data) const {
+			if (_observable->validate(data)) {
+				_observable->_data = data;
+				std::cout << "true";
+				return true;
+			}
+			std::cout << "false";
+			return false;
+		}
+		bool setContext(std::any&& data) const {
+			if (_observable->validate(data)) {
+				_observable->_data = std::move(data);
+				std::cout << "true";
+				return true;
+			}
+			std::cout << "false";
+			return false;
+		}
+	};
+	friend Accessor;
+
+private:
+	std::any _data;
+	const std::unique_ptr<const ValidatorBase> _validator;
+	const ToStringConverter _converter;
+
+	bool validate(const std::any& data) const { return (*_validator)(data); }
+
+public:
+	explicit Context(const std::any& data, const ValidatorBase* const validator, const ToStringConverter& converter) :
+		_data{ data }, _validator{ validator }, _converter{ converter } {}
+	Accessor get() { return Accessor{ this }; }
+};
+
+
 
 class AppData;
 
@@ -17,76 +84,22 @@ enum class PlatformControl {
 class ContextManager {
 private:
 	friend AppData;
-	ContextManager() = default; /*TODO*/
+	ContextManager();
 
-	// Contexts
-	sf::Event::KeyEvent _jumpKey = { sf::Keyboard::Space };
-	int _platformCount = 3;
-	PlatformControl _platformControl = PlatformControl::Keyboard;
-	sf::Event::KeyEvent _switchKey1 = { sf::Keyboard::Left };
-	sf::Event::KeyEvent _switchKey2 = { sf::Keyboard::Right };
+	std::map<const std::string, Context, std::less<>> _contexts;
+
+	void addContext(const std::string& name, const std::any& initialValue, Context::ValidatorBase* validator, const ToStringConverter& converter);
 
 public:
+	void loadFromFile() const { /*TODO*/ }
 	void save() const { /*TODO*/ }
 
-	bool setJumpKey(const sf::Event::KeyEvent& keyEvent);
-	bool setPlatformCount(int amount);
-	bool setPlatformControl(const PlatformControl& control);
-	bool setSwitchKey1(const sf::Event::KeyEvent& keyEvent);
-	bool setSwitchKey2(const sf::Event::KeyEvent& keyEvent);
-
-	std::pair<const sf::Event::KeyEvent&, const std::string&> getJumpKey() const;
-	std::pair<const int, const std::string&> getPlatformCount() const;
-	std::pair<const PlatformControl&, const std::string&> getPlatformControl() const;
-	std::pair<const sf::Event::KeyEvent&, const std::string&> getSwitchKey1() const;
-	std::pair<const sf::Event::KeyEvent&, const std::string&> getSwitchKey2() const;
-
-private:
-	const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
-		{ sf::Keyboard::A, "A" },
-		{ sf::Keyboard::B, "B" },
-		{ sf::Keyboard::C, "C" },
-		{ sf::Keyboard::D, "D" },
-		{ sf::Keyboard::E, "E" },
-		{ sf::Keyboard::F, "F" },
-		{ sf::Keyboard::G, "G" },
-		{ sf::Keyboard::H, "H" },
-		{ sf::Keyboard::I, "I" },
-		{ sf::Keyboard::J, "J" },
-		{ sf::Keyboard::K, "K" },
-		{ sf::Keyboard::L, "L" },
-		{ sf::Keyboard::M, "M" },
-		{ sf::Keyboard::N, "N" },
-		{ sf::Keyboard::O, "O" },
-		{ sf::Keyboard::P, "P" },
-		{ sf::Keyboard::Q, "Q" },
-		{ sf::Keyboard::R, "R" },
-		{ sf::Keyboard::S, "S" },
-		{ sf::Keyboard::T, "T" },
-		{ sf::Keyboard::U, "U" },
-		{ sf::Keyboard::V, "V" },
-		{ sf::Keyboard::W, "W" },
-		{ sf::Keyboard::X, "X" },
-		{ sf::Keyboard::Y, "Y" },
-		{ sf::Keyboard::Z, "Z" },
-		{ sf::Keyboard::Num0, "Num0" },
-		{ sf::Keyboard::Num1, "Num1" },
-		{ sf::Keyboard::Num2, "Num2" },
-		{ sf::Keyboard::Num3, "Num3" },
-		{ sf::Keyboard::Num4, "Num4" },
-		{ sf::Keyboard::Num5, "Num5" },
-		{ sf::Keyboard::Num6, "Num6" },
-		{ sf::Keyboard::Num7, "Num7" },
-		{ sf::Keyboard::Num8, "Num8" },
-		{ sf::Keyboard::Num9, "Num9" },
-		{ sf::Keyboard::Space, "Space" },
-		{ sf::Keyboard::Tab, "Tab" },
-		{ sf::Keyboard::Left, "Left" },
-		{ sf::Keyboard::Right, "Right" },
-		{ sf::Keyboard::Up, "Up" },
-		{ sf::Keyboard::Down, "Down" }
-	};
-	const std::vector<int> _validPlatformCounts{ 3, 4, 5, 6, 7, 8 };
+	Context::Accessor getContext(const std::string_view& name) {
+		if (auto it = _contexts.find(name); it != _contexts.end()) {
+			return it->second.get();
+		}
+		return Context::Accessor{};
+	}
 };
 
 

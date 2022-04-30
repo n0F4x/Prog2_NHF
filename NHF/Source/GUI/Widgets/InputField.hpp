@@ -20,8 +20,7 @@ private:
 	std::string _activeString;
 	bool _isActive = false;
 
-	std::function<bool(const sf::Event::KeyEvent& keyEvent)> _contextSetter;
-	std::function<std::string()> _contextGetter;
+	Context::Accessor _context;
 
 	// Override @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -30,8 +29,7 @@ public:
 	InputField(
 		const sf::Font& fontStyle,
 		unsigned characterSize,
-		const std::function<bool(const sf::Event::KeyEvent& event)>& contextSetter,
-		const std::function<std::string()>& contextGetter
+		Context::Accessor context
 	);
 
 	void setPosition(const sf::Vector2f& position) override;

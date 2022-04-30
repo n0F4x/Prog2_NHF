@@ -25,10 +25,7 @@ OptionsMenu::OptionsMenu() {
 	std::vector<std::string> LCstrings{ "3", "4", "5", "6", "7", "8" };
 	auto LCbar = std::make_unique<Bar<int>>(
 		Window::getSize().x * 0.6f, LCcontents, LCstrings, AppData::assets.getFont("Dameron"), 56u,
-		[](const int& amount) -> bool { return AppData::context.setPlatformCount(amount); },
-		[]() -> const std::string& {
-			return AppData::context.getPlatformCount().second;
-		}
+		AppData::context.getContext("platformCount")
 	);
 	LCbar->center(Window::getLocalBounds());
 	LCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - LCbar->getSize().x) / 2.f, LCbar->getPosition().y });
@@ -42,10 +39,7 @@ OptionsMenu::OptionsMenu() {
 	// Construct "Jump Key" input field and label
 	auto JKinput = std::make_unique<InputField>(
 		AppData::assets.getFont("Dameron"), 56u,
-		[](const sf::Event::KeyEvent& keyEvent) -> bool { return AppData::context.setJumpKey(keyEvent); },
-		[]() -> std::string {
-			return AppData::context.getJumpKey().second;
-		}
+		AppData::context.getContext("jumpKey")
 	);
 	JKinput->center(Window::getLocalBounds());
 	JKinput->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - JKinput->getSize().x) / 2.f, JKinput->getPosition().y });
@@ -61,10 +55,7 @@ OptionsMenu::OptionsMenu() {
 	std::vector<std::string> PCstrings{ "Keyboard", "Mouse" };
 	auto PCbar = std::make_unique<Bar<PlatformControl>>(
 		Window::getSize().x * 0.6f, PCcontents, PCstrings, AppData::assets.getFont("Dameron"), 56u,
-		[](const PlatformControl& control) -> bool { return AppData::context.setPlatformControl(control); },
-		[]() -> const std::string& {
-			return AppData::context.getPlatformControl().second;
-		}
+		AppData::context.getContext("platformControl")
 	);
 	PCbar->center(Window::getLocalBounds());
 	PCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - PCbar->getSize().x) / 2.f, PCbar->getPosition().y });
@@ -78,10 +69,7 @@ OptionsMenu::OptionsMenu() {
 	// Construct "Switch Key 1" input field and label
 	auto SK1input = std::make_unique<InputField>(
 		AppData::assets.getFont("Dameron"), 56u,
-		[](const sf::Event::KeyEvent& keyEvent) -> bool { return AppData::context.setSwitchKey1(keyEvent); },
-		[]() -> std::string {
-			return AppData::context.getSwitchKey1().second;
-		}
+		AppData::context.getContext("switchKey1")
 	);
 	SK1input->center(Window::getLocalBounds());
 	SK1input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK1input->getSize().x) / 2.f, SK1input->getPosition().y });
@@ -95,10 +83,7 @@ OptionsMenu::OptionsMenu() {
 	// Construct "Switch Key 2" input field and label
 	auto SK2input = std::make_unique<InputField>(
 		AppData::assets.getFont("Dameron"), 56u,
-		[](const sf::Event::KeyEvent& keyEvent) -> bool { return AppData::context.setSwitchKey2(keyEvent); },
-		[]() -> std::string {
-			return AppData::context.getSwitchKey2().second;
-		}
+		AppData::context.getContext("switchKey2")
 	);
 	SK2input->center(Window::getLocalBounds());
 	SK2input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK2input->getSize().x) / 2.f, SK2input->getPosition().y });

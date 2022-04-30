@@ -23,12 +23,10 @@ void Bar<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 template<typename T>
 Bar<T>::Bar(
-	float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize,
-	const std::function<void(const T&)>& setContext, const std::function<const std::string&()>& getContext
+	float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize, Context::Accessor context
 ) :
-	_contents{contents},
-	_setContext{ setContext },
-	_getContext{ getContext }
+	_contents{ contents },
+	_context{ context }
 {
 	sf::Vector2f cellSize = { width / static_cast<float>(labels.size()), Text{ "0", font, chararcterSize }.getSize().y * 2.f };
 
@@ -79,7 +77,7 @@ void Bar<T>::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		for (size_t i = 0; i < _cells.size(); i++) {
 			if (_cells[i].getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
-				_setContext(_contents[i]);
+				_context.setContext(_contents[i]);
 				_transition.start(_cells[i].getPosition() - _emphasis.getPosition(), 200);
 			}
 		}
@@ -91,7 +89,7 @@ void Bar<T>::init() {
 	MenuItem::init();
 
 	for (size_t i = 0; i < _texts.size(); i++) {
-		if (_texts[i].getString().toAnsiString() == _getContext()) {
+		if (_texts[i].getString().toAnsiString() == _context.getContextString()) {
 			_emphasis.setPosition(_cells[i].getPosition());
 		}
 	}
