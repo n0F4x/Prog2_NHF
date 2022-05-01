@@ -12,7 +12,7 @@ class Track : public MenuItem {
 private:
 	// "Observables"
 	PreCalculator _preCalc;
-	Transitions::Jump _transition{ &_platforms };
+	Transitions::EaseInOut _transition{ &_platforms };
 
 	// Managed items
 	PlatformContainer _platforms{ _preCalc };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <random>
 #include "Platform.hpp"
 #include "../../Utilities/Math/Transitionable.hpp"
 
@@ -14,6 +15,8 @@ private:
 	const int _scaleSpeed = 20;	//the lower the faster
 
 	float _rotation = 0_deg;
+
+	std::mt19937 _randomEngine{ std::random_device{}() };
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

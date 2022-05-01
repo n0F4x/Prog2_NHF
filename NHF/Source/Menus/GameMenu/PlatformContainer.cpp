@@ -15,12 +15,7 @@ PlatformContainer::PlatformContainer(const PreCalculator& preCalc) : _preCalc{ p
 }
 
 bool PlatformContainer::isInside(const sf::Vector2f& point) const {
-	for (auto& platform : _platforms) {
-		if (platform.isInside(point)) {
-			return true;
-		}
-	}
-	return false;
+	return std::ranges::any_of(_platforms, [point](auto& platform) -> bool { return platform.isInside(point); });
 }
 
 void PlatformContainer::rotate(float angle) {
@@ -40,7 +35,7 @@ void PlatformContainer::update() {
 
 	if (_counter >= _scaleSpeed) {
 		_platforms.emplace_front(_preCalc);
-		_platforms.front().rotate((rand() % (360 / static_cast<int>(Platform::width * 180.f / math::PI))) * Platform::width + _rotation);
+		_platforms.front().rotate(static_cast<float>(std::uniform_int_distribution{ 0, 360 / static_cast<int>(Platform::width * 180.f / math::PI) }(_randomEngine)) * Platform::width + _rotation);
 		_counter = 0;
 	}
 }
