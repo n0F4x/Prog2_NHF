@@ -34,19 +34,13 @@ bool Track::isOnPlatform(const sf::Vector2f& point) const {
 
 
 void Track::handleEvent(const sf::Event& event) {
-	if (!isPaused()) {
-		if (std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Mouse) {
-			if (event.type == sf::Event::MouseButtonPressed) {
-				if (event.mouseButton.button == sf::Mouse::Left) {
-					_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
-					_isDragged = true;
-				}
-			}
-			if (event.type == sf::Event::MouseButtonReleased) {
-				if (event.mouseButton.button == sf::Mouse::Left) {
-					_isDragged = false;
-				}
-			}
+	if (!isPaused() && std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Mouse) {
+		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+			_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
+			_isDragged = true;
+		}
+		if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+			_isDragged = false;
 		}
 	}
 

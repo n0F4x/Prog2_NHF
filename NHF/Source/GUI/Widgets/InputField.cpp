@@ -39,8 +39,8 @@ InputField::InputField(
 ) :
 	_text{ context.getContextString(), fontStyle, characterSize },
 	_string{ context.getContextString() },
-	_frame{ {Text{"Ctrl+Alt+Shift+Space", fontStyle, characterSize}.getSize().x * 1.2f, _text.getSize().y * 2.f} },
-	_context{context}
+	_frame{ { Text{ "Ctrl+Alt+Shift+Space", fontStyle, characterSize }.getSize().x * 1.2f, _text.getSize().y * 2.f } },
+	_context{ context }
 {
 	setSize(_frame.getSize());
 	_text.center(_frame.getLocalBounds());
@@ -60,35 +60,27 @@ void InputField::setPosition(const sf::Vector2f& position) {
 
 void InputField::handleEvent(const sf::Event& event) {
 	if (!_isActive) {
-		if (event.type == sf::Event::MouseButtonPressed) {
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				if (_frame.getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
-					setActive(true);
-				}
-			}
+		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left
+			&& _frame.getGlobalBounds().contains(sf::Vector2f { sf::Mouse::getPosition(Window::window()) })
+			) {
+			setActive(true);
 		}
 	}
 	else {
-		if (event.type == sf::Event::MouseButtonPressed) {
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				setActive(false);
-			}
+		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+			setActive(false);
 		}
 		if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::Enter) {
 				setActive(false);
 			}
-			else {
-				if (_context.setContext(event.key)) {
-					_activeKey = event.key.code;
-					_activeString = _context.getContextString();
-				}
+			else if (_context.setContext(event.key)) {
+				_activeKey = event.key.code;
+				_activeString = _context.getContextString();
 			}
 		}
-		if (event.type == sf::Event::KeyReleased) {
-			if (event.key.code == _activeKey) {
-				setActive(false);
-			}
+		if (event.type == sf::Event::KeyReleased && event.key.code == _activeKey) {
+			setActive(false);
 		}
 	}
 }

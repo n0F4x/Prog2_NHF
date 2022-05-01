@@ -26,7 +26,7 @@ OptionsMenu::OptionsMenu() {
 	auto LCbar = std::make_unique<Bar<int>>(
 		Window::getSize().x * 0.6f, LCcontents, LCstrings, AppData::assets.getFont("Dameron"), 56u,
 		AppData::context.getContext("platformCount")
-	);
+		);
 	LCbar->center(Window::getLocalBounds());
 	LCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - LCbar->getSize().x) / 2.f, LCbar->getPosition().y });
 	LCbar->move({ 0.f, -3 * LCbar->getSize().y });
@@ -40,7 +40,7 @@ OptionsMenu::OptionsMenu() {
 	auto JKinput = std::make_unique<InputField>(
 		AppData::assets.getFont("Dameron"), 56u,
 		AppData::context.getContext("jumpKey")
-	);
+		);
 	JKinput->center(Window::getLocalBounds());
 	JKinput->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - JKinput->getSize().x) / 2.f, JKinput->getPosition().y });
 	JKinput->move({ 0.f, -1.f * JKinput->getSize().y });
@@ -56,7 +56,7 @@ OptionsMenu::OptionsMenu() {
 	auto PCbar = std::make_unique<Bar<PlatformControl>>(
 		Window::getSize().x * 0.6f, PCcontents, PCstrings, AppData::assets.getFont("Dameron"), 56u,
 		AppData::context.getContext("platformControl")
-	);
+		);
 	PCbar->center(Window::getLocalBounds());
 	PCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - PCbar->getSize().x) / 2.f, PCbar->getPosition().y });
 	PCbar->move({ 0.f, +1.f * PCbar->getSize().y });
@@ -70,7 +70,7 @@ OptionsMenu::OptionsMenu() {
 	auto SK1input = std::make_unique<InputField>(
 		AppData::assets.getFont("Dameron"), 56u,
 		AppData::context.getContext("switchKey1")
-	);
+		);
 	SK1input->center(Window::getLocalBounds());
 	SK1input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK1input->getSize().x) / 2.f, SK1input->getPosition().y });
 	SK1input->move({ 0.f, +3.f * SK1input->getSize().y });
@@ -84,7 +84,7 @@ OptionsMenu::OptionsMenu() {
 	auto SK2input = std::make_unique<InputField>(
 		AppData::assets.getFont("Dameron"), 56u,
 		AppData::context.getContext("switchKey2")
-	);
+		);
 	SK2input->center(Window::getLocalBounds());
 	SK2input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK2input->getSize().x) / 2.f, SK2input->getPosition().y });
 	SK2input->move({ 0.f, +5.f * SK2input->getSize().y });
@@ -113,9 +113,7 @@ OptionsMenu::OptionsMenu() {
 void OptionsMenu::handleEvent(const sf::Event& event) {
 	Menu::handleEvent(event);
 
-	if (event.type == sf::Event::KeyPressed) {
-		if (event.key.code == sf::Keyboard::Escape) {
-			Menu::close();
-		}
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+		Menu::close();
 	}
 }
