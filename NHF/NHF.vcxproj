@@ -184,7 +184,6 @@
     <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp" />
     <ClCompile Include="Source\Utilities\Math\PolarVector.cpp" />
     <ClCompile Include="Source\Utilities\Math\Transitions.cpp" />
-    <ClCompile Include="Source\Utilities\STL\string.cpp" />
     <ClCompile Include="Source\Utilities\STL\vector.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
@@ -219,7 +218,6 @@
     <ClInclude Include="Source\Utilities\Math\PolarVector.hpp" />
     <ClInclude Include="Source\Utilities\Math\Transitionable.hpp" />
     <ClInclude Include="Source\Utilities\Math\Transitions.hpp" />
-    <ClInclude Include="Source\Utilities\STL\string.hpp" />
     <ClInclude Include="Source\Utilities\STL\vector.hpp" />
     <ClInclude Include="Source\Window.hpp" />
   </ItemGroup>

@@ -1,84 +1,62 @@
 #include "Transitions.hpp"
 
 #include "Transitionable.hpp"
-#include <cmath>
 
 
-template <typename T>
-static float square(T num) {
-	return static_cast<float>(num * num);
+void Transition::update() {
+	if (_isActive && !_isPaused) {
+		if (int elapsedTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime; elapsedTime >= _time) {
+			_object->transition(_distance - _distanceTraveled);
+			init();
+		}
+		else {
+			sf::Vector2f progression = _getProgression(elapsedTime);
+			_elapsedTime = elapsedTime;
+			_distanceTraveled += progression;
+			_object->transition(progression);
+		}
+	}
 }
 
-
 namespace Transitions {
-	void EaseInOut::update() {
-		if (_isActive && !_isPaused) {
-			int currentTime;
-			if ((currentTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime) >= _time) {
-				_object->transition(_distance - _currentDistance);
-				init();
+	EaseInOut::EaseInOut(Transitionable* object) :
+		Transition{ object, [this](int elapsedTime) -> sf::Vector2f {
+			sf::Vector2f progression;
+			if (elapsedTime <= getDurationTime() / 2) {
+				progression = {
+					_accX / 2.f * math::square(elapsedTime) - _accX / 2.f * math::square(getElapsedTime()),
+					_accY / 2.f * math::square(elapsedTime) - _accY / 2.f * math::square(getElapsedTime())
+				};
 			}
 			else {
-				sf::Vector2f currentDistance = { 0.f, 0.f };
-				if (currentTime < _time / 2) {
-					currentDistance = {
-						_accX / 2.f * square(currentTime) - _accX / 2.f * square(_currentTime),
-						_accY / 2.f * square(currentTime) - _accY / 2.f * square(_currentTime)
-					};
-				}
-				else {
-					currentDistance = {
-						_accX / 2.f * square(_time - _currentTime) - _accX / 2.f * square(_time - currentTime),
-						_accY / 2.f * square(_time - _currentTime) - _accY / 2.f * square(_time - currentTime)
-					};
-				}
-
-				_currentTime = currentTime;
-				_currentDistance += currentDistance;
-				if (fabs(_currentDistance.x) > fabs(_distance.x) || fabs(_currentDistance.y) > fabs(_distance.y)) {
-					_object->transition(_distance - _currentDistance);
-					init();
-				}
-				_object->transition(currentDistance);
+				progression = {
+					_accX / 2.f * math::square(getDurationTime() - getElapsedTime()) - _accX / 2.f * math::square(getDurationTime() - elapsedTime),
+					_accY / 2.f * math::square(getDurationTime() - getElapsedTime()) - _accY / 2.f * math::square(getDurationTime() - elapsedTime)
+				};
 			}
+			return progression;
 		}
-	}
+	} {}
 
-	void Ease::update() {
-		if (_isActive && !_isPaused) {
-			int currentTime;
-			if ((currentTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime) >= _time) {
-				_object->transition(_distance - _currentDistance);
-				init();
-			}
-			else {
-				float progress = _bezier.GetEasingProgress(static_cast<float>(currentTime) / static_cast<float>(_time)) - _lastProgress;
-				sf::Vector2f currentDistance = _distance * progress;
+		namespace Bezier {
+			Ease::Ease(Transitionable* object) :
+				Transition{ object, [this](int elapsedTime) -> sf::Vector2f {
+					float progressionF = _bezier.GetEasingProgress(static_cast<float>(elapsedTime) / static_cast<float>(getDurationTime())) - _lastProgress;
+					sf::Vector2f progression = getDurationDistance() * progressionF;
 
-				_currentTime = currentTime;
-				_currentDistance += currentDistance;
-				_lastProgress += progress;
-				_object->transition(currentDistance);
-			}
+					_lastProgress += progressionF;
+					return progression;
+				}
+			} {}
 		}
-	}
 
-	void Jump::update() {
-		if (_isActive && !_isPaused) {
-			int currentTime;
-			if ((currentTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime) >= _time) {
-				_object->transition(-1.f * _currentDistance);
-				init();
-			}
-			else {
-				float progress = _acc / 2.f * square(currentTime) + _velocity * static_cast<float>(currentTime) - _lastProgress;
-				sf::Vector2f currentDistance = _distance * progress;
+		Jump::Jump(Transitionable* object) :
+			Transition{ object, [this](int elapsedTime) -> sf::Vector2f {
+				float progressionF = _acc / 2.f * math::square(elapsedTime) + _velocity * static_cast<float>(elapsedTime) - _lastProgress;
+				sf::Vector2f progression = sf::Vector2f{ _direction } *progressionF;
 
-				_currentTime = currentTime;
-				_currentDistance += currentDistance;
-				_lastProgress += progress;
-				_object->transition(currentDistance);
+				_lastProgress += progressionF;
+				return progression;
 			}
-		}
-	}
+		} {}
 }

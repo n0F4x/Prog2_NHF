@@ -111,9 +111,6 @@
     <ClCompile Include="Source\Utilities\STL\vector.cpp">
       <Filter>Source Files\Utilities\STL</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utilities\STL\string.cpp">
-      <Filter>Source Files\Utilities\STL</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Button.cpp">
       <Filter>Source Files\GUI\Widgets</Filter>
     </ClCompile>
@@ -202,9 +199,6 @@
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Angle.hpp">
       <Filter>Header Files\Utilities\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\STL\string.hpp">
-      <Filter>Header Files\Utilities\STL</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\STL\vector.hpp">
       <Filter>Header Files\Utilities\STL</Filter>

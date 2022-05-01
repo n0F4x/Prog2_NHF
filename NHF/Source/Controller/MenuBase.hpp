@@ -1,7 +1,7 @@
 #pragma once
 
+#include <string>
 #include <SFML/Graphics.hpp>
-#include "../Utilities/STL/string.hpp"
 
 class Controller;
 
@@ -13,10 +13,10 @@ private:
 	bool __isClosing__ = false;
 	bool __isOpening__ = false;
 	bool __openLast__ = false;
-	util::string __next__;
+	std::string __next__;
 
 protected:
-	void open(const util::string& next) { __isOpening__ = true; __next__ = next; }
+	void open(const std::string& next) { __isOpening__ = true; __next__ = next; }
 	void openLast() { __isOpening__ = true; __openLast__ = true; }
 	void close() { __isClosing__ = true; }
 	void exit() { __isExiting__ = true; }

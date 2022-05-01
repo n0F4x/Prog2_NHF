@@ -4,7 +4,7 @@
 
 
 class Text : public Widget {
-protected:
+private:
 	sf::Text _text;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_text); }

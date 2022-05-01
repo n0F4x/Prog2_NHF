@@ -19,7 +19,7 @@ class Emphasis : public sf::RectangleShape, public Transitionable {
 template<typename T>
 class Bar : public Widget {
 private:
-	Transitions::Ease _transition{ &_emphasis };
+	Transitions::Bezier::Ease _transition{ &_emphasis };
 
 	std::vector<T> _contents;
 	std::vector<Text> _texts;

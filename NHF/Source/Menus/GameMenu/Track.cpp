@@ -75,10 +75,10 @@ void Track::update() {
 
 		if (_switchingLeft != _switchingRight) {
 			if (_switchingLeft) {
-				_transition.start({ -1 * Platform::width, 0.f }, 200);
+				_transition.start({ -1 * Platform::width, 0.f }, 1000);
 			}
 			if (_switchingRight) {
-				_transition.start({ Platform::width, 0.f }, 200);
+				_transition.start({ Platform::width, 0.f }, 1000);
 			}
 		}
 

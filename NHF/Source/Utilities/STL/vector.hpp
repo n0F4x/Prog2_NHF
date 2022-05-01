@@ -39,9 +39,9 @@ namespace util {
 		// Iterator class for vector
 		class iterator {
 		private:
+			T* _vector;
 			std::size_t _index = 0;
 			std::size_t _size;
-			T* _vector;
 
 		public:
 			explicit iterator(T* vector, std::size_t index, std::size_t size) : _vector{ vector }, _index{ index }, _size{ size } {}

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Controller/MenuNode.hpp"
-#include "Utilities/STL/string.hpp"
 #include "Menus/InitMenu.hpp"
 
 class App;
@@ -14,7 +13,7 @@ private:
 	MenuNode* _current = &_root;
 	MenuNode* _next = _current;
 
-	void open(const util::string& name);
+	void open(const std::string& name);
 	void openLast();
 	void close();
 

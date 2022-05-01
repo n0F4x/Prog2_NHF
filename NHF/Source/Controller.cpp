@@ -44,7 +44,7 @@ bool Controller::isActive() {
 	return true;
 }
 
-void Controller::open(const util::string& name) {
+void Controller::open(const std::string& name) {
 	_next = _current->findChild(name);
 	_current->get()->__isOpening__ = false;
 }

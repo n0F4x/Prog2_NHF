@@ -9,12 +9,12 @@ class MenuItem : public sf::Drawable {
 private:
 	bool _isPaused = false;
 
-	std::vector<Transitions::Transition*> _transitions;
+	std::vector<Transition*> _transitions;
 
 protected:
 	bool isPaused() const { return _isPaused; }
 
-	void addTransition(Transitions::Transition* transition) { _transitions.push_back(transition); }
+	void addTransition(Transition* transition) { _transitions.push_back(transition); }
 
 public:
 	virtual void handleEvent(const sf::Event& event) { /*not pure*/ }

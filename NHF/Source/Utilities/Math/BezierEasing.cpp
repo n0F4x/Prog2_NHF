@@ -2,13 +2,13 @@
 
 #include <math.h>
 
-#define NEWTON_ITERATIONS 4
-#define NEWTON_MIN_SLOPE 0.001f
-#define SUBDIVISION_PRECISION 0.0000001f
-#define SUBDIVISION_MAX_ITERATIONS 10
+constexpr int NEWTON_ITERATIONS = 4;
+constexpr float NEWTON_MIN_SLOPE = 0.001f;
+constexpr float SUBDIVISION_PRECISION = 0.0000001f;
+constexpr int SUBDIVISION_MAX_ITERATIONS = 10;
 
-#define SAMPLES_SIZE 11
-#define SAMPLES_STEP (1.0f / (SAMPLES_SIZE - 1))
+constexpr int SAMPLES_SIZE = 11;
+constexpr float SAMPLES_STEP = 1.f / (SAMPLES_SIZE - 1);
 
 
 BezierEasing::BezierEasing(const sf::Vector2f& p1, const sf::Vector2f& p2) : _p1{ p1 }, _p2{ p2 } {
@@ -83,7 +83,7 @@ float BezierEasing::BinarySubdivide(float time, float interval_start, float next
 			interval_start = current_t;
 		}
 		i++;
-	} while (abs(current_x) > SUBDIVISION_PRECISION && i < SUBDIVISION_MAX_ITERATIONS);
+	} while (fabs(current_x) > SUBDIVISION_PRECISION && i < SUBDIVISION_MAX_ITERATIONS);
 
 	return current_t;
 }
@@ -102,7 +102,7 @@ float BezierEasing::NewtonRaphsonIterate(float time, float guessed_t, float p1_c
 }
 
 float BezierEasing::GetXForTime(float time) {
-	float interval_start = 0.0f;
+	float interval_start = 0.f;
 	int curr_sample = 1;
 
 	for (; curr_sample < SAMPLES_SIZE && _sample_values[curr_sample] <= time; ++curr_sample) {
@@ -120,7 +120,7 @@ float BezierEasing::GetXForTime(float time) {
 	if (initial_slope >= NEWTON_MIN_SLOPE) {
 		return NewtonRaphsonIterate(time, guess_for_x, _p1.x, _p2.x);
 	}
-	else if (initial_slope == 0.0f) {
+	else if (initial_slope == 0.f) {
 		return guess_for_x;
 	}
 	else {
