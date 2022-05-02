@@ -7,7 +7,7 @@ class Text : public Widget {
 private:
 	sf::Text _text;
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_text); }
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_text); }
 
 public:
 	Text() = default;

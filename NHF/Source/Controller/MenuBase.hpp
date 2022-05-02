@@ -16,7 +16,7 @@ private:
 	std::string __next__;
 
 protected:
-	void open(const std::string& next) { __isOpening__ = true; __next__ = next; }
+	void open(const std::string_view& next) { __isOpening__ = true; __next__ = next; }
 	void openLast() { __isOpening__ = true; __openLast__ = true; }
 	void close() { __isClosing__ = true; }
 	void exit() { __isExiting__ = true; }
