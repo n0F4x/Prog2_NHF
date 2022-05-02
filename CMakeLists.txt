@@ -53,7 +53,6 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/Math/BezierEasing.cpp
     ./NHF/Source/Utilities/Math/PolarVector.cpp
     ./NHF/Source/Utilities/Math/Transitions.cpp
-    ./NHF/Source/Utilities/STL/string.cpp
     ./NHF/Source/Utilities/STL/vector.cpp
     ./NHF/Source/Utilities/Math.cpp
     ./NHF/Source/App.cpp
