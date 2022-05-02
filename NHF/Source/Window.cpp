@@ -1,19 +1,11 @@
 #include "Window.hpp"
 
 
-sf::RenderWindow Window::_window;
-std::function<sf::VideoMode()> Window::_getVideoMode = sf::VideoMode::getDesktopMode;
-
-
-Window::Window() {
-	_settings.depthBits = 24;
-	_settings.stencilBits = 8;
-	_settings.sRgbCapable = true;
-}
+bool Window::_isOpen = false;
 
 
 sf::Vector2f Window::getSize() {
-	return sf::Vector2f{ sf::Vector2u{_getVideoMode().width, _getVideoMode().height} };
+	return sf::Vector2f{ 1920.f, 1080.f };
 }
 
 sf::FloatRect Window::getLocalBounds() {
@@ -21,32 +13,19 @@ sf::FloatRect Window::getLocalBounds() {
 }
 
 
-void Window::display() { _window.display(); }
+void Window::display() { /*Removed visuals*/ }
 
-void Window::clear() { _window.clear(); }
+void Window::clear() { /*Removed visuals*/ }
 
-void Window::draw(const sf::Drawable& drawable, const sf::RenderStates& states) {
-	_window.draw(drawable, states);
+void Window::draw(const sf::Drawable&, const sf::RenderStates&) { /*Removed visuals*/ }
+
+
+void Window::open() const { _isOpen = true; /*Removed visuals*/ }
+
+void Window::close() const { _isOpen = false; /*Removed visuals*/ }
+
+bool Window::isOpen() const {
+	return _isOpen;
 }
 
-
-void Window::open() const {
-	_window.create(_getVideoMode(), _title, _style, _settings);
-
-	_window.setVerticalSyncEnabled(true);
-	_window.setKeyRepeatEnabled(false);
-}
-
-void Window::close() const { _window.close(); }
-
-bool Window::isOpen() {
-	while (static_cast<float>(_clock.getElapsedTime().asMilliseconds()) < 1000.f / _FPS)
-		;
-	_clock.restart();
-	return _window.isOpen();
-}
-
-bool Window::pollEvent(sf::Event& event) const {
-	return _window.pollEvent(event);
-}
-
+bool Window::pollEvent(const sf::Event&) const { return false;/*Removed visuals*/ }

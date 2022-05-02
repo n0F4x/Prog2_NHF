@@ -13,258 +13,162 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\AppData">
-      <UniqueIdentifier>{ee628e85-fbb8-41b3-bbd6-2bd3fac2c242}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GUI">
-      <UniqueIdentifier>{7eccf3c2-840f-4076-aab2-131345caeee0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\AppData">
-      <UniqueIdentifier>{efd42003-1ece-4126-8f57-ae063cecc1e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GUI">
-      <UniqueIdentifier>{6b2de9df-a97e-4a33-90e4-e01abc539e30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GUI\Widgets">
-      <UniqueIdentifier>{1994adc5-1e19-4876-948a-9331f89a5f8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GUI\Widgets">
-      <UniqueIdentifier>{4f7e01e1-5a45-45b1-8079-1fa52342c0b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menus">
-      <UniqueIdentifier>{ae47fb71-13e5-444b-b48b-aa6de0bbb246}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menus\GameMenu">
-      <UniqueIdentifier>{696ed31f-e113-41db-ad13-7c88580c6a64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus">
-      <UniqueIdentifier>{41755612-bfa3-4124-9732-74430f363c3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menus\GameMenu">
-      <UniqueIdentifier>{b52420a0-e8d0-44c4-ace1-475861640b9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utilities">
-      <UniqueIdentifier>{256e32ce-35ac-4a47-ad0e-b4cff292eb2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utilities">
-      <UniqueIdentifier>{246168bb-efa1-461a-a838-403766cca2c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utilities\Math">
-      <UniqueIdentifier>{cc43506e-212d-42f5-afa1-80ba84fe101a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utilities\Math">
-      <UniqueIdentifier>{f2b12a58-0eaf-4259-b2a0-a5b8d734e463}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utilities\STL">
-      <UniqueIdentifier>{823c695e-f280-4f82-8ffb-4c47487c2355}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utilities\STL">
-      <UniqueIdentifier>{8e39e189-bea2-45c8-8500-fcde7396fbd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utilities\SmartPtr">
-      <UniqueIdentifier>{f08d26df-ebfa-4926-95a8-8c4ad2f9aee7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utilities\SmartPtr">
-      <UniqueIdentifier>{d5fa8ab5-c6c7-407b-b8d9-32e711faf688}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Controller">
-      <UniqueIdentifier>{93072223-2b92-4d71-8983-ce5235da0e80}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{c64035ce-4750-4131-b5b2-6016a253e099}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\App.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AppData\AssetManager.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Theme.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\Menu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\Platform.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\PlatformContainer.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\PreCalculator.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\Track.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utilities\Math\PolarVector.cpp">
-      <Filter>Source Files\Utilities\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utilities\Math\Angle.cpp">
-      <Filter>Source Files\Utilities\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utilities\STL\vector.cpp">
-      <Filter>Source Files\Utilities\STL</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Button.cpp">
-      <Filter>Source Files\GUI\Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Text.cpp">
-      <Filter>Source Files\GUI\Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Widget.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\Bar.cpp">
-      <Filter>Source Files\GUI\Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\OptionsMenu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\InitMenu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Menus\MainMenu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utilities\Math\Transitions.cpp">
-      <Filter>Source Files\Utilities\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp">
-      <Filter>Source Files\Utilities\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AppData\ContextManager.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Angle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\AppData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GUI\Widgets\InputField.cpp">
-      <Filter>Source Files\GUI\Widgets</Filter>
+    <ClCompile Include="Source\BezierEasing.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utilities\Math.cpp">
-      <Filter>Source Files\Utilities</Filter>
+    <ClCompile Include="Source\Controller.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Controller\MenuBase.cpp">
-      <Filter>Source Files\Controller</Filter>
+    <ClCompile Include="Source\GameMenu.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Controller\MenuNode.cpp">
-      <Filter>Source Files\Controller</Filter>
+    <ClCompile Include="Source\InitMenu.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Menus\GameMenu\Player.cpp">
-      <Filter>Source Files\Menus\GameMenu</Filter>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MenuNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\OptionsMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlatformContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PolarVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PreCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Track.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transitions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\App.hpp">
+    <ClInclude Include="Source\PreCalculator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AppData\AssetManager.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Theme.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\MenuItem.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\Platform.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\PlatformContainer.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\PreCalculator.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\Track.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\Math\PolarVector.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\Math\Angle.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\STL\vector.hpp">
-      <Filter>Header Files\Utilities\STL</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Button.hpp">
-      <Filter>Header Files\GUI\Widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Text.hpp">
-      <Filter>Header Files\GUI\Widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Widget.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\Bar.hpp">
-      <Filter>Header Files\GUI\Widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\MainMenu.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\OptionsMenu.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Menus\InitMenu.hpp">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\Math\Transitions.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\Math\Transitionable.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\Math\BezierEasing.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AppData\ContextManager.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AppData.hpp">
+    <ClInclude Include="Source\Track.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Controller.hpp">
+    <ClInclude Include="Source\Transitionable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transitions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utilities\Math.hpp">
-      <Filter>Header Files\Utilities</Filter>
+    <ClInclude Include="Source\Angle.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GUI\Widgets\InputField.hpp">
-      <Filter>Header Files\GUI\Widgets</Filter>
+    <ClInclude Include="Source\App.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Menus\Menu.hpp">
-      <Filter>Header Files\Menus</Filter>
+    <ClInclude Include="Source\AppData.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Controller\MenuNode.hpp">
-      <Filter>Header Files\Controller</Filter>
+    <ClInclude Include="Source\BezierEasing.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Controller\MenuBase.hpp">
-      <Filter>Header Files\Controller</Filter>
+    <ClInclude Include="Source\Controller.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Menus\GameMenu\Player.hpp">
-      <Filter>Header Files\Menus\GameMenu</Filter>
+    <ClInclude Include="Source\GameMenu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InitMenu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MainMenu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MenuBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MenuItem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MenuNode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\OptionsMenu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlatformContainer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PolarVector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SFMLVector2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SFMLRect.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SFMLDrawable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SFMLEvent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SFMLKeyboard.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SFMLMouse.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

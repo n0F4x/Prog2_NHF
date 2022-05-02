@@ -5,23 +5,20 @@ void App::init() {
 	_window.open();
 	_controller.render();
 
-	sf::Clock clock;
 	_controller.init();
-	while (clock.getElapsedTime().asMilliseconds() < 2000);
 }
 
 void App::run() {
 	init();
+}
 
-	sf::Event event;
-	while (_window.isOpen() && _controller.isActive()) {
-		while (_window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				_window.close();
-			}
-			_controller.handleEvent(event);
-		}
-		_controller.update();
-		_controller.render();
+bool App::isRunning() { return _window.isOpen() && _controller.isActive(); }
+
+void App::handleEvent(const sf::Event& event) const {
+	if (event.type == sf::Event::Closed) {
+		_window.close();
 	}
+	_controller.handleEvent(event);
+	_controller.update();
+	_controller.render();
 }

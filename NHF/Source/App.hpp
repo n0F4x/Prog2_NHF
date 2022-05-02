@@ -15,4 +15,6 @@ private:
 
 public:
 	void run();
+	bool isRunning();
+	void handleEvent(const sf::Event& event) const;
 };

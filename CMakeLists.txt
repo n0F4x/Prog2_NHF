@@ -16,54 +16,34 @@ add_compile_options(
 
 # include
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/AppData
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Controller
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/GUI
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/GUI/Widgets
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Menus
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Menus/GameMenu
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities/Math
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities/STL
+    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source
 )
 
 # Create target and set properties.
 set(SOURCE_FILES
-    ./NHF/Source/AppData/AssetManager.cpp
-    ./NHF/Source/AppData/ContextManager.cpp
-    ./NHF/Source/Controller/MenuBase.cpp
-    ./NHF/Source/Controller/MenuNode.cpp
-    ./NHF/Source/GUI/Widgets/Bar.cpp
-    ./NHF/Source/GUI/Widgets/Button.cpp
-    ./NHF/Source/GUI/Widgets/InputField.cpp
-    ./NHF/Source/GUI/Widgets/Text.cpp
-    ./NHF/Source/GUI/Theme.cpp
-    ./NHF/Source/GUI/Widget.cpp
-    ./NHF/Source/Menus/GameMenu/Platform.cpp
-    ./NHF/Source/Menus/GameMenu/PlatformContainer.cpp
-    ./NHF/Source/Menus/GameMenu/Player.cpp
-    ./NHF/Source/Menus/GameMenu/PreCalculator.cpp
-    ./NHF/Source/Menus/GameMenu/Track.cpp
-    ./NHF/Source/Menus/GameMenu.cpp
-    ./NHF/Source/Menus/InitMenu.cpp
-    ./NHF/Source/Menus/MainMenu.cpp
-    ./NHF/Source/Menus/Menu.cpp
-    ./NHF/Source/Menus/OptionsMenu.cpp
-    ./NHF/Source/Utilities/Math/Angle.cpp
-    ./NHF/Source/Utilities/Math/BezierEasing.cpp
-    ./NHF/Source/Utilities/Math/PolarVector.cpp
-    ./NHF/Source/Utilities/Math/Transitions.cpp
-    ./NHF/Source/Utilities/STL/vector.cpp
-    ./NHF/Source/Utilities/Math.cpp
+    ./NHF/Source/Angle.cpp
     ./NHF/Source/App.cpp
     ./NHF/Source/AppData.cpp
+    ./NHF/Source/BezierEasing.cpp
     ./NHF/Source/Controller.cpp
-    ./NHF/Source/main.cpp  
+    ./NHF/Source/GameMenu.cpp
+    ./NHF/Source/InitMenu.cpp
+    ./NHF/Source/main.cpp
+    ./NHF/Source/MainMenu.cpp
+    ./NHF/Source/Math.cpp
+    ./NHF/Source/Menu.cpp
+    ./NHF/Source/MenuNode.cpp
+    ./NHF/Source/OptionsMenu.cpp
+    ./NHF/Source/Platform.cpp
+    ./NHF/Source/PlatformContainer.cpp
+    ./NHF/Source/Player.cpp
+    ./NHF/Source/PolarVector.cpp
+    ./NHF/Source/PreCalculator.cpp
+    ./NHF/Source/Track.cpp
+    ./NHF/Source/Transitions.cpp
     ./NHF/Source/Window.cpp
 )
 
-find_package(SFML 2 COMPONENTS graphics audio REQUIRED)
-
 add_executable( NHF ${SOURCE_FILES} )
 
-target_link_libraries(NHF sfml-graphics sfml-audio)
+target_link_libraries(NHF)

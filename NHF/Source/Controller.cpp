@@ -1,8 +1,8 @@
 #include "Controller.hpp"
 
-#include "Menus/MainMenu.hpp"
-#include "Menus/GameMenu.hpp"
-#include "Menus/OptionsMenu.hpp"
+#include "MainMenu.hpp"
+#include "GameMenu.hpp"
+#include "OptionsMenu.hpp"
 
 
 void Controller::init() {

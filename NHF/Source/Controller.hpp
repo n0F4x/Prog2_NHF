@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Controller/MenuNode.hpp"
-#include "Menus/InitMenu.hpp"
+#include "MenuNode.hpp"
+#include "InitMenu.hpp"
 
 class App;
 
