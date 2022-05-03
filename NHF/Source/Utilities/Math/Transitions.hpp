@@ -3,11 +3,9 @@
 #include <functional>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include "Transitionable.hpp"
 #include "BezierEasing.hpp"
 #include "../Math.hpp"
-
-
-class Transitionable;
 
 
 class Transition {
@@ -64,16 +62,15 @@ namespace Transitions {
 		float _accX = 0;	// max X acceleration during rotation
 		float _accY = 0;	// max Y acceleration during rotation
 
-		float getAccX(float distanceX, int time) const { return distanceX / math::square(time / 2); }
-		float getAccY(float distanceY, int time) const { return distanceY / math::square(time / 2); }
+		float calcAcc(float distance, int time) const { return distance / static_cast<float>(math::square(time / 2)); }
 
 	public:
 		explicit EaseInOut(Transitionable* object);
 
 		void start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
-				_accX = getAccX(distance.x, time);
-				_accY = getAccY(distance.y, time);
+				_accX = calcAcc(distance.x, time);
+				_accY = calcAcc(distance.y, time);
 				Transition::start(distance, time);
 			}
 		}
@@ -100,7 +97,7 @@ namespace Transitions {
 	class Jump : public Transition {
 	private:
 		float _acc = -9.81f / (1000.f * 1000.f);
-		float _velocity;
+		float _velocity = 0.f;
 		sf::Vector2i _direction = { 0, 0 };
 		float _lastProgress = 0.f;
 
@@ -110,7 +107,7 @@ namespace Transitions {
 		void start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
 				_lastProgress = 0.f;
-				_velocity = -1 * (_acc / 2.f * math::square(time)) / static_cast<float>(time);
+				_velocity = -1 * (_acc / 2.f * static_cast<float>(math::square(time))) / static_cast<float>(time);
 				if (distance.x != 0) {
 					_direction.x = distance.x > 0 ? _direction.x = 1 : _direction.x = -1;
 				}

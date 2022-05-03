@@ -30,12 +30,11 @@ public:
 	static void setOrigin(const sf::Vector2f& origin);
 	static void setScale(int speed);
 
-	Platform(const PreCalculator& preCalc, float rotation = 90_deg - width / 2);
+	Platform(const PreCalculator& preCalc, float rotation = 90_deg - width / 2.f);
 
 	float getInnerRadius() const { return _innerRadius; }
 	float getOuterRadius() const { return _outerRadius; }
 	float getRotation() const { return _rotation; }
-	float getWidth() const { return width; }
 
 	bool isInside(const sf::Vector2f& point) const;
 

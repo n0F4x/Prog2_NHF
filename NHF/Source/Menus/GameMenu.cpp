@@ -12,7 +12,7 @@ void GameMenu::handleEvent(const sf::Event& event) {
 
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Escape) {
-			Menu::close();
+			close();
 		}
 
 		if (event.key.code == sf::Keyboard::Space) {

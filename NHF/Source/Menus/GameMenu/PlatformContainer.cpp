@@ -3,11 +3,16 @@
 #include "../../Window.hpp"
 
 
+int PlatformContainer::generateRandom(int from, int to) {
+	return std::uniform_int_distribution{ from, to }(_randomEngine);
+}
+
 void PlatformContainer::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	for (auto platform = _platforms.rbegin(); platform != _platforms.rend(); platform++) {
 		target.draw(*platform);
 	}
 }
+
 
 PlatformContainer::PlatformContainer(const PreCalculator& preCalc) : _preCalc{ preCalc } {
 	Platform::setOrigin(Window::getSize() / 2.f);
@@ -34,8 +39,9 @@ void PlatformContainer::update() {
 	}
 
 	if (_counter >= _scaleSpeed) {
-		_platforms.emplace_front(_preCalc);
-		_platforms.front().rotate(static_cast<float>(std::uniform_int_distribution{ 0, 360 / static_cast<int>(Platform::width * 180.f / math::PI) }(_randomEngine)) * Platform::width + _rotation);
+		int random_number = generateRandom(0, 360 / static_cast<int>(math::convertToDeg(Platform::width)));
+		float initialRotation = static_cast<float>(random_number) * Platform::width + _rotation + 90_deg - Platform::width / 2.f;
+		_platforms.emplace_front(_preCalc, initialRotation);
 		_counter = 0;
 	}
 }

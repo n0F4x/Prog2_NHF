@@ -16,7 +16,9 @@ private:
 
 	float _rotation = 0_deg;
 
+	// Random generation
 	std::mt19937 _randomEngine{ std::random_device{}() };
+	int generateRandom(int from, int to);
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

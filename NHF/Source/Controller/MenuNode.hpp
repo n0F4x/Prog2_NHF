@@ -15,11 +15,13 @@ private:
 public:
 	MenuNode(std::unique_ptr<MenuBase> item, MenuNode* parent = nullptr) : _item{ std::move(item) }, _parent{ parent } {}
 
-	void addChild(const std::string& name, std::unique_ptr<MenuBase> child) { _children[name] = std::make_unique<MenuNode>(std::move(child), this); }
-	
+	void addChild(const std::string& name, std::unique_ptr<MenuBase> child) {
+		_children.try_emplace(name, std::make_unique<MenuNode>(std::move(child), this));
+	}
+
 	MenuBase* get() const { return _item.get(); }
 	MenuNode* getParent() const { return _parent; }
-	MenuNode* findChild(const std::string& name) { 
+	MenuNode* findChild(const std::string& name) {
 		if (auto it = _children.find(name); it != _children.end()) {
 			return it->second.get();
 		}

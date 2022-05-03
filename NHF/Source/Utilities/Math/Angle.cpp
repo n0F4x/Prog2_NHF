@@ -16,3 +16,9 @@ float operator"" _deg(unsigned long long degree) {
 float operator"" _rad(unsigned long long radian) {
 	return static_cast<float>(radian);
 }
+
+namespace math {
+	float convertToDeg(float radian) {
+		return radian * 180.f / math::PI;
+	}
+}

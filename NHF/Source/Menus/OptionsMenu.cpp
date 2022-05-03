@@ -12,12 +12,15 @@ OptionsMenu::OptionsMenu() {
 	Text tmp{ "Tmp", AppData::assets.getFont("Dameron"), 56u };
 
 	// Construct "Back" button
-	auto backButton = std::make_unique<Button>("Back", AppData::assets.getFont("Dameron"), 76u, [this]() {Menu::close(); });
+	auto backButton = std::make_unique<Button>("Back", AppData::assets.getFont("Dameron"), 76u, [this]() {close(); });
 	backButton->setPosition({ Window::getSize().x / 40.f, Window::getSize().x / 40.f });
 
 	// Construct "Options" text
 	auto title = std::make_unique<Text>("OPTIONS", AppData::assets.getFont("The Wireframe"), 132u);
-	title->setPosition({ Window::getSize().x / 2.f - title->getSize().x / 2.f, (Window::getSize().y - 11.f * tmp.getSize().y * 2.f) / 4.f - title->getSize().y / 2.f });
+	title->setPosition({
+		Window::getSize().x / 2.f - title->getSize().x / 2.f,
+		(Window::getSize().y - 11.f * tmp.getSize().y * 2.f) / 4.f - title->getSize().y / 2.f
+		});
 	title->setFillColor(theme::Secondary);
 
 	// Construct "Lane Count" bar and label
@@ -28,7 +31,10 @@ OptionsMenu::OptionsMenu() {
 		AppData::context.getContext("platformCount")
 		);
 	LCbar->center(Window::getLocalBounds());
-	LCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - LCbar->getSize().x) / 2.f, LCbar->getPosition().y });
+	LCbar->setPosition({
+		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - LCbar->getSize().x) / 2.f,
+		LCbar->getPosition().y 
+		});
 	LCbar->move({ 0.f, -3 * LCbar->getSize().y });
 	auto LClabel = std::make_unique<Text>("Lane Count:", AppData::assets.getFont("Dameron"), 56u);
 	LClabel->center(Window::getLocalBounds());
@@ -42,7 +48,10 @@ OptionsMenu::OptionsMenu() {
 		AppData::context.getContext("jumpKey")
 		);
 	JKinput->center(Window::getLocalBounds());
-	JKinput->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - JKinput->getSize().x) / 2.f, JKinput->getPosition().y });
+	JKinput->setPosition({ 
+		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - JKinput->getSize().x) / 2.f,
+		JKinput->getPosition().y 
+		});
 	JKinput->move({ 0.f, -1.f * JKinput->getSize().y });
 	auto JKlabel = std::make_unique<Text>("Jump Key:", AppData::assets.getFont("Dameron"), 56u);
 	JKlabel->center(Window::getLocalBounds());
@@ -58,7 +67,10 @@ OptionsMenu::OptionsMenu() {
 		AppData::context.getContext("platformControl")
 		);
 	PCbar->center(Window::getLocalBounds());
-	PCbar->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - PCbar->getSize().x) / 2.f, PCbar->getPosition().y });
+	PCbar->setPosition({
+		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - PCbar->getSize().x) / 2.f,
+		PCbar->getPosition().y
+		});
 	PCbar->move({ 0.f, +1.f * PCbar->getSize().y });
 	auto PClabel = std::make_unique<Text>("Control Mode:", AppData::assets.getFont("Dameron"), 56u);
 	PClabel->center(Window::getLocalBounds());
@@ -72,7 +84,10 @@ OptionsMenu::OptionsMenu() {
 		AppData::context.getContext("switchKey1")
 		);
 	SK1input->center(Window::getLocalBounds());
-	SK1input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK1input->getSize().x) / 2.f, SK1input->getPosition().y });
+	SK1input->setPosition({ 
+		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK1input->getSize().x) / 2.f,
+		SK1input->getPosition().y
+		});
 	SK1input->move({ 0.f, +3.f * SK1input->getSize().y });
 	auto SK1label = std::make_unique<Text>("Switch Key 1:", AppData::assets.getFont("Dameron"), 56u);
 	SK1label->center(Window::getLocalBounds());
@@ -86,7 +101,10 @@ OptionsMenu::OptionsMenu() {
 		AppData::context.getContext("switchKey2")
 		);
 	SK2input->center(Window::getLocalBounds());
-	SK2input->setPosition({ Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK2input->getSize().x) / 2.f, SK2input->getPosition().y });
+	SK2input->setPosition({
+		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK2input->getSize().x) / 2.f,
+		SK2input->getPosition().y
+		});
 	SK2input->move({ 0.f, +5.f * SK2input->getSize().y });
 	auto SK2label = std::make_unique<Text>("Switch Key 2:", AppData::assets.getFont("Dameron"), 56u);
 	SK2label->center(Window::getLocalBounds());
@@ -114,6 +132,6 @@ void OptionsMenu::handleEvent(const sf::Event& event) {
 	Menu::handleEvent(event);
 
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-		Menu::close();
+		close();
 	}
 }

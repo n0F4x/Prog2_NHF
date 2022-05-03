@@ -10,7 +10,7 @@ namespace util {
 		class iterator;
 
 	private:
-		T* _vector = nullptr;
+		T* _ptr = nullptr;
 		std::size_t _size = 0;
 
 	public:
@@ -20,20 +20,20 @@ namespace util {
 
 		template <typename... Args>
 		void emplace_back(Args &&...args) {
-			auto* tmp = new T[_size + 1];
+			auto* tmp = new T[_size + 1u];
 			for (std::size_t i = 0; i < _size; i++) {
-				tmp[i] = std::move(_vector[i]);
+				tmp[i] = std::move(_ptr[i]);
 			}
 			tmp[_size++] = std::move(T{ std::forward<Args>(args)... });
-			delete[] _vector;
-			_vector = tmp;
+			delete[] _ptr;
+			_ptr = tmp;
 		}
 
-		iterator begin() { return iterator(_vector, 0, _size); }
-		iterator end() { return iterator(_vector, _size, _size); }
+		iterator begin() { return iterator(_ptr, 0, _size); }
+		iterator end() { return iterator(_ptr, _size, _size); }
 
 		~vector() {
-			delete[] _vector;
+			delete[] _ptr;
 		}
 
 		// Iterator class for vector

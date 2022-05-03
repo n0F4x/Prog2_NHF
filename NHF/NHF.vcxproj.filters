@@ -49,29 +49,20 @@
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{246168bb-efa1-461a-a838-403766cca2c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Utilities\Math">
-      <UniqueIdentifier>{cc43506e-212d-42f5-afa1-80ba84fe101a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Utilities\Math">
       <UniqueIdentifier>{f2b12a58-0eaf-4259-b2a0-a5b8d734e463}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Utilities\STL">
       <UniqueIdentifier>{823c695e-f280-4f82-8ffb-4c47487c2355}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Utilities\STL">
-      <UniqueIdentifier>{8e39e189-bea2-45c8-8500-fcde7396fbd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utilities\SmartPtr">
-      <UniqueIdentifier>{f08d26df-ebfa-4926-95a8-8c4ad2f9aee7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utilities\SmartPtr">
-      <UniqueIdentifier>{d5fa8ab5-c6c7-407b-b8d9-32e711faf688}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Controller">
       <UniqueIdentifier>{93072223-2b92-4d71-8983-ce5235da0e80}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Controller">
       <UniqueIdentifier>{c64035ce-4750-4131-b5b2-6016a253e099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\STL\Math">
+      <UniqueIdentifier>{cc43506e-212d-42f5-afa1-80ba84fe101a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,17 +99,11 @@
     <ClCompile Include="Source\Utilities\Math\Angle.cpp">
       <Filter>Source Files\Utilities\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utilities\STL\vector.cpp">
-      <Filter>Source Files\Utilities\STL</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Button.cpp">
       <Filter>Source Files\GUI\Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Text.cpp">
       <Filter>Source Files\GUI\Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI\Widget.cpp">
-      <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\Bar.cpp">
       <Filter>Source Files\GUI\Widgets</Filter>
@@ -159,12 +144,6 @@
     <ClCompile Include="Source\Utilities\Math.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Controller\MenuBase.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Controller\MenuNode.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Menus\GameMenu\Player.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
     </ClCompile>
@@ -195,10 +174,10 @@
       <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\PolarVector.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
+      <Filter>Header Files\Utilities\STL\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Angle.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
+      <Filter>Header Files\Utilities\STL\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\STL\vector.hpp">
       <Filter>Header Files\Utilities\STL</Filter>
@@ -228,13 +207,13 @@
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Transitions.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
+      <Filter>Header Files\Utilities\STL\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Transitionable.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
+      <Filter>Header Files\Utilities\STL\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\BezierEasing.hpp">
-      <Filter>Header Files\Utilities\Math</Filter>
+      <Filter>Header Files\Utilities\STL\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\AppData\ContextManager.hpp">
       <Filter>Header Files\AppData</Filter>

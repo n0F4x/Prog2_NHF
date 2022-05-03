@@ -31,14 +31,11 @@ include_directories(
 set(SOURCE_FILES
     ./NHF/Source/AppData/AssetManager.cpp
     ./NHF/Source/AppData/ContextManager.cpp
-    ./NHF/Source/Controller/MenuBase.cpp
-    ./NHF/Source/Controller/MenuNode.cpp
     ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
     ./NHF/Source/GUI/Widgets/InputField.cpp
     ./NHF/Source/GUI/Widgets/Text.cpp
     ./NHF/Source/GUI/Theme.cpp
-    ./NHF/Source/GUI/Widget.cpp
     ./NHF/Source/Menus/GameMenu/Platform.cpp
     ./NHF/Source/Menus/GameMenu/PlatformContainer.cpp
     ./NHF/Source/Menus/GameMenu/Player.cpp
@@ -53,7 +50,6 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/Math/BezierEasing.cpp
     ./NHF/Source/Utilities/Math/PolarVector.cpp
     ./NHF/Source/Utilities/Math/Transitions.cpp
-    ./NHF/Source/Utilities/STL/vector.cpp
     ./NHF/Source/Utilities/Math.cpp
     ./NHF/Source/App.cpp
     ./NHF/Source/AppData.cpp

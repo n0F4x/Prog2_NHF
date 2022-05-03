@@ -7,4 +7,3 @@ class InitMenu : public Menu {
 public:
 	InitMenu();
 };
-

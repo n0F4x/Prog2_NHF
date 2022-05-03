@@ -31,6 +31,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -38,12 +39,14 @@
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -51,6 +54,7 @@
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -160,10 +164,7 @@
     <ClCompile Include="Source\AppData\AssetManager.cpp" />
     <ClCompile Include="Source\AppData\ContextManager.cpp" />
     <ClCompile Include="Source\Controller.cpp" />
-    <ClCompile Include="Source\Controller\MenuBase.cpp" />
-    <ClCompile Include="Source\Controller\MenuNode.cpp" />
     <ClCompile Include="Source\GUI\Theme.cpp" />
-    <ClCompile Include="Source\GUI\Widget.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Bar.cpp" />
     <ClCompile Include="Source\GUI\Widgets\Button.cpp" />
     <ClCompile Include="Source\GUI\Widgets\InputField.cpp" />
@@ -184,7 +185,6 @@
     <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp" />
     <ClCompile Include="Source\Utilities\Math\PolarVector.cpp" />
     <ClCompile Include="Source\Utilities\Math\Transitions.cpp" />
-    <ClCompile Include="Source\Utilities\STL\vector.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>

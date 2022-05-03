@@ -3,7 +3,7 @@
 
 namespace math {
 	float calcDistance(const sf::Vector2f& a, const sf::Vector2f& b) {
-		return sqrtf(square(a.x - b.x) + square(a.y - b.y));
+		return sqrtf(squaref(a.x - b.x) + squaref(a.y - b.y));
 	}
 
 	float calcAngle(const sf::Vector2f& position) {
