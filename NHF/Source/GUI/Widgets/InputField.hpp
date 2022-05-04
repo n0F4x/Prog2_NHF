@@ -4,7 +4,6 @@
 #include <string>
 #include "../Widget.hpp"
 #include "Text.hpp"
-#include "../../AppData.hpp"
 
 
 class InputField : public Widget {

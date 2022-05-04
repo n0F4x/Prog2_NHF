@@ -1,7 +1,5 @@
 #include "Track.hpp"
 
-#include "../../AppData.hpp"
-#include "../../Window.hpp"
 #include "../../Utilities/Math.hpp"
 
 

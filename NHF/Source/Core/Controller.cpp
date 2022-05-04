@@ -1,9 +1,9 @@
 #include "Controller.hpp"
 
 #include "Controller/PreView.hpp"
-#include "Menus/MainMenu.hpp"
-#include "Menus/GameMenu.hpp"
-#include "Menus/OptionsMenu.hpp"
+#include "../Menus/MainMenu.hpp"
+#include "../Menus/GameMenu.hpp"
+#include "../Menus/OptionsMenu.hpp"
 
 
 Controller::Controller(Window& window) : _window{window} {}

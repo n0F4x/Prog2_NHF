@@ -3,7 +3,6 @@
 #include "../MenuItem.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "../../Utilities/Math/Transitionable.hpp"
-#include "../../AppData.hpp"
 
 
 class PlayerSprite : public sf::Sprite, public Transitionable {

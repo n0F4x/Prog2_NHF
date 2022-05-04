@@ -1,8 +1,8 @@
 #pragma once
 
-#include "AppData.hpp"
-#include "Controller.hpp"
-#include "Window.hpp"
+#include "Core/AppData.hpp"
+#include "Core/Controller.hpp"
+#include "Core/Window.hpp"
 
 
 class App {

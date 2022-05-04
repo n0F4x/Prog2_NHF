@@ -1,8 +1,6 @@
 #include "Bar.hpp"
 
 #include "../Theme.hpp"
-#include "../../Window.hpp"
-#include "../../AppData.hpp"
 
 
 template class Bar<int>;

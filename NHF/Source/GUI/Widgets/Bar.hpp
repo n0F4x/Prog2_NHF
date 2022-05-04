@@ -8,7 +8,7 @@
 #include "Text.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "../../Utilities//Math/Transitionable.hpp"
-#include "../../AppData/ContextManager.hpp"
+#include "../../Core/AppData/ContextManager.hpp"
 
 
 class Emphasis : public sf::RectangleShape, public Transitionable {

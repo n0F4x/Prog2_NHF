@@ -1,7 +1,7 @@
 #include "Button.hpp"
 
 #include "../Theme.hpp"
-#include "../../Window.hpp"
+#include "../../Core/Window.hpp"
 
 
 bool Button::isInside(const sf::Vector2f& point) const {
@@ -38,10 +38,8 @@ void Button::handleEvent(const sf::Event& event) {
 		_text.setFillColor(theme::Primary);
 	}
 
-	if (event.type == sf::Event::MouseButtonPressed) {
-		if (isInside(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
-			triggerCallback();
-		}
+	if (event.type == sf::Event::MouseButtonPressed && isInside(sf::Vector2f { sf::Mouse::getPosition(Window::window()) })) {
+		triggerCallback();
 	}
 }
 

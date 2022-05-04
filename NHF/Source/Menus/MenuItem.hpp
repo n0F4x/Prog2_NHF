@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "../Core/AppData.hpp"
+#include "../Core/Window.hpp"
 #include "../Utilities/Math/Transitions.hpp"
 
 

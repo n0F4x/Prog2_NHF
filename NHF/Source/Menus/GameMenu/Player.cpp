@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-#include "../../Window.hpp"
+#include "../../Core/Window.hpp"
 
 
 PlayerSprite::PlayerSprite(const sf::Vector2f& feetCoords) { /*TODO*/ }

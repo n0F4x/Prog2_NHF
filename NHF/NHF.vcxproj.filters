@@ -13,14 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\AppData">
-      <UniqueIdentifier>{ee628e85-fbb8-41b3-bbd6-2bd3fac2c242}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\GUI">
       <UniqueIdentifier>{7eccf3c2-840f-4076-aab2-131345caeee0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\AppData">
-      <UniqueIdentifier>{efd42003-1ece-4126-8f57-ae063cecc1e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GUI">
       <UniqueIdentifier>{6b2de9df-a97e-4a33-90e4-e01abc539e30}</UniqueIdentifier>
@@ -55,14 +49,26 @@
     <Filter Include="Header Files\Utilities\STL">
       <UniqueIdentifier>{823c695e-f280-4f82-8ffb-4c47487c2355}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Controller">
-      <UniqueIdentifier>{93072223-2b92-4d71-8983-ce5235da0e80}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{c64035ce-4750-4131-b5b2-6016a253e099}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Utilities\STL\Math">
       <UniqueIdentifier>{cc43506e-212d-42f5-afa1-80ba84fe101a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{4bc85a83-12e6-444c-bac9-2c5cb83e70d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\AppData">
+      <UniqueIdentifier>{ee628e85-fbb8-41b3-bbd6-2bd3fac2c242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{425fda60-695e-4a12-898a-e8f5535cd69a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\AppData">
+      <UniqueIdentifier>{efd42003-1ece-4126-8f57-ae063cecc1e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Controller">
+      <UniqueIdentifier>{93072223-2b92-4d71-8983-ce5235da0e80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Controller">
+      <UniqueIdentifier>{c64035ce-4750-4131-b5b2-6016a253e099}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AppData\AssetManager.cpp">
-      <Filter>Source Files\AppData</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI\Theme.cpp">
       <Filter>Source Files\GUI</Filter>
@@ -123,18 +126,6 @@
     <ClCompile Include="Source\Utilities\Math\BezierEasing.cpp">
       <Filter>Source Files\Utilities\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AppData\ContextManager.cpp">
-      <Filter>Source Files\AppData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AppData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GUI\Widgets\InputField.cpp">
       <Filter>Source Files\GUI\Widgets</Filter>
     </ClCompile>
@@ -144,16 +135,28 @@
     <ClCompile Include="Source\Menus\GameMenu\Player.cpp">
       <Filter>Source Files\Menus\GameMenu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Controller\PreView.cpp">
-      <Filter>Source Files\Controller</Filter>
+    <ClCompile Include="Source\Core\Window.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Controller.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\AppData.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\AppData\ContextManager.cpp">
+      <Filter>Source Files\Core\AppData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\AppData\AssetManager.cpp">
+      <Filter>Source Files\Core\AppData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Controller\PreView.cpp">
+      <Filter>Source Files\Core\Controller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AppData\AssetManager.hpp">
-      <Filter>Header Files\AppData</Filter>
     </ClInclude>
     <ClInclude Include="Source\GUI\Theme.hpp">
       <Filter>Header Files\GUI</Filter>
@@ -212,18 +215,6 @@
     <ClInclude Include="Source\Utilities\Math\BezierEasing.hpp">
       <Filter>Header Files\Utilities\STL\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AppData\ContextManager.hpp">
-      <Filter>Header Files\AppData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AppData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Controller.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Window.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Utilities\Math.hpp">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -233,17 +224,32 @@
     <ClInclude Include="Source\Menus\Menu.hpp">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Controller\MenuNode.hpp">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Controller\MenuBase.hpp">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Menus\GameMenu\Player.hpp">
       <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Menus\PreView.hpp">
-      <Filter>Header Files\Controller</Filter>
+    <ClInclude Include="Source\Core\Window.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Controller.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\AppData.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\AppData\AssetManager.hpp">
+      <Filter>Header Files\Core\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\AppData\ContextManager.hpp">
+      <Filter>Header Files\Core\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Controller\MenuNode.hpp">
+      <Filter>Header Files\Core\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Controller\PreView.hpp">
+      <Filter>Header Files\Core\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Controller\MenuBase.hpp">
+      <Filter>Header Files\Core\Controller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

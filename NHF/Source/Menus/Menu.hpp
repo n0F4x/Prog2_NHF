@@ -2,9 +2,9 @@
 
 #include <memory>
 #include "../Utilities/STL/vector.hpp"
-#include "../Controller/MenuBase.hpp"
-#include "../AppData.hpp"
-#include "../Window.hpp"
+#include "../Core/Controller/MenuBase.hpp"
+#include "../Core/AppData.hpp"
+#include "../Core/Window.hpp"
 #include "MenuItem.hpp"
 
 

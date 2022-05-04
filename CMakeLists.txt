@@ -16,8 +16,9 @@ add_compile_options(
 
 # include
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/AppData
-    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Controller
+    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Core
+    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Core/AppData
+    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Core/Controller
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/GUI
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/GUI/Widgets
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Menus
@@ -29,9 +30,12 @@ include_directories(
 
 # Create target and set properties.
 set(SOURCE_FILES
-    ./NHF/Source/AppData/AssetManager.cpp
-    ./NHF/Source/AppData/ContextManager.cpp
-    ./NHF/Source/Controller/PreView.cpp
+    ./NHF/Source/Core/AppData/AssetManager.cpp
+    ./NHF/Source/Core/AppData/ContextManager.cpp
+    ./NHF/Source/Core/Controller/PreView.cpp
+    ./NHF/Source/Core/AppData.cpp
+    ./NHF/Source/Core/Controller.cpp
+    ./NHF/Source/Core/Window.cpp
     ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
     ./NHF/Source/GUI/Widgets/InputField.cpp
@@ -52,10 +56,7 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/Math/Transitions.cpp
     ./NHF/Source/Utilities/Math.cpp
     ./NHF/Source/App.cpp
-    ./NHF/Source/AppData.cpp
-    ./NHF/Source/Controller.cpp
     ./NHF/Source/main.cpp  
-    ./NHF/Source/Window.cpp
 )
 
 find_package(SFML 2 COMPONENTS graphics audio REQUIRED)

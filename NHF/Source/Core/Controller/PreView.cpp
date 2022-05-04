@@ -2,8 +2,8 @@
 
 #include "../AppData.hpp"
 #include "../Window.hpp"
-#include "../GUI/Widgets/Text.hpp"
-#include "../GUI/Theme.hpp"
+#include "../../GUI/Widgets/Text.hpp"
+#include "../../GUI/Theme.hpp"
 
 
 void PreView::render() {

@@ -1,6 +1,6 @@
 #include "PlatformContainer.hpp"
 
-#include "../../Window.hpp"
+#include "../../Core/Window.hpp"
 
 
 int PlatformContainer::generateRandom(int from, int to) {

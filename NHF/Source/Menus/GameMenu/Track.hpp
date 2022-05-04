@@ -4,8 +4,6 @@
 #include "PreCalculator.hpp"
 #include "../../Utilities/Math/Transitions.hpp"
 #include "PlatformContainer.hpp"
-#include "../../AppData.hpp"
-#include "../../Window.hpp"
 
 
 class Track : public MenuItem {

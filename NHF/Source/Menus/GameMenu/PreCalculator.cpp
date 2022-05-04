@@ -1,6 +1,6 @@
 #include "PreCalculator.hpp"
 
-#include "../../Window.hpp"
+#include "../../Core/Window.hpp"
 #include "../../Utilities/Math.hpp"
 
 
