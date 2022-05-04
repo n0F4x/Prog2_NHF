@@ -52,7 +52,7 @@ InputField::InputField(
 
 
 void InputField::setPosition(const sf::Vector2f& position) {
-	_text.setPosition(position + (_text.getPosition() - _position));
+	_text.setPosition(position + (_text.getPosition() - getPosition()));
 	_frame.setPosition(position);
 	Widget::setPosition(position);
 }

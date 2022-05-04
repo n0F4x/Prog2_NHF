@@ -58,13 +58,13 @@ Bar<T>::Bar(
 template<typename T>
 void Bar<T>::setPosition(const sf::Vector2f& position) {
 	for (sf::RectangleShape& cell : _cells) {
-		cell.setPosition(position + (cell.getPosition() - _position));
+		cell.setPosition(position + (cell.getPosition() - getPosition()));
 	}
 	for (Text& content : _texts) {
-		content.setPosition(position + (content.getPosition() - _position));
+		content.setPosition(position + (content.getPosition() - getPosition()));
 	}
 
-	_emphasis.setPosition(position + (_emphasis.getPosition() - _position));
+	_emphasis.setPosition(position + (_emphasis.getPosition() - getPosition()));
 
 	Widget::setPosition(position);
 }

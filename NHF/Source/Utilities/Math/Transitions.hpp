@@ -104,12 +104,11 @@ namespace Transitions {
 	public:
 		explicit Jump(Transitionable* object);
 
-		// distance is only used to calculate direction
-		void start(const sf::Vector2f& distance, int time) override {
+		void start(const sf::Vector2f& direction, int time) override {
 			if (!isActive()) {
 				_lastProgress = 0.f;
 				_velocity = -1 * (_acc / 2.f * static_cast<float>(math::square(time))) / static_cast<float>(time);
-				float angle = math::calcAngle(distance);
+				float angle = math::calcAngle(direction);
 				_direction.x = cosf(angle);
 				_direction.y = sinf(angle);
 				Transition::start({ 0.f, 0.f }, time);

@@ -5,13 +5,12 @@
 
 
 class Widget : public MenuItem {
-protected:
+private:
 	sf::Vector2f _position;
 	sf::Vector2f _size;
 
+protected:
 	void setSize(const sf::Vector2f& size) { _size = size; }
-
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 
 public:
 	Widget(const sf::Vector2f& position = { 0, 0 }, const sf::Vector2f& size = { 0, 0 }) : _position{ position }, _size{ size } {}

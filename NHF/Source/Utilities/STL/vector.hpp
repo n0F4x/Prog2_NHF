@@ -24,7 +24,7 @@ namespace util {
 			for (std::size_t i = 0; i < _size; i++) {
 				tmp[i] = std::move(_ptr[i]);
 			}
-			tmp[_size++] = std::move(T{ std::forward<Args>(args)... });
+			tmp[_size++] = T{ std::forward<Args>(args)... };
 			delete[] _ptr;
 			_ptr = tmp;
 		}
