@@ -17,4 +17,3 @@ public:
 		return _polarVectorMap.at(sf::Vector2i{ vector });
 	}
 };
-

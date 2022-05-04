@@ -98,24 +98,20 @@ namespace Transitions {
 	private:
 		float _acc = -9.81f / (1000.f * 1000.f);
 		float _velocity = 0.f;
-		sf::Vector2i _direction = { 0, 0 };
+		sf::Vector2f _direction = { 0.f, 0.f };
 		float _lastProgress = 0.f;
 
 	public:
 		explicit Jump(Transitionable* object);
 
+		// distance is only used to calculate direction
 		void start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
 				_lastProgress = 0.f;
 				_velocity = -1 * (_acc / 2.f * static_cast<float>(math::square(time))) / static_cast<float>(time);
-				if (distance.x != 0) {
-					_direction.x = distance.x > 0 ? _direction.x = 1 : _direction.x = -1;
-				}
-				else _direction.x = 0;
-				if (distance.y != 0) {
-					_direction.y = distance.y > 0 ? _direction.y = 1 : _direction.y = -1;
-				}
-				else _direction.y = 0;
+				float angle = math::calcAngle(distance);
+				_direction.x = cosf(angle);
+				_direction.y = sinf(angle);
 				Transition::start({ 0.f, 0.f }, time);
 			}
 		}

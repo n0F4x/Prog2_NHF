@@ -17,7 +17,7 @@ namespace math {
 		}
 		else {
 			if (position.x > 0) {
-				if (position.y > 0) {
+				if (position.y >= 0) {
 					return atanf(position.y / position.x);
 				}
 				else {
