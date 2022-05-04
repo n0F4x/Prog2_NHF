@@ -91,7 +91,7 @@ void Track::update() {
 void Track::init() {
 	MenuItem::init();
 
-	Platform::width = 360_deg / static_cast<float>(std::any_cast<int>(AppData::context.getContext("platformCount").getContext()));
+	Platform::width = 360_deg / static_cast<float>(std::any_cast<int>(AppData::getContext("platformCount").getContext()));
 	_platforms.init();
 
 	_switchingLeft = _switchingRight = false;

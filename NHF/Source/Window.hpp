@@ -14,7 +14,7 @@ private:
 	sf::String _title = "Platforms";
 	sf::ContextSettings _settings;
 	sf::Uint32 _style = sf::Style::Fullscreen;
-	float _FPS = 60.f;
+	static int _FPS;
 	sf::Clock _clock;
 
 	friend App;
@@ -32,6 +32,7 @@ public:
 
 	void open() const;
 	void close() const;
-	bool isOpen();
+	bool isOpen() const;
 	bool pollEvent(sf::Event& event) const;
+	void lockFPS(int FPS = _FPS);
 };

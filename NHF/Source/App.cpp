@@ -1,27 +1,38 @@
 #include "App.hpp"
 
 
-void App::init() {
-	_window.open();
-	_controller.render();
+void App::init(bool renderPreview) {
+	_appData.loadFromFiles();
 
-	sf::Clock clock;
-	_controller.init();
-	while (clock.getElapsedTime().asMilliseconds() < 2000);
+	if (renderPreview) {
+		_controller.renderPreview();
+	}
+
+	_controller.load();
+
+	if (!_window.isOpen()) {
+		_window.open();
+	}
 }
 
 void App::run() {
-	init();
+	init(true);
 
 	sf::Event event;
 	while (_window.isOpen() && _controller.isActive()) {
+		// Poll events
 		while (_window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				_window.close();
 			}
-			_controller.handleEvent(event);
+			_controller->handleEvent(event);
 		}
-		_controller.update();
-		_controller.render();
+
+		_controller->update();
+		_controller->render();
+
+		_window.lockFPS();
 	}
+
+	_appData.save();
 }

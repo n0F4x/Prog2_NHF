@@ -13,6 +13,7 @@ private:
 	MenuNode* _lastVisitedChild = nullptr;
 
 public:
+	MenuNode() = default;
 	MenuNode(std::unique_ptr<MenuBase> item, MenuNode* parent = nullptr) : _item{ std::move(item) }, _parent{ parent } {}
 
 	void addChild(const std::string& name, std::unique_ptr<MenuBase> child) {

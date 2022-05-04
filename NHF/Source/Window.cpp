@@ -4,6 +4,8 @@
 sf::RenderWindow Window::_window;
 std::function<sf::VideoMode()> Window::_getVideoMode = sf::VideoMode::getDesktopMode;
 
+int Window::_FPS = 60;
+
 
 Window::Window() {
 	_settings.depthBits = 24;
@@ -39,10 +41,7 @@ void Window::open() const {
 
 void Window::close() const { _window.close(); }
 
-bool Window::isOpen() {
-	while (static_cast<float>(_clock.getElapsedTime().asMilliseconds()) < 1000.f / _FPS)
-		;
-	_clock.restart();
+bool Window::isOpen() const {
 	return _window.isOpen();
 }
 
@@ -50,3 +49,8 @@ bool Window::pollEvent(sf::Event& event) const {
 	return _window.pollEvent(event);
 }
 
+void Window::lockFPS(int FPS) {
+	while (_clock.getElapsedTime().asSeconds() < 1.f / static_cast<float>(FPS))
+		;
+	_clock.restart();
+}

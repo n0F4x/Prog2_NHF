@@ -9,14 +9,15 @@ class AppData;
 
 class AssetManager {
 private:
-	std::map<std::string, sf::Font, std::less<>> _fonts;
-
-	void loadFont(const std::string& name, const std::string& fileName);
-
 	friend AppData;
-	AssetManager();
+	AssetManager() = default;
+
+	std::map<std::string, sf::Font, std::less<>> _fonts;
+	void loadFont(const std::string& name, const std::string& fileName);
 
 public:
 	const sf::Font& getFont(const std::string& name);
+
+	void loadFromFiles();
 };
 

@@ -9,9 +9,9 @@ class App {
 private:
 	AppData _appData;
 	Window _window;
-	Controller _controller;
+	Controller _controller{_window};
 
-	void init();
+	void init(bool renderPreview = false);
 
 public:
 	void run();

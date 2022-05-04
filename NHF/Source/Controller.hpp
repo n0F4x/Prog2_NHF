@@ -1,31 +1,35 @@
 #pragma once
 
 #include "Controller/MenuNode.hpp"
-#include "Menus/InitMenu.hpp"
+#include "Window.hpp"
+
 
 class App;
 
 
 class Controller {
 private:
-	MenuNode _root{ std::make_unique<InitMenu>() };
+	MenuNode _root;
 
-	MenuNode* _current = &_root;
-	MenuNode* _next = _current;
+	MenuNode* _current = nullptr;
+	MenuNode* _next = nullptr;
 
 	void open(const std::string& name);
 	void openLast();
 	void close();
 
+	Window& _window;
+
 	friend App;
-	Controller() = default;
+	explicit Controller(Window& window);
+
+	bool _preview = false;
 
 public:
-	void init();
+	void renderPreview();
+	void load();
 
 	bool isActive();
 
-	void handleEvent(const sf::Event& event) const;
-	void update() const;
-	void render() const;
+	MenuBase* operator->() const;
 };

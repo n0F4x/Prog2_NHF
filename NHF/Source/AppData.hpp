@@ -11,7 +11,18 @@ private:
 	friend App;
 	AppData() = default;
 
+	static AssetManager _assets;
+	static ContextManager _contexts;
+
 public:
-	static AssetManager assets;
-	static ContextManager context;
+	static const sf::Font& getFont(const std::string& name) { return _assets.getFont(name); }
+	static Context::Accessor getContext(const std::string_view& name) { return _contexts.getContext(name); }
+
+	void loadFromFiles() const { 
+		_assets.loadFromFiles();
+		_contexts.loadFromFile();
+	}
+	void save() const {
+		_contexts.save();
+	}
 };

@@ -1,12 +1,24 @@
 #include "Controller.hpp"
 
+#include "Controller/PreView.hpp"
 #include "Menus/MainMenu.hpp"
 #include "Menus/GameMenu.hpp"
 #include "Menus/OptionsMenu.hpp"
 
 
-void Controller::init() {
-	// Reset root (optional)
+Controller::Controller(Window& window) : _window{window} {}
+
+void Controller::renderPreview() {
+	_window.open();
+
+	PreView::render();
+
+	_preview = true;
+}
+
+void Controller::load() {
+	sf::Clock clock;	// artificial delay
+
 	_root = MenuNode{ std::make_unique<MainMenu>() };
 	_current = &_root;
 	_next = _current;
@@ -14,6 +26,10 @@ void Controller::init() {
 	// Build tree
 	_root.addChild("Game", std::make_unique<GameMenu>());
 	_root.addChild("Options", std::make_unique<OptionsMenu>());
+
+	if (_preview) {
+		while (clock.getElapsedTime().asMilliseconds() < 2000);
+	}
 }
 
 
@@ -58,6 +74,6 @@ void Controller::close() {
 	_current->get()->__isClosing__ = false;
 }
 
-void Controller::handleEvent(const sf::Event& event) const { _current->get()->handleEvent(event); }
-void Controller::update() const { _current->get()->update(); }
-void Controller::render() const { _current->get()->render(); }
+MenuBase* Controller::operator->() const {
+	return _current->get();
+}

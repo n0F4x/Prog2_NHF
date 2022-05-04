@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <deque>
 #include <random>
 #include "Platform.hpp"
 #include "../../Utilities/Math/Transitionable.hpp"
@@ -9,7 +9,7 @@
 class PlatformContainer : public sf::Drawable, public Transitionable {
 private:
 	const PreCalculator& _preCalc;
-	std::list<Platform> _platforms;
+	std::deque<Platform> _platforms;
 
 	int _counter = 0;
 	const int _scaleSpeed = 20;	//the lower the faster

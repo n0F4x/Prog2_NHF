@@ -31,6 +31,7 @@ include_directories(
 set(SOURCE_FILES
     ./NHF/Source/AppData/AssetManager.cpp
     ./NHF/Source/AppData/ContextManager.cpp
+    ./NHF/Source/Controller/PreView.cpp
     ./NHF/Source/GUI/Widgets/Bar.cpp
     ./NHF/Source/GUI/Widgets/Button.cpp
     ./NHF/Source/GUI/Widgets/InputField.cpp
@@ -42,7 +43,6 @@ set(SOURCE_FILES
     ./NHF/Source/Menus/GameMenu/PreCalculator.cpp
     ./NHF/Source/Menus/GameMenu/Track.cpp
     ./NHF/Source/Menus/GameMenu.cpp
-    ./NHF/Source/Menus/InitMenu.cpp
     ./NHF/Source/Menus/MainMenu.cpp
     ./NHF/Source/Menus/Menu.cpp
     ./NHF/Source/Menus/OptionsMenu.cpp
