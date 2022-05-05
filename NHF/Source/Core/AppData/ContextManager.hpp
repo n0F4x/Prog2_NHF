@@ -19,11 +19,11 @@ public:
 
 class Context {
 public:
-	class ValidatorBase {
+	class Validator {
 	private:
 		std::function<bool(const std::any&)> _func;
 	public:
-		explicit(false) ValidatorBase(const std::function<bool(const std::any&)>& func = [](const std::any&) -> bool { return true; }) : _func{ func } {}
+		explicit(false) Validator(const std::function<bool(const std::any&)>& func = [](const std::any&) -> bool { return true; }) : _func{ func } {}
 		bool operator()(const std::any& data) const { return _func(data); }
 	};
 
@@ -37,14 +37,14 @@ public:
 		const std::any& getContext() const { return _observable->_data; }
 		std::string getContextString() const { return _observable->_converter(_observable->_data); }
 		bool setContext(const std::any& data) const {
-			if (_observable->validate(data)) {
+			if (validate(data)) {
 				_observable->_data = data;
 				return true;
 			}
 			return false;
 		}
 		bool setContext(std::any&& data) const {
-			if (_observable->validate(data)) {
+			if (validate(data)) {
 				_observable->_data = std::move(data);
 				return true;
 			}
@@ -56,14 +56,14 @@ public:
 
 private:
 	std::any _data;
-	const std::unique_ptr<const ValidatorBase> _validator;
 	const ToStringConverter _converter;
+	const Validator _validator;
 
-	bool validate(const std::any& data) const { return (*_validator)(data); }
+	bool validate(const std::any& data) const { return _validator(data); }
 
 public:
-	explicit Context(const std::any& data, const ValidatorBase* const validator, const ToStringConverter& converter) :
-		_data{ data }, _validator{ validator }, _converter{ converter } {}
+	explicit Context(const std::any& data, const ToStringConverter& converter, const Validator& validator) :
+		_data{ data }, _converter{ converter }, _validator{ validator } {}
 	Accessor get() { return Accessor{ this }; }
 };
 
@@ -121,7 +121,7 @@ private:
 
 	std::map<const std::string, Context, std::less<>> _contexts;
 
-	void addContext(const std::string& name, const std::any& initialValue, Context::ValidatorBase* validator, const ToStringConverter& converter);
+	void addContext(const std::string& name, const std::any& initialValue, const ToStringConverter& converter, const Context::Validator& validator = {});
 
 public:
 	void loadFromFile() const { /*TODO*/ }

@@ -49,33 +49,12 @@ static const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
 };
 static const std::vector<int> _validPlatformCounts{ 3, 4, 5, 6, 7, 8 };
 
-static bool isValidKey(const sf::Event::KeyEvent& keyEvent) {
-	return _validKeys.contains(keyEvent.code);
+static bool isValidKey(const std::any& keyEvent) {
+	return _validKeys.contains(std::any_cast<sf::Event::KeyEvent>(keyEvent).code);
 }
-static bool isValidPlatformCount(const int& count) {
-	return std::ranges::any_of(_validPlatformCounts, [count](auto elem) { return elem == count; });
+static bool isValidPlatformCount(const std::any& count) {
+	return std::ranges::any_of(_validPlatformCounts, [count](auto elem) { return elem == std::any_cast<int>(count); });
 }
-
-
-template <typename T>
-class Validator : public Context::ValidatorBase {
-public:
-	explicit Validator<T>(const std::function<bool(const T&)>& func = [](const T&) -> bool { return true; }) : Context::ValidatorBase{
-		[func](const std::any& val) -> bool {
-			T casted;
-			try {
-				casted = std::any_cast<T>(val);
-			}
-			catch (const std::bad_any_cast&) {
-				return false;
-			}
-			return func(casted);
-		}
-	} {}
-};
-template class Validator<sf::Event::KeyEvent>;
-template class Validator<int>;
-template class Validator<PlatformControl>;
 
 
 class IntConverter : public ToStringConverter {
@@ -123,17 +102,17 @@ public:
 };
 
 
-void ContextManager::addContext(const std::string& name, const std::any& initialValue, Context::ValidatorBase* validator, const ToStringConverter& converter) {
-	_contexts.try_emplace(name, initialValue, validator, converter);
+void ContextManager::addContext(const std::string& name, const std::any& initialValue, const ToStringConverter& converter, const Context::Validator& validator) {
+	_contexts.try_emplace(name, initialValue, converter, validator);
 }
 
 
 ContextManager::ContextManager() {
-	addContext("jumpKey", sf::Event::KeyEvent{ sf::Keyboard::Space }, new Validator<sf::Event::KeyEvent>{isValidKey}, KeyConverter{});
-	addContext("platformCount", 3, new Validator<int>{isValidPlatformCount}, IntConverter{});
-	addContext("platformControl", PlatformControl::Keyboard, new Validator<PlatformControl>{}, PCConverter{});
-	addContext("switchKey1", sf::Event::KeyEvent{ sf::Keyboard::Left }, new Validator<sf::Event::KeyEvent>{isValidKey}, KeyConverter{});
-	addContext("switchKey2", sf::Event::KeyEvent{ sf::Keyboard::Right }, new Validator<sf::Event::KeyEvent>{isValidKey}, KeyConverter{});
+	addContext("jumpKey", sf::Event::KeyEvent{ sf::Keyboard::Space }, KeyConverter{}, Context::Validator{ isValidKey });
+	addContext("platformCount", 3, IntConverter{}, Context::Validator{ isValidPlatformCount });
+	addContext("platformControl", PlatformControl::Keyboard, PCConverter{});
+	addContext("switchKey1", sf::Event::KeyEvent{ sf::Keyboard::Left }, KeyConverter{}, Context::Validator{ isValidKey });
+	addContext("switchKey2", sf::Event::KeyEvent{ sf::Keyboard::Right }, KeyConverter{}, Context::Validator{ isValidKey });
 }
 
 
