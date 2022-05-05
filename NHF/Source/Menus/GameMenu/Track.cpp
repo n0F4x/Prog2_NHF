@@ -32,7 +32,7 @@ bool Track::isOnPlatform(const sf::Vector2f& point) const {
 
 
 void Track::handleEvent(const sf::Event& event) {
-	if (!isPaused() && std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Mouse) {
+	if (!isPaused() && _platformControl == PlatformControl::Mouse) {
 		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
 			_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
 			_isDragged = true;
@@ -42,20 +42,20 @@ void Track::handleEvent(const sf::Event& event) {
 		}
 	}
 
-	if (std::any_cast<PlatformControl>(_platformControl.getContext()) == PlatformControl::Keyboard) {
+	if (_platformControl == PlatformControl::Keyboard) {
 		if (event.type == sf::Event::KeyPressed) {
-			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
+			if (event.key == _switchKey1) {
 				_switchingLeft = true;
 			}
-			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
+			if (event.key == _switchKey2) {
 				_switchingRight = true;
 			}
 		}
 		if (event.type == sf::Event::KeyReleased) {
-			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey1.getContext())) {
+			if (event.key == _switchKey1) {
 				_switchingLeft = false;
 			}
-			if (event.key == std::any_cast<sf::Event::KeyEvent>(_switchKey2.getContext())) {
+			if (event.key == _switchKey2) {
 				_switchingRight = false;
 			}
 		}
@@ -88,6 +88,10 @@ void Track::update() {
 
 void Track::init() {
 	MenuItem::init();
+
+	_platformControl.update();
+	_switchKey1.update();
+	_switchKey2.update();
 
 	Platform::width = 360_deg / static_cast<float>(std::any_cast<int>(AppData::getContext("platformCount").getContext()));
 	_platforms.init();

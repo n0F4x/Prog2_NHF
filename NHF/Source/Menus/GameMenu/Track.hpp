@@ -23,9 +23,9 @@ private:
 	bool _switchingRight= false;
 
 	// Contexts
-	Context::Accessor _platformControl = AppData::getContext("platformControl");
-	Context::Accessor _switchKey1 = AppData::getContext("switchKey1");
-	Context::Accessor _switchKey2 = AppData::getContext("switchKey2");
+	ContextRepr<PlatformControl> _platformControl{ AppData::getContext("platformControl") };
+	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::getContext("switchKey1") };
+	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::getContext("switchKey2") };
 
 
 	// Overriding @MenuItem

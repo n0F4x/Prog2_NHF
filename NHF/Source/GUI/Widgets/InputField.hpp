@@ -15,11 +15,10 @@ private:
 	sf::RectangleShape _frame;
 
 	void setActive(bool isActive);
-	sf::Keyboard::Key _activeKey = sf::Keyboard::Unknown;
 	std::string _activeString;
 	bool _isActive = false;
 
-	Context::Accessor _context;
+	ContextRepr<sf::Event::KeyEvent> _context;
 
 	// Override @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

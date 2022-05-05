@@ -74,12 +74,12 @@ void InputField::handleEvent(const sf::Event& event) {
 			if (event.key.code == sf::Keyboard::Enter) {
 				setActive(false);
 			}
-			else if (_context.setContext(event.key)) {
-				_activeKey = event.key.code;
-				_activeString = _context.getContextString();
+			if (_context.validate(event.key)) {
+				_context = event.key;
+				_activeString = static_cast<std::string>(_context);
 			}
 		}
-		if (event.type == sf::Event::KeyReleased && event.key.code == _activeKey) {
+		if (event.type == sf::Event::KeyReleased && event.key == _context) {
 			setActive(false);
 		}
 	}
@@ -96,7 +96,7 @@ void InputField::update() {
 			}
 		}
 		else {
-			_text.setString(_activeString);
+			_text.setString(static_cast<std::string>(_context));
 		}
 		_text.center(_frame.getLocalBounds());
 		_text.move(_frame.getPosition());

@@ -75,7 +75,7 @@ void Bar<T>::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		for (size_t i = 0; i < _cells.size(); i++) {
 			if (_cells[i].getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
-				_context.setContext(_contents[i]);
+				_context = _contents[i];
 				_transition.start(_cells[i].getPosition() - _emphasis.getPosition(), 200);
 			}
 		}
@@ -87,7 +87,7 @@ void Bar<T>::init() {
 	MenuItem::init();
 
 	for (size_t i = 0; i < _texts.size(); i++) {
-		if (_texts[i].getString().toAnsiString() == _context.getContextString()) {
+		if (_texts[i].getString().toAnsiString() == static_cast<std::string>(_context)) {
 			_emphasis.setPosition(_cells[i].getPosition());
 		}
 	}

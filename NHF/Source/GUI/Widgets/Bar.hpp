@@ -27,7 +27,7 @@ private:
 	Emphasis _emphasis;
 
 	size_t _selected = 0;
-	Context::Accessor _context;
+	ContextRepr<T> _context;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
