@@ -2,6 +2,7 @@
 
 #include "AppData/AssetManager.hpp"
 #include "AppData/ContextManager.hpp"
+#include "AppData/ContextRepr.hpp"
 
 class App;
 

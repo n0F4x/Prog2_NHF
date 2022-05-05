@@ -191,7 +191,9 @@
     <ClInclude Include="Source\App.hpp" />
     <ClInclude Include="Source\Core\AppData.hpp" />
     <ClInclude Include="Source\Core\AppData\AssetManager.hpp" />
+    <ClInclude Include="Source\Core\AppData\Context.hpp" />
     <ClInclude Include="Source\Core\AppData\ContextManager.hpp" />
+    <ClInclude Include="Source\Core\AppData\ContextRepr.hpp" />
     <ClInclude Include="Source\Core\Controller.hpp" />
     <ClInclude Include="Source\Core\Controller\MenuBase.hpp" />
     <ClInclude Include="Source\Core\Controller\MenuNode.hpp" />

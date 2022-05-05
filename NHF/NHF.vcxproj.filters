@@ -251,5 +251,11 @@
     <ClInclude Include="Source\Core\Controller\MenuBase.hpp">
       <Filter>Header Files\Core\Controller</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\AppData\ContextRepr.hpp">
+      <Filter>Header Files\Core\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\AppData\Context.hpp">
+      <Filter>Header Files\Core\AppData</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

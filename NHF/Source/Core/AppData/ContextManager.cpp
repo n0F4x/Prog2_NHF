@@ -3,6 +3,7 @@
 #include <algorithm>
 
 
+// Validator helpers
 static const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
 		{ sf::Keyboard::Key::A, "A" },
 		{ sf::Keyboard::Key::B, "B" },
@@ -49,6 +50,8 @@ static const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
 };
 static const std::vector<int> _validPlatformCounts{ 3, 4, 5, 6, 7, 8 };
 
+
+// Validator functions
 static bool isValidKey(const std::any& keyEvent) {
 	return _validKeys.contains(std::any_cast<sf::Event::KeyEvent>(keyEvent).code);
 }
@@ -57,13 +60,13 @@ static bool isValidPlatformCount(const std::any& count) {
 }
 
 
+// ToStringConverters
 class IntConverter : public ToStringConverter {
 public:
 	IntConverter() : ToStringConverter{
 		[](const std::any& val) -> std::string { return std::to_string(std::any_cast<int>(val)); }
 	} {}
 };
-
 class KeyConverter : public ToStringConverter {
 public:
 	KeyConverter() : ToStringConverter{
@@ -84,7 +87,6 @@ public:
 		}
 	} {}
 };
-
 class PCConverter : public ToStringConverter {
 public:
 	PCConverter() : ToStringConverter{
