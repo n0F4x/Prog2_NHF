@@ -17,7 +17,12 @@ enum class PlatformControl {
 class ContextManager {
 private:
 	std::map<const std::string, Context, std::less<>> _contexts;
-	void addContext(const std::string& name, const std::any& initialValue, const ToStringConverter& converter, const Context::Validator& validator = {});
+	void addContext(
+		const std::string& name,
+		const std::any& initialValue,
+		const Context::ToStringConverter& converter,
+		const Context::Validator& validator = {}
+	);
 
 
 	friend AppData;

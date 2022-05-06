@@ -162,6 +162,7 @@
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Core\AppData.cpp" />
     <ClCompile Include="Source\Core\AppData\AssetManager.cpp" />
+    <ClCompile Include="Source\Core\AppData\Context.cpp" />
     <ClCompile Include="Source\Core\AppData\ContextManager.cpp" />
     <ClCompile Include="Source\Core\Controller.cpp" />
     <ClCompile Include="Source\Core\Controller\PreView.cpp" />

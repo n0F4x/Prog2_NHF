@@ -61,21 +61,21 @@ static bool isValidPlatformCount(const std::any& count) {
 
 
 // ToStringConverters
-class BoolConverter : public ToStringConverter {
+class BoolConverter : public Context::ToStringConverter {
 public:
-	BoolConverter() : ToStringConverter{
+	BoolConverter() : Context::ToStringConverter{
 		[](const std::any& val) -> std::string { return std::any_cast<bool>(val) ? "On" : "Off"; }
 	} {}
 };
-class IntConverter : public ToStringConverter {
+class IntConverter : public Context::ToStringConverter {
 public:
-	IntConverter() : ToStringConverter{
+	IntConverter() : Context::ToStringConverter{
 		[](const std::any& val) -> std::string { return std::to_string(std::any_cast<int>(val)); }
 	} {}
 };
-class KeyConverter : public ToStringConverter {
+class KeyConverter : public Context::ToStringConverter {
 public:
-	KeyConverter() : ToStringConverter{
+	KeyConverter() : Context::ToStringConverter{
 		[](const std::any& val) -> std::string {
 			sf::Event::KeyEvent key = std::any_cast<sf::Event::KeyEvent>(val);
 			std::string string = "";
@@ -93,9 +93,9 @@ public:
 		}
 	} {}
 };
-class PCConverter : public ToStringConverter {
+class PCConverter : public Context::ToStringConverter {
 public:
-	PCConverter() : ToStringConverter{
+	PCConverter() : Context::ToStringConverter{
 		[](const std::any& val) -> std::string {
 			switch (std::any_cast<PlatformControl>(val)) {
 			case PlatformControl::Keyboard:
@@ -110,7 +110,12 @@ public:
 };
 
 
-void ContextManager::addContext(const std::string& name, const std::any& initialValue, const ToStringConverter& converter, const Context::Validator& validator) {
+void ContextManager::addContext(
+	const std::string& name,
+	const std::any& initialValue,
+	const Context::ToStringConverter& converter,
+	const Context::Validator& validator
+) {
 	_contexts.try_emplace(name, initialValue, converter, validator);
 }
 
