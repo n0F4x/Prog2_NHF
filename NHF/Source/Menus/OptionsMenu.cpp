@@ -16,7 +16,7 @@ OptionsMenu::OptionsMenu() {
 	backButton->setPosition({ Window::getSize().x / 40.f, Window::getSize().x / 40.f });
 
 	// Construct "Options" text
-	auto title = std::make_unique<Text>("OPTIONS", AppData::getFont("The Wireframe"), 132u);
+	auto title = std::make_unique<Text>("OPTIONS", AppData::getFont("The Wireframe"), 144u);
 	title->setPosition({
 		Window::getSize().x / 2.f - title->getSize().x / 2.f,
 		(Window::getSize().y - 11.f * tmp.getSize().y * 2.f) / 4.f - title->getSize().y / 2.f
@@ -112,6 +112,25 @@ OptionsMenu::OptionsMenu() {
 	SK2label->move({ 0.f, +5.f * SK2input->getSize().y });
 	SK2label->setFillColor(theme::IndigoPurple);
 
+	// Construct "Hold Switch" bar and label
+	std::vector<bool> HScontents{ false, true };
+	std::vector<std::string> HSstrings{ "Off", "On" };
+	auto HSbar = std::make_unique<Bar<bool>>(
+		Window::getSize().x * 0.6f, HScontents, HSstrings, AppData::getFont("Dameron"), 56u,
+		AppData::getContext("holdSwitch")
+		);
+	HSbar->center(Window::getLocalBounds());
+	HSbar->setPosition({
+		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - HSbar->getSize().x) / 2.f,
+		HSbar->getPosition().y
+		});
+	HSbar->move({ 0.f, +7.f * HSbar->getSize().y });
+	auto HSlabel = std::make_unique<Text>("Hold Switch:", AppData::getFont("Dameron"), 56u);
+	HSlabel->center(Window::getLocalBounds());
+	HSlabel->move({ -1.f * Window::getSize().x / 2.f + HSlabel->getSize().x / 2.f + Window::getSize().x / 40.f, 0.f });
+	HSlabel->move({ 0.f, +7.f * HSbar->getSize().y });
+	HSlabel->setFillColor(theme::IndigoPurple);
+
 
 	// Add items to Menu
 	addMenuItem(std::move(backButton));
@@ -126,6 +145,8 @@ OptionsMenu::OptionsMenu() {
 	addMenuItem(std::move(SK1label));
 	addMenuItem(std::move(SK2input));
 	addMenuItem(std::move(SK2label));
+	addMenuItem(std::move(HSbar));
+	addMenuItem(std::move(HSlabel));
 }
 
 void OptionsMenu::handleEvent(const sf::Event& event) {

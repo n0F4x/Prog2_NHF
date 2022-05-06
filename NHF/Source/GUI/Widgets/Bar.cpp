@@ -3,6 +3,7 @@
 #include "../Theme.hpp"
 
 
+template class Bar<bool>;
 template class Bar<int>;
 template class Bar<PlatformControl>;
 

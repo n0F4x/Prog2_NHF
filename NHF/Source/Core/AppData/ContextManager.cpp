@@ -61,6 +61,12 @@ static bool isValidPlatformCount(const std::any& count) {
 
 
 // ToStringConverters
+class BoolConverter : public ToStringConverter {
+public:
+	BoolConverter() : ToStringConverter{
+		[](const std::any& val) -> std::string { return std::any_cast<bool>(val) ? "true" : "false"; }
+	} {}
+};
 class IntConverter : public ToStringConverter {
 public:
 	IntConverter() : ToStringConverter{
@@ -115,6 +121,7 @@ ContextManager::ContextManager() {
 	addContext("platformControl", PlatformControl::Keyboard, PCConverter{});
 	addContext("switchKey1", sf::Event::KeyEvent{ sf::Keyboard::Left }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("switchKey2", sf::Event::KeyEvent{ sf::Keyboard::Right }, KeyConverter{}, Context::Validator{ isValidKey });
+	addContext("holdSwitch", false, BoolConverter{});
 }
 
 

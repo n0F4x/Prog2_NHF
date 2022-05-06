@@ -4,14 +4,26 @@
 
 
 void Track::switchLanes() {
-	if (_switchingState != 0 && !_transition.isActive()) {
-		if (_switchingState > 0) {
-			_transition.start({ Platform::width, 0.f }, 200);
-			_switchingState--;
+	if (_holdSwitch) {
+		if (_switchingLeft != _switchingRight) {
+			if (_switchingLeft) {
+				_transition.start({ -1 * Platform::width, 0.f }, 200);
+			}
+			if (_switchingRight) {
+				_transition.start({ Platform::width, 0.f }, 200);
+			}
 		}
-		else {
-			_transition.start({ -1 * Platform::width, 0.f }, 200);
-			_switchingState++;
+	}
+	else {
+		if (_switchingState != 0 && !_transition.isActive()) {
+			if (_switchingState > 0) {
+				_transition.start({ Platform::width, 0.f }, 200);
+				_switchingState--;
+			}
+			else {
+				_transition.start({ -1 * Platform::width, 0.f }, 200);
+				_switchingState++;
+			}
 		}
 	}
 }
@@ -56,12 +68,32 @@ void Track::handleEvent(const sf::Event& event) {
 				_isDragged = false;
 			}
 		}
-		if (_platformControl == PlatformControl::Keyboard && event.type == sf::Event::KeyPressed) {
-			if (event.key == _switchKey1) {
-				_switchingState--;
+		if (_platformControl == PlatformControl::Keyboard) {
+			if (_holdSwitch) {
+				if (event.type == sf::Event::KeyPressed) {
+					if (event.key == _switchKey1) {
+						_switchingLeft = true;
+					}
+					if (event.key == _switchKey2) {
+						_switchingRight = true;
+					}
+				}
+				if (event.type == sf::Event::KeyReleased) {
+					if (event.key == _switchKey1) {
+						_switchingLeft = false;
+					}
+					if (event.key == _switchKey2) {
+						_switchingRight = false;
+					}
+				}
 			}
-			if (event.key == _switchKey2) {
-				_switchingState++;
+			else if (event.type == sf::Event::KeyPressed) {
+				if (event.key == _switchKey1) {
+					_switchingState--;
+				}
+				if (event.key == _switchKey2) {
+					_switchingState++;
+				}
 			}
 		}
 	}
@@ -90,16 +122,22 @@ void Track::init() {
 	_platformControl.update();
 	_switchKey1.update();
 	_switchKey2.update();
+	_holdSwitch.update();
 
 	Platform::width = 360_deg / static_cast<float>(std::any_cast<int>(AppData::getContext("platformCount").getContext()));
 	_platforms.init();
 
 	_isDragged = false;
 	_switchingState = 0;
+	_switchingLeft = false;
+	_switchingRight = false;
 }
 
 void Track::resume() {
 	_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
+
+	_switchingLeft = false;
+	_switchingRight = false;
 
 	MenuItem::resume();
 }

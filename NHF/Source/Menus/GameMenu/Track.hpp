@@ -20,6 +20,8 @@ private:
 	sf::Vector2f _mouse{ sf::Vector2f{sf::Mouse::getPosition(Window::window())} };
 	bool _isDragged = false;
 	int _switchingState = 0;
+	bool _switchingLeft = false;
+	bool _switchingRight = false;
 
 	void switchLanes();
 
@@ -27,6 +29,7 @@ private:
 	ContextRepr<PlatformControl> _platformControl{ AppData::getContext("platformControl") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::getContext("switchKey1") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::getContext("switchKey2") };
+	ContextRepr<bool> _holdSwitch{ AppData::getContext("holdSwitch") };
 
 
 	// Overriding @MenuItem
