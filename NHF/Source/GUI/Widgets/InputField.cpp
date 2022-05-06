@@ -35,12 +35,12 @@ void InputField::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 InputField::InputField(
 	const sf::Font& fontStyle,
 	unsigned characterSize,
-	Context::Accessor context
+	const std::string_view& contextName
 ) :
-	_text{ context.getContextString(), fontStyle, characterSize },
-	_string{ context.getContextString() },
-	_frame{ { Text{ "Ctrl+Alt+Shift+Space", fontStyle, characterSize }.getSize().x * 1.2f, _text.getSize().y * 2.f } },
-	_context{ context }
+	_context{ AppData::findContext(contextName) },
+	_text{ static_cast<std::string>(_context), fontStyle, characterSize },
+	_string{ static_cast<std::string>(_context) },
+	_frame{ { Text{ "Ctrl+Alt+Shift+Space", fontStyle, characterSize }.getSize().x * 1.2f, _text.getSize().y * 2.f } }
 {
 	setSize(_frame.getSize());
 	_text.center(_frame.getLocalBounds());
@@ -105,4 +105,6 @@ void InputField::update() {
 
 void InputField::init() {
 	setActive(false);
+
+	_context.update();
 }

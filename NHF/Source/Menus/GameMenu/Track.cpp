@@ -124,7 +124,7 @@ void Track::init() {
 	_switchKey2.update();
 	_holdSwitch.update();
 
-	Platform::width = 360_deg / static_cast<float>(std::any_cast<int>(AppData::getContext("platformCount").getContext()));
+	Platform::width = 360_deg / static_cast<float>(AppData::findContext("platformCount")->get<int>());
 	_platforms.init();
 
 	_isDragged = false;

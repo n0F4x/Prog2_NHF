@@ -64,7 +64,7 @@ static bool isValidPlatformCount(const std::any& count) {
 class BoolConverter : public ToStringConverter {
 public:
 	BoolConverter() : ToStringConverter{
-		[](const std::any& val) -> std::string { return std::any_cast<bool>(val) ? "true" : "false"; }
+		[](const std::any& val) -> std::string { return std::any_cast<bool>(val) ? "On" : "Off"; }
 	} {}
 };
 class IntConverter : public ToStringConverter {
@@ -122,6 +122,13 @@ ContextManager::ContextManager() {
 	addContext("switchKey1", sf::Event::KeyEvent{ sf::Keyboard::Left }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("switchKey2", sf::Event::KeyEvent{ sf::Keyboard::Right }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("holdSwitch", false, BoolConverter{});
+}
+
+Context* ContextManager::find(const std::string_view& name) {
+	if (auto it = _contexts.find(name); it != _contexts.end()) {
+		return &it->second;
+	}
+	return nullptr;
 }
 
 

@@ -26,10 +26,10 @@ private:
 	void switchLanes();
 
 	// Contexts
-	ContextRepr<PlatformControl> _platformControl{ AppData::getContext("platformControl") };
-	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::getContext("switchKey1") };
-	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::getContext("switchKey2") };
-	ContextRepr<bool> _holdSwitch{ AppData::getContext("holdSwitch") };
+	ContextRepr<PlatformControl> _platformControl{ AppData::findContext("platformControl") };
+	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::findContext("switchKey1") };
+	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::findContext("switchKey2") };
+	ContextRepr<bool> _holdSwitch{ AppData::findContext("holdSwitch") };
 
 
 	// Overriding @MenuItem

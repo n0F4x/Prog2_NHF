@@ -7,32 +7,33 @@ template <typename T>
 class ContextRepr {
 private:
 	T _dataRepr;
-	Context::Accessor _access;
+	Context* _context;
 
 public:
 	ContextRepr() = delete;
-	explicit ContextRepr<T>(const Context::Accessor& access) : _access{ access } {
-		if (!_access) {
-			throw std::invalid_argument{ "ContextRepr construction failed, because accessor is invalid.\n" };
+	explicit ContextRepr<T>(Context* const context) : _context{ context } {
+		if (_context == nullptr) {
+			throw std::invalid_argument{ "ContextRepr construction failed, because pointer to context is invalid.\n" };
 		}
 		update();
 	}
 	ContextRepr<T>& operator=(const T& data) {
-		if (_access.setContext(data)) {
+		if (_context->set(data)) {
 			_dataRepr = data;
 		}
 		return *this;
 	}
 	ContextRepr<T>& operator=(const T&& data) {
-		if (_access.setContext(data)) {
+		if (_context->set(data)) {
 			_dataRepr = std::move(data);
 		}
 		return *this;
 	}
 	void update() {
-		_dataRepr = std::any_cast<T>(_access.getContext());
+		_dataRepr = _context->get<T>();
 	}
-	bool validate(const T& potentialData) { return _access.validate(potentialData); }
+	std::string string(const T& val) { return _context->string(val); }
+	bool validate(const T& potentialData) { return _context->validate(potentialData); }
 	explicit (false) operator T() const { return _dataRepr; }
-	explicit operator std::string() const { return _access.getContextString(); }
+	explicit operator std::string() const { return _context->string(); }
 };

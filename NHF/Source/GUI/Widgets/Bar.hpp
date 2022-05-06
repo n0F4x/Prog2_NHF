@@ -19,6 +19,7 @@ class Emphasis : public sf::RectangleShape, public Transitionable {
 template<typename T>
 class Bar : public Widget {
 private:
+	ContextRepr<T> _context;
 	Transitions::EaseInOut _transition{ &_emphasis };
 
 	std::vector<T> _contents;
@@ -28,18 +29,16 @@ private:
 
 	size_t _selected = 0;
 	size_t _activeCell = 0;
-	ContextRepr<T> _context;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
 	Bar(
 		float width, 
-		const std::vector<T>& contents, 
-		const std::vector<std::string>& labels, 
+		const std::vector<T>& contents,
 		const sf::Font& font,
 		unsigned chararcterSize, 
-		Context::Accessor context
+		const std::string_view& contextName
 	);
 
 	void setPosition(const sf::Vector2f& position) override;

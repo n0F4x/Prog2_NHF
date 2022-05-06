@@ -28,7 +28,7 @@ private:
 	Transitions::Jump _transition{&_sprite};
 
 	// Context accessor(s)
-	ContextRepr<sf::Event::KeyEvent> _jumpKey{ AppData::getContext("jumpKey") };
+	ContextRepr<sf::Event::KeyEvent> _jumpKey{ AppData::findContext("jumpKey") };
 
 	// overriding @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_sprite); }

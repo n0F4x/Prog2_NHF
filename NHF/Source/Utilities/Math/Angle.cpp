@@ -1,5 +1,10 @@
 #include "Angle.hpp"
 
+#include <numbers>
+
+
+extern const float math::PI = std::numbers::pi_v<float>;
+
 
 float operator"" _deg(long double degree) {
 	return static_cast<float>(degree) * math::PI / 180.f;

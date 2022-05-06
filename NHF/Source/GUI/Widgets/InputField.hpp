@@ -8,17 +8,16 @@
 
 class InputField : public Widget {
 private:
-	sf::Clock _clock;
+	ContextRepr<sf::Event::KeyEvent> _context;
 
 	Text _text;
 	std::string _string;
 	sf::RectangleShape _frame;
 
+	sf::Clock _clock;
 	void setActive(bool isActive);
 	std::string _activeString;
 	bool _isActive = false;
-
-	ContextRepr<sf::Event::KeyEvent> _context;
 
 	// Override @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -27,7 +26,7 @@ public:
 	InputField(
 		const sf::Font& fontStyle,
 		unsigned characterSize,
-		Context::Accessor context
+		const std::string_view& contextName
 	);
 
 	void setPosition(const sf::Vector2f& position) override;

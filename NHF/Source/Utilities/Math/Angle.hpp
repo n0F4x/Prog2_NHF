@@ -1,10 +1,8 @@
 #pragma once
 
-#include <numbers>
-
 
 namespace math {
-	const float PI = std::numbers::pi_v<float>;
+	extern const float PI;
 }
 
 

@@ -24,44 +24,35 @@ public:
 		bool operator()(const std::any& data) const { return _func(data); }
 	};
 
-	class Accessor {
-	private:
-		Context* const _observable;
-
-	public:
-		explicit Accessor(Context* observable = nullptr) : _observable{ observable } {}
-		explicit(false) operator bool() const { return _observable != nullptr; }
-		const std::any& getContext() const { return _observable->_data; }
-		std::string getContextString() const { return _observable->_converter(_observable->_data); }
-		bool setContext(const std::any& data) const {
-			if (validate(data)) {
-				_observable->_data = data;
-				return true;
-			}
-			return false;
-		}
-		bool setContext(std::any&& data) const {
-			if (validate(data)) {
-				_observable->_data = std::move(data);
-				return true;
-			}
-			return false;
-		}
-		bool validate(const std::any& data) const { return _observable->validate(data); }
-	};
-
-	friend Accessor;
-
 
 private:
 	std::any _data;
 	const ToStringConverter _converter;
 	const Validator _validator;
 
-	bool validate(const std::any& data) const { return _validator(data); }
-
 public:
 	explicit Context(const std::any& data, const ToStringConverter& converter, const Validator& validator) :
 		_data{ data }, _converter{ converter }, _validator{ validator } {}
-	Accessor get() { return Accessor{ this }; }
+
+	template <typename T>
+	T get() const { return std::any_cast<T>(_data); }
+	std::string string() const { return _converter(_data); }
+	template <typename T>
+	std::string string(const T& val) { return _converter(val); }
+	bool set(const std::any& data) {
+		if (_validator(data)) {
+			_data = data;
+			return true;
+		}
+		return false;
+	}
+	bool set(std::any&& data) {
+		if (_validator(data)) {
+			_data = std::move(data);
+			return true;
+		}
+		return false;
+	}
+	std::string string(const std::any& val) const { return _converter(val); }
+	bool validate(const std::any& potentialData) const { return _validator(potentialData); }
 };

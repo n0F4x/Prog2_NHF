@@ -22,14 +22,18 @@ void Bar<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 template<typename T>
 Bar<T>::Bar(
-	float width, const std::vector<T>& contents, const std::vector<std::string>& labels, const sf::Font& font, unsigned chararcterSize, Context::Accessor context
+	float width,
+	const std::vector<T>& contents,
+	const sf::Font& font,
+	unsigned chararcterSize,
+	const std::string_view& contextName
 ) :
-	_contents{ contents },
-	_context{ context }
+	_context{ AppData::findContext(contextName) },
+	_contents{ contents }
 {
-	sf::Vector2f cellSize = { width / static_cast<float>(labels.size()), Text{ "0", font, chararcterSize }.getSize().y * 2.f };
+	sf::Vector2f cellSize = { width / static_cast<float>(_contents.size()), Text{ "0", font, chararcterSize }.getSize().y * 2.f };
 
-	_cells.resize(labels.size());
+	_cells.resize(contents.size());
 	for (size_t i = 0; i < _cells.size(); i++) {
 		_cells[i].setSize(cellSize);
 		_cells[i].move({ cellSize.x * static_cast<float>(i), 0.f });
@@ -38,9 +42,9 @@ Bar<T>::Bar(
 		_cells[i].setOutlineThickness(2.f);
 	}
 
-	_texts.resize(labels.size());
+	_texts.resize(contents.size());
 	for (size_t i = 0; i < _texts.size(); i++) {
-		_texts[i] = Text{ labels[i].c_str(), font, chararcterSize };
+		_texts[i] = Text{ _context.string(contents[i]), font, chararcterSize };
 		_texts[i].center(_cells[i].getLocalBounds());
 		_texts[i].move(_cells[i].getPosition());
 		_texts[i].setFillColor(theme::IndigoPurple);
@@ -50,7 +54,7 @@ Bar<T>::Bar(
 	_emphasis.setPosition(_cells[_selected].getPosition());
 	_emphasis.setFillColor(theme::Tertiary);
 
-	setSize({ cellSize.x * static_cast<float>(labels.size()), cellSize.y });
+	setSize({ cellSize.x * static_cast<float>(_contents.size()), cellSize.y });
 
 	addTransition(&_transition);
 }
@@ -87,10 +91,9 @@ template<typename T>
 void Bar<T>::update() {
 	MenuItem::update();
 
-	if (_context != _contents[_activeCell]) {
-		if (_transition.start(_cells[_selected].getPosition() - _emphasis.getPosition(), 200)) {
-			_activeCell = _selected;
-		}
+	if (_context != _contents[_activeCell] && !_transition.isActive()) {
+		_transition.start(_cells[_selected].getPosition() - _emphasis.getPosition(), 200);
+		_activeCell = _selected;
 	}
 }
 
@@ -98,6 +101,7 @@ template<typename T>
 void Bar<T>::init() {
 	MenuItem::init();
 
+	_context.update();
 	for (size_t i = 0; i < _texts.size(); i++) {
 		if (_contents[i] == _context) {
 			_emphasis.setPosition(_cells[i].getPosition());

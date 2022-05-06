@@ -8,8 +8,8 @@
 
 
 OptionsMenu::OptionsMenu() {
-	// Widget height
-	Text tmp{ "Tmp", AppData::getFont("Dameron"), 56u };
+	// Widget size
+	Text tmp{ "Ctrl+Alt+Shift+Space", AppData::getFont("Dameron"), 56u };
 
 	// Construct "Back" button
 	auto backButton = std::make_unique<Button>("Back", AppData::getFont("Dameron"), 76u, [this]() {close(); });
@@ -25,15 +25,11 @@ OptionsMenu::OptionsMenu() {
 
 	// Construct "Lane Count" bar and label
 	std::vector<int> LCcontents{ 3, 4, 5, 6, 7, 8 };
-	std::vector<std::string> LCstrings{ "3", "4", "5", "6", "7", "8" };
-	auto LCbar = std::make_unique<Bar<int>>(
-		Window::getSize().x * 0.6f, LCcontents, LCstrings, AppData::getFont("Dameron"), 56u,
-		AppData::getContext("platformCount")
-		);
+	auto LCbar = std::make_unique<Bar<int>>(tmp.getSize().x * 1.2f, LCcontents, AppData::getFont("Dameron"), 56u, "platformCount");
 	LCbar->center(Window::getLocalBounds());
 	LCbar->setPosition({
 		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - LCbar->getSize().x) / 2.f,
-		LCbar->getPosition().y 
+		LCbar->getPosition().y
 		});
 	LCbar->move({ 0.f, -3 * LCbar->getSize().y });
 	auto LClabel = std::make_unique<Text>("Lane Count:", AppData::getFont("Dameron"), 56u);
@@ -43,14 +39,11 @@ OptionsMenu::OptionsMenu() {
 	LClabel->setFillColor(theme::IndigoPurple);
 
 	// Construct "Jump Key" input field and label
-	auto JKinput = std::make_unique<InputField>(
-		AppData::getFont("Dameron"), 56u,
-		AppData::getContext("jumpKey")
-		);
+	auto JKinput = std::make_unique<InputField>(AppData::getFont("Dameron"), 56u, "jumpKey");
 	JKinput->center(Window::getLocalBounds());
-	JKinput->setPosition({ 
+	JKinput->setPosition({
 		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - JKinput->getSize().x) / 2.f,
-		JKinput->getPosition().y 
+		JKinput->getPosition().y
 		});
 	JKinput->move({ 0.f, -1.f * JKinput->getSize().y });
 	auto JKlabel = std::make_unique<Text>("Jump Key:", AppData::getFont("Dameron"), 56u);
@@ -61,10 +54,8 @@ OptionsMenu::OptionsMenu() {
 
 	// Construct "Platfrom Control" bar and label
 	std::vector<PlatformControl> PCcontents{ PlatformControl::Keyboard, PlatformControl::Mouse };
-	std::vector<std::string> PCstrings{ "Keyboard", "Mouse" };
 	auto PCbar = std::make_unique<Bar<PlatformControl>>(
-		Window::getSize().x * 0.6f, PCcontents, PCstrings, AppData::getFont("Dameron"), 56u,
-		AppData::getContext("platformControl")
+		tmp.getSize().x * 1.2f, PCcontents, AppData::getFont("Dameron"), 56u, "platformControl"
 		);
 	PCbar->center(Window::getLocalBounds());
 	PCbar->setPosition({
@@ -79,12 +70,9 @@ OptionsMenu::OptionsMenu() {
 	PClabel->setFillColor(theme::IndigoPurple);
 
 	// Construct "Switch Key 1" input field and label
-	auto SK1input = std::make_unique<InputField>(
-		AppData::getFont("Dameron"), 56u,
-		AppData::getContext("switchKey1")
-		);
+	auto SK1input = std::make_unique<InputField>(AppData::getFont("Dameron"), 56u, "switchKey1");
 	SK1input->center(Window::getLocalBounds());
-	SK1input->setPosition({ 
+	SK1input->setPosition({
 		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK1input->getSize().x) / 2.f,
 		SK1input->getPosition().y
 		});
@@ -96,10 +84,7 @@ OptionsMenu::OptionsMenu() {
 	SK1label->setFillColor(theme::IndigoPurple);
 
 	// Construct "Switch Key 2" input field and label
-	auto SK2input = std::make_unique<InputField>(
-		AppData::getFont("Dameron"), 56u,
-		AppData::getContext("switchKey2")
-		);
+	auto SK2input = std::make_unique<InputField>(AppData::getFont("Dameron"), 56u, "switchKey2");
 	SK2input->center(Window::getLocalBounds());
 	SK2input->setPosition({
 		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - SK2input->getSize().x) / 2.f,
@@ -114,11 +99,7 @@ OptionsMenu::OptionsMenu() {
 
 	// Construct "Hold Switch" bar and label
 	std::vector<bool> HScontents{ false, true };
-	std::vector<std::string> HSstrings{ "Off", "On" };
-	auto HSbar = std::make_unique<Bar<bool>>(
-		Window::getSize().x * 0.6f, HScontents, HSstrings, AppData::getFont("Dameron"), 56u,
-		AppData::getContext("holdSwitch")
-		);
+	auto HSbar = std::make_unique<Bar<bool>>(tmp.getSize().x * 1.2f, HScontents, AppData::getFont("Dameron"), 56u, "holdSwitch");
 	HSbar->center(Window::getLocalBounds());
 	HSbar->setPosition({
 		Window::getSize().x / 3.f + (Window::getSize().x / 3.f * 2.f - HSbar->getSize().x) / 2.f,

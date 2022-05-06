@@ -17,7 +17,7 @@ private:
 
 public:
 	static const sf::Font& getFont(const std::string& name) { return _assets.getFont(name); }
-	static Context::Accessor getContext(const std::string_view& name) { return _contexts.getContext(name); }
+	static Context* findContext(const std::string_view& name) { return _contexts.find(name); }
 
 	void loadFromFiles() const { 
 		_assets.loadFromFiles();
