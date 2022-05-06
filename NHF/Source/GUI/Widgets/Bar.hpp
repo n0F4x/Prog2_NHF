@@ -19,7 +19,7 @@ class Emphasis : public sf::RectangleShape, public Transitionable {
 template<typename T>
 class Bar : public Widget {
 private:
-	Transitions::Bezier::Ease _transition{ &_emphasis };
+	Transitions::EaseInOut _transition{ &_emphasis };
 
 	std::vector<T> _contents;
 	std::vector<Text> _texts;
@@ -27,6 +27,7 @@ private:
 	Emphasis _emphasis;
 
 	size_t _selected = 0;
+	size_t _activeCell = 0;
 	ContextRepr<T> _context;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -44,5 +45,6 @@ public:
 	void setPosition(const sf::Vector2f& position) override;
 
 	void handleEvent(const sf::Event& event) override;
+	void update() override;
 	void init() override;
 };

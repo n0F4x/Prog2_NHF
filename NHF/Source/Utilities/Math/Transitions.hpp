@@ -39,14 +39,16 @@ protected:
 public:
 	bool isActive() const { return _isActive; }
 
-	virtual void start(const sf::Vector2f& distance, int time) {
+	virtual bool start(const sf::Vector2f& distance, int time) {
 		if (!_isActive) {
 			init();
 			_distance = distance;
 			_time = time;
 			_clock.restart();
 			_isActive = true;
+			return true;
 		}
+		return false;
 	}
 	void update();
 	virtual void init() { _isActive = false; _elapsedTime = 0; _distanceTraveled = { 0.f, 0.f }; _isPaused = false; _pausedTime = 0; }
@@ -67,12 +69,13 @@ namespace Transitions {
 	public:
 		explicit EaseInOut(Transitionable* object);
 
-		void start(const sf::Vector2f& distance, int time) override {
+		bool start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
 				_accX = calcAcc(distance.x, time);
 				_accY = calcAcc(distance.y, time);
-				Transition::start(distance, time);
+				return Transition::start(distance, time);
 			}
+			return false;
 		}
 	};
 
@@ -85,11 +88,12 @@ namespace Transitions {
 		public:
 			explicit Ease(Transitionable* object);
 
-			void start(const sf::Vector2f& distance, int time) override {
+			bool start(const sf::Vector2f& distance, int time) override {
 				if (!isActive()) {
 					_lastProgress = 0.f;
-					Transition::start(distance, time);
+					return Transition::start(distance, time);
 				}
+				return false;
 			}
 		};
 	}
@@ -104,15 +108,16 @@ namespace Transitions {
 	public:
 		explicit Jump(Transitionable* object);
 
-		void start(const sf::Vector2f& direction, int time) override {
+		bool start(const sf::Vector2f& direction, int time) override {
 			if (!isActive()) {
 				_lastProgress = 0.f;
 				_velocity = -1 * (_acc / 2.f * static_cast<float>(math::square(time))) / static_cast<float>(time);
 				float angle = math::calcAngle(direction);
 				_direction.x = cosf(angle);
 				_direction.y = sinf(angle);
-				Transition::start({ 0.f, 0.f }, time);
+				return Transition::start({ 0.f, 0.f }, time);
 			}
+			return false;
 		}
 	};
 }

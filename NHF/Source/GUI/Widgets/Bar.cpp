@@ -77,8 +77,19 @@ void Bar<T>::handleEvent(const sf::Event& event) {
 		for (size_t i = 0; i < _cells.size(); i++) {
 			if (_cells[i].getGlobalBounds().contains(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
 				_context = _contents[i];
-				_transition.start(_cells[i].getPosition() - _emphasis.getPosition(), 200);
+				_selected = i;
 			}
+		}
+	}
+}
+
+template<typename T>
+void Bar<T>::update() {
+	MenuItem::update();
+
+	if (_context != _contents[_activeCell]) {
+		if (_transition.start(_cells[_selected].getPosition() - _emphasis.getPosition(), 200)) {
+			_activeCell = _selected;
 		}
 	}
 }
@@ -88,8 +99,10 @@ void Bar<T>::init() {
 	MenuItem::init();
 
 	for (size_t i = 0; i < _texts.size(); i++) {
-		if (_texts[i].getString().toAnsiString() == static_cast<std::string>(_context)) {
+		if (_contents[i] == _context) {
 			_emphasis.setPosition(_cells[i].getPosition());
+			_selected = i;
+			_activeCell = i;
 		}
 	}
 }
