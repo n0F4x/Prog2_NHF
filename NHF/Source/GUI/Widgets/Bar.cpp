@@ -89,12 +89,12 @@ void Bar<T>::handleEvent(const sf::Event& event) {
 
 template<typename T>
 void Bar<T>::update() {
-	MenuItem::update();
-
 	if (_context != _contents[_activeCell] && !_transition.isActive()) {
 		_transition.start(_cells[_selected].getPosition() - _emphasis.getPosition(), 200);
 		_activeCell = _selected;
 	}
+
+	MenuItem::update();
 }
 
 template<typename T>
