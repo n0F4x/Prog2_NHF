@@ -10,9 +10,7 @@ void App::init(bool renderPreview) {
 
 	_controller.load();
 
-	if (!_window.isOpen()) {
-		_window.open();
-	}
+	_window.open();
 }
 
 void App::run() {

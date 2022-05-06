@@ -19,8 +19,9 @@ private:
 	// Variables
 	sf::Vector2f _mouse{ sf::Vector2f{sf::Mouse::getPosition(Window::window())} };
 	bool _isDragged = false;
-	bool _switchingLeft = false;
-	bool _switchingRight= false;
+	int _switchingState = 0;
+
+	void switchLanes();
 
 	// Contexts
 	ContextRepr<PlatformControl> _platformControl{ AppData::getContext("platformControl") };

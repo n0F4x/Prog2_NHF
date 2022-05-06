@@ -3,6 +3,20 @@
 #include "../../Utilities/Math.hpp"
 
 
+void Track::switchLanes() {
+	if (_switchingState != 0 && !_transition.isActive()) {
+		if (_switchingState > 0) {
+			_transition.start({ Platform::width, 0.f }, 200);
+			_switchingState--;
+		}
+		else {
+			_transition.start({ -1 * Platform::width, 0.f }, 200);
+			_switchingState++;
+		}
+	}
+}
+
+
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_platforms);
 	target.draw(_shader);
@@ -32,31 +46,22 @@ bool Track::isOnPlatform(const sf::Vector2f& point) const {
 
 
 void Track::handleEvent(const sf::Event& event) {
-	if (!isPaused() && _platformControl == PlatformControl::Mouse) {
-		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-			_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
-			_isDragged = true;
+	if (!isPaused()) {
+		if (_platformControl == PlatformControl::Mouse) {
+			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+				_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
+				_isDragged = true;
+			}
+			if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+				_isDragged = false;
+			}
 		}
-		if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-			_isDragged = false;
-		}
-	}
-
-	if (_platformControl == PlatformControl::Keyboard) {
-		if (event.type == sf::Event::KeyPressed) {
+		if (_platformControl == PlatformControl::Keyboard && event.type == sf::Event::KeyPressed) {
 			if (event.key == _switchKey1) {
-				_switchingLeft = true;
+				_switchingState--;
 			}
 			if (event.key == _switchKey2) {
-				_switchingRight = true;
-			}
-		}
-		if (event.type == sf::Event::KeyReleased) {
-			if (event.key == _switchKey1) {
-				_switchingLeft = false;
-			}
-			if (event.key == _switchKey2) {
-				_switchingRight = false;
+				_switchingState++;
 			}
 		}
 	}
@@ -71,14 +76,7 @@ void Track::update() {
 			_mouse = mouse;
 		}
 
-		if (_switchingLeft != _switchingRight) {
-			if (_switchingLeft) {
-				_transition.start({ -1 * Platform::width, 0.f }, 200);
-			}
-			if (_switchingRight) {
-				_transition.start({ Platform::width, 0.f }, 200);
-			}
-		}
+		switchLanes();
 
 		MenuItem::update();
 
@@ -96,8 +94,8 @@ void Track::init() {
 	Platform::width = 360_deg / static_cast<float>(std::any_cast<int>(AppData::getContext("platformCount").getContext()));
 	_platforms.init();
 
-	_switchingLeft = _switchingRight = false;
 	_isDragged = false;
+	_switchingState = 0;
 }
 
 void Track::resume() {
