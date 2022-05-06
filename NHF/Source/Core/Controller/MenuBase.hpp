@@ -11,13 +11,18 @@ private:
 	friend Controller;
 	bool __isExiting__ = false;
 	bool __isClosing__ = false;
-	bool __isOpening__ = false;
 	bool __openLast__ = false;
 	std::string __next__;
 
+	void __init__() {
+		__isClosing__ = false;
+		__openLast__ = false;
+		__next__.clear();
+	}
+
 protected:
-	void open(const std::string_view& next) { __isOpening__ = true; __next__ = next; }
-	void openLast() { __isOpening__ = true; __openLast__ = true; }
+	void open(const std::string_view& next) { __next__ = next; }
+	void openLast() { __openLast__ = true; }
 	void close() { __isClosing__ = true; }
 	void exit() { __isExiting__ = true; }
 

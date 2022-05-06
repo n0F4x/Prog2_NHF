@@ -12,9 +12,8 @@ private:
 	MenuNode _root;
 
 	MenuNode* _current = nullptr;
-	MenuNode* _next = nullptr;
 
-	void open(const std::string& name);
+	void open();
 	void openLast();
 	void close();
 
