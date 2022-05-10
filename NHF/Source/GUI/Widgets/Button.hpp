@@ -21,7 +21,7 @@ public:
 		const sf::String& text,
 		const sf::Font& fontStyle,
 		unsigned characterSize,
-		const std::function<void()>& callback
+		const std::function<void()>& callback = nullptr
 	);
 	Button(const Button&) = delete;
 

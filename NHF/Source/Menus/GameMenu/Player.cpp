@@ -9,11 +9,13 @@ PlayerSprite::PlayerSprite(const sf::Vector2f& centerPos) : Sprite{ AppData::get
 }
 
 void Player::handleEvent(const sf::Event& event) {
-	if (event.type == sf::Event::KeyPressed && event.key == _jumpKey) {
-		_jumpKeyPressed = true;
-	}
-	else if (event.type == sf::Event::KeyReleased && event.key == _jumpKey) {
-		_jumpKeyPressed = false;
+	if (!isPaused()) {
+		if (event.type == sf::Event::KeyPressed && event.key == _jumpKey) {
+			_jumpKeyPressed = true;
+		}
+		else if (event.type == sf::Event::KeyReleased && event.key == _jumpKey) {
+			_jumpKeyPressed = false;
+		}
 	}
 }
 
@@ -28,5 +30,10 @@ void Player::init() {
 	MenuItem::init();
 	_sprite.init();
 	_jumpKey.update();
+	_jumpKeyPressed = false;
+}
+
+void Player::pause() {
+	MenuItem::pause();
 	_jumpKeyPressed = false;
 }

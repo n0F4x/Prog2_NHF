@@ -41,6 +41,7 @@ set(SOURCE_FILES
     ./NHF/Source/GUI/Widgets/InputField.cpp
     ./NHF/Source/GUI/Widgets/Text.cpp
     ./NHF/Source/GUI/Theme.cpp
+    ./NHF/Source/Menus/GameMenu/PauseScreen.cpp
     ./NHF/Source/Menus/GameMenu/Platform.cpp
     ./NHF/Source/Menus/GameMenu/PlatformContainer.cpp
     ./NHF/Source/Menus/GameMenu/Player.cpp

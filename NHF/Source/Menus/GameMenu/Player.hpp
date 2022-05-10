@@ -46,4 +46,5 @@ public:
 	void handleEvent(const sf::Event& event) override;
 	void update() override;
 	void init() override;
+	void pause() override;
 };
