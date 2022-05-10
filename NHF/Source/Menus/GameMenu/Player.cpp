@@ -3,10 +3,15 @@
 #include "../../Core/Window.hpp"
 
 
-PlayerSprite::PlayerSprite(const sf::Vector2f& centerPos) : Sprite{ AppData::getTexture("Motor") }, _initPos{ centerPos } {
+PlayerSprite::PlayerSprite() : Sprite{ AppData::getTexture("Motor") } {
 	setOrigin(getLocalBounds().width / 2, getLocalBounds().height / 2);
 	setScale(0.4f, 0.4f);
 }
+
+void Player::setFeet(const sf::Vector2f& feet) {
+	_sprite.setInitPos(feet - _offset);
+}
+
 
 void Player::handleEvent(const sf::Event& event) {
 	if (!isPaused()) {
@@ -21,8 +26,13 @@ void Player::handleEvent(const sf::Event& event) {
 
 void Player::update() {
 	MenuItem::update();
-	if (_jumpKeyPressed) {
-		_transition.start(sf::Vector2f{ 0.f, Window::getSize().y / 2.f - _sprite.getPosition().y } / 2.f, 600);
+	if (_jumpKeyPressed && !_transition.isActive()) {
+		if (_resetJump) {
+			_resetJump = false;
+		}
+		else {
+			_resetJump = _transition.start(sf::Vector2f{ 0.f, Window::getSize().y / 2.f - _sprite.getPosition().y } / 2.f, 600);
+		}
 	}
 }
 

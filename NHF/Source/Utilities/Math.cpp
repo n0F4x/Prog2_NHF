@@ -30,6 +30,10 @@ namespace math {
 		}
 	}
 
+	bool isBetween(float val, float smaller, float bigger) {
+		return val > smaller && val < bigger;
+	}
+
 	std::vector<sf::Vector2f> getArcPoints(float angle, float spread, float radius, int maxpts) {
 		std::vector<sf::Vector2f> pts;
 		for (int i = 0; i < maxpts; ++i) {

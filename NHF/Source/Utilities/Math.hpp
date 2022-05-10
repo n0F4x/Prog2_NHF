@@ -18,5 +18,7 @@ namespace math {
 
 	float calcAngle(const sf::Vector2f& position);
 
+	bool isBetween(float val, float smaller, float bigger);
+
 	std::vector<sf::Vector2f> getArcPoints(float angle, float spread, float radius, int maxpts);
 }

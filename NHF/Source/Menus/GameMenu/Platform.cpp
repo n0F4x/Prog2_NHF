@@ -11,7 +11,7 @@ const float Platform::_initOuterRadius = 4.f;
 float Platform::_maxRadius = 0.f;
 sf::Vector2f Platform::_origin = sf::Vector2f{ 0.f, 0.f };
 void Platform::setOrigin(const sf::Vector2f& origin) {
-	_maxRadius = sqrt(origin.x * origin.x + origin.y * origin.y);
+	_maxRadius = sqrt(math::squaref(origin.x) + math::squaref(origin.y));
 	_origin = origin;
 }
 
@@ -66,12 +66,8 @@ bool Platform::isDead() const {
 }
 
 bool Platform::isInside(const sf::Vector2f& point) const {
-	if (float distance = math::calcDistance(_origin, point); distance > _innerRadius && distance < _outerRadius) {
-		if (float angle = math::calcAngle(_origin - point);
-			(angle > _rotation && angle < _rotation + width) || (angle + 360_deg > _rotation && angle + 360_deg < _rotation - width)
-			) {
-			return true;
-		}
-	}
-	return false;
+	PolarVector polarV = _preCalc.getPolarVector(point);
+	return
+		math::isBetween(polarV.radius, _innerRadius, _outerRadius) &&
+		math::isBetween(polarV.angle, _rotation, _rotation + width) || math::isBetween(polarV.angle + 360_deg, _rotation, _rotation + width);
 }

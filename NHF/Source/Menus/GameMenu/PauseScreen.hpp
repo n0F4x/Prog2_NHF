@@ -7,17 +7,21 @@
 class PauseScreen : public MenuItem {
 private:
 	sf::RectangleShape _bg{Window::getSize()};
-	Text _text{ "Resume", AppData::getFont("Dameron"), 80u };
-	Button _backButton{ "Back to Menu", AppData::getFont("Dameron"), 56u};
+	Text _text{ "Resume", AppData::getFont("Dameron"), 84u };
+	Button _backButton;
+	Button _playAgainButton;
 
 	const std::function<void()> _resumeMenu;
+
+	bool _gameOver = false;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
-	explicit PauseScreen(const std::function<void()>& resumeMenu, const std::function<void()>& closeMenu);
+	explicit PauseScreen(const std::function<void()>& resumeMenu, const std::function<void()>& closeMenu, const std::function<void()>& initMenu);
 
-	void setText(const sf::String& text);
+	void gameOver();
 
 	void handleEvent(const sf::Event&) override;
+	void init() override;
 };

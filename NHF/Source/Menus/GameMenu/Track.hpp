@@ -26,6 +26,7 @@ private:
 	void switchLanes();
 
 	// Contexts
+	ContextRepr<int> _platformCount{AppData::findContext("platformCount")};
 	ContextRepr<PlatformControl> _platformControl{ AppData::findContext("platformControl") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::findContext("switchKey1") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::findContext("switchKey2") };
@@ -38,7 +39,7 @@ private:
 public:
 	Track();
 
-	bool isOnPlatform(const sf::Vector2f& point) const;
+	bool isOnPlatforms(const sf::Vector2f& point) const;
 
 	void handleEvent(const sf::Event& event) override;
 	void update() override;

@@ -1,10 +1,11 @@
 #include "PlatformContainer.hpp"
 
 #include "../../Core/Window.hpp"
+#include "../../Utilities/Math.hpp"
 
 
 int PlatformContainer::generateRandom(int from, int to) {
-	return std::uniform_int_distribution{ from, to }(_randomEngine);
+	return _random ? std::uniform_int_distribution{ from, to }(_randomEngine) : 0;
 }
 
 void PlatformContainer::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -51,4 +52,16 @@ void PlatformContainer::init() {
 	_platforms.emplace_front(_preCalc);
 	_counter = 0;
 	_rotation = 0_deg;
+
+	float inner = _platforms.front().getInnerRadius();
+	float outer = _platforms.front().getOuterRadius();
+
+	float maxRadius = sqrt(math::square(Window::getSize().x / 2.f) + math::square(Window::getSize().y / 2.f));
+	auto platformCount = static_cast<int>((maxRadius - inner) / outer);
+
+	_random = false;
+	for (int i = 0; i < _scaleSpeed * platformCount; i++) {
+		update();
+	}
+	_random = true;
 }

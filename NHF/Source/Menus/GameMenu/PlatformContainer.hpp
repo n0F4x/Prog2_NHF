@@ -19,6 +19,7 @@ private:
 	// Random generation
 	std::mt19937 _randomEngine{ std::random_device{}() };
 	int generateRandom(int from, int to);
+	bool _random = true;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

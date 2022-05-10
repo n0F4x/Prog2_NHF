@@ -34,7 +34,9 @@ void Menu::render() {
 		Window::draw(*item);
 	}
 
-	Window::display();
+	if (_renderDisplay) {
+		Window::display();
+	}
 }
 
 
@@ -42,6 +44,7 @@ void Menu::init() {
 	for (const auto& item : _items) {
 		item->init();
 	}
+	_isPaused = false;
 }
 
 void Menu::pause() {

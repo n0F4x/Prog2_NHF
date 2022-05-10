@@ -10,4 +10,5 @@ namespace theme {
 	extern const sf::Color Purple;
 	extern const sf::Color IndigoPurple;
 	extern const sf::Color IndigoPurpleShade;
+	extern const sf::Color NeonYellow;
 }

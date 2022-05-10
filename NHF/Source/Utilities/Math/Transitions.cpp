@@ -30,28 +30,27 @@ namespace Transitions {
 		}
 	} {}
 
-		namespace Bezier {
-			Ease::Ease(Transitionable* object) :
-				Transition{ object, [this](int elapsedTime) -> sf::Vector2f {
-					float progressionF = _bezier.GetEasingProgress(static_cast<float>(elapsedTime) / static_cast<float>(getDurationTime())) - _lastProgress;
-					sf::Vector2f progression = getDurationDistance() * progressionF;
+	namespace Bezier {
+		Ease::Ease(Transitionable* object) :
+			Transition{ object, [this](int elapsedTime) -> sf::Vector2f {
+				float progressionF = _bezier.GetEasingProgress(static_cast<float>(elapsedTime) / static_cast<float>(getDurationTime())) - _lastProgress;
+				sf::Vector2f progression = getDurationDistance() * progressionF;
 
-					_lastProgress += progressionF;
-					return progression;
-				}
-			} {}
-		}
-
-		Jump::Jump(Transitionable* object) :
-			Transition{ 
-				object,
-				[this](int elapsedTime) -> sf::Vector2f {
-					sf::Vector2f progression = _acc / 2.f * static_cast<float>(math::square(elapsedTime)) + _velocity * static_cast<float>(elapsedTime) - _lastProgress;
-
-					_lastProgress += progression;
-					return progression;
-				},
-				[this](const sf::Vector2f&) { return getDurationDistance(); }
+				_lastProgress += progressionF;
+				return progression;
 			}
-		{}
+		} {}
+	}
+
+	Jump::Jump(Transitionable* object) :
+		Transition{
+			object,
+			[this](int elapsedTime) -> sf::Vector2f {
+				sf::Vector2f progression = _acc / 2.f * static_cast<float>(math::square(elapsedTime)) + _velocity * static_cast<float>(elapsedTime) - _lastProgress;
+
+				_lastProgress += progression;
+				return progression;
+			},
+			[this](const sf::Vector2f& distanceTraveled) { return getDurationDistance() + distanceTraveled; }
+	} {}
 }

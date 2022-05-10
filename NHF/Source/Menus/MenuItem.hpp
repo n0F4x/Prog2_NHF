@@ -19,6 +19,9 @@ protected:
 	void addTransition(Transition* transition) { _transitions.push_back(transition); }
 
 public:
+	MenuItem() = default;
+	explicit MenuItem(const std::vector<Transition*>& transitions) : _transitions{transitions} {}
+
 	virtual void handleEvent(const sf::Event& event) { /*not pure*/ }
 	virtual void update() { 
 		for (auto it : _transitions) {

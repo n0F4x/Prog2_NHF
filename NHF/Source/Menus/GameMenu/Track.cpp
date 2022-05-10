@@ -7,21 +7,21 @@ void Track::switchLanes() {
 	if (_holdSwitch) {
 		if (_switchingLeft != _switchingRight) {
 			if (_switchingLeft) {
-				_transition.start({ -1 * Platform::width, 0.f }, 200);
+				_transition.start({ -1 * Platform::width, 0.f }, 200 / (_platformCount - 2));
 			}
 			if (_switchingRight) {
-				_transition.start({ Platform::width, 0.f }, 200);
+				_transition.start({ Platform::width, 0.f }, 200 / (_platformCount - 2));
 			}
 		}
 	}
 	else {
 		if (_switchingState != 0 && !_transition.isActive()) {
 			if (_switchingState > 0) {
-				_transition.start({ Platform::width, 0.f }, 200);
+				_transition.start({ Platform::width, 0.f }, 200 / (_platformCount - 2));
 				_switchingState--;
 			}
 			else {
-				_transition.start({ -1 * Platform::width, 0.f }, 200);
+				_transition.start({ -1 * Platform::width, 0.f }, 200 / (_platformCount - 2));
 				_switchingState++;
 			}
 		}
@@ -52,7 +52,7 @@ Track::Track() {
 }
 
 
-bool Track::isOnPlatform(const sf::Vector2f& point) const {
+bool Track::isOnPlatforms(const sf::Vector2f& point) const {
 	return _platforms.isInside(point);
 }
 
@@ -119,12 +119,13 @@ void Track::update() {
 void Track::init() {
 	MenuItem::init();
 
+	_platformCount.update();
 	_platformControl.update();
 	_switchKey1.update();
 	_switchKey2.update();
 	_holdSwitch.update();
 
-	Platform::width = 360_deg / static_cast<float>(AppData::findContext("platformCount")->get<int>());
+	Platform::width = 360_deg / static_cast<float>(_platformCount);
 	_platforms.init();
 
 	_isDragged = false;

@@ -10,7 +10,10 @@ private:
 	sf::Vector2f _initPos;
 
 public:
-	explicit PlayerSprite(const sf::Vector2f& centerPos);
+	PlayerSprite();
+
+	void setInitPos(const sf::Vector2f& pos) { _initPos = pos; setPosition(pos); }
+	const sf::Vector2f& getInitPos() const { return _initPos; }
 
 	// overriding @Transitionable
 	void transition(const sf::Vector2f& amount) override { move(amount); }
@@ -22,9 +25,10 @@ public:
 class Player : public MenuItem {
 private:
 	PlayerSprite _sprite;
-	sf::Vector2f _feetPos;
+	sf::Vector2f _offset = { 0.f, 35.f };
 
 	bool _jumpKeyPressed = false;
+	bool _resetJump = false;
 
 	// Transition(s)
 	Transitions::Jump _transition{ &_sprite };
@@ -36,12 +40,11 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_sprite); }
 
 public:
-	explicit Player(const sf::Vector2f& centerPos) : _sprite{ centerPos }, _feetPos{ centerPos } {
-		MenuItem::addTransition(&_transition);
-	}
+	Player() : MenuItem{ {&_transition} } {}
 
 	bool isJumping() const { return _transition.isActive(); }
-	const sf::Vector2f& getFeet() const { return _feetPos; }
+	sf::Vector2f getFeet() const { return _sprite.getInitPos() + _offset; }
+	void setFeet(const sf::Vector2f& feet);
 
 	void handleEvent(const sf::Event& event) override;
 	void update() override;
