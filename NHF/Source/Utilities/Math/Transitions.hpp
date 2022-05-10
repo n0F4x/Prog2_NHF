@@ -11,7 +11,8 @@
 class Transition {
 private:
 	Transitionable* _object = nullptr;
-	std::function<sf::Vector2f(int elapsedTime)> _getProgression;
+	const std::function<sf::Vector2f(int elapsedTime)> _getProgression;
+	const std::function<sf::Vector2f(const sf::Vector2f& distanceTraveled)> _correctDistance;
 
 	int _time = 0;	// in milliseconds
 	sf::Vector2f _distance = { 0, 0 };
@@ -29,8 +30,12 @@ private:
 	sf::Clock _pausedClock;
 
 protected:
-	explicit Transition(Transitionable* object, const std::function<sf::Vector2f(int elapsedTime)>& getProgression) :
-		_object{ object }, _getProgression{ getProgression } {}
+	explicit Transition(
+		Transitionable* object,
+		const std::function<sf::Vector2f(int elapsedTime)>& getProgression,
+		const std::function<sf::Vector2f(const sf::Vector2f& distanceTraveled)>& correctDistance = [](const sf::Vector2f& distanceTraveled) -> sf::Vector2f { return distanceTraveled; }
+	) :
+		_object{ object }, _getProgression{ getProgression }, _correctDistance{correctDistance} {}
 
 	int getDurationTime() const { return _time; }
 	const sf::Vector2f& getDurationDistance() const { return _distance; }
@@ -43,6 +48,10 @@ public:
 		if (!_isActive) {
 			init();
 			_distance = distance;
+			_elapsedTime = 0;
+			_distanceTraveled = { 0.f, 0.f };
+			_isPaused = false;
+			_pausedTime = 0;
 			_time = time;
 			_clock.restart();
 			_isActive = true;
@@ -51,7 +60,7 @@ public:
 		return false;
 	}
 	void update();
-	virtual void init() { _isActive = false; _elapsedTime = 0; _distanceTraveled = { 0.f, 0.f }; _isPaused = false; _pausedTime = 0; }
+	virtual void init() { _isActive = false; }
 	virtual void pause() { _isPaused = true; _pausedClock.restart(); }
 	virtual void resume() { _isPaused = false; _pausedTime += _pausedClock.getElapsedTime().asMilliseconds(); }
 
@@ -61,18 +70,16 @@ public:
 namespace Transitions {
 	class EaseInOut : public Transition {	// Quadratic
 	private:
-		float _accX = 0;	// max X acceleration during rotation
-		float _accY = 0;	// max Y acceleration during rotation
+		sf::Vector2f _acc;	// max acceleration during rotation
 
-		float calcAcc(float distance, int time) const { return distance / static_cast<float>(math::square(time / 2)); }
+		sf::Vector2f calcAcc(const sf::Vector2f& distance, int time) const { return distance / static_cast<float>(math::square(time / 2)); }
 
 	public:
 		explicit EaseInOut(Transitionable* object);
 
 		bool start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
-				_accX = calcAcc(distance.x, time);
-				_accY = calcAcc(distance.y, time);
+				_acc = calcAcc(distance, time);
 				return Transition::start(distance, time);
 			}
 			return false;
@@ -100,22 +107,26 @@ namespace Transitions {
 
 	class Jump : public Transition {
 	private:
-		float _acc = -9.81f / (1000.f * 1000.f);
-		float _velocity = 0.f;
-		sf::Vector2f _direction = { 0.f, 0.f };
-		float _lastProgress = 0.f;
+		sf::Vector2f _acc;
+		sf::Vector2f _velocity;
+		sf::Vector2f _lastProgress;
+
+		sf::Vector2f calcAcc(const sf::Vector2f& distance, int time) const {
+			return - 2.f * distance / math::squaref(static_cast<float>(time) / 2);
+		}
+		sf::Vector2f calcVelocity(const sf::Vector2f& acc, int time) const {
+			return - acc / 2.f * static_cast<float>(time);
+		}
 
 	public:
 		explicit Jump(Transitionable* object);
 
-		bool start(const sf::Vector2f& direction, int time) override {
+		bool start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
-				_lastProgress = 0.f;
-				_velocity = -1 * (_acc / 2.f * static_cast<float>(math::square(time))) / static_cast<float>(time);
-				float angle = math::calcAngle(direction);
-				_direction.x = cosf(angle);
-				_direction.y = sinf(angle);
-				return Transition::start({ 0.f, 0.f }, time);
+				_lastProgress = { 0.f, 0.f };
+				_acc = calcAcc(distance, time);
+				_velocity = calcVelocity(_acc, time);
+				return Transition::start(distance, time);
 			}
 			return false;
 		}
