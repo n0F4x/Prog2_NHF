@@ -18,27 +18,34 @@ void Transition::update() {
 
 namespace Transitions {
 	EaseInOut::EaseInOut(Transitionable* object) :
-		Transition{ object, [this](int elapsedTime) -> sf::Vector2f {
-			sf::Vector2f progression;
-			if (elapsedTime <= getDurationTime() / 2) {
-				progression = _acc / 2.f * static_cast<float>(math::square(elapsedTime)) - _acc / 2.f * static_cast<float>(math::square(getElapsedTime()));
+		Transition{
+			object,
+			[this](int elapsedTime) -> sf::Vector2f {
+				sf::Vector2f progression;
+				if (elapsedTime <= getDurationTime() / 2) {
+					progression = _acc / 2.f * static_cast<float>(math::square(elapsedTime)) - getDistanceTraveled();
+				}
+				else {
+					progression =
+						-_acc / 2.f * static_cast<float>(math::square(elapsedTime - getDurationTime() / 2))
+						+ _velocity2 * static_cast<float>(elapsedTime - getDurationTime() / 2)
+						- (getDistanceTraveled() - getDurationDistance() / 2.f);
+				}
+				return progression;
 			}
-			else {
-				progression = _acc / 2.f * static_cast<float>(math::square(getDurationTime() - getElapsedTime())) - _acc / 2.f * static_cast<float>(math::square(getDurationTime() - elapsedTime));
-			}
-			return progression;
-		}
-	} {}
+	} {
+		/* Comment for formatting purposes */
+	}
 
 	namespace Bezier {
 		Ease::Ease(Transitionable* object) :
-			Transition{ object, [this](int elapsedTime) -> sf::Vector2f {
-				float progressionF = _bezier.GetEasingProgress(static_cast<float>(elapsedTime) / static_cast<float>(getDurationTime())) - _lastProgress;
-				sf::Vector2f progression = getDurationDistance() * progressionF;
-
-				_lastProgress += progressionF;
-				return progression;
-			}
+			Transition{
+				object,
+				[this](int elapsedTime) -> sf::Vector2f {
+				return
+					_bezier.GetEasingProgress(static_cast<float>(elapsedTime) / static_cast<float>(getDurationTime())) * getDurationDistance()
+					- getDistanceTraveled();
+				}
 		} {}
 	}
 
@@ -46,10 +53,7 @@ namespace Transitions {
 		Transition{
 			object,
 			[this](int elapsedTime) -> sf::Vector2f {
-				sf::Vector2f progression = _acc / 2.f * static_cast<float>(math::square(elapsedTime)) + _velocity * static_cast<float>(elapsedTime) - _lastProgress;
-
-				_lastProgress += progression;
-				return progression;
+				return _acc / 2.f * static_cast<float>(math::square(elapsedTime)) + _velocity * static_cast<float>(elapsedTime) - getDistanceTraveled();
 			},
 			[this](const sf::Vector2f& distanceTraveled) { return getDurationDistance() + distanceTraveled; }
 	} {}

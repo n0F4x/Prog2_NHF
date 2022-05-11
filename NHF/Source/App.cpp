@@ -23,6 +23,9 @@ void App::run() {
 			if (event.type == sf::Event::Closed) {
 				_window.close();
 			}
+			else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4 && event.key.alt) {
+				_window.close();
+			}
 			_controller->handleEvent(event);
 		}
 

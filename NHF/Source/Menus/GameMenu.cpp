@@ -48,9 +48,10 @@ void GameMenu::update() {
 	_pauseScreen.update();
 
 	if (!_gameOver && !_player.isJumping() && !_track.isOnPlatforms(_player.getFeet())) {
-		_gameOver = true;
+		_playerCircle.setOutlineColor(sf::Color::Red);
 		_pauseScreen.gameOver();
 		pause();
+		_gameOver = true;
 	}
 }
 
@@ -68,6 +69,7 @@ void GameMenu::render() {
 void GameMenu::init() {
 	Menu::init();
 	_track.init();
+	_playerCircle.setOutlineColor(theme::NeonYellow);
 	_player.init();
 	_pauseScreen.init();
 	_gameOver = false;

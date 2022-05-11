@@ -40,6 +40,7 @@ protected:
 	int getDurationTime() const { return _time; }
 	const sf::Vector2f& getDurationDistance() const { return _distance; }
 	int getElapsedTime() const { return _elapsedTime; }
+	const sf::Vector2f& getDistanceTraveled() const { return _distanceTraveled; }
 
 public:
 	bool isActive() const { return _isActive; }
@@ -71,8 +72,10 @@ namespace Transitions {
 	class EaseInOut : public Transition {	// Quadratic
 	private:
 		sf::Vector2f _acc;	// max acceleration during rotation
+		sf::Vector2f _velocity2;
 
 		sf::Vector2f calcAcc(const sf::Vector2f& distance, int time) const { return distance / static_cast<float>(math::square(time / 2)); }
+		sf::Vector2f calcVelocity2(const sf::Vector2f& acc, int time) const { return acc * static_cast<float>(time / 2); }
 
 	public:
 		explicit EaseInOut(Transitionable* object);
@@ -80,6 +83,7 @@ namespace Transitions {
 		bool start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
 				_acc = calcAcc(distance, time);
+				_velocity2 = calcVelocity2(_acc, time);
 				return Transition::start(distance, time);
 			}
 			return false;
@@ -90,18 +94,9 @@ namespace Transitions {
 		class Ease : public Transition {	// Cubic Bezier
 		private:
 			BezierEasing _bezier{ { 0.25f, 0.1f }, { 0.25f, 1.f } };
-			float _lastProgress = 0.f;
 
 		public:
 			explicit Ease(Transitionable* object);
-
-			bool start(const sf::Vector2f& distance, int time) override {
-				if (!isActive()) {
-					_lastProgress = 0.f;
-					return Transition::start(distance, time);
-				}
-				return false;
-			}
 		};
 	}
 
@@ -109,7 +104,6 @@ namespace Transitions {
 	private:
 		sf::Vector2f _acc;
 		sf::Vector2f _velocity;
-		sf::Vector2f _lastProgress;
 
 		sf::Vector2f calcAcc(const sf::Vector2f& distance, int time) const {
 			return - 2.f * distance / math::squaref(static_cast<float>(time) / 2);
@@ -123,7 +117,6 @@ namespace Transitions {
 
 		bool start(const sf::Vector2f& distance, int time) override {
 			if (!isActive()) {
-				_lastProgress = { 0.f, 0.f };
 				_acc = calcAcc(distance, time);
 				_velocity = calcVelocity(_acc, time);
 				return Transition::start(distance, time);

@@ -25,7 +25,7 @@ public:
 class Player : public MenuItem {
 private:
 	PlayerSprite _sprite;
-	sf::Vector2f _offset = { 0.f, 35.f };
+	sf::Vector2f _offset = { 0.f, 30.f };
 
 	bool _jumpKeyPressed = false;
 	bool _resetJump = false;
