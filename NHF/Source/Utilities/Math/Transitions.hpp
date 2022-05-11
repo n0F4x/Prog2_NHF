@@ -12,7 +12,7 @@ class Transition {
 private:
 	Transitionable* _object = nullptr;
 	const std::function<sf::Vector2f(int elapsedTime)> _getProgression;
-	const std::function<sf::Vector2f(const sf::Vector2f& distanceTraveled)> _correctDistance;
+	std::function<sf::Vector2f()> _correctDistance;
 
 	int _time = 0;	// in milliseconds
 	sf::Vector2f _distance = { 0, 0 };
@@ -33,9 +33,8 @@ protected:
 	explicit Transition(
 		Transitionable* object,
 		const std::function<sf::Vector2f(int elapsedTime)>& getProgression,
-		const std::function<sf::Vector2f(const sf::Vector2f& distanceTraveled)>& correctDistance = [](const sf::Vector2f& distanceTraveled) -> sf::Vector2f { return distanceTraveled; }
-	) :
-		_object{ object }, _getProgression{ getProgression }, _correctDistance{correctDistance} {}
+		const std::function<sf::Vector2f()>& correctDistance = nullptr
+	);
 
 	int getDurationTime() const { return _time; }
 	const sf::Vector2f& getDurationDistance() const { return _distance; }

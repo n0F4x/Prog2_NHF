@@ -1,10 +1,22 @@
 #include "Transitions.hpp"
 
 
+Transition::Transition(
+	Transitionable* object,
+	const std::function<sf::Vector2f(int elapsedTime)>& getProgression,
+	const std::function<sf::Vector2f()>& correctDistance
+) :
+	_object{ object }, _getProgression{ getProgression }, _correctDistance{ correctDistance }
+{
+	if (_correctDistance == nullptr) {
+		_correctDistance = [this]() -> sf::Vector2f { return _distance - _distanceTraveled; };
+	}
+}
+
 void Transition::update() {
 	if (_isActive && !_isPaused) {
 		if (int elapsedTime = _clock.getElapsedTime().asMilliseconds() - _pausedTime; elapsedTime >= _time) {
-			_object->transition(_distance - _correctDistance(_distanceTraveled));
+			_object->transition(_correctDistance());
 			init();
 		}
 		else {
@@ -55,6 +67,6 @@ namespace Transitions {
 			[this](int elapsedTime) -> sf::Vector2f {
 				return _acc / 2.f * static_cast<float>(math::square(elapsedTime)) + _velocity * static_cast<float>(elapsedTime) - getDistanceTraveled();
 			},
-			[this](const sf::Vector2f& distanceTraveled) { return getDurationDistance() + distanceTraveled; }
+			[this]() { return -getDistanceTraveled(); }
 	} {}
 }
