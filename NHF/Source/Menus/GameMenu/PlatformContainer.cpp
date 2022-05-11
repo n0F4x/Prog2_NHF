@@ -57,10 +57,10 @@ void PlatformContainer::init() {
 	float outer = _platforms.front().getOuterRadius();
 
 	float maxRadius = sqrt(math::square(Window::getSize().x / 2.f) + math::square(Window::getSize().y / 2.f));
-	auto platformCount = static_cast<int>((maxRadius - inner) / outer);
+	auto platformCount = static_cast<unsigned>((maxRadius - inner) / outer);
 
 	_random = false;
-	for (int i = 0; i < _scaleSpeed * platformCount; i++) {
+	for (unsigned i = 0; i < _scaleSpeed * platformCount; i++) {
 		update();
 	}
 	_random = true;

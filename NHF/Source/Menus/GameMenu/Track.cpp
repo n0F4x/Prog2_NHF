@@ -7,21 +7,21 @@ void Track::switchLanes() {
 	if (_holdSwitch) {
 		if (_switchingLeft != _switchingRight) {
 			if (_switchingLeft) {
-				_transition.start({ -1 * Platform::width, 0.f }, 200 / (_platformCount - 2));
+				_transition.start({ -1 * Platform::width, 0.f }, 200 * 3 / _platformCount);
 			}
 			if (_switchingRight) {
-				_transition.start({ Platform::width, 0.f }, 200 / (_platformCount - 2));
+				_transition.start({ Platform::width, 0.f }, 200 * 3 / _platformCount);
 			}
 		}
 	}
 	else {
 		if (_switchingState != 0 && !_transition.isActive()) {
 			if (_switchingState > 0) {
-				_transition.start({ Platform::width, 0.f }, 200 / (_platformCount - 2));
+				_transition.start({ Platform::width, 0.f }, 200 * 3 / _platformCount);
 				_switchingState--;
 			}
 			else {
-				_transition.start({ -1 * Platform::width, 0.f }, 200 / (_platformCount - 2));
+				_transition.start({ -1 * Platform::width, 0.f }, 200 * 3 / _platformCount);
 				_switchingState++;
 			}
 		}

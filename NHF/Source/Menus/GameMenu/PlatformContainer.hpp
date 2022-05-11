@@ -11,8 +11,8 @@ private:
 	const PreCalculator& _preCalc;
 	std::deque<Platform> _platforms;
 
-	int _counter = 0;
-	const int _scaleSpeed = 20;	//the lower the faster
+	unsigned _counter = 0;
+	const unsigned _scaleSpeed = 20;	//the lower the faster
 
 	float _rotation = 0_deg;
 
