@@ -1,4 +1,4 @@
-#include "ContextManager.hpp"
+﻿#include "ContextManager.hpp"
 
 #include <algorithm>
 #include <fstream>
@@ -109,6 +109,26 @@ public:
 		}
 	} {}
 };
+class SpeedConverter : public Context::ToStringConverter {
+public:
+	SpeedConverter() : Context::ToStringConverter{
+		[](const std::any& val) -> std::string {
+			if (auto _val = std::any_cast<unsigned>(val); _val == 30u) {
+				return "Slow";
+			}
+			else if (_val == 20u) {
+				return "Avg";
+			}
+			else if (_val == 15u) {
+				return "Fast";
+			}
+			else if (_val == 10u) {
+				return "Pro";
+			}
+			return "error";
+		}
+	} {}
+};
 
 
 void ContextManager::addContext(
@@ -122,9 +142,10 @@ void ContextManager::addContext(
 
 
 ContextManager::ContextManager() {
-	addContext("jumpKey", sf::Event::KeyEvent{ sf::Keyboard::Space }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("laneCount", 3u, UnsignedConverter{}, Context::Validator{ isValidLaneCount });
+	addContext("speed", 20u, SpeedConverter{});
 	addContext("platformControl", PlatformControl::Keyboard, PCConverter{});
+	addContext("jumpKey", sf::Event::KeyEvent{ sf::Keyboard::Space }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("switchKey1", sf::Event::KeyEvent{ sf::Keyboard::Left }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("switchKey2", sf::Event::KeyEvent{ sf::Keyboard::Right }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("holdSwitch", false, BoolConverter{});
@@ -192,6 +213,29 @@ bool readBool(std::ifstream& file) {
 	return res;
 }
 
+unsigned readSpeed(std::ifstream& file) {
+	std::string buffer;
+	unsigned res = 20u;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	if (buffer == "Slow") {
+		res = 30u;
+	}
+	else if (buffer == "Avg") {
+		res = 20u;
+	}
+	else if (buffer == "Fast") {
+		res = 15u;
+	}
+	else if (buffer == "Pro") {
+		res = 10u;
+	}
+	file >> buffer;
+	return res;
+}
+
 void ContextManager::loadFromFile() {
 	std::ifstream file("./Config/contexts.ini");
 	if (file) {
@@ -199,9 +243,10 @@ void ContextManager::loadFromFile() {
 		buffer.resize(31);
 		file.getline(buffer.data(), 30);
 		file.getline(buffer.data(), 30);
-		find("jumpKey")->set(readKey(file));
 		find("laneCount")->set(readUnsigned(file));
+		find("speed")->set(readSpeed(file));
 		find("platformControl")->set(readPlatformControl(file));
+		find("jumpKey")->set(readKey(file));
 		find("switchKey1")->set(readKey(file));
 		find("switchKey2")->set(readKey(file));
 		find("holdSwitch")->set(readBool(file));
@@ -240,9 +285,10 @@ void ContextManager::save() {
 	if (file) {
 		file << "# Don't touch this!\n";
 
-		writeKey(file, "jumpKey", *find("jumpKey"));
 		writeBasic(file, "laneCount", *find("laneCount"));
+		writeBasic(file, "speed", *find("speed"));
 		writeBasic(file, "platformControl", *find("platformControl"));
+		writeKey(file, "jumpKey", *find("jumpKey"));
 		writeKey(file, "switchKey1", *find("switchKey1"));
 		writeKey(file, "switchKey2", *find("switchKey2"));
 		writeBool(file, "holdSwitch", *find("holdSwitch"));

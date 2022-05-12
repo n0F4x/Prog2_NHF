@@ -124,6 +124,7 @@ void Track::init() {
 	MenuItem::init();
 
 	_laneCount = AppData::findContext("laneCount")->get<unsigned>();
+	_platformSpeed.update();
 	_platformControl.update();
 	_switchKey1.update();
 	_switchKey2.update();

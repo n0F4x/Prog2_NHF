@@ -22,12 +22,12 @@ private:
 	int _switchingState = 0;
 	bool _switchingLeft = false;
 	bool _switchingRight = false;
-	unsigned _platformSpeed = 20;
 
 	void switchLanes();
 
 	// Contexts
 	unsigned _laneCount = 8u;
+	ContextRepr<unsigned> _platformSpeed{ AppData::findContext("speed") };
 	ContextRepr<PlatformControl> _platformControl{ AppData::findContext("platformControl") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::findContext("switchKey1") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::findContext("switchKey2") };
