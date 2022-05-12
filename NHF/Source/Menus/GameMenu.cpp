@@ -44,15 +44,15 @@ void GameMenu::update() {
 	if (!_gameOver) {
 		_track.update();
 		_player.update();
+		if (!_player.isJumping() && !_track.isOnPlatforms(_player.getFeet())) {
+			_playerCircle.setOutlineColor(sf::Color::Red);
+			_pauseScreen.gameOver();
+			pause();
+			_gameOver = true;
+		}
 	}
-	_pauseScreen.update();
 
-	if (!_gameOver && !_player.isJumping() && !_track.isOnPlatforms(_player.getFeet())) {
-		_playerCircle.setOutlineColor(sf::Color::Red);
-		_pauseScreen.gameOver();
-		pause();
-		_gameOver = true;
-	}
+	_pauseScreen.update();
 }
 
 void GameMenu::render() {

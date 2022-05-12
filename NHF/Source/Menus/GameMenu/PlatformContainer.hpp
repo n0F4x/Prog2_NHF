@@ -13,7 +13,7 @@ private:
 	float _platformWidth = 360_deg / 8;
 
 	unsigned _counter = 0;
-	const unsigned _scaleSpeed = 20;	//the lower the faster
+	unsigned _scaleSpeed = 20;	//the lower the faster
 
 	float _rotation = 0_deg;
 
@@ -36,6 +36,6 @@ public:
 	void transition(const sf::Vector2f& amount) override { rotate(amount.x); }
 
 	void update();
-	void init(unsigned laneCount);
+	void init(unsigned laneCount, unsigned speed);
 };
 

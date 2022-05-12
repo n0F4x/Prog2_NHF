@@ -1,7 +1,6 @@
 #include "ContextManager.hpp"
 
 #include <algorithm>
-#include <iostream>
 #include <fstream>
 
 
@@ -131,6 +130,7 @@ ContextManager::ContextManager() {
 	addContext("holdSwitch", false, BoolConverter{});
 }
 
+
 sf::Event::KeyEvent readKey(std::ifstream& file) {
 	sf::Event::KeyEvent key;
 	std::string buffer;
@@ -195,9 +195,10 @@ bool readBool(std::ifstream& file) {
 void ContextManager::loadFromFile() {
 	std::ifstream file("./Config/contexts.ini");
 	if (file) {
-		char buffer[50];
-		file.getline(buffer, 30);
-		file.getline(buffer, 30);
+		std::string buffer;
+		buffer.resize(31);
+		file.getline(buffer.data(), 30);
+		file.getline(buffer.data(), 30);
 		find("jumpKey")->set(readKey(file));
 		find("laneCount")->set(readUnsigned(file));
 		find("platformControl")->set(readPlatformControl(file));
@@ -207,6 +208,7 @@ void ContextManager::loadFromFile() {
 		file.close();
 	}
 }
+
 
 void writeBasic(std::ofstream& file, const std::string_view& name, const Context& context) {
 	file << '\n' << name << " = {\n\t" << context.string() << "\n}\n";

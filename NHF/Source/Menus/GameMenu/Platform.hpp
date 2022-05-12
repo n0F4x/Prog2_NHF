@@ -12,10 +12,12 @@ private:
 
 	static sf::Vector2f _origin;
 	static float _maxRadius;
-	static float _scalingRatio;
 
 	// Non-static
 	const PreCalculator& _preCalc;
+
+	float _scalingRatio;
+	void setScale(unsigned speed);
 
 	float _innerRadius = _initInnerRadius;
 	float _outerRadius = _initOuterRadius;
@@ -26,9 +28,8 @@ private:
 
 public:
 	static void setOrigin(const sf::Vector2f& origin);
-	static void setScale(int speed);
 
-	Platform(const PreCalculator& preCalc, float rotation, float width);
+	Platform(const PreCalculator& preCalc, float rotation, float width, unsigned speed);
 
 	float getInnerRadius() const { return _innerRadius; }
 	float getOuterRadius() const { return _outerRadius; }

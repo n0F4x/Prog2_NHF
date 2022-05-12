@@ -22,6 +22,7 @@ private:
 	int _switchingState = 0;
 	bool _switchingLeft = false;
 	bool _switchingRight = false;
+	unsigned _platformSpeed = 20;
 
 	void switchLanes();
 

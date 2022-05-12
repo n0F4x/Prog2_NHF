@@ -14,8 +14,7 @@ void Platform::setOrigin(const sf::Vector2f& origin) {
 	_origin = origin;
 }
 
-float Platform::_scalingRatio = 1.0;
-void Platform::setScale(int speed) {
+void Platform::setScale(unsigned speed) {
 	_scalingRatio = powf(_initOuterRadius / _initInnerRadius, 1.f / static_cast<float>(speed));
 }
 
@@ -44,8 +43,9 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 
-Platform::Platform(const PreCalculator& preCalc, float rotation, float width) : _preCalc{ preCalc }, _width{ width } {
+Platform::Platform(const PreCalculator& preCalc, float rotation, float width, unsigned speed) : _preCalc{ preCalc }, _width{ width } {
 	rotate(rotation);
+	setScale(speed);
 }
 
 
@@ -67,5 +67,5 @@ bool Platform::isDead() const {
 bool Platform::isInside(const PolarVector& point) const {
 	return
 		math::isBetween(point.radius, _innerRadius, _outerRadius) &&
-		math::isBetween(point.angle, _rotation, _rotation + _width) || math::isBetween(point.angle + 360_deg, _rotation, _rotation + _width);
+		(math::isBetween(point.angle, _rotation, _rotation + _width) || math::isBetween(point.angle + 360_deg, _rotation, _rotation + _width));
 }

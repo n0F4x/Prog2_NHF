@@ -1,7 +1,6 @@
 #include "Track.hpp"
 
 #include "../../Utilities/Math.hpp"
-#include <iostream>
 
 
 void Track::switchLanes() {
@@ -9,11 +8,9 @@ void Track::switchLanes() {
 		if (_switchingLeft != _switchingRight) {
 			if (_switchingLeft) {
 				_transition.start({ -1 * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
-				std::cout << "Left";
 			}
 			if (_switchingRight) {
 				_transition.start({ _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
-				std::cout << "Right";
 			}
 		}
 	}
@@ -132,7 +129,7 @@ void Track::init() {
 	_switchKey2.update();
 	_holdSwitch.update();
 
-	_platforms.init(_laneCount);
+	_platforms.init(_laneCount, _platformSpeed);
 
 	_isDragged = false;
 	_switchingState = 0;

@@ -17,9 +17,8 @@ void PlatformContainer::draw(sf::RenderTarget& target, sf::RenderStates states) 
 
 PlatformContainer::PlatformContainer(const PreCalculator& preCalc) : _preCalc{ preCalc } {
 	Platform::setOrigin(Window::getSize() / 2.f);
-	Platform::setScale(_scaleSpeed);
 
-	init(8u);
+	init(8u, 6u);
 }
 
 
@@ -36,7 +35,7 @@ bool PlatformContainer::AI_help(PolarVector playerFeet, int& switchingState) {
 				return false;
 			}
 
-			it -= 2;
+			it -= 7;
 			if (it->isInside(playerFeet)) {
 				return true;
 			}
@@ -72,16 +71,17 @@ void PlatformContainer::update() {
 	if (_counter >= _scaleSpeed) {
 		int random_number = generateRandom(0, 360 / static_cast<int>(math::convertToDeg(_platformWidth)));
 		float initialRotation = static_cast<float>(random_number) * getPlatformWidth() + _rotation + 90_deg - getPlatformWidth() / 2.f;
-		_platforms.emplace_front(_preCalc, initialRotation, _platformWidth);
+		_platforms.emplace_front(_preCalc, initialRotation, _platformWidth, _scaleSpeed);
 		_counter = 0;
 	}
 }
 
-void PlatformContainer::init(unsigned laneCount) {
+void PlatformContainer::init(unsigned laneCount, unsigned speed) {
 	_platformWidth = 360_deg / static_cast<float>(laneCount);
+	_scaleSpeed = speed;
 
 	_platforms.clear();
-	_platforms.emplace_front(_preCalc, 90_deg - _platformWidth / 2.f, _platformWidth);
+	_platforms.emplace_front(_preCalc, 90_deg - _platformWidth / 2.f, _platformWidth, _scaleSpeed);
 	_counter = 0;
 	_rotation = 0_deg;
 
