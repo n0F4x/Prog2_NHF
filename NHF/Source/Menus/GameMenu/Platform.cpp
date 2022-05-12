@@ -4,7 +4,6 @@
 #include "../../Utilities/Math.hpp"
 
 
-float Platform::width = 360_deg / 8;
 const float Platform::_initInnerRadius = 2.f;
 const float Platform::_initOuterRadius = 4.f;
 
@@ -28,7 +27,7 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	origin.color = theme::Purple;
 
 	arr.append(origin);
-	for (const sf::Vector2f& v : math::getArcPoints(_rotation + width / 2.f, Platform::width, _outerRadius + 0.3f, 40)) {
+	for (const sf::Vector2f& v : math::getArcPoints(_rotation + _width / 2.f, Platform::_width, _outerRadius + 0.3f, 40)) {
 		sf::Vertex point{ _origin + v };
 		point.color = theme::Purple;
 		arr.append(point);
@@ -45,7 +44,7 @@ void Platform::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 
-Platform::Platform(const PreCalculator& preCalc, float rotation) : _preCalc{ preCalc } {
+Platform::Platform(const PreCalculator& preCalc, float rotation, float width) : _preCalc{ preCalc }, _width{ width } {
 	rotate(rotation);
 }
 
@@ -65,9 +64,8 @@ bool Platform::isDead() const {
 	return _innerRadius > _maxRadius;
 }
 
-bool Platform::isInside(const sf::Vector2f& point) const {
-	PolarVector polarV = _preCalc.getPolarVector(point);
+bool Platform::isInside(const PolarVector& point) const {
 	return
-		math::isBetween(polarV.radius, _innerRadius, _outerRadius) &&
-		math::isBetween(polarV.angle, _rotation, _rotation + width) || math::isBetween(polarV.angle + 360_deg, _rotation, _rotation + width);
+		math::isBetween(point.radius, _innerRadius, _outerRadius) &&
+		math::isBetween(point.angle, _rotation, _rotation + _width) || math::isBetween(point.angle + 360_deg, _rotation, _rotation + _width);
 }

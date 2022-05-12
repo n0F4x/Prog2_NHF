@@ -20,8 +20,10 @@ public:
 	static const sf::Texture& getTexture(const std::string& name) { return _assets.getTexture(name); }
 	static Context* findContext(const std::string_view& name) { return _contexts.find(name); }
 
-	void loadFromFiles() const { 
+	void loadAssets() const {
 		_assets.loadFromFiles();
+	}
+	void loadContexts() const {
 		_contexts.loadFromFile();
 	}
 	void save() const {

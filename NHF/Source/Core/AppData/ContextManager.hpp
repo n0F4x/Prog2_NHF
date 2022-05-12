@@ -28,7 +28,7 @@ private:
 	friend AppData;
 	ContextManager();
 
-	void loadFromFile() const { /*TODO*/ }
+	void loadFromFile();
 	void save() const { /*TODO*/ }
 
 	Context* find(const std::string_view& name);

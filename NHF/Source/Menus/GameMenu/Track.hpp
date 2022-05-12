@@ -26,13 +26,13 @@ private:
 	void switchLanes();
 
 	// Contexts
-	ContextRepr<int> _platformCount{AppData::findContext("platformCount")};
+	ContextRepr<int> _laneCount{AppData::findContext("laneCount")};
 	ContextRepr<PlatformControl> _platformControl{ AppData::findContext("platformControl") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::findContext("switchKey1") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::findContext("switchKey2") };
 	ContextRepr<bool> _holdSwitch{ AppData::findContext("holdSwitch") };
 
-
+protected:
 	// Overriding @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -40,6 +40,7 @@ public:
 	Track();
 
 	bool isOnPlatforms(const sf::Vector2f& point) const;
+	bool AI_jump(const sf::Vector2f& playerFeet);
 
 	void handleEvent(const sf::Event& event) override;
 	void update() override;

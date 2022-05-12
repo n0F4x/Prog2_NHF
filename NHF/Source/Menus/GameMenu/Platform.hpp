@@ -6,9 +6,6 @@
 
 
 class Platform : public sf::Drawable {
-public:
-	static float width;
-
 private:
 	static const float _initInnerRadius;
 	static const float _initOuterRadius;
@@ -23,6 +20,7 @@ private:
 	float _innerRadius = _initInnerRadius;
 	float _outerRadius = _initOuterRadius;
 	float _rotation = 0_deg;
+	const float _width;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -30,13 +28,14 @@ public:
 	static void setOrigin(const sf::Vector2f& origin);
 	static void setScale(int speed);
 
-	Platform(const PreCalculator& preCalc, float rotation = 90_deg - width / 2.f);
+	Platform(const PreCalculator& preCalc, float rotation, float width);
 
 	float getInnerRadius() const { return _innerRadius; }
 	float getOuterRadius() const { return _outerRadius; }
 	float getRotation() const { return _rotation; }
+	float getWidth() const { return _width; }
 
-	bool isInside(const sf::Vector2f& point) const;
+	bool isInside(const PolarVector& point) const;
 
 	void rotate(float angle);
 

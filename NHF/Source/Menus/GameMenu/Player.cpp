@@ -8,7 +8,12 @@ PlayerSprite::PlayerSprite() : Sprite{ AppData::getTexture("Motor") } {
 	setScale(0.4f, 0.4f);
 }
 
-void Player::setFeet(const sf::Vector2f& feet) {
+
+void Player::startJump() {
+	_transition.start(sf::Vector2f{ 0.f, Window::getSize().y / 2.f - _sprite.getPosition().y } / 2.f, 600);
+}
+
+void Player::setPosition(const sf::Vector2f& feet) {
 	_sprite.setInitPos(feet - _offset);
 }
 

@@ -10,6 +10,7 @@ class PlatformContainer : public sf::Drawable, public Transitionable {
 private:
 	const PreCalculator& _preCalc;
 	std::deque<Platform> _platforms;
+	float _platformWidth = 360_deg / 8;
 
 	unsigned _counter = 0;
 	const unsigned _scaleSpeed = 20;	//the lower the faster
@@ -26,12 +27,15 @@ private:
 public:
 	explicit PlatformContainer(const PreCalculator& preCalc);
 
-	bool isInside(const sf::Vector2f& point) const;
+	float getPlatformWidth() const { return _platformWidth; }
+
+	bool isInside(const PolarVector& point) const;
+	bool AI_help(PolarVector playerFeet, int& switchingState);
 
 	void rotate(float angle);
 	void transition(const sf::Vector2f& amount) override { rotate(amount.x); }
 
 	void update();
-	void init();
+	void init(unsigned laneCount);
 };
 

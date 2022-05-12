@@ -36,6 +36,8 @@ private:
 	// Context accessor(s)
 	ContextRepr<sf::Event::KeyEvent> _jumpKey{ AppData::findContext("jumpKey") };
 
+protected:
+	void startJump();
 	// overriding @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override { target.draw(_sprite); }
 
@@ -44,7 +46,7 @@ public:
 
 	bool isJumping() const { return _transition.isActive(); }
 	sf::Vector2f getFeet() const { return _sprite.getInitPos() + _offset; }
-	void setFeet(const sf::Vector2f& feet);
+	void setPosition(const sf::Vector2f& feet);
 
 	void handleEvent(const sf::Event& event) override;
 	void update() override;

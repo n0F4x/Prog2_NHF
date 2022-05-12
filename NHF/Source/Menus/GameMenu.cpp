@@ -6,7 +6,7 @@
 
 GameMenu::GameMenu() {
 	sf::Vector2f playerPos = Window::getSize() / 2.f + sf::Vector2f{ 0.f, Window::getSize().y / 2.5f };
-	_player.setFeet(playerPos);
+	_player.setPosition(playerPos);
 
 	_playerCircle.setRadius(math::calcDistance(_player.getFeet(), Window::getSize() / 2.f));
 	_playerCircle.setOrigin(_playerCircle.getRadius(), _playerCircle.getRadius());

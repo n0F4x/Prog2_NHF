@@ -49,9 +49,6 @@
     <Filter Include="Header Files\Utilities\STL">
       <UniqueIdentifier>{823c695e-f280-4f82-8ffb-4c47487c2355}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Utilities\STL\Math">
-      <UniqueIdentifier>{cc43506e-212d-42f5-afa1-80ba84fe101a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{4bc85a83-12e6-444c-bac9-2c5cb83e70d4}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,9 @@
     </Filter>
     <Filter Include="Source Files\Core\Controller">
       <UniqueIdentifier>{c64035ce-4750-4131-b5b2-6016a253e099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\Math">
+      <UniqueIdentifier>{cc43506e-212d-42f5-afa1-80ba84fe101a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -183,10 +183,10 @@
       <Filter>Header Files\Menus\GameMenu</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\PolarVector.hpp">
-      <Filter>Header Files\Utilities\STL\Math</Filter>
+      <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Angle.hpp">
-      <Filter>Header Files\Utilities\STL\Math</Filter>
+      <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\STL\vector.hpp">
       <Filter>Header Files\Utilities\STL</Filter>
@@ -213,13 +213,13 @@
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Transitions.hpp">
-      <Filter>Header Files\Utilities\STL\Math</Filter>
+      <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\Transitionable.hpp">
-      <Filter>Header Files\Utilities\STL\Math</Filter>
+      <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math\BezierEasing.hpp">
-      <Filter>Header Files\Utilities\STL\Math</Filter>
+      <Filter>Header Files\Utilities\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\Math.hpp">
       <Filter>Header Files\Utilities</Filter>

@@ -2,13 +2,14 @@
 
 
 void App::init(bool renderPreview) {
-	_appData.loadFromFiles();
+	_appData.loadAssets();
 
 	if (renderPreview) {
 		_controller.renderPreview();
 	}
-
 	_controller.load();
+
+	_appData.loadContexts();
 
 	_window.open();
 }

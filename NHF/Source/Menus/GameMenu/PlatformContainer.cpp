@@ -20,8 +20,36 @@ PlatformContainer::PlatformContainer(const PreCalculator& preCalc) : _preCalc{ p
 	Platform::setScale(_scaleSpeed);
 }
 
-bool PlatformContainer::isInside(const sf::Vector2f& point) const {
+
+bool PlatformContainer::isInside(const PolarVector& point) const {
 	return std::ranges::any_of(_platforms, [point](auto& platform) -> bool { return platform.isInside(point); });
+}
+
+bool PlatformContainer::AI_help(PolarVector playerFeet, int& switchingState) {
+	for (auto it = _platforms.begin() + 6u; it != _platforms.end(); it++) {
+		if (it->isInside(playerFeet)) {
+			float offset = 50.f;
+			playerFeet.radius -= offset;
+			if (it->isInside(playerFeet) || (it - 1)->isInside(playerFeet)) {
+				return false;
+			}
+
+			it -= 2;
+			if (it->isInside(playerFeet)) {
+				return true;
+			}
+			it->rotate(-90_deg + _platformWidth / 2.f + 1_deg);
+			if (float rotation = it->getRotation(); rotation <= 180_deg) {
+				switchingState = -static_cast<int>(rotation / _platformWidth);
+			}
+			else {
+				switchingState = static_cast<int>((360_deg - rotation) / _platformWidth) + 1;
+			}
+			it->rotate(90_deg - _platformWidth / 2.f - 1_deg);
+			return true;
+		}
+	}
+	return false;
 }
 
 void PlatformContainer::rotate(float angle) {
@@ -40,16 +68,18 @@ void PlatformContainer::update() {
 	}
 
 	if (_counter >= _scaleSpeed) {
-		int random_number = generateRandom(0, 360 / static_cast<int>(math::convertToDeg(Platform::width)));
-		float initialRotation = static_cast<float>(random_number) * Platform::width + _rotation + 90_deg - Platform::width / 2.f;
-		_platforms.emplace_front(_preCalc, initialRotation);
+		int random_number = generateRandom(0, 360 / static_cast<int>(math::convertToDeg(_platformWidth)));
+		float initialRotation = static_cast<float>(random_number) * getPlatformWidth() + _rotation + 90_deg - getPlatformWidth() / 2.f;
+		_platforms.emplace_front(_preCalc, initialRotation, _platformWidth);
 		_counter = 0;
 	}
 }
 
-void PlatformContainer::init() {
+void PlatformContainer::init(unsigned laneCount) {
+	_platformWidth = 360_deg / static_cast<float>(laneCount);
+
 	_platforms.clear();
-	_platforms.emplace_front(_preCalc);
+	_platforms.emplace_front(_preCalc, 90_deg - _platformWidth / 2.f, _platformWidth);
 	_counter = 0;
 	_rotation = 0_deg;
 

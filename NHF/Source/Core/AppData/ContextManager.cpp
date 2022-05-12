@@ -1,6 +1,8 @@
 #include "ContextManager.hpp"
 
 #include <algorithm>
+#include <iostream>
+#include <fstream> 
 
 
 // Validator helpers
@@ -48,15 +50,15 @@ static const std::map<const sf::Keyboard::Key, const std::string> _validKeys{
 		{ sf::Keyboard::Key::Up, "Up" },
 		{ sf::Keyboard::Key::Down, "Down" }
 };
-static const std::vector<int> _validPlatformCounts{ 3, 4, 5, 6, 7, 8 };
+static const std::vector<int> _validLaneCounts{ 3, 4, 5, 6, 7, 8 };
 
 
 // Validator functions
 static bool isValidKey(const std::any& keyEvent) {
 	return _validKeys.contains(std::any_cast<sf::Event::KeyEvent>(keyEvent).code);
 }
-static bool isValidPlatformCount(const std::any& count) {
-	return std::ranges::any_of(_validPlatformCounts, [count](auto elem) { return elem == std::any_cast<int>(count); });
+static bool isValidLaneCount(const std::any& count) {
+	return std::ranges::any_of(_validLaneCounts, [count](auto elem) { return elem == std::any_cast<int>(count); });
 }
 
 
@@ -122,12 +124,45 @@ void ContextManager::addContext(
 
 ContextManager::ContextManager() {
 	addContext("jumpKey", sf::Event::KeyEvent{ sf::Keyboard::Space }, KeyConverter{}, Context::Validator{ isValidKey });
-	addContext("platformCount", 3, IntConverter{}, Context::Validator{ isValidPlatformCount });
+	addContext("laneCount", 8, IntConverter{}, Context::Validator{ isValidLaneCount });
 	addContext("platformControl", PlatformControl::Keyboard, PCConverter{});
 	addContext("switchKey1", sf::Event::KeyEvent{ sf::Keyboard::Left }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("switchKey2", sf::Event::KeyEvent{ sf::Keyboard::Right }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("holdSwitch", false, BoolConverter{});
 }
+
+
+void ContextManager::loadFromFile() {
+	find("laneCount")->set(3);	/* Re - initialization */
+
+
+	std::ifstream file("./Config/contexts.ini");
+	if (!file) {
+		return;
+	}
+	
+	// Read jumpKey
+	sf::Event::KeyEvent jumpKey;
+	std::string buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	for (const auto& [key, value] : _validKeys) {
+		if (value == buffer) {
+			jumpKey.code = key;
+		}
+	}
+	file >> buffer;
+	buffer == "true" ? jumpKey.alt = true : jumpKey.alt = false;
+	file >> buffer;
+	buffer == "true" ? jumpKey.control = true : jumpKey.control = false;
+	file >> buffer;
+	buffer == "true" ? jumpKey.shift = true : jumpKey.shift = false;
+	file >> buffer;
+	buffer == "true" ? jumpKey.system = true : jumpKey.system = false;
+}
+
 
 Context* ContextManager::find(const std::string_view& name) {
 	if (auto it = _contexts.find(name); it != _contexts.end()) {

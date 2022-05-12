@@ -23,6 +23,7 @@ void Controller::load() {
 	// Create root
 	_root = MenuNode{ std::make_unique<MainMenu>() };
 	_current = &_root;
+	_current->get()->init();
 
 	// Build tree
 	_root.addChild("Game", std::make_unique<GameMenu>());

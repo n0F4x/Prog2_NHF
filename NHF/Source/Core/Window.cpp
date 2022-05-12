@@ -15,7 +15,7 @@ Window::Window() {
 
 
 sf::Vector2f Window::getSize() {
-	return sf::Vector2f{ sf::Vector2u{_getVideoMode().width, _getVideoMode().height} };
+	return sf::Vector2f{ sf::Vector2u{ _getVideoMode().width, _getVideoMode().height } };
 }
 
 sf::FloatRect Window::getLocalBounds() {

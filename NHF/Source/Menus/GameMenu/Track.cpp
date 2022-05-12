@@ -7,21 +7,21 @@ void Track::switchLanes() {
 	if (_holdSwitch) {
 		if (_switchingLeft != _switchingRight) {
 			if (_switchingLeft) {
-				_transition.start({ -1 * Platform::width, 0.f }, 200 * 3 / _platformCount);
+				_transition.start({ -1 * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
 			}
 			if (_switchingRight) {
-				_transition.start({ Platform::width, 0.f }, 200 * 3 / _platformCount);
+				_transition.start({ _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
 			}
 		}
 	}
 	else {
 		if (_switchingState != 0 && !_transition.isActive()) {
 			if (_switchingState > 0) {
-				_transition.start({ Platform::width, 0.f }, 200 * 3 / _platformCount);
+				_transition.start({ _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
 				_switchingState--;
 			}
 			else {
-				_transition.start({ -1 * Platform::width, 0.f }, 200 * 3 / _platformCount);
+				_transition.start({ -1 * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
 				_switchingState++;
 			}
 		}
@@ -53,7 +53,11 @@ Track::Track() {
 
 
 bool Track::isOnPlatforms(const sf::Vector2f& point) const {
-	return _platforms.isInside(point);
+	return _platforms.isInside(_preCalc.getPolarVector(point));
+}
+
+bool Track::AI_jump(const sf::Vector2f& playerFeet) {
+	return _platforms.AI_help(_preCalc.getPolarVector(playerFeet), _switchingState);
 }
 
 
@@ -119,14 +123,13 @@ void Track::update() {
 void Track::init() {
 	MenuItem::init();
 
-	_platformCount.update();
+	_laneCount.update();
 	_platformControl.update();
 	_switchKey1.update();
 	_switchKey2.update();
 	_holdSwitch.update();
 
-	Platform::width = 360_deg / static_cast<float>(_platformCount);
-	_platforms.init();
+	_platforms.init(_laneCount);
 
 	_isDragged = false;
 	_switchingState = 0;
