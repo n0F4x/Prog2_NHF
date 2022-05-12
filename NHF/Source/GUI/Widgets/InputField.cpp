@@ -107,4 +107,5 @@ void InputField::init() {
 	setActive(false);
 
 	_context.update();
+	_text.setString(static_cast<std::string>(_context));
 }

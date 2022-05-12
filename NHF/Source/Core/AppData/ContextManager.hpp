@@ -29,7 +29,7 @@ private:
 	ContextManager();
 
 	void loadFromFile();
-	void save() const { /*TODO*/ }
+	void save();
 
 	Context* find(const std::string_view& name);
 };

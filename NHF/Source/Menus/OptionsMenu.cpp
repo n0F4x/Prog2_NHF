@@ -24,8 +24,8 @@ OptionsMenu::OptionsMenu() {
 	title->setFillColor(theme::Secondary);
 
 	// Construct "Lane Count" bar and label
-	std::vector<int> LCcontents{ 3, 4, 5, 6, 7, 8 };
-	auto LCbar = std::make_unique<Bar<int>>(tmp.getSize().x * 1.2f, LCcontents, AppData::getFont("Dameron"), 56u, "laneCount");
+	std::vector<unsigned> LCcontents{ 3u, 4u, 5u, 6u, 7u, 8u };
+	auto LCbar = std::make_unique<Bar<unsigned>>(tmp.getSize().x * 1.2f, LCcontents, AppData::getFont("Dameron"), 56u, "laneCount");
 	LCbar->center(Window::getLocalBounds());
 	LCbar->setPosition({
 		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - LCbar->getSize().x) / 2.f,

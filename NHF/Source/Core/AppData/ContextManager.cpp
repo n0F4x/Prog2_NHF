@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <iostream>
-#include <fstream> 
+#include <fstream>
 
 
 // Validator helpers
@@ -58,7 +58,7 @@ static bool isValidKey(const std::any& keyEvent) {
 	return _validKeys.contains(std::any_cast<sf::Event::KeyEvent>(keyEvent).code);
 }
 static bool isValidLaneCount(const std::any& count) {
-	return std::ranges::any_of(_validLaneCounts, [count](auto elem) { return elem == std::any_cast<int>(count); });
+	return std::ranges::any_of(_validLaneCounts, [count](auto elem) { return elem == std::any_cast<unsigned>(count); });
 }
 
 
@@ -69,10 +69,10 @@ public:
 		[](const std::any& val) -> std::string { return std::any_cast<bool>(val) ? "On" : "Off"; }
 	} {}
 };
-class IntConverter : public Context::ToStringConverter {
+class UnsignedConverter : public Context::ToStringConverter {
 public:
-	IntConverter() : Context::ToStringConverter{
-		[](const std::any& val) -> std::string { return std::to_string(std::any_cast<int>(val)); }
+	UnsignedConverter() : Context::ToStringConverter{
+		[](const std::any& val) -> std::string { return std::to_string(std::any_cast<unsigned>(val)); }
 	} {}
 };
 class KeyConverter : public Context::ToStringConverter {
@@ -101,7 +101,7 @@ public:
 		[](const std::any& val) -> std::string {
 			switch (std::any_cast<PlatformControl>(val)) {
 			case PlatformControl::Keyboard:
-				return "KeyBoard";
+				return "Keyboard";
 			case PlatformControl::Mouse:
 				return "Mouse";
 			default:
@@ -124,43 +124,128 @@ void ContextManager::addContext(
 
 ContextManager::ContextManager() {
 	addContext("jumpKey", sf::Event::KeyEvent{ sf::Keyboard::Space }, KeyConverter{}, Context::Validator{ isValidKey });
-	addContext("laneCount", 8, IntConverter{}, Context::Validator{ isValidLaneCount });
+	addContext("laneCount", 3u, UnsignedConverter{}, Context::Validator{ isValidLaneCount });
 	addContext("platformControl", PlatformControl::Keyboard, PCConverter{});
 	addContext("switchKey1", sf::Event::KeyEvent{ sf::Keyboard::Left }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("switchKey2", sf::Event::KeyEvent{ sf::Keyboard::Right }, KeyConverter{}, Context::Validator{ isValidKey });
 	addContext("holdSwitch", false, BoolConverter{});
 }
 
-
-void ContextManager::loadFromFile() {
-	find("laneCount")->set(3);	/* Re - initialization */
-
-
-	std::ifstream file("./Config/contexts.ini");
-	if (!file) {
-		return;
-	}
-	
-	// Read jumpKey
-	sf::Event::KeyEvent jumpKey;
+sf::Event::KeyEvent readKey(std::ifstream& file) {
+	sf::Event::KeyEvent key;
 	std::string buffer;
 	file >> buffer;
 	file >> buffer;
 	file >> buffer;
 	file >> buffer;
-	for (const auto& [key, value] : _validKeys) {
-		if (value == buffer) {
-			jumpKey.code = key;
+	for (const auto& [it_key, it_value] : _validKeys) {
+		if (it_value == buffer) {
+			key.code = it_key;
 		}
 	}
 	file >> buffer;
-	buffer == "true" ? jumpKey.alt = true : jumpKey.alt = false;
+	key.alt = buffer == "true";
 	file >> buffer;
-	buffer == "true" ? jumpKey.control = true : jumpKey.control = false;
+	key.control = buffer == "true";
 	file >> buffer;
-	buffer == "true" ? jumpKey.shift = true : jumpKey.shift = false;
+	key.shift = buffer == "true";
 	file >> buffer;
-	buffer == "true" ? jumpKey.system = true : jumpKey.system = false;
+	return key;
+}
+
+unsigned readUnsigned(std::ifstream& file) {
+	std::string buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	unsigned res = std::stoi(buffer);
+	file >> buffer;
+	return res;
+}
+
+PlatformControl readPlatformControl(std::ifstream& file) {
+	std::string buffer;
+	PlatformControl res = PlatformControl::Keyboard;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	if (buffer == "Keyboard") {
+		res = PlatformControl::Keyboard;
+	}
+	else if (buffer == "Mouse") {
+		res = PlatformControl::Mouse;
+	}
+	file >> buffer;
+	return res;
+}
+
+bool readBool(std::ifstream& file) {
+	std::string buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	file >> buffer;
+	bool res = buffer == "true";
+	file >> buffer;
+	return res;
+}
+
+void ContextManager::loadFromFile() {
+	std::ifstream file("./Config/contexts.ini");
+	if (file) {
+		char buffer[50];
+		file.getline(buffer, 30);
+		file.getline(buffer, 30);
+		find("jumpKey")->set(readKey(file));
+		find("laneCount")->set(readUnsigned(file));
+		find("platformControl")->set(readPlatformControl(file));
+		find("switchKey1")->set(readKey(file));
+		find("switchKey2")->set(readKey(file));
+		find("holdSwitch")->set(readBool(file));
+		file.close();
+	}
+}
+
+void writeBasic(std::ofstream& file, const std::string_view& name, const Context& context) {
+	file << '\n' << name << " = {\n\t" << context.string() << "\n}\n";
+}
+
+void writeKey(std::ofstream& file, const std::string_view& name, const Context& context) {
+	std::string string = context.string();
+	std::string code;
+	for (auto letter = string.rbegin(); *letter != '+' && letter != string.rend(); letter++) {
+		code += *letter;
+	}
+	std::ranges::reverse(code);
+	sf::Event::KeyEvent key = context.get<sf::Event::KeyEvent>();
+	file << std::boolalpha;
+	file << '\n' << name << " = {\n\t";
+	file << code;
+	file << "\n\t" << key.alt << "\n\t" << key.control << "\n\t" << key.shift << "\n}\n";
+	file << std::noboolalpha;
+}
+
+void writeBool(std::ofstream& file, const std::string_view& name, const Context& context) {
+	file << std::boolalpha;
+	file << '\n' << name << " = {\n\t" << context.get<bool>() << "\n}\n";
+	file << std::noboolalpha;
+}
+
+void ContextManager::save() {
+	std::ofstream file("./Config/contexts.ini");
+	if (file) {
+		file << "# Don't touch this!\n";
+
+		writeKey(file, "jumpKey", *find("jumpKey"));
+		writeBasic(file, "laneCount", *find("laneCount"));
+		writeBasic(file, "platformControl", *find("platformControl"));
+		writeKey(file, "switchKey1", *find("switchKey1"));
+		writeKey(file, "switchKey2", *find("switchKey2"));
+		writeBool(file, "holdSwitch", *find("holdSwitch"));
+		file.close();
+	}
 }
 
 

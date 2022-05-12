@@ -26,7 +26,7 @@ private:
 	void switchLanes();
 
 	// Contexts
-	ContextRepr<int> _laneCount{AppData::findContext("laneCount")};
+	unsigned _laneCount = 8u;
 	ContextRepr<PlatformControl> _platformControl{ AppData::findContext("platformControl") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey1{ AppData::findContext("switchKey1") };
 	ContextRepr<sf::Event::KeyEvent> _switchKey2{ AppData::findContext("switchKey2") };
