@@ -31,6 +31,7 @@ include_directories(
 # Create target and set properties.
 set(SOURCE_FILES
     ./NHF/Source/Core/AppData/AssetManager.cpp
+    ./NHF/Source/Core/AppData/Context.cpp
     ./NHF/Source/Core/AppData/ContextManager.cpp
     ./NHF/Source/Core/Controller/PreView.cpp
     ./NHF/Source/Core/AppData.cpp
