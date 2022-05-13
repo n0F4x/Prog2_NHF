@@ -12,7 +12,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(
     -ggdb3
     -Wall -Wextra
+    -fsanitize=address
 )
+
+add_link_options(-fsanitize=address)
 
 # include
 include_directories(
