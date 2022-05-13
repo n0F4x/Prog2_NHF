@@ -23,6 +23,7 @@ private:
 	bool _switchingLeft = false;
 	bool _switchingRight = false;
 
+	void switchLane(float direction);
 	void switchLanes();
 
 	// Contexts
@@ -36,6 +37,9 @@ private:
 protected:
 	// Overriding @MenuItem
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+	void handleMouseEvent(const sf::Event& mouseEvent);
+	void handleKeyEvent(const sf::Event& keyEvent);
 
 public:
 	Track();

@@ -8,27 +8,29 @@
 
 
 OptionsMenu::OptionsMenu() {
+	sf::Vector2f margin = Window::getSize() / 40.f;
+
 	// Widget size
 	Text tmp{ "Ctrl+Alt+Shift+Space", AppData::getFont("Dameron"), 56u };
 
 	// Construct "Back" button
 	auto backButton = std::make_unique<Button>("Back", AppData::getFont("Dameron"), 76u, [this]() {close(); });
-	backButton->setPosition({ Window::getSize().x / 40.f, Window::getSize().x / 40.f });
+	backButton->setPosition(margin);
 
 	// Construct "Options" text
 	auto title = std::make_unique<Text>("OPTIONS", AppData::getFont("The Wireframe"), 96u);
 	title->setPosition({
 		Window::getSize().x / 2.f - title->getSize().x / 2.f,
-		Window::getSize().x / 40.f
+		margin.y
 		});
 	title->setFillColor(theme::Secondary);
 
 	// Construct "Lane Count" bar and label
 	std::vector<unsigned> LCcontents{ 3u, 4u, 5u, 6u, 7u, 8u };
-	auto LCbar = std::make_unique<Bar<unsigned>>(tmp.getSize().x * 1.2f, LCcontents, AppData::getFont("Dameron"), 56u, "laneCount");
+	auto LCbar = std::make_unique<Bar<unsigned>>(tmp.getSize().x * 1.4f, LCcontents, AppData::getFont("Dameron"), 56u, "laneCount");
 	LCbar->center(Window::getLocalBounds());
 	LCbar->setPosition({
-		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - LCbar->getSize().x) / 2.f,
+		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - LCbar->getSize().x) / 2.f - margin.x,
 		LCbar->getPosition().y
 		});
 	LCbar->move({ 0.f, -5 * LCbar->getSize().y });
@@ -42,7 +44,7 @@ OptionsMenu::OptionsMenu() {
 	auto JKinput = std::make_unique<InputField>(AppData::getFont("Dameron"), 56u, "jumpKey");
 	JKinput->center(Window::getLocalBounds());
 	JKinput->setPosition({
-		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - JKinput->getSize().x) / 2.f,
+		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - JKinput->getSize().x) / 2.f - margin.x,
 		JKinput->getPosition().y
 		});
 	JKinput->move({ 0.f, -3.f * JKinput->getSize().y });
@@ -54,12 +56,10 @@ OptionsMenu::OptionsMenu() {
 
 	// Construct "Platfrom Control" bar and label
 	std::vector<PlatformControl> PCcontents{ PlatformControl::Keyboard, PlatformControl::Mouse };
-	auto PCbar = std::make_unique<Bar<PlatformControl>>(
-		tmp.getSize().x * 1.2f, PCcontents, AppData::getFont("Dameron"), 56u, "platformControl"
-		);
+	auto PCbar = std::make_unique<Bar<PlatformControl>>(tmp.getSize().x * 1.4f, PCcontents, AppData::getFont("Dameron"), 56u, "platformControl");
 	PCbar->center(Window::getLocalBounds());
 	PCbar->setPosition({
-		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - PCbar->getSize().x) / 2.f,
+		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - PCbar->getSize().x) / 2.f - margin.x,
 		PCbar->getPosition().y
 		});
 	PCbar->move({ 0.f, -1.f * PCbar->getSize().y });
@@ -73,7 +73,7 @@ OptionsMenu::OptionsMenu() {
 	auto SK1input = std::make_unique<InputField>(AppData::getFont("Dameron"), 56u, "switchKey1");
 	SK1input->center(Window::getLocalBounds());
 	SK1input->setPosition({
-		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - SK1input->getSize().x) / 2.f,
+		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - SK1input->getSize().x) / 2.f - margin.x,
 		SK1input->getPosition().y
 		});
 	SK1input->move({ 0.f, +1.f * SK1input->getSize().y });
@@ -87,7 +87,7 @@ OptionsMenu::OptionsMenu() {
 	auto SK2input = std::make_unique<InputField>(AppData::getFont("Dameron"), 56u, "switchKey2");
 	SK2input->center(Window::getLocalBounds());
 	SK2input->setPosition({
-		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - SK2input->getSize().x) / 2.f,
+		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - SK2input->getSize().x) / 2.f - margin.x,
 		SK2input->getPosition().y
 		});
 	SK2input->move({ 0.f, +3.f * SK2input->getSize().y });
@@ -99,10 +99,10 @@ OptionsMenu::OptionsMenu() {
 
 	// Construct "Hold Switch" bar and label
 	std::vector<bool> HScontents{ false, true };
-	auto HSbar = std::make_unique<Bar<bool>>(tmp.getSize().x * 1.2f, HScontents, AppData::getFont("Dameron"), 56u, "holdSwitch");
+	auto HSbar = std::make_unique<Bar<bool>>(tmp.getSize().x * 1.4f, HScontents, AppData::getFont("Dameron"), 56u, "holdSwitch");
 	HSbar->center(Window::getLocalBounds());
 	HSbar->setPosition({
-		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - HSbar->getSize().x) / 2.f,
+		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - HSbar->getSize().x) / 2.f - margin.x,
 		HSbar->getPosition().y
 		});
 	HSbar->move({ 0.f, +5.f * HSbar->getSize().y });
@@ -113,11 +113,11 @@ OptionsMenu::OptionsMenu() {
 	HSlabel->setFillColor(theme::IndigoPurple);
 
 	// Construct "Speed" bar and label
-	std::vector<unsigned> Pcontents{ 30u, 20u, 15u, 10u };
-	auto Sbar = std::make_unique<Bar<unsigned>>(tmp.getSize().x * 1.2f, Pcontents, AppData::getFont("Dameron"), 56u, "speed");
+	std::vector<unsigned> Pcontents{ 40u, 20u, 15u, 10u, 7u };
+	auto Sbar = std::make_unique<Bar<unsigned>>(tmp.getSize().x * 1.4f, Pcontents, AppData::getFont("Dameron"), 56u, "speed");
 	Sbar->center(Window::getLocalBounds());
 	Sbar->setPosition({
-		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - Sbar->getSize().x) / 2.f,
+		Window::getSize().x / 5.f * 2.f + (Window::getSize().x / 5.f * 3.f - Sbar->getSize().x) / 2.f - margin.x,
 		Sbar->getPosition().y
 		});
 	Sbar->move({ 0.f, +7.f * Sbar->getSize().y });

@@ -3,25 +3,29 @@
 #include "../../Utilities/Math.hpp"
 
 
+void Track::switchLane(float direction) {
+	_transition.start({ direction * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount / (_platformSpeed <= 7u ? 5 : 1));
+}
+
 void Track::switchLanes() {
 	if (_holdSwitch) {
 		if (_switchingLeft != _switchingRight) {
 			if (_switchingLeft) {
-				_transition.start({ -1 * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
+				switchLane(-1);
 			}
 			if (_switchingRight) {
-				_transition.start({ _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
+				switchLane(1);
 			}
 		}
 	}
 	else {
 		if (_switchingState != 0 && !_transition.isActive()) {
 			if (_switchingState > 0) {
-				_transition.start({ _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
+				switchLane(1);
 				_switchingState--;
 			}
 			else {
-				_transition.start({ -1 * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
+				switchLane(-1);
 				_switchingState++;
 			}
 		}
@@ -32,6 +36,45 @@ void Track::switchLanes() {
 void Track::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_platforms);
 	target.draw(_shader);
+}
+
+void Track::handleMouseEvent(const sf::Event& event) {
+	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+		_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
+		_isDragged = true;
+	}
+	if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+		_isDragged = false;
+	}
+}
+
+void Track::handleKeyEvent(const sf::Event& event) {
+	if (_holdSwitch) {
+		if (event.type == sf::Event::KeyPressed) {
+			if (event.key == _switchKey1) {
+				_switchingLeft = true;
+			}
+			if (event.key == _switchKey2) {
+				_switchingRight = true;
+			}
+		}
+		if (event.type == sf::Event::KeyReleased) {
+			if (event.key == _switchKey1) {
+				_switchingLeft = false;
+			}
+			if (event.key == _switchKey2) {
+				_switchingRight = false;
+			}
+		}
+	}
+	else if (event.type == sf::Event::KeyPressed) {
+		if (event.key == _switchKey1) {
+			_switchingState--;
+		}
+		if (event.key == _switchKey2) {
+			_switchingState++;
+		}
+	}
 }
 
 
@@ -64,41 +107,10 @@ bool Track::AI_jump(const sf::Vector2f& playerFeet) {
 void Track::handleEvent(const sf::Event& event) {
 	if (!isPaused()) {
 		if (_platformControl == PlatformControl::Mouse) {
-			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-				_mouse = sf::Vector2f{ sf::Mouse::getPosition(Window::window()) };
-				_isDragged = true;
-			}
-			if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-				_isDragged = false;
-			}
+			handleMouseEvent(event);
 		}
 		if (_platformControl == PlatformControl::Keyboard) {
-			if (_holdSwitch) {
-				if (event.type == sf::Event::KeyPressed) {
-					if (event.key == _switchKey1) {
-						_switchingLeft = true;
-					}
-					if (event.key == _switchKey2) {
-						_switchingRight = true;
-					}
-				}
-				if (event.type == sf::Event::KeyReleased) {
-					if (event.key == _switchKey1) {
-						_switchingLeft = false;
-					}
-					if (event.key == _switchKey2) {
-						_switchingRight = false;
-					}
-				}
-			}
-			else if (event.type == sf::Event::KeyPressed) {
-				if (event.key == _switchKey1) {
-					_switchingState--;
-				}
-				if (event.key == _switchKey2) {
-					_switchingState++;
-				}
-			}
+			handleKeyEvent(event);
 		}
 	}
 }

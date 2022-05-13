@@ -5,7 +5,7 @@
 
 MainMenu::MainMenu() {
 	/**/ //////////////////////////
-	/**/ //	Construct Background
+	/**/ //	Construct Background //
 	/**/ //////////////////////////
 	/**/ auto track = std::make_unique<TrackAI>();
 	/**/ _track = track.get();

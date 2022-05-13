@@ -14,7 +14,7 @@ void PauseScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 
 
 PauseScreen::PauseScreen(const std::function<void()>& resumeMenu, const std::function<void()>& closeMenu, const std::function<void()>& initMenu) :
-	_backButton{ "Back to\nMenu", AppData::getFont("Dameron"), 56u, [this, closeMenu]() {closeMenu(); pause();} },
+	_backButton{ "Back to\nMenu", AppData::getFont("Dameron"), 56u, [this, closeMenu]() {closeMenu(); MenuItem::pause();} },
 	_playAgainButton{ "Play\nAgain!", AppData::getFont("Dameron"), 56u, initMenu },
 	_resumeMenu{resumeMenu}
 {

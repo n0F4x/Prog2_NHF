@@ -2,6 +2,8 @@
 
 #include <algorithm>
 #include <fstream>
+#include <exception>
+#include <iostream>
 
 
 // Validator helpers
@@ -113,7 +115,7 @@ class SpeedConverter : public Context::ToStringConverter {
 public:
 	SpeedConverter() : Context::ToStringConverter{
 		[](const std::any& val) -> std::string {
-			if (auto _val = std::any_cast<unsigned>(val); _val == 30u) {
+			if (auto _val = std::any_cast<unsigned>(val); _val == 40u) {
 				return "Slow";
 			}
 			else if (_val == 20u) {
@@ -124,6 +126,9 @@ public:
 			}
 			else if (_val == 10u) {
 				return "Pro";
+			}
+			else if (_val == 7u) {
+				return "Seer";
 			}
 			return "error";
 		}
@@ -221,7 +226,7 @@ unsigned readSpeed(std::ifstream& file) {
 	file >> buffer;
 	file >> buffer;
 	if (buffer == "Slow") {
-		res = 30u;
+		res = 40u;
 	}
 	else if (buffer == "Avg") {
 		res = 20u;
@@ -232,6 +237,9 @@ unsigned readSpeed(std::ifstream& file) {
 	else if (buffer == "Pro") {
 		res = 10u;
 	}
+	else if (buffer == "Seer") {
+		res = 7u;
+	}
 	file >> buffer;
 	return res;
 }
@@ -239,18 +247,23 @@ unsigned readSpeed(std::ifstream& file) {
 void ContextManager::loadFromFile() {
 	std::ifstream file("./Config/contexts.ini");
 	if (file) {
-		std::string buffer;
-		buffer.resize(31);
-		file.getline(buffer.data(), 30);
-		file.getline(buffer.data(), 30);
-		find("laneCount")->set(readUnsigned(file));
-		find("speed")->set(readSpeed(file));
-		find("platformControl")->set(readPlatformControl(file));
-		find("jumpKey")->set(readKey(file));
-		find("switchKey1")->set(readKey(file));
-		find("switchKey2")->set(readKey(file));
-		find("holdSwitch")->set(readBool(file));
-		file.close();
+		try {
+			std::string buffer;
+			buffer.resize(31);
+			file.getline(buffer.data(), 30);
+			file.getline(buffer.data(), 30);
+			find("laneCount")->set(readUnsigned(file));
+			find("speed")->set(readSpeed(file));
+			find("platformControl")->set(readPlatformControl(file));
+			find("jumpKey")->set(readKey(file));
+			find("switchKey1")->set(readKey(file));
+			find("switchKey2")->set(readKey(file));
+			find("holdSwitch")->set(readBool(file));
+			file.close();
+		}
+		catch (const std::invalid_argument&) {
+			std::cerr << "Error reading file(contexts.ini) - Inadequate file format\n";
+		}
 	}
 }
 
@@ -262,7 +275,7 @@ void writeBasic(std::ofstream& file, const std::string_view& name, const Context
 void writeKey(std::ofstream& file, const std::string_view& name, const Context& context) {
 	std::string string = context.string();
 	std::string code;
-	for (auto letter = string.rbegin(); *letter != '+' && letter != string.rend(); letter++) {
+	for (auto letter = string.rbegin(); letter != string.rend() && *letter != '+'; letter++) {
 		code += *letter;
 	}
 	std::ranges::reverse(code);

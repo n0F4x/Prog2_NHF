@@ -40,7 +40,7 @@ InputField::InputField(
 	_context{ AppData::findContext(contextName) },
 	_text{ static_cast<std::string>(_context), fontStyle, characterSize },
 	_string{ static_cast<std::string>(_context) },
-	_frame{ { Text{ "Ctrl+Alt+Shift+Space", fontStyle, characterSize }.getSize().x * 1.2f, _text.getSize().y * 2.f } }
+	_frame{ { Text{ "Ctrl+Alt+Shift+Space", fontStyle, characterSize }.getSize().x * 1.4f, _text.getSize().y * 2.f } }
 {
 	setSize(_frame.getSize());
 	_text.center(_frame.getLocalBounds());
