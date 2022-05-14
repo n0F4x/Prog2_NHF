@@ -5,6 +5,9 @@
 #include "../Source/Core/Controller.hpp"
 #include "../Source/Menus/Menu.hpp"
 #include "../Source/Core/AppData.hpp"
+#include "../Source/Menus/MainMenu.hpp"
+#include "../Source/Menus/GameMenu.hpp"
+#include "../Source/Menus/OptionsMenu.hpp"
 
 #include "gtest_lite.h"
 
@@ -34,7 +37,7 @@ void test_class<util::vector<int>>() {
 		EXPECT_EQ(true, vector.begin() == vector.end());
 	}
 	END
-	TEST(operator++(), ) {
+		TEST(operator++(), ) {
 		util::vector<int> vector;
 		vector.emplace_back(3);
 		auto it = vector.begin();
@@ -42,7 +45,7 @@ void test_class<util::vector<int>>() {
 		EXPECT_EQ(true, ++it == vector.end());
 	}
 	END
-	TEST(operator++(int), ) {
+		TEST(operator++(int), ) {
 		util::vector<int> vector;
 		vector.emplace_back(3);
 		auto it = vector.begin();
@@ -51,7 +54,7 @@ void test_class<util::vector<int>>() {
 	}
 	END
 
-	std::cout << "\n\n";
+		std::cout << "\n\n";
 }
 
 template <>
@@ -67,7 +70,7 @@ void test_class<PlayerSprite>() {
 	}
 	END
 
-	std::cout << "\n\n";
+		std::cout << "\n\n";
 }
 
 template <>
@@ -79,7 +82,21 @@ void test_class<Player>() {
 	}
 	END
 
-	std::cout << "\n\n";
+		std::cout << "\n\n";
+}
+
+template<>
+void test_class<ContextManager>() {
+	std::cout << "Testing ContextManager:\n";
+
+	TEST(find(), ) {
+		ContextManager manager;
+		EXPECT_EQ(true, nullptr == manager.find("not found"));
+		EXPECT_NE(true, nullptr == manager.find("speed"));
+	}
+	END
+
+		std::cout << "\n\n";
 }
 
 template <>
@@ -95,7 +112,7 @@ void test_class<MenuNode>() {
 		EXPECT_EQ(true, menuPtr == menuNode.get());
 	}
 	END
-	TEST(getParent(), ) {
+		TEST(getParent(), ) {
 		EXPECT_EQ(true, nullptr == MenuNode{}.getParent());
 
 		MenuNode parent;
@@ -104,7 +121,7 @@ void test_class<MenuNode>() {
 		EXPECT_EQ(true, &parent == menuNode.getParent());
 	}
 	END
-	TEST(findChild(), ) {
+		TEST(findChild(), ) {
 		MenuNode menuNode;
 		menuNode.addChild("child", std::make_unique<Menu>());
 
@@ -112,25 +129,25 @@ void test_class<MenuNode>() {
 		EXPECT_NE(true, nullptr == menuNode.findChild("child"));
 	}
 	END
-	TEST(getLastVisitedChild(), ) {
+		TEST(getLastVisitedChild(), ) {
 		EXPECT_EQ(true, nullptr == MenuNode{}.getLastVisitedChild());
 	}
 	END
-	TEST(setLastVisitedChild(), ) {
+		TEST(setLastVisitedChild(), ) {
 		MenuNode menuNode;
 		menuNode.setLastVisitedChild(&menuNode);
 		EXPECT_EQ(true, &menuNode == menuNode.getLastVisitedChild());
 	}
 	END
 
-	std::cout << "\n\n";
+		std::cout << "\n\n";
 }
 
 template <>
 void test_class<Controller>() {
 	std::cout << "Testing Controller:\n";
 
-	TEST(isActive(),) {
+	TEST(isActive(), ) {
 		AppData appData;
 		appData.loadAssets();
 		Window window;
@@ -140,7 +157,59 @@ void test_class<Controller>() {
 	}
 	END
 
-	std::cout << "\n\n";
+		std::cout << "\n\n";
+}
+
+
+void run_comprehensive_test_1() {
+	std::cout << "Running comprehensive test #1\n...\n";
+
+	// Begin
+	MainMenu mainMenu;
+	mainMenu.init();
+	mainMenu.update();
+	mainMenu.pause();
+	mainMenu.resume();
+	mainMenu.render();
+
+	GameMenu gameMenu;
+	gameMenu.init();
+	gameMenu.update();
+	gameMenu.pause();
+	gameMenu.resume();
+	gameMenu.render();
+
+	OptionsMenu optionsMenu;
+	optionsMenu.init();
+	optionsMenu.update();
+	optionsMenu.pause();
+	optionsMenu.resume();
+	optionsMenu.render();
+	// End
+
+	std::cout << "Success!\n\n\n";
+}
+
+void run_comprehensive_test_2() {
+	std::cout << "Running comprehensive test #2\n...\n";
+
+	// Begin
+	AppData appData;
+	Window window;
+	Controller controller{ window };
+
+	appData.loadAssets();
+	controller.load();
+	appData.loadContexts();
+	for (int iter = 0; controller.isActive() && iter < 60 * 3; iter++) {
+		controller->update();
+		controller->render();
+		window.lockFPS();
+	}
+	appData.save();
+	// End
+
+	std::cout << "Success!\n\n\n";
 }
 
 
@@ -150,8 +219,12 @@ int main() {
 	test_class<util::vector<int>>();
 	test_class<PlayerSprite>();
 	test_class<Player>();
+	test_class<ContextManager>();
 	test_class<MenuNode>();
 	test_class<Controller>();
+
+	run_comprehensive_test_1();
+	run_comprehensive_test_2();
 
 	return 0;
 }
