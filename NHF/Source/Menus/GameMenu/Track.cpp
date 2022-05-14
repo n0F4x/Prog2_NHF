@@ -4,7 +4,12 @@
 
 
 void Track::switchLane(float direction) {
-	_transition.start({ direction * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount / (_platformSpeed <= 7u ? 5 : 1));
+	if (_platformSpeed <= 7u) {
+		_transition.start({ direction * _platforms.getPlatformWidth(), 0.f }, 0);
+	}
+	else {
+		_transition.start({ direction * _platforms.getPlatformWidth(), 0.f }, 200 * 3 / _laneCount);
+	}
 }
 
 void Track::switchLanes() {

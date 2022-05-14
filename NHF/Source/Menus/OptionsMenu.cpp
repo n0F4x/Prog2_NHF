@@ -113,7 +113,7 @@ OptionsMenu::OptionsMenu() {
 	HSlabel->setFillColor(theme::IndigoPurple);
 
 	// Construct "Speed" bar and label
-	std::vector<unsigned> Pcontents{ 40u, 20u, 15u, 10u, 7u };
+	std::vector<unsigned> Pcontents{ 40u, 20u, 15u, 10u, 6u };
 	auto Sbar = std::make_unique<Bar<unsigned>>(tmp.getSize().x * 1.4f, Pcontents, AppData::getFont("Dameron"), 56u, "speed");
 	Sbar->center(Window::getLocalBounds());
 	Sbar->setPosition({

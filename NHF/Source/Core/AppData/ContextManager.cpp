@@ -127,7 +127,7 @@ public:
 			else if (_val == 10u) {
 				return "Pro";
 			}
-			else if (_val == 7u) {
+			else if (_val <= 7u) {
 				return "Seer";
 			}
 			return "error";
@@ -238,7 +238,7 @@ unsigned readSpeed(std::ifstream& file) {
 		res = 10u;
 	}
 	else if (buffer == "Seer") {
-		res = 7u;
+		res = 6u;
 	}
 	file >> buffer;
 	return res;
