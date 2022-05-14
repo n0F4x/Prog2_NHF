@@ -34,9 +34,7 @@ void Menu::render() {
 		Window::draw(*item);
 	}
 
-	if (_renderDisplay) {
-		Window::display();
-	}
+	Window::display();
 }
 
 

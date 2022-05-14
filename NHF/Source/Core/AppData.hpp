@@ -16,8 +16,8 @@ private:
 	static ContextManager _contexts;
 
 public:
-	static const sf::Font& getFont(const std::string& name) { return _assets.getFont(name); }
-	static const sf::Texture& getTexture(const std::string& name) { return _assets.getTexture(name); }
+	static const sf::Font& getFont(const std::string_view& name) { return _assets.getFont(name); }
+	static const sf::Texture& getTexture(const std::string_view& name) { return _assets.getTexture(name); }
 	static Context* findContext(const std::string_view& name) { return _contexts.find(name); }
 
 	void loadAssets() const {

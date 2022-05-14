@@ -3,8 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <functional>
 
-class App;
-
 
 class Window {
 private:
@@ -17,9 +15,6 @@ private:
 	static int _FPS;
 	sf::Clock _clock;
 
-	friend App;
-	Window();
-
 public:
 	static const sf::RenderWindow& window() { return _window; }
 
@@ -30,6 +25,7 @@ public:
 	static void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
 	static void display();
 
+	Window();
 	void open() const;
 	void close() const;
 	bool isOpen() const;

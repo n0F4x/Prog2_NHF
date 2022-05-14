@@ -4,7 +4,7 @@
 void AssetManager::loadFont(const std::string& name, const std::string& fileName) {
 	if (!_fonts.contains(name)) {
 		if (sf::Font tmp; tmp.loadFromFile(fileName)) {
-			_fonts[name] = tmp;
+			_fonts.try_emplace(name, tmp);
 		}
 	}
 }
@@ -12,19 +12,19 @@ void AssetManager::loadFont(const std::string& name, const std::string& fileName
 void AssetManager::loadTexture(const std::string& name, const std::string& fileName) {
 	if (!_textures.contains(name)) {
 		if (sf::Texture tmp; tmp.loadFromFile(fileName)) {
-			_textures[name] = tmp;
+			_textures.try_emplace(name, tmp);
 		}
 	}
 }
 
 
-const sf::Font& AssetManager::getFont(const std::string& name) {
+const sf::Font& AssetManager::getFont(const std::string_view& name) {
 	if (auto it = _fonts.find(name); it != _fonts.end())
 		return it->second;
 	return _fonts.begin()->second;
 }
 
-const sf::Texture& AssetManager::getTexture(const std::string& name) {
+const sf::Texture& AssetManager::getTexture(const std::string_view& name) {
 	if (auto it = _textures.find(name); it != _textures.end())
 		return it->second;
 	return _textures.begin()->second;

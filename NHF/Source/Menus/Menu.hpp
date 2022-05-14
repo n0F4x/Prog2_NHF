@@ -13,13 +13,11 @@ private:
 	util::vector<std::unique_ptr<MenuItem>> _items;
 
 	bool _isPaused = false;
-	bool _renderDisplay = true;
 
 protected:
 	void addMenuItem(std::unique_ptr<MenuItem> item);
 
 	bool isPaused() const { return _isPaused; }
-	void setRenderDisplay(bool display) { _renderDisplay = display; }
 
 public:
 	void handleEvent(const sf::Event& event) override;

@@ -5,9 +5,6 @@
 #include "Context.hpp"
 
 
-class AppData;
-
-
 enum class PlatformControl {
 	Keyboard,
 	Mouse
@@ -24,8 +21,7 @@ private:
 		const Context::Validator& validator = {}
 	);
 
-
-	friend AppData;
+public:
 	ContextManager();
 
 	void loadFromFile();

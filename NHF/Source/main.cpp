@@ -1,3 +1,6 @@
+#ifndef CPORTA
+
+
 #include "App.hpp"
 
 
@@ -8,3 +11,5 @@ int main() {
 
 	return 0;
 }
+
+#endif // CPORTA

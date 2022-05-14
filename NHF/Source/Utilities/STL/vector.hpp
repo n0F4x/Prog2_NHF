@@ -54,7 +54,7 @@ namespace util {
 				++(*this);
 				return retval;
 			}
-			bool operator==(iterator other) const { return _index == other._index; }
+			bool operator==(const iterator& other) const { return _index == other._index; }
 			T& operator*() { return _vector[_index]; }
 		};
 	};
