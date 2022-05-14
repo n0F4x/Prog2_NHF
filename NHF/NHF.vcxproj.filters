@@ -162,6 +162,9 @@
     <ClCompile Include="Source\Core\AppData\Context.cpp">
       <Filter>Source Files\Core\AppData</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Core\Controller\MenuNode.cpp">
+      <Filter>Source Files\Core\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">

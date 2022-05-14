@@ -4,8 +4,6 @@
 sf::RenderWindow Window::_window;
 std::function<sf::VideoMode()> Window::_getVideoMode = sf::VideoMode::getDesktopMode;
 
-int Window::_FPS = 60;
-
 
 Window::Window() {
 	_settings.depthBits = 24;

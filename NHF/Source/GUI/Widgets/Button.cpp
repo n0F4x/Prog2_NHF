@@ -32,14 +32,13 @@ Button::Button(
 
 void Button::handleEvent(const sf::Event& event) {
 	if (isInside(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
+		if (event.type == sf::Event::MouseButtonPressed) {
+			triggerCallback();
+		}
 		_text.setFillColor(theme::Secondary);
 	}
 	else {
 		_text.setFillColor(theme::Primary);
-	}
-
-	if (event.type == sf::Event::MouseButtonPressed && isInside(sf::Vector2f { sf::Vector2i{event.mouseButton.x, event.mouseButton.y} })) {
-		triggerCallback();
 	}
 }
 
