@@ -14,15 +14,20 @@
 
 void write_title() {
 	std::cout << "\n";
-	std::cout << "        ///      ///    ////    ///    ///    ///////////              ///////////    ///////////     ////////      ///////////     //////// \n";
-	std::cout << "       ///      ///    /////   ///    ///        ///                      ///        ///            ///      //        ///        ///      //\n";
-	std::cout << "      ///      ///    /// //  ///    ///        ///                      ///        ///////////      ///////          ///          ///////   \n";
-	std::cout << "     ///      ///    ///  // ///    ///        ///                      ///        ///            //      ///        ///        //      ///  \n";
-	std::cout << "       //////       ///   /////    ///        ///                      ///        ///////////      ////////         ///          ////////    \n";
+	std::cout << "           ///////////    ///////////     ////////      ///////////     //////// \n";
+	std::cout << "              ///        ///            ///      //        ///        ///      //\n";
+	std::cout << "             ///        ///////////      ///////          ///          ///////   \n";
+	std::cout << "            ///        ///            //      ///        ///        //      ///  \n";
+	std::cout << "           ///        ///////////      ////////         ///          ////////    \n";
 	std::cout << "\n";
 	std::cout << "\n";
 	std::cout << "\n";
 }
+
+
+////////////////
+// Unit tests //
+////////////////
 
 template <class TestClass>
 void test_class() { /* Use with specialization only */ }
@@ -160,13 +165,18 @@ void test_class<Controller>() {
 		std::cout << "\n\n";
 }
 
+/////////////////////
+// Integrity tests //
+/////////////////////
 
 void run_comprehensive_test_1() {
 	std::cout << "Running comprehensive test #1\n...\n";
 
 	try {
+		sf::Event event;
 		MainMenu mainMenu;
 		mainMenu.init();
+		mainMenu.handleEvent(event);
 		mainMenu.update();
 		mainMenu.pause();
 		mainMenu.resume();
@@ -174,6 +184,7 @@ void run_comprehensive_test_1() {
 
 		GameMenu gameMenu;
 		gameMenu.init();
+		gameMenu.handleEvent(event);
 		gameMenu.update();
 		gameMenu.pause();
 		gameMenu.resume();
@@ -181,18 +192,20 @@ void run_comprehensive_test_1() {
 
 		OptionsMenu optionsMenu;
 		optionsMenu.init();
+		optionsMenu.handleEvent(event);
 		optionsMenu.update();
 		optionsMenu.pause();
 		optionsMenu.resume();
 		optionsMenu.render();
 
 
-		std::cout << "Success!\n\n\n";
+		std::cout << "Success!\n";
 	}
 	catch (const std::exception& e) {
 		std::cout << "Failure!\n";
 		std::cout << "Message:\t" << e.what();
 	}
+	std::cout << "\n\n";
 }
 
 void run_comprehensive_test_2() {
@@ -202,11 +215,13 @@ void run_comprehensive_test_2() {
 		AppData appData;
 		Window window;
 		Controller controller{ window };
+		sf::Event event;
 
 		appData.loadAssets();
 		controller.load();
 		appData.loadContexts();
-		for (int iter = 0; controller.isActive() && iter < 60 * 3; iter++) {
+		for (int iter = 0; controller.isActive() && iter < 2; iter++) {
+			controller->handleEvent(event);
 			controller->update();
 			controller->render();
 			window.lockFPS();
@@ -214,18 +229,101 @@ void run_comprehensive_test_2() {
 		appData.save();
 
 
-		std::cout << "Success!\n\n\n";
+		std::cout << "Success!\n";
 	}
 	catch (const std::exception& e) {
 		std::cout << "Failure!\n";
 		std::cout << "Message:\t" << e.what();
 	}
+	std::cout << "\n\n";
+}
+
+/////////////////
+// Simulations //
+/////////////////
+
+void simulation_1() {
+	std::cout << "Running simulation #1\n...\n";
+
+	try {
+		AppData appData;
+		Window window;
+		Controller controller{ window };
+
+		std::vector<sf::Event> events{50};
+		auto eventIter = events.begin();
+		eventIter->type = sf::Event::KeyPressed;
+		eventIter->key.code = sf::Keyboard::Num2;
+		eventIter++;
+		eventIter->type = sf::Event::MouseButtonPressed;
+		eventIter->mouseButton = {sf::Mouse::Left, static_cast<int>(Window::getSize().x / 2.f), static_cast<int>(Window::getSize().y / 2.f)};
+		eventIter++;
+		eventIter->type = sf::Event::KeyPressed;
+		eventIter->key.code = sf::Keyboard::A;
+		eventIter++;
+		eventIter->type = sf::Event::KeyReleased;
+		eventIter->key.code = sf::Keyboard::A;
+		eventIter++;
+		eventIter->type = sf::Event::MouseButtonPressed;
+		eventIter->mouseButton = { sf::Mouse::Left, 1750, 970 };
+		eventIter++;
+		eventIter->type = sf::Event::KeyPressed;
+		eventIter->key.code = sf::Keyboard::Left;
+		eventIter->key.alt = true;
+		eventIter++;
+		eventIter->type = sf::Event::KeyPressed;
+		eventIter->key.code = sf::Keyboard::Num1;
+		eventIter++;
+		eventIter->type = sf::Event::KeyPressed;
+		eventIter->key.code = sf::Keyboard::Escape;
+		eventIter++;
+		eventIter->type = sf::Event::KeyPressed;
+		eventIter->key.code = sf::Keyboard::Escape;
+		eventIter++;
+		eventIter->type = sf::Event::KeyPressed;
+		eventIter->key.code = sf::Keyboard::A;
+		eventIter++;
+		eventIter++;
+		eventIter->type = sf::Event::MouseButtonPressed;
+		eventIter->mouseButton = { sf::Mouse::Left, 50, 50};
+		eventIter++;
+		eventIter->type = sf::Event::MouseButtonPressed;
+		eventIter->mouseButton = { sf::Mouse::Left, 1850, 50 };
+		eventIter++;
+
+
+		appData.loadAssets();
+		controller.load();
+
+		for (size_t idx = 0; controller.isActive(); idx++) {
+			if (idx == events.size()) {
+				std::string message;
+				message += "Simulation reached end of control.";
+				throw std::range_error{ message };
+			}
+			if (events[idx].type == sf::Event::KeyPressed && events[idx].key.code == sf::Keyboard::F4 && events[idx].key.alt) {
+				break;
+			}
+			controller->handleEvent(events[idx]);
+			controller->update();
+		}
+		appData.save();
+
+
+		std::cout << "Success!\n";
+	}
+	catch (const std::exception& e) {
+		std::cout << "Failure!\n";
+		std::cout << "Message:\t" << e.what() << '\n';
+	}
+	std::cout << "\n\n";
 }
 
 
 int main() {
 	write_title();
 
+	// Unit tests
 	test_class<util::vector<int>>();
 	test_class<PlayerSprite>();
 	test_class<Player>();
@@ -233,8 +331,12 @@ int main() {
 	test_class<MenuNode>();
 	test_class<Controller>();
 
+	// Integrity tests
 	run_comprehensive_test_1();
 	run_comprehensive_test_2();
+
+	// Simulations
+	simulation_1();
 
 	return 0;
 }
