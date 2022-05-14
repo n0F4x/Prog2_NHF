@@ -61,7 +61,8 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/Math/Transitions.cpp
     ./NHF/Source/Utilities/Math.cpp
     ./NHF/Source/App.cpp
-    ./NHF/Source/main.cpp  
+    ./NHF/Source/main.cpp
+    ./NHF/Tests/test_main.cpp
 )
 
 find_package(SFML 2 COMPONENTS graphics audio REQUIRED)

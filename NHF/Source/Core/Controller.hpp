@@ -18,13 +18,11 @@ private:
 	void close();
 
 	Window& _window;
-
-	friend App;
-	explicit Controller(Window& window);
-
 	bool _preview = false;
 
 public:
+	explicit Controller(Window& window);
+
 	void renderPreview();
 	void load();
 

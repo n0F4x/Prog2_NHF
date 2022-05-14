@@ -4,14 +4,9 @@
 #include "AppData/ContextManager.hpp"
 #include "AppData/ContextRepr.hpp"
 
-class App;
-
 
 class AppData {
 private:
-	friend App;
-	AppData() = default;
-
 	static AssetManager _assets;
 	static ContextManager _contexts;
 
