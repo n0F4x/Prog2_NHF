@@ -164,52 +164,62 @@ void test_class<Controller>() {
 void run_comprehensive_test_1() {
 	std::cout << "Running comprehensive test #1\n...\n";
 
-	// Begin
-	MainMenu mainMenu;
-	mainMenu.init();
-	mainMenu.update();
-	mainMenu.pause();
-	mainMenu.resume();
-	mainMenu.render();
+	try {
+		MainMenu mainMenu;
+		mainMenu.init();
+		mainMenu.update();
+		mainMenu.pause();
+		mainMenu.resume();
+		mainMenu.render();
 
-	GameMenu gameMenu;
-	gameMenu.init();
-	gameMenu.update();
-	gameMenu.pause();
-	gameMenu.resume();
-	gameMenu.render();
+		GameMenu gameMenu;
+		gameMenu.init();
+		gameMenu.update();
+		gameMenu.pause();
+		gameMenu.resume();
+		gameMenu.render();
 
-	OptionsMenu optionsMenu;
-	optionsMenu.init();
-	optionsMenu.update();
-	optionsMenu.pause();
-	optionsMenu.resume();
-	optionsMenu.render();
-	// End
+		OptionsMenu optionsMenu;
+		optionsMenu.init();
+		optionsMenu.update();
+		optionsMenu.pause();
+		optionsMenu.resume();
+		optionsMenu.render();
 
-	std::cout << "Success!\n\n\n";
+
+		std::cout << "Success!\n\n\n";
+	}
+	catch (const std::exception& e) {
+		std::cout << "Failure!\n";
+		std::cout << "Message:\t" << e.what();
+	}
 }
 
 void run_comprehensive_test_2() {
 	std::cout << "Running comprehensive test #2\n...\n";
 
-	// Begin
-	AppData appData;
-	Window window;
-	Controller controller{ window };
+	try {
+		AppData appData;
+		Window window;
+		Controller controller{ window };
 
-	appData.loadAssets();
-	controller.load();
-	appData.loadContexts();
-	for (int iter = 0; controller.isActive() && iter < 60 * 3; iter++) {
-		controller->update();
-		controller->render();
-		window.lockFPS();
+		appData.loadAssets();
+		controller.load();
+		appData.loadContexts();
+		for (int iter = 0; controller.isActive() && iter < 60 * 3; iter++) {
+			controller->update();
+			controller->render();
+			window.lockFPS();
+		}
+		appData.save();
+
+
+		std::cout << "Success!\n\n\n";
 	}
-	appData.save();
-	// End
-
-	std::cout << "Success!\n\n\n";
+	catch (const std::exception& e) {
+		std::cout << "Failure!\n";
+		std::cout << "Message:\t" << e.what();
+	}
 }
 
 
