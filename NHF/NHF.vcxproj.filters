@@ -165,6 +165,9 @@
     <ClCompile Include="Source\Core\Controller\MenuNode.cpp">
       <Filter>Source Files\Core\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Menus\MenuItem.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.hpp">

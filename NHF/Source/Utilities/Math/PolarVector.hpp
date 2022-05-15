@@ -1,6 +1,9 @@
 #pragma once
 
 
+/**
+ * @brief	Struct for representing a vector in polar coordinates
+*/
 struct PolarVector {
 	float radius;
 	float angle;

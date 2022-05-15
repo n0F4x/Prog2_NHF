@@ -187,6 +187,7 @@
     <ClCompile Include="Source\Menus\GameMenu\Track.cpp" />
     <ClCompile Include="Source\Menus\MainMenu.cpp" />
     <ClCompile Include="Source\Menus\Menu.cpp" />
+    <ClCompile Include="Source\Menus\MenuItem.cpp" />
     <ClCompile Include="Source\Menus\OptionsMenu.cpp" />
     <ClCompile Include="Source\Utilities\Math.cpp" />
     <ClCompile Include="Source\Utilities\Math\Angle.cpp" />

@@ -4,12 +4,23 @@
 #include <SFML/Graphics.hpp>
 
 
+/**
+ * @brief	Class for calculating cubic bezier easing
+*/
 class BezierEasing {
 public:
-	//Create a cubic Bezier easing for any p1 and p2 with components between 0 and 1
+	/**
+	 * @brief	Creates a cubic Bezier easing for any p1 and p2 with components between 0 and 1
+	 * @param p1	One point of the easing
+	 * @param p2	Another point of the easing
+	*/
 	BezierEasing(const sf::Vector2f& p1, const sf::Vector2f& p2);
 
-	//Return progress for desired time if valid curve. -1 if invalid.
+	/**
+	 * @brief	Calculates progress for desired time if valid curve. -1 if invalid
+	 * @param t	The desired time
+	 * @return	The progress of the easing from 0 to t
+	*/
 	float GetEasingProgress(float t);
 
 private:

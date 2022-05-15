@@ -13,6 +13,10 @@ void Player::startJump() {
 	_transition.start(sf::Vector2f{ 0.f, Window::getSize().y / 2.f - _sprite.getPosition().y } / 2.f, 600);
 }
 
+
+Player::Player() : MenuItem{ {&_transition} } {}
+
+
 void Player::setPosition(const sf::Vector2f& feet) {
 	_sprite.setInitPos(feet - _offset);
 }
