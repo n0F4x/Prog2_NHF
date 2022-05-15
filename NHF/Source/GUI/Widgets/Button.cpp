@@ -31,7 +31,11 @@ Button::Button(
 
 
 void Button::handleEvent(const sf::Event& event) {
+#ifdef CPORTA
 	if (isInside(sf::Vector2f{ sf::Vector2i{ event.mouseButton.x, event.mouseButton.y } })) {
+#else
+	if (isInside(sf::Vector2f{ sf::Mouse::getPosition(Window::window()) })) {
+#endif
 		if (event.type == sf::Event::MouseButtonPressed) {
 			triggerCallback();
 		}
