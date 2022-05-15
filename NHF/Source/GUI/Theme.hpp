@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 
 
+/**
+ * @brief	Color themes
+*/
 namespace theme {
 	extern const sf::Color Primary;
 	extern const sf::Color Secondary;
