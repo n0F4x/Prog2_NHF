@@ -13,6 +13,7 @@ add_compile_options(
     -g
     -Wall -Wextra
     -fsanitize=address
+    -DCPORTA
 )
 
 add_link_options(
@@ -67,7 +68,6 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/Math.cpp
     ./NHF/Source/App.cpp
     ./NHF/Source/main.cpp
-    ./NHF/Tests/memtrace.cpp
     ./NHF/Tests/test_main.cpp
 )
 
