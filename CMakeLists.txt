@@ -10,12 +10,14 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_compile_options(
-    -ggdb3
+    -g
     -Wall -Wextra
     -fsanitize=address
 )
 
-add_link_options(-fsanitize=address)
+add_link_options(
+    -fsanitize=address
+)
 
 # include
 include_directories(
@@ -29,6 +31,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities/Math
     ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Source/Utilities/STL
+    ${CMAKE_CURRENT_SOURCE_DIR}/NHF/Tests
 )
 
 # Create target and set properties.
@@ -36,6 +39,7 @@ set(SOURCE_FILES
     ./NHF/Source/Core/AppData/AssetManager.cpp
     ./NHF/Source/Core/AppData/Context.cpp
     ./NHF/Source/Core/AppData/ContextManager.cpp
+    ./NHF/Source/Core/Controller/MenuNode.cpp
     ./NHF/Source/Core/Controller/PreView.cpp
     ./NHF/Source/Core/AppData.cpp
     ./NHF/Source/Core/Controller.cpp
@@ -54,6 +58,7 @@ set(SOURCE_FILES
     ./NHF/Source/Menus/GameMenu.cpp
     ./NHF/Source/Menus/MainMenu.cpp
     ./NHF/Source/Menus/Menu.cpp
+    ./NHF/Source/Menus/MenuItem.cpp
     ./NHF/Source/Menus/OptionsMenu.cpp
     ./NHF/Source/Utilities/Math/Angle.cpp
     ./NHF/Source/Utilities/Math/BezierEasing.cpp
@@ -62,6 +67,7 @@ set(SOURCE_FILES
     ./NHF/Source/Utilities/Math.cpp
     ./NHF/Source/App.cpp
     ./NHF/Source/main.cpp
+    ./NHF/Tests/memtrace.cpp
     ./NHF/Tests/test_main.cpp
 )
 
