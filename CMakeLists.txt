@@ -13,7 +13,7 @@ add_compile_options(
     -g
     -Wall -Wextra
     -fsanitize=address
-    -DCPORTA
+    # -DCPORTA
 )
 
 add_link_options(
