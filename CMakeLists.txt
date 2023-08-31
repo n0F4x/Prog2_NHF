@@ -12,10 +12,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(
     -ggdb3
     -Wall -Wextra
-    -fsanitize=address
+#    -fsanitize=address
 )
 
-add_link_options(-fsanitize=address)
+#add_link_options(-fsanitize=address)
 
 # include
 include_directories(
@@ -36,6 +36,7 @@ set(SOURCE_FILES
     ./NHF/Source/Core/AppData/AssetManager.cpp
     ./NHF/Source/Core/AppData/Context.cpp
     ./NHF/Source/Core/AppData/ContextManager.cpp
+    ./NHF/Source/Core/Controller/MenuNode.cpp
     ./NHF/Source/Core/Controller/PreView.cpp
     ./NHF/Source/Core/AppData.cpp
     ./NHF/Source/Core/Controller.cpp
@@ -54,6 +55,7 @@ set(SOURCE_FILES
     ./NHF/Source/Menus/GameMenu.cpp
     ./NHF/Source/Menus/MainMenu.cpp
     ./NHF/Source/Menus/Menu.cpp
+    ./NHF/Source/Menus/MenuItem.cpp
     ./NHF/Source/Menus/OptionsMenu.cpp
     ./NHF/Source/Utilities/Math/Angle.cpp
     ./NHF/Source/Utilities/Math/BezierEasing.cpp
