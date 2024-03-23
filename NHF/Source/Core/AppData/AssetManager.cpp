@@ -37,3 +37,8 @@ void AssetManager::loadFromFiles() {
 
 	loadTexture("Motor", "./Assets/Motor.png");
 }
+
+void AssetManager::release() {
+    _fonts.clear();
+    _textures.clear();
+}

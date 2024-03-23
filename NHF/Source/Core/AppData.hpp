@@ -44,5 +44,8 @@ public:
 	/**
 	 * @brief	Saves contexts to file
 	*/
-	void save() const { _contexts.save(); }
+	void save() const { _contexts.save(); }    /**
+     * @brief   Cleans up the held resources
+     */
+    void cleanUp() { _assets.release(); }
 };

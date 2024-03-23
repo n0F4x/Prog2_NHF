@@ -1,11 +1,14 @@
 #include "Window.hpp"
 
 
-sf::RenderWindow Window::_window;
+std::unique_ptr<sf::RenderWindow> Window::_window;
 std::function<sf::VideoMode()> Window::_getVideoMode = sf::VideoMode::getDesktopMode;
 
 
 Window::Window() {
+    if (!_window) {
+        _window = std::make_unique<sf::RenderWindow>();
+    }
 	_settings.depthBits = 24;
 	_settings.stencilBits = 8;
 	_settings.sRgbCapable = true;
@@ -21,32 +24,34 @@ sf::FloatRect Window::getLocalBounds() {
 }
 
 
-void Window::display() { _window.display(); }
+void Window::display() { _window->display(); }
 
-void Window::clear() { _window.clear(); }
+void Window::clear() { _window->clear(); }
 
 void Window::draw(const sf::Drawable& drawable, const sf::RenderStates& states) {
-	_window.draw(drawable, states);
+	_window->draw(drawable, states);
 }
 
 
 void Window::open() const {
-	if (!_window.isOpen()) {
-		_window.create(_getVideoMode(), _title, _style, _settings);
+	if (!_window->isOpen()) {
+		_window->create(_getVideoMode(), _title, _style, _settings);
 
-		_window.setVerticalSyncEnabled(true);
-		_window.setKeyRepeatEnabled(false);
+		_window->setVerticalSyncEnabled(true);
+		_window->setKeyRepeatEnabled(false);
 	}
 }
 
-void Window::close() const { _window.close(); }
+void Window::close() const {
+    _window.reset();
+}
 
 bool Window::isOpen() const {
-	return _window.isOpen();
+	return _window->isOpen();
 }
 
 bool Window::pollEvent(sf::Event& event) const {
-	return _window.pollEvent(event);
+	return _window->pollEvent(event);
 }
 
 void Window::lockFPS(int FPS) {

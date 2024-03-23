@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <functional>
+#include <memory>
 
 
 /**
@@ -9,7 +10,7 @@
 */
 class Window {
 private:
-	static sf::RenderWindow _window;
+	static std::unique_ptr<sf::RenderWindow> _window;
 	static std::function<sf::VideoMode()> _getVideoMode;
 
 	sf::String _title = "Platforms";
@@ -22,7 +23,7 @@ public:
 	 * @brief	Getter for inner window
 	 * @return	Inner window
 	*/
-	static const sf::RenderWindow& window() { return _window; }
+	static const sf::RenderWindow& window() { return *_window; }
 
 	/**
 	 * @brief	Getter for the size of the window

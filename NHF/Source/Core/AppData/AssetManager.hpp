@@ -43,4 +43,9 @@ public:
 	 * @brief	Reads and stores assets from the corresponding files
 	*/
 	void loadFromFiles();
+
+    /**
+     * @brief   Release all resources
+     */
+     void release();
 };
