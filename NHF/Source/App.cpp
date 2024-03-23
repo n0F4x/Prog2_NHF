@@ -36,7 +36,7 @@ void App::run() {
 		_window.lockFPS();
 	}
 
-    _window.close();
+    _window.cleanUp();
 
 	_appData.save();
     _appData.cleanUp();

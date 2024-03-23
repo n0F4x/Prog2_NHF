@@ -63,6 +63,10 @@ public:
 	 * @brief	Closes the window
 	*/
 	void close() const;
+    /**
+     * @brief   Clean up resources
+     */
+    void cleanUp() const;
 	/**
 	 * @brief	Checks whether the window is open
 	 * @return	True if the window is open

@@ -43,7 +43,7 @@ void Window::open() const {
 }
 
 void Window::close() const {
-    _window.reset();
+    _window->close();
 }
 
 bool Window::isOpen() const {
@@ -58,4 +58,8 @@ void Window::lockFPS(int FPS) {
 	while (_clock.getElapsedTime().asSeconds() < 1.f / static_cast<float>(FPS))
 		;
 	_clock.restart();
+}
+
+void Window::cleanUp() const {
+    _window.reset();
 }
