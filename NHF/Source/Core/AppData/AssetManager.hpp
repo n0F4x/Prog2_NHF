@@ -2,7 +2,6 @@
 
 #include <map>
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 
 
 /**
@@ -45,4 +44,3 @@ public:
 	*/
 	void loadFromFiles();
 };
-

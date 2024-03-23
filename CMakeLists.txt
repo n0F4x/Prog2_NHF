@@ -1,5 +1,7 @@
 # cmake version to be used
-cmake_minimum_required( VERSION 3.0 )
+cmake_minimum_required( VERSION 3.20 )
+
+include(FetchContent)
 
 # project name
 project( NHF LANGUAGES CXX)
@@ -9,11 +11,17 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_compile_options(
-    -ggdb3
-    -Wall -Wextra
-#    -fsanitize=address
-)
+if (MSVC)
+    add_compile_options(
+        /W3
+    )
+else ()
+    add_compile_options(
+        -ggdb3
+        -Wall -Wextra
+#        -fsanitize=address
+    )
+endif ()
 
 #add_link_options(-fsanitize=address)
 
@@ -67,8 +75,16 @@ set(SOURCE_FILES
     ./NHF/Tests/test_main.cpp
 )
 
-find_package(SFML 2 COMPONENTS graphics audio REQUIRED)
+# SFML
+set(BUILD_SHARED_LIBS OFF)
+FetchContent_Declare(SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 2.5.1
+)
+FetchContent_MakeAvailable(SFML)
+#find_package(SFML 2 COMPONENTS graphics audio REQUIRED)
 
 add_executable( NHF ${SOURCE_FILES} )
 
-target_link_libraries(NHF sfml-graphics sfml-audio)
+target_link_libraries(NHF sfml-graphics)
+#target_link_libraries(NHF sfml-graphics sfml-audio)
