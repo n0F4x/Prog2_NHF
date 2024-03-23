@@ -66,7 +66,10 @@ template <>
 void test_class<PlayerSprite>() {
 	std::cout << "Testing PlayerSprite:\n";
 
-	TEST(getInitPos(), ) {
+    AppData appData{};
+    appData.loadAssets();
+
+    TEST(getInitPos(), ) {
 		EXPECT_EQ(true, sf::Vector2f{} == PlayerSprite{}.getInitPos());
 
 		PlayerSprite playerSprite;
@@ -75,6 +78,8 @@ void test_class<PlayerSprite>() {
 	}
 	END
 
+    appData.cleanUp();
+
 		std::cout << "\n\n";
 }
 
@@ -82,10 +87,15 @@ template <>
 void test_class<Player>() {
 	std::cout << "Testing Player:\n";
 
-	TEST(getFeet(), ) {
+    AppData appData{};
+    appData.loadAssets();
+
+    TEST(getFeet(), ) {
 		EXPECT_EQ(true, (sf::Vector2f{ 0.f, 30.f } == Player{}.getFeet()));
 	}
 	END
+
+    appData.cleanUp();
 
 		std::cout << "\n\n";
 }
@@ -159,6 +169,7 @@ void test_class<Controller>() {
 		Controller controller{ window };
 		controller.load();
 		EXPECT_EQ(true, controller.isActive());
+        appData.cleanUp();
 	}
 	END
 
@@ -171,6 +182,9 @@ void test_class<Controller>() {
 
 void run_comprehensive_test_1() {
 	std::cout << "Running comprehensive test #1\n...\n";
+
+    AppData appData;
+    appData.loadAssets();
 
 	try {
 		sf::Event event;
@@ -205,6 +219,9 @@ void run_comprehensive_test_1() {
 		std::cout << "Failure!\n";
 		std::cout << "Message:\t" << e.what();
 	}
+
+    appData.cleanUp();
+
 	std::cout << "\n\n";
 }
 
@@ -226,7 +243,9 @@ void run_comprehensive_test_2() {
 			controller->render();
 			window.lockFPS();
 		}
+        window.cleanUp();
 		appData.save();
+        appData.cleanUp();
 
 
 		std::cout << "Success!\n";
@@ -307,7 +326,9 @@ void simulation_1() {
 			controller->handleEvent(events[idx]);
 			controller->update();
 		}
+        window.cleanUp();
 		appData.save();
+        appData.cleanUp();
 
 
 		std::cout << "Success!\n";
